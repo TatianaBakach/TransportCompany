@@ -1,0 +1,5 @@
+.project
+.settings/org.eclipse.m2e.core.prefs
+dao-api/.classpath
+dao-api/.settings/org.eclipse.jdt.core.prefs
+dao-api/.settings/org.eclipse.m2e.core.prefs
