@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+
+	<context-param>
+		<param-name>databaseUrl</param-name>
+		<param-value>sfgsfk</param-value>
+	</context-param>
+
+	<display-name>Simple web</display-name>
+
+	<servlet>
+		<servlet-name>MyServlet</servlet-name>
+		<servlet-class>by.itacademy.jd1.web.servlet.MyServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>MyServlet</servlet-name>
+		<url-pattern>/s1</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>by.itacademy.jd1.web.servlet.LoginServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>MyPageServlet</servlet-name>
+		<servlet-class>by.itacademy.jd1.web.servlet.MyPageServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>MyPageServlet</servlet-name>
+		<url-pattern>/myPage</url-pattern>
+	</servlet-mapping>
+
+
+
+	<servlet>
+		<servlet-name>MyServlet1</servlet-name>
+		<servlet-class>by.itacademy.jd1.web.servlet.MyServlet1</servlet-class>
+		<init-param>
+			<param-name>initParam</param-name>
+			<param-value>initParam value</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet>
+		<servlet-name>MyServlet2</servlet-name>
+		<servlet-class>by.itacademy.jd1.web.servlet.MyServlet2</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>MyServlet3</servlet-name>
+		<servlet-class>by.itacademy.jd1.web.servlet.MyServlet3</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>MyServletGreen</servlet-name>
+		<servlet-class>by.itacademy.jd1.web.servlet.MyServletGreen</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>MyServletBlue</servlet-name>
+		<servlet-class>by.itacademy.jd1.web.servlet.MyServletBlue</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>MyServlet1</servlet-name>
+		<url-pattern>/path1</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>MyServlet2</servlet-name>
+		<url-pattern>/path2</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>MyServlet3</servlet-name>
+		<url-pattern>/path3</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>MyServletGreen</servlet-name>
+		<url-pattern>/green-servlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>MyServletBlue</servlet-name>
+		<url-pattern>/blue-servlet</url-pattern>
+	</servlet-mapping>
+	
+	<filter>
+	<filter-name>AuthorizationFilter</filter-name>
+	<filter-class>by.itacademy.jd1.web.filter.AuthorizationFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+	<filter-name>AuthorizationFilter</filter-name>
+	<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>Resource1</servlet-name>
+		<servlet-class>by.itacademy.jd1.web.servlet.Resource1</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Resource1</servlet-name>
+		<url-pattern>/r1</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Resource2</servlet-name>
+		<servlet-class>by.itacademy.jd1.web.servlet.Resource2</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Resource2</servlet-name>
+		<url-pattern>/r2</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Resource3</servlet-name>
+		<servlet-class>by.itacademy.jd1.web.servlet.Resource3</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Resource3</servlet-name>
+		<url-pattern>/r3</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Resource4</servlet-name>
+		<servlet-class>by.itacademy.jd1.web.servlet.Resource4</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Resource4</servlet-name>
+		<url-pattern>/r4</url-pattern>
+	</servlet-mapping>
+	
+	
+
+
+</web-app>

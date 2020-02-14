@@ -3,3 +3,16 @@
 dao-api/.classpath
 dao-api/.settings/org.eclipse.jdt.core.prefs
 dao-api/.settings/org.eclipse.m2e.core.prefs
+dao-api/.settings/
+dao-jdbc-impl/.settings/org.eclipse.core.resources.prefs
+dao-jdbc-impl/.settings/
+service/.settings/org.eclipse.core.resources.prefs
+dao-jdbc-impl/.classpath
+service/.classpath
+service/.settings/org.eclipse.jdt.core.prefs
+service/.settings/
+web/.classpath
+web/.settings/.jsdtscope
+web/.settings/org.eclipse.core.resources.prefs
+web/.settings/org.eclipse.jdt.core.prefs
+web/.settings/

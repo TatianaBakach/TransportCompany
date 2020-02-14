@@ -7,13 +7,13 @@
 		<artifactId>parent-project</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>dao-api</artifactId>
+	<artifactId>dao-jdbc-impl</artifactId>
 
 	<dependencies>
-	
+
 		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
+			<groupId>by.itacademy.tatabakach.transportcompany</groupId>
+			<artifactId>dao-api</artifactId>
 		</dependency>
 
 	</dependencies>
