@@ -1,0 +1,52 @@
+import java.util.Date;
+import java.util.List;
+
+import by.itacademy.dzhivushko.cars.dao.api.IBrandDao;
+import by.itacademy.dzhivushko.cars.dao.api.entity.table.IBrand;
+import by.itacademy.dzhivushko.cars.dao.jdbc.BrandDaoImpl;
+import by.itacademy.dzhivushko.cars.service.IBrandService;
+
+public class BrandServiceImpl implements IBrandService {
+
+	private IBrandDao dao = new BrandDaoImpl();
+
+	@Override
+	public IBrand createEntity() {
+		return dao.createEntity();
+	}
+
+	@Override
+	public void save(final IBrand entity) {
+		final Date modifedOn = new Date();
+		entity.setUpdated(modifedOn);
+		if (entity.getId() == null) {
+			entity.setCreated(modifedOn);
+			dao.insert(entity);
+		} else {
+			dao.update(entity);
+		}
+	}
+
+	@Override
+	public IBrand get(final Integer id) {
+		final IBrand entity = dao.get(id);
+		return entity;
+	}
+
+	@Override
+	public void delete(final Integer id) {
+		dao.delete(id);
+	}
+
+	@Override
+	public void deleteAll() {
+		dao.deleteAll();
+	}
+
+	@Override
+	public List<IBrand> getAll() {
+		final List<IBrand> all = dao.selectAll();
+		return all;
+	}
+
+}
