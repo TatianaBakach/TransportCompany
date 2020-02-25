@@ -1,0 +1,21 @@
+19:23:15.047 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car model: Car [model=model-33532, number=number-63744, getModel()=model-33532, getNumber()=number-63744, getId()=null]
+19:23:15.263 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car model: Car [model=model-84790, number=number-71948, getModel()=model-84790, getNumber()=number-71948, getId()=null]
+19:23:15.425 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car model: Car [model=model-63003, number=number-71451, getModel()=model-63003, getNumber()=number-71451, getId()=null]
+19:23:15.678 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car model: Car [model=model-56827, number=number-65089, getModel()=model-56827, getNumber()=number-65089, getId()=null]
+19:46:47.882 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-7508, number=number-66128, getModel()=model-7508, getNumber()=number-66128, getId()=null]
+19:46:48.134 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-23138, number=number-98640, getModel()=model-23138, getNumber()=number-98640, getId()=null]
+19:46:48.332 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-51811, number=number-3359, getModel()=model-51811, getNumber()=number-3359, getId()=null]
+19:46:48.592 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-3914, number=number-52982, getModel()=model-3914, getNumber()=number-52982, getId()=null]
+19:46:48.635 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-89579, number=number-29533, getModel()=model-89579, getNumber()=number-29533, getId()=null]
+19:46:48.682 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-76356, number=number-1665, getModel()=model-76356, getNumber()=number-1665, getId()=null]
+19:46:48.727 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-45097, number=number-93472, getModel()=model-45097, getNumber()=number-93472, getId()=null]
+19:46:48.774 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-97583, number=number-64221, getModel()=model-97583, getNumber()=number-64221, getId()=null]
+19:46:48.819 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-86090, number=number-10528, getModel()=model-86090, getNumber()=number-10528, getId()=null]
+19:46:48.865 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-68757, number=number-88459, getModel()=model-68757, getNumber()=number-88459, getId()=null]
+19:46:48.910 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-61094, number=number-65284, getModel()=model-61094, getNumber()=number-65284, getId()=null]
+19:51:17.960 [main] INFO  mylogger - info message1
+19:51:17.963 [main] WARN  mylogger - warn message1
+19:51:17.983 [main] INFO  by.itacademy.tatabakach.transportcompany.service.test.logger.LoggerTest - info message2
+19:51:17.983 [main] WARN  by.itacademy.tatabakach.transportcompany.service.test.logger.LoggerTest - warn message2
+20:22:12.316 [main] INFO  mylogger - info message1
+20:22:12.317 [main] WARN  mylogger - warn message1

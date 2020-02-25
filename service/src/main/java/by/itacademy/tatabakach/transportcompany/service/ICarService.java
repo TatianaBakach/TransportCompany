@@ -6,6 +6,7 @@ import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICar;
 
 public interface ICarService {
 
+	
 	ICar get(Integer id);
 
 	List<ICar> getAll();

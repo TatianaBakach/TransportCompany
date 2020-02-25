@@ -1,7 +1,9 @@
 package by.itacademy.tatabakach.transportcompany.service.impl;
 
-import java.util.Date;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.ICarDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICar;
@@ -9,6 +11,8 @@ import by.itacademy.tatabakach.transportcompany.daojdbcimpl.CarDaoImpl;
 import by.itacademy.tatabakach.transportcompany.service.ICarService;
 
 public class CarServiceImpl implements ICarService {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(CarServiceImpl.class);
 
 	private ICarDao dao = new CarDaoImpl();
 
@@ -20,8 +24,10 @@ public class CarServiceImpl implements ICarService {
 	@Override
 	public void save(final ICar entity) {
 		if (entity.getId() == null) {
+			LOGGER.info("new car create: {}", entity);
 			dao.insert(entity);
 		} else {
+			LOGGER.debug("car update: {}", entity);
 			dao.update(entity);
 		}
 	}
