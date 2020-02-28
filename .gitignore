@@ -16,3 +16,7 @@ web/.settings/.jsdtscope
 web/.settings/org.eclipse.core.resources.prefs
 web/.settings/org.eclipse.jdt.core.prefs
 web/.settings/
+node-sample/.settings/
+node-sample/.jshintrc
+node-sample/.sublime-project
+node-sample/.tern-project
