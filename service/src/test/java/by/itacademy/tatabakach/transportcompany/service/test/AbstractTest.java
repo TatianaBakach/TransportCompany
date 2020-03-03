@@ -1,8 +1,22 @@
 package by.itacademy.tatabakach.transportcompany.service.test;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Random;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.CompanyType;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICar;
@@ -15,18 +29,61 @@ import by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl;
 import by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl;
 import by.itacademy.tatabakach.transportcompany.service.impl.DriverServiceImpl;
 
+@SpringJUnitConfig(locations = "classpath:service-context-test.xml")
 public abstract class AbstractTest {
-	protected ICarService carService = new CarServiceImpl();
-	protected IDriverService driverService = new DriverServiceImpl();
-	protected ICompanyService companyService = new CompanyServiceImpl();
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractTest.class);
+	
+	@Autowired
+	protected ICarService carService;
+	@Autowired
+	protected IDriverService driverService;
+	@Autowired
+	protected ICompanyService companyService;
 
 	private static final Random RANDOM = new Random();
 
-	@BeforeEach
-	public void setUpMethod() {
-		carService.deleteAll(); // чистка базы
-		companyService.deleteAll();
+	@Value("${jdbc.url}")
+	private String url;
+	@Value("${jdbc.user}")
+	private String user;
+	@Value("${jdbc.password}")
+	private String password;
 
+	@BeforeEach
+	public final void recreateTestDB() throws SQLException, IOException {
+		final long stampBefore = System.currentTimeMillis();
+
+		final Connection conn = DriverManager.getConnection(url, user, password);
+
+		try {
+			final Statement stmt = conn.createStatement();
+			try {
+				stmt.execute("DROP SCHEMA IF EXISTS \"public\" CASCADE;");
+				stmt.execute("CREATE SCHEMA \"public\";");
+				stmt.execute(getScript("../docs/грузоперевозки_postgres_create.sql"));
+			} finally {
+				stmt.close();
+			}
+		} finally {
+			conn.close();
+		}
+
+		LOGGER.info("Database recreated in {} seconds.",
+				Double.valueOf((System.currentTimeMillis() - stampBefore) / 1000));
+	}
+
+	private String getScript(String filePath) {
+
+		StringBuilder contentBuilder = new StringBuilder();
+
+		try (Stream<String> stream = Files.lines(Paths.get(filePath), StandardCharsets.UTF_8)) { // поменять путь 
+			stream.forEach(s -> contentBuilder.append(s).append("\n"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return contentBuilder.toString();
 	}
 
 	protected String getRandomPrefix() {
@@ -63,7 +120,7 @@ public abstract class AbstractTest {
 	protected ICompany saveNewCompany() {
 		final ICompany entity = companyService.createEntity();
 		entity.setName("name-" + getRandomPrefix());
-		entity.setPayerRegistrationNumber("payerRegistrationNumber-" + getRandomPrefix());
+		entity.setPayerRegistrationNumber("#" + getRandomPrefix());
 		entity.setLegalAddress("legalAddress-" + getRandomPrefix());
 		entity.setPostAddress("postAddress-" + getRandomPrefix());
 		entity.setBankData("bankData-" + getRandomPrefix());

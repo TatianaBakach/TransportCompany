@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.ICompanyDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
@@ -11,11 +13,13 @@ import by.itacademy.tatabakach.transportcompany.daoapi.filter.CompanyFilter;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.CompanyDaoImpl;
 import by.itacademy.tatabakach.transportcompany.service.ICompanyService;
 
+@Service
 public class CompanyServiceImpl implements ICompanyService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CompanyServiceImpl.class);
 
-	private ICompanyDao dao = new CompanyDaoImpl();
+	@Autowired
+	private ICompanyDao dao;
 
 	@Override
 	public ICompany createEntity() {

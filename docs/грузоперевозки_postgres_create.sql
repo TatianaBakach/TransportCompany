@@ -120,7 +120,7 @@ CREATE TABLE "company" (
 	"legal_address" TEXT,
 	"post_address" TEXT,
 	"bank_data" TEXT,
-	"e-mail" character varying,
+	"e_mail" character varying,
 	"phone" character varying,
 	CONSTRAINT "company_pk" PRIMARY KEY ("id")
 ) WITH (

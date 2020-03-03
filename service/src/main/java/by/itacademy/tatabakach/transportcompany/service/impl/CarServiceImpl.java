@@ -4,17 +4,21 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.ICarDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICar;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.CarDaoImpl;
 import by.itacademy.tatabakach.transportcompany.service.ICarService;
 
+@Service
 public class CarServiceImpl implements ICarService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CarServiceImpl.class);
 
-	private ICarDao dao = new CarDaoImpl();
+	@Autowired
+	private ICarDao dao;
 
 	@Override
 	public ICar createEntity() {

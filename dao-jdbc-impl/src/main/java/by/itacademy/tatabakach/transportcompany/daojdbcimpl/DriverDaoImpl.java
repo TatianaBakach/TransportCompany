@@ -5,12 +5,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import by.itacademy.tatabakach.transportcompany.daoapi.IDriverDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDriver;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.DriverFilter;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Driver;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.util.PreparedStatementAction;
 
+@Repository
 public class DriverDaoImpl extends AbstractDaoImpl<IDriver, Integer> implements IDriverDao {
 
 	@Override

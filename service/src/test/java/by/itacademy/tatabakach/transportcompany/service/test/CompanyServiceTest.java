@@ -22,6 +22,7 @@ public class CompanyServiceTest extends AbstractTest {
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getCompanyType());
 		assertEquals(entity.getName(), entityFromDb.getName());
+		// FIXME: use assertEquals  
 		assertNotNull(entityFromDb.getPayerRegistrationNumber());
 		assertNotNull(entityFromDb.getLegalAddress());
 		assertNotNull(entityFromDb.getPostAddress());

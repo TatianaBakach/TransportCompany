@@ -14,6 +14,11 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+import org.springframework.beans.factory.annotation.Value;
+
 import by.itacademy.tatabakach.transportcompany.daoapi.IDao;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.util.PreparedStatementAction;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.util.SQLExecutionException;
@@ -21,35 +26,32 @@ import by.itacademy.tatabakach.transportcompany.daojdbcimpl.util.StatementAction
 
 public abstract class AbstractDaoImpl<ENTITY, ID> implements IDao<ENTITY, ID> {
 
-	private static String url;
+	@Value("${jdbc.url}")
+	private String url;
+	@Value("${jdbc.user}")
+	private String user;
+	@Value("${jdbc.password}")
+	private String password;
 
-	private static String user;
+	@PostConstruct
+	private void init() {
 
-	private static String password;
-
-	static {
-		Properties props = new Properties();
-		try {
-			Class<?> clazz = AbstractDaoImpl.class;
-			props.load(clazz.getClassLoader().getResourceAsStream("jdbc-test.properties"));
-			url = props.getProperty("jdbc.url");
-			user = props.getProperty("jdbc.user");
-			password = props.getProperty("jdbc.password");
-
-			if (url == null) {
-				throw new IllegalAccessException("[url] cant be null");
-			}
-
-			if (password == null) {
-				throw new IllegalAccessException("[password] cant be null");
-			}
-
-			if (user == null) {
-				throw new IllegalAccessException("[user] cant be null");
-			}
-		} catch (IllegalAccessException | IOException e) {
-			e.printStackTrace();
+		if (url == null) {
+			throw new IllegalArgumentException("[url] cant be null");
 		}
+
+		if (password == null) {
+			throw new IllegalArgumentException("[password] cant be null");
+		}
+
+		if (user == null) {
+			throw new IllegalArgumentException("[user] cant be null");
+		}
+	}
+	
+	@PreDestroy
+	private void clean() {
+
 	}
 
 	@Override

@@ -5,12 +5,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import by.itacademy.tatabakach.transportcompany.daoapi.ICarDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICar;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.CarFilter;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Car;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.util.PreparedStatementAction;
 
+@Repository
 public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDao {
 
 	@Override
