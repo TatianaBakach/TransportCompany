@@ -25,7 +25,7 @@ public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDa
 			@Override
 			public ICar doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getModel());
-				pStmt.setObject(2, entity.getNumber());
+				pStmt.setString(2, entity.getNumber());
 
 				pStmt.executeUpdate();
 

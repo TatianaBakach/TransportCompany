@@ -1,1 +1,62 @@
-21:14:59.067 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-58639, number=number-63865, getModel()=model-58639, getNumber()=number-63865, getId()=null]
+15:40:45.049 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+15:40:45.293 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-49448, number=number-63322, getId()=null]
+15:40:46.020 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+15:40:46.247 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-43107, number=number-23986, getId()=null]
+15:40:46.659 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+15:40:46.786 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-58990, number=number-27964, getId()=null]
+15:40:47.494 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+15:40:47.740 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-73262, number=number-27157, getId()=null]
+15:40:47.860 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-90290, number=number-45818, getId()=null]
+15:40:58.640 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+15:40:58.968 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+15:40:59.222 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+15:40:59.508 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+15:40:59.822 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-74724, number=number-24664, getId()=null]
+15:41:00.001 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-29310, number=number-17760, getId()=null]
+15:49:23.723 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+15:49:24.281 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+15:49:24.656 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+15:49:25.041 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+15:49:25.345 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-34934, number=number-15380, getId()=null]
+15:49:25.514 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-34108, number=number-69216, getId()=null]
+16:24:59.040 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+16:24:59.515 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+16:24:59.881 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+16:25:00.269 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+16:25:00.538 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-6977, number=number-85560, getId()=null]
+16:25:00.688 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-47408, number=number-73788, getId()=null]
+16:25:00.923 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-35973, number=number-84251, getId()=null]
+16:25:01.036 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-80062, number=number-97664, getId()=null]
+16:25:01.164 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-59882, number=number-26476, getId()=null]
+16:25:01.288 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-95441, number=number-11787, getId()=null]
+16:25:01.411 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-54803, number=number-84772, getId()=null]
+17:41:03.934 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+17:41:04.054 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.DriverServiceImpl - new driver create: Driver [firstName=firstName-25128, middleName=middleName-48284, lastName=lastName-1982, getId()=null]
+17:41:04.337 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+17:41:04.458 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.DriverServiceImpl - new driver create: Driver [firstName=firstName-21433, middleName=middleName-44833, lastName=lastName-93867, getId()=null]
+17:41:04.703 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+17:41:04.823 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.DriverServiceImpl - new driver create: Driver [firstName=firstName-5926, middleName=middleName-70935, lastName=lastName-38171, getId()=null]
+17:41:05.171 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+17:41:05.442 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.DriverServiceImpl - new driver create: Driver [firstName=firstName-13754, middleName=middleName-37735, lastName=lastName-71364, getId()=null]
+17:53:42.824 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+17:53:42.952 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.DriverServiceImpl - new driver create: Driver [firstName=firstName-76859, middleName=middleName-10143, lastName=lastName-3823, getId()=null]
+17:53:43.239 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+17:53:43.384 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.DriverServiceImpl - new driver create: Driver [firstName=firstName-21375, middleName=middleName-33093, lastName=lastName-63837, getId()=null]
+17:53:43.643 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+17:53:43.757 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.DriverServiceImpl - new driver create: Driver [firstName=firstName-96725, middleName=middleName-73106, lastName=lastName-69698, getId()=null]
+17:53:44.009 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+17:53:44.279 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.DriverServiceImpl - new driver create: Driver [firstName=firstName-4955, middleName=middleName-55181, lastName=lastName-37727, getId()=null]
+17:58:36.586 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+17:58:36.762 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-31541, number=number-83019, getId()=null]
+17:58:37.542 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+17:58:37.691 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-35963, number=number-68113, getId()=null]
+17:58:38.148 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+17:58:38.276 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-48297, number=number-42690, getId()=null]
+17:58:38.778 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CompanyServiceImpl - delete all company entities
+17:58:39.006 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-56816, number=number-8152, getId()=null]
+17:58:39.124 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-18306, number=number-45201, getId()=null]
+17:58:39.247 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-502, number=number-35528, getId()=null]
+17:58:39.392 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-80523, number=number-65069, getId()=null]
+17:58:39.512 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-89233, number=number-79669, getId()=null]
+17:58:39.630 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-18024, number=number-90385, getId()=null]
+17:58:39.744 [main] INFO  by.itacademy.tatabakach.transportcompany.service.impl.CarServiceImpl - new car create: Car [model=model-10617, number=number-12910, getId()=null]

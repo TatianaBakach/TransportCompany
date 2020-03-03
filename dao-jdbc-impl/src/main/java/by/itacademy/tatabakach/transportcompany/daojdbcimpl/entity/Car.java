@@ -7,26 +7,29 @@ public class Car extends BaseEntity implements ICar {
 	private String model;
 	private String number;
 
+	@Override
 	public String getModel() {
 		return model;
 	}
 
-	public void setModel(String model) {
+	@Override
+	public void setModel(final String model) {
 		this.model = model;
 	}
 
+	@Override
 	public String getNumber() {
 		return number;
 	}
 
-	public void setNumber(String number) {
+	@Override
+	public void setNumber(final String number) {
 		this.number = number;
 	}
 
 	@Override
 	public String toString() {
-		return "Car [model=" + model + ", number=" + number + ", getModel()=" + getModel() + ", getNumber()="
-				+ getNumber() + ", getId()=" + getId() + "]";
+		return "Car [model=" + model + ", number=" + number + ", getId()=" + getId() + "]";
 	}
 
 }
