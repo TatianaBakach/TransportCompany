@@ -4,7 +4,6 @@ import java.util.List;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDriver;
 
-
 public interface IDriverService {
 	
 	IDriver get(Integer id);

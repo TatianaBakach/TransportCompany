@@ -48,10 +48,7 @@ CREATE TABLE "contract" (
 CREATE TABLE "address" (
 	"id" serial NOT NULL,
 	"postcode" character varying(10),
-	"country" character varying NOT NULL UNIQUE,
-	"region" character varying,
-	"district" character varying,
-	"locality" character varying NOT NULL,
+	"locality_id" integer NOT NULL,
 	"exact_address" character varying,
 	"note" character varying,
 	CONSTRAINT "address_pk" PRIMARY KEY ("id")
@@ -114,13 +111,13 @@ CREATE TABLE "order" (
 
 CREATE TABLE "company" (
 	"id" serial NOT NULL,
-	"company_type" integer NOT NULL,
+	"company_type_id" integer NOT NULL,
 	"name" character varying NOT NULL,
 	"payer_registration_number" character varying(20),
-	"legal_address" TEXT,
-	"post_address" TEXT,
+	"legal_address_id" integer,
+	"post_address" integer,
 	"bank_data" TEXT,
-	"e_mail" character varying,
+	"e-mail" character varying,
 	"phone" character varying,
 	CONSTRAINT "company_pk" PRIMARY KEY ("id")
 ) WITH (
@@ -319,6 +316,7 @@ ALTER TABLE "order_reward" ADD CONSTRAINT "order_reward_fk2" FOREIGN KEY ("order
 ALTER TABLE "contract" ADD CONSTRAINT "contract_fk0" FOREIGN KEY ("our_company_id") REFERENCES "company"("id");
 ALTER TABLE "contract" ADD CONSTRAINT "contract_fk1" FOREIGN KEY ("company_id") REFERENCES "company"("id");
 
+ALTER TABLE "address" ADD CONSTRAINT "address_fk0" FOREIGN KEY ("locality_id") REFERENCES "locality"("id");
 
 ALTER TABLE "cfr" ADD CONSTRAINT "cfr_fk0" FOREIGN KEY ("company_id") REFERENCES "company"("id");
 
@@ -335,6 +333,8 @@ ALTER TABLE "order" ADD CONSTRAINT "order_fk6" FOREIGN KEY ("customer_cost_id") 
 ALTER TABLE "order" ADD CONSTRAINT "order_fk7" FOREIGN KEY ("carrier_cost_id") REFERENCES "transaction_cost"("id");
 ALTER TABLE "order" ADD CONSTRAINT "order_fk8" FOREIGN KEY ("vat_id") REFERENCES "vat"("id");
 
+ALTER TABLE "company" ADD CONSTRAINT "company_fk0" FOREIGN KEY ("legal_address_id") REFERENCES "address"("id");
+ALTER TABLE "company" ADD CONSTRAINT "company_fk1" FOREIGN KEY ("post_address") REFERENCES "address"("id");
 
 ALTER TABLE "employee" ADD CONSTRAINT "employee_fk0" FOREIGN KEY ("department_id") REFERENCES "department"("id");
 ALTER TABLE "employee" ADD CONSTRAINT "employee_fk1" FOREIGN KEY ("position_id") REFERENCES "position"("id");

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.ICarDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICar;
-import by.itacademy.tatabakach.transportcompany.daojdbcimpl.CarDaoImpl;
 import by.itacademy.tatabakach.transportcompany.service.ICarService;
 
 @Service
@@ -49,6 +48,7 @@ public class CarServiceImpl implements ICarService {
 
 	@Override
 	public void deleteAll() {
+		LOGGER.info("delete all cars");
 		dao.deleteAll();
 	}
 

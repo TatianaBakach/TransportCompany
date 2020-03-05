@@ -22,13 +22,13 @@ public class CompanyServiceTest extends AbstractTest {
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getCompanyType());
 		assertEquals(entity.getName(), entityFromDb.getName());
+		assertEquals(entity.getPayerRegistrationNumber(), entityFromDb.getPayerRegistrationNumber());
+		assertEquals(entity.getLegalAddress(), entityFromDb.getLegalAddress());
+		assertEquals(entity.getPostAddress(), entityFromDb.getPostAddress());
+		assertEquals(entity.getBankData(), entityFromDb.getBankData());
+		assertEquals(entity.getEMail(), entityFromDb.getEMail());
+		assertEquals(entity.getPhone(), entityFromDb.getPhone());
 		// FIXME: use assertEquals  
-		assertNotNull(entityFromDb.getPayerRegistrationNumber());
-		assertNotNull(entityFromDb.getLegalAddress());
-		assertNotNull(entityFromDb.getPostAddress());
-		assertNotNull(entityFromDb.getBankData());
-		assertNotNull(entityFromDb.getEMail());
-		assertNotNull(entityFromDb.getPhone());
 
 	}
 

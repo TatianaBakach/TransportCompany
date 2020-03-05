@@ -62,7 +62,8 @@ public class Driver extends BaseEntity implements IDriver {
 
 	@Override
 	public String toString() {
-		return "Driver [firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName + ", getId()=" + getId() + "]";
+		return "Driver [firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName
+				+ ", passportData=" + passportData + ", phone=" + phone + ", getId()=" + getId() + "]";
 	}
 
 }

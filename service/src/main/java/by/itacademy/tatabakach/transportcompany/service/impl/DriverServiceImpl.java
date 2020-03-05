@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.IDriverDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDriver;
-import by.itacademy.tatabakach.transportcompany.daojdbcimpl.DriverDaoImpl;
 import by.itacademy.tatabakach.transportcompany.service.IDriverService;
 
 @Service
@@ -49,6 +48,7 @@ public class DriverServiceImpl implements IDriverService {
 
 	@Override
 	public void deleteAll() {
+		LOGGER.info("delete all drivers");
 		dao.deleteAll();
 	}
 

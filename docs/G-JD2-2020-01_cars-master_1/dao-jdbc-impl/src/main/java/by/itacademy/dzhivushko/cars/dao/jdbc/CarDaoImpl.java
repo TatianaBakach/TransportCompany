@@ -1,0 +1,119 @@
+package by.itacademy.dzhivushko.cars.dao.jdbc;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Types;
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import by.itacademy.dzhivushko.cars.dao.api.ICarDao;
+import by.itacademy.dzhivushko.cars.dao.api.IModelDao;
+import by.itacademy.dzhivushko.cars.dao.api.entity.table.ICar;
+import by.itacademy.dzhivushko.cars.dao.api.entity.table.IModel;
+import by.itacademy.dzhivushko.cars.dao.api.filter.CarFilter;
+import by.itacademy.dzhivushko.cars.dao.jdbc.entity.Car;
+import by.itacademy.dzhivushko.cars.dao.jdbc.entity.Model;
+import by.itacademy.dzhivushko.cars.dao.jdbc.util.PreparedStatementAction;
+@Repository
+public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDao {
+
+	private IModelDao modelDao = new ModelDaoImpl();
+
+	@Override
+	public ICar createEntity() {
+		return new Car();
+	}
+
+	@Override
+	public void insert(final ICar entity) {
+		executeStatement(new PreparedStatementAction<ICar>(
+				String.format("insert into %s (vin, sold, sold_date, model_id, created, updated) values(?,?,?,?,?,?)",
+						getTableName()),
+				true) {
+			@Override
+			public ICar doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
+				pStmt.setString(1, entity.getVin());
+				pStmt.setBoolean(2, entity.getSold());
+				pStmt.setObject(3, entity.getSoldDate(), Types.TIMESTAMP);
+				pStmt.setInt(4, entity.getModel().getId());
+				pStmt.setObject(5, entity.getCreated(), Types.TIMESTAMP);
+				pStmt.setObject(6, entity.getUpdated(), Types.TIMESTAMP);
+
+				pStmt.executeUpdate();
+
+				final ResultSet rs = pStmt.getGeneratedKeys();
+				rs.next();
+				final int id = rs.getInt("id");
+
+				rs.close();
+
+				entity.setId(id);
+				return entity;
+			}
+		});
+	}
+
+	@Override
+	public void update(final ICar entity) {
+		executeStatement(new PreparedStatementAction<ICar>(String
+				.format("update %s set vin=?, updated=?, sold=?, sold_date=?, model_id=? where id=?", getTableName())) {
+			@Override
+			public ICar doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
+				pStmt.setString(1, entity.getVin());
+				pStmt.setObject(2, entity.getUpdated(), Types.TIMESTAMP);
+				pStmt.setBoolean(3, entity.getSold());
+				pStmt.setObject(4, entity.getSoldDate(), Types.TIMESTAMP);
+				pStmt.setInt(5, entity.getModel().getId());
+				pStmt.setInt(6, entity.getId());
+
+				pStmt.executeUpdate();
+				return entity;
+			}
+		});
+	}
+
+	@Override
+	protected ICar parseRow(final ResultSet resultSet) throws SQLException {
+		final ICar entity = createEntity();
+		entity.setId((Integer) resultSet.getObject("id"));
+		entity.setSold(resultSet.getBoolean("sold"));
+		entity.setVin(resultSet.getString("vin"));
+		entity.setSoldDate(resultSet.getTimestamp("sold_date"));
+		entity.setCreated(resultSet.getTimestamp("created"));
+		entity.setUpdated(resultSet.getTimestamp("updated"));
+
+		final IModel model = new Model();
+		model.setId((Integer) resultSet.getObject("model_id"));
+		entity.setModel(model);
+		return entity;
+	}
+
+	@Override
+	public List<ICar> find(final CarFilter filter) {
+		throw new RuntimeException("will be implemented in ORM layer. Too complex for plain jdbc ");
+	}
+
+	@Override
+	public long getCount(final CarFilter filter) {
+		throw new RuntimeException("will be implemented in ORM layer. Too complex for plain jdbc ");
+	}
+
+	@Override
+	public ICar getFullInfo(final Integer id) {
+		final ICar car = get(id);
+
+		if (car.getModel() != null) {
+			car.setModel(modelDao.get(car.getModel().getId()));
+		}
+
+		return car;
+	}
+
+	@Override
+	protected String getTableName() {
+		return "car";
+	}
+
+}

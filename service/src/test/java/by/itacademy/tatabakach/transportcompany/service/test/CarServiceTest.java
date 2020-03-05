@@ -19,8 +19,10 @@ public class CarServiceTest extends AbstractTest {
 		final ICar entityFromDb = carService.get(entity.getId());
 
 		assertNotNull(entityFromDb);
-		assertEquals(entity.getModel(), entityFromDb.getModel());
 		assertNotNull(entityFromDb.getId());
+		assertEquals(entity.getModel(), entityFromDb.getModel());
+		assertEquals(entity.getNumber(), entityFromDb.getNumber());
+		
 	}
 
 	@Test

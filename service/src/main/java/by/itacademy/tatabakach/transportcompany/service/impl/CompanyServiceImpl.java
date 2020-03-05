@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import by.itacademy.tatabakach.transportcompany.daoapi.ICompanyDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.CompanyFilter;
-import by.itacademy.tatabakach.transportcompany.daojdbcimpl.CompanyDaoImpl;
 import by.itacademy.tatabakach.transportcompany.service.ICompanyService;
 
 @Service

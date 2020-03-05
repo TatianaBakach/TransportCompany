@@ -15,8 +15,6 @@ public class SimpleSpringContextExample {
 		LOGGER.info("main bean by name:{}", context.getBean("mainBean"));
 		
 		
-		
-		
 		LOGGER.info("bean names:{}", context.getBeanDefinitionNames()); // показывает какие бины существуют
 	}
 }

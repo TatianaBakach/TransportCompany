@@ -22,6 +22,4 @@ public interface IDriver extends IBaseEntity {
 
 	void setPhone(String phone);
 
-
-
 }

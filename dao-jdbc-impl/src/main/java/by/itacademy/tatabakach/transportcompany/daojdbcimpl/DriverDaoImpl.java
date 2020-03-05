@@ -23,10 +23,9 @@ public class DriverDaoImpl extends AbstractDaoImpl<IDriver, Integer> implements 
 
 	@Override
 	public void insert(final IDriver entity) {
-		executeStatement(new PreparedStatementAction<IDriver>(
-				String.format("insert into %s (firstName, middleName, lastName, passportData, phone) values(?,?,?,?,?)",
-						getTableName()),
-				true) {
+		executeStatement(new PreparedStatementAction<IDriver>(String.format(
+				"insert into %s (first_name, middle_name, last_name, passport_data, phone) values(?,?,?,?,?)",
+				getTableName()), true) {
 			@Override
 			public IDriver doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getFirstName());
@@ -69,12 +68,12 @@ public class DriverDaoImpl extends AbstractDaoImpl<IDriver, Integer> implements 
 	protected IDriver parseRow(final ResultSet resultSet) throws SQLException {
 		final IDriver entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
-		entity.setFirstName(resultSet.getString("firstName"));
-		entity.setMiddleName(resultSet.getString("middleName"));
-		entity.setLastName(resultSet.getString("lastName"));
-		entity.setPassportData(resultSet.getString("passportData"));
+		entity.setFirstName(resultSet.getString("first_name"));
+		entity.setMiddleName(resultSet.getString("middle_name"));
+		entity.setLastName(resultSet.getString("last_name"));
+		entity.setPassportData(resultSet.getString("passport_data"));
 		entity.setPhone(resultSet.getString("phone"));
-		
+
 		return entity;
 	}
 

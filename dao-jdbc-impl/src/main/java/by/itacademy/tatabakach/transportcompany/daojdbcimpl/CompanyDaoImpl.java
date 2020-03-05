@@ -63,11 +63,11 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 		entity.setId((Integer) resultSet.getObject("id"));
 		entity.setCompanyType(CompanyType.values()[(resultSet.getInt("company_type"))]);
 		entity.setName(resultSet.getString("name"));
-		entity.setPayerRegistrationNumber(resultSet.getString("payerRegistrationNumber"));
-		entity.setLegalAddress(resultSet.getString("legalAddress"));
-		entity.setPostAddress(resultSet.getString("postAddress"));
-		entity.setBankData(resultSet.getString("bankData"));
-		entity.setEMail(resultSet.getString("eMail"));
+		entity.setPayerRegistrationNumber(resultSet.getString("payer_registration_number"));
+		entity.setLegalAddress(resultSet.getString("legal_address"));
+		entity.setPostAddress(resultSet.getString("post_address"));
+		entity.setBankData(resultSet.getString("bank_data"));
+		entity.setEMail(resultSet.getString("e_mail"));
 		entity.setPhone(resultSet.getString("phone"));
 
 		return entity;
