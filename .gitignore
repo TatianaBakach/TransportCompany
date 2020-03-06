@@ -20,3 +20,4 @@ node-sample/.settings/
 node-sample/.jshintrc
 node-sample/.sublime-project
 node-sample/.tern-project
+web/logs/app.log

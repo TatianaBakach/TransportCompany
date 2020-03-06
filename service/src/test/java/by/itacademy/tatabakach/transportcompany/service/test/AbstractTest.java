@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Random;
 import java.util.stream.Stream;
@@ -36,9 +37,9 @@ import by.itacademy.tatabakach.transportcompany.service.ITransactionCostService;
 
 @SpringJUnitConfig(locations = "classpath:service-context-test.xml")
 public abstract class AbstractTest {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractTest.class);
-	
+
 	@Autowired
 	protected ICarService carService;
 	@Autowired
@@ -71,7 +72,8 @@ public abstract class AbstractTest {
 				stmt.execute("DROP SCHEMA IF EXISTS \"public\" CASCADE;");
 				stmt.execute("CREATE SCHEMA \"public\";");
 				stmt.execute(getScript("../docs/грузоперевозки_postgres_create.sql"));
-				//stmt.execute(getScript(filePath)); //ДОПИСАТЬ ПУТЬ к файлу с уникальными ключами
+				// stmt.execute(getScript(filePath)); //ДОПИСАТЬ ПУТЬ к файлу с уникальными
+				// ключами
 			} finally {
 				stmt.close();
 			}
@@ -87,7 +89,7 @@ public abstract class AbstractTest {
 
 		StringBuilder contentBuilder = new StringBuilder();
 
-		try (Stream<String> stream = Files.lines(Paths.get(filePath), StandardCharsets.UTF_8)) { // поменять путь 
+		try (Stream<String> stream = Files.lines(Paths.get(filePath), StandardCharsets.UTF_8)) { // поменять путь
 			stream.forEach(s -> contentBuilder.append(s).append("\n"));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -107,12 +109,45 @@ public abstract class AbstractTest {
 	public Random getRANDOM() {
 		return RANDOM;
 	}
-	
-	
+
 	protected Date getRandomDate() {
 		return new Date();
 	}
 
+	
+	public static <T> T randomFromCollection(final Collection<T> all) {
+		final int size = all.size();
+		final int item = new Random().nextInt(size); // In real life, the Random
+														// object should be
+														// rather
+														// more shared than this
+		int i = 0;
+		for (final T obj : all) {
+			if (i == item) {
+				return obj;
+			}
+			i = i + 1;
+		}
+		return null;
+	}
+
+	@SafeVarargs
+	public static <T> T randomFromArray(final T... all) {
+		final int size = all.length;
+		final int item = new Random().nextInt(size); // In real life, the Random
+														// object should be
+														// rather
+														// more shared than this
+		int i = 0;
+		for (final T obj : all) {
+			if (i == item) {
+				return obj;
+			}
+			i = i + 1;
+		}
+		return null;
+	}
+	
 	protected ICar saveNewCar() {
 		final ICar entity = carService.createEntity();
 		entity.setModel("model-" + getRandomPrefix());
@@ -120,7 +155,7 @@ public abstract class AbstractTest {
 		carService.save(entity);
 		return entity;
 	}
-	
+
 	protected IDriver saveNewDriver() {
 		final IDriver entity = driverService.createEntity();
 		entity.setFirstName("first_name-" + getRandomPrefix());
@@ -132,15 +167,22 @@ public abstract class AbstractTest {
 		return entity;
 	}
 	
+	
+	
+	
+
 	protected ITransactionCost saveNewTransactionCost() {
 		final ITransactionCost entity = transactionCostService.createEntity();
-		
+
 		final Currency[] allCurrencyTypes = Currency.values();
 		final int randomCurrencyIndex = Math.max(0, getRANDOM().nextInt(allCurrencyTypes.length) - 1);
+
+		
+		Currency randomCurrency = randomFromArray(Currency.values());
 		
 		final PaymentTermsType[] allPaymentTermsTypes = PaymentTermsType.values();
 		final int randomPaymentTermsIndex = Math.max(0, getRANDOM().nextInt(allPaymentTermsTypes.length) - 1);
-		
+
 		entity.setDate(getRandomDate());
 		entity.setCurrency(allCurrencyTypes[randomCurrencyIndex]);
 		entity.setAmount(BigDecimal.valueOf(getRandomObjectsCount()));
@@ -150,10 +192,10 @@ public abstract class AbstractTest {
 		entity.setPaymentPeriod(getRANDOM().nextInt(30));
 		entity.setPaymentTermsType(allPaymentTermsTypes[randomPaymentTermsIndex]);
 		entity.setNote("note" + getRandomPrefix());
-		
+
 		return entity;
 	}
-	
+
 	protected ICountry saveNewCountry() {
 		final ICountry entity = countryService.createEntity();
 		entity.setName("name-" + getRandomPrefix());

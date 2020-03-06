@@ -5,12 +5,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import by.itacademy.tatabakach.transportcompany.daoapi.ICountryDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICountry;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.CountryFilter;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Country;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.util.PreparedStatementAction;
 
+@Repository
 public class CountryDaoImpl extends AbstractDaoImpl<ICountry, Integer> implements ICountryDao {
 	
 	@Override
