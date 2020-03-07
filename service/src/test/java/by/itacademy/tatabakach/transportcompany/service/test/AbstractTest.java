@@ -28,11 +28,13 @@ import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICar;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICountry;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDriver;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IRegion;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITransactionCost;
 import by.itacademy.tatabakach.transportcompany.service.ICarService;
 import by.itacademy.tatabakach.transportcompany.service.ICompanyService;
 import by.itacademy.tatabakach.transportcompany.service.ICountryService;
 import by.itacademy.tatabakach.transportcompany.service.IDriverService;
+import by.itacademy.tatabakach.transportcompany.service.IRegionService;
 import by.itacademy.tatabakach.transportcompany.service.ITransactionCostService;
 
 @SpringJUnitConfig(locations = "classpath:service-context-test.xml")
@@ -48,6 +50,8 @@ public abstract class AbstractTest {
 	protected ITransactionCostService transactionCostService;
 	@Autowired
 	protected ICountryService countryService;
+	@Autowired
+	protected IRegionService regionService;
 	@Autowired
 	protected ICompanyService companyService;
 
@@ -113,14 +117,20 @@ public abstract class AbstractTest {
 	protected Date getRandomDate() {
 		return new Date();
 	}
-
 	
-	public static <T> T randomFromCollection(final Collection<T> all) {
+	 public static BigDecimal getRandomBigDecimal(int range) {
+	        BigDecimal max = new BigDecimal(range);
+	        BigDecimal randFromDouble = new BigDecimal(Math.random());
+	        BigDecimal actualRandomDec = randFromDouble.multiply(max);
+	        actualRandomDec = actualRandomDec
+	                .setScale(2, BigDecimal.ROUND_DOWN);
+	        return actualRandomDec;
+	    }
+	 
+	
+	public static <T> T getRandomFromCollection(final Collection<T> all) {
 		final int size = all.size();
-		final int item = new Random().nextInt(size); // In real life, the Random
-														// object should be
-														// rather
-														// more shared than this
+		final int item = new Random().nextInt(size); // In real life, the Random object should be rather more shared than this
 		int i = 0;
 		for (final T obj : all) {
 			if (i == item) {
@@ -132,12 +142,9 @@ public abstract class AbstractTest {
 	}
 
 	@SafeVarargs
-	public static <T> T randomFromArray(final T... all) {
+	public static <T> T getRandomFromArray(final T... all) {
 		final int size = all.length;
-		final int item = new Random().nextInt(size); // In real life, the Random
-														// object should be
-														// rather
-														// more shared than this
+		final int item = new Random().nextInt(size); // In real life, the Random object should be rather more shared than this
 		int i = 0;
 		for (final T obj : all) {
 			if (i == item) {
@@ -178,13 +185,13 @@ public abstract class AbstractTest {
 		final int randomCurrencyIndex = Math.max(0, getRANDOM().nextInt(allCurrencyTypes.length) - 1);
 
 		
-		Currency randomCurrency = randomFromArray(Currency.values());
+		Currency randomCurrency = getRandomFromArray(Currency.values());
 		
 		final PaymentTermsType[] allPaymentTermsTypes = PaymentTermsType.values();
 		final int randomPaymentTermsIndex = Math.max(0, getRANDOM().nextInt(allPaymentTermsTypes.length) - 1);
 
 		entity.setDate(getRandomDate());
-		entity.setCurrency(allCurrencyTypes[randomCurrencyIndex]);
+		entity.setCurrency(getRandomFromArray(Currency.values()));
 		entity.setAmount(BigDecimal.valueOf(getRandomObjectsCount()));
 		entity.setRate(BigDecimal.valueOf(getRandomObjectsCount()));
 		entity.setIntermediateCurrency(allCurrencyTypes[randomCurrencyIndex]);
@@ -200,6 +207,14 @@ public abstract class AbstractTest {
 		final ICountry entity = countryService.createEntity();
 		entity.setName("name-" + getRandomPrefix());
 		countryService.save(entity);
+		return entity;
+	}
+	
+	protected IRegion saveNewRegion() {
+		final IRegion entity = regionService.createEntity();
+		entity.setName("name-" + getRandomPrefix());
+		entity.setCountry(saveNewCountry());
+		regionService.save(entity);
 		return entity;
 	}
 
