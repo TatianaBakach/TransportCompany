@@ -11,6 +11,6 @@ public interface ICompanyDao extends IDao<ICompany, Integer> {
 
 	long getCount(CompanyFilter filter);
 
-	//ICompany getFullInfo(Integer id);
+	ICompany getFullInfo(Integer id);
 
 }

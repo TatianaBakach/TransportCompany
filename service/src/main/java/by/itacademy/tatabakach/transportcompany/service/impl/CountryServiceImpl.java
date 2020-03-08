@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.ICountryDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICountry;
+import by.itacademy.tatabakach.transportcompany.daoapi.filter.CountryFilter;
 import by.itacademy.tatabakach.transportcompany.service.ICountryService;
 
 @Service
@@ -19,8 +20,6 @@ public class CountryServiceImpl implements ICountryService {
 	@Autowired
 	private ICountryDao dao;
 	
-	//private ICountryDao dao;
-
 	@Override
 	public ICountry createEntity() {
 		return dao.createEntity();
@@ -52,6 +51,16 @@ public class CountryServiceImpl implements ICountryService {
 	public void deleteAll() {
 		LOGGER.info("delete all countries");
 		dao.deleteAll();
+	}
+	
+	@Override
+	public List<ICountry> find(final CountryFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public long getCount(final CountryFilter filter) {
+		return dao.getCount(filter);
 	}
 
 	@Override

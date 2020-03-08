@@ -16,11 +16,11 @@ public interface ICompany extends IBaseEntity {
 
 	void setPayerRegistrationNumber(String payerRegistrationNumber);
 	
-	String getLegalAddress ();
+	IAddress getLegalAddress ();
 
 	void setLegalAddress(String legalAddress);
 	
-	String getPostAddress ();
+	IAddress getPostAddress ();
 
 	void setPostAddress(String postAddress);
 	

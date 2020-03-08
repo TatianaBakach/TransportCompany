@@ -8,7 +8,7 @@ public class RegionFilter extends AbstractFilter {
         return fetchCountry;
     }
 
-    public void setFetchBrand(final boolean fetchCountry) {
+    public void setFetchCountry(final boolean fetchCountry) {
         this.fetchCountry = fetchCountry;
     }
 

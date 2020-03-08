@@ -24,16 +24,22 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.CompanyType;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Currency;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.PaymentTermsType;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IAddress;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICar;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICountry;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDistrict;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDriver;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ILocality;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IRegion;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITransactionCost;
+import by.itacademy.tatabakach.transportcompany.service.IAddressService;
 import by.itacademy.tatabakach.transportcompany.service.ICarService;
 import by.itacademy.tatabakach.transportcompany.service.ICompanyService;
 import by.itacademy.tatabakach.transportcompany.service.ICountryService;
+import by.itacademy.tatabakach.transportcompany.service.IDistrictService;
 import by.itacademy.tatabakach.transportcompany.service.IDriverService;
+import by.itacademy.tatabakach.transportcompany.service.ILocalityService;
 import by.itacademy.tatabakach.transportcompany.service.IRegionService;
 import by.itacademy.tatabakach.transportcompany.service.ITransactionCostService;
 
@@ -52,6 +58,12 @@ public abstract class AbstractTest {
 	protected ICountryService countryService;
 	@Autowired
 	protected IRegionService regionService;
+	@Autowired
+	protected IDistrictService districtService;
+	@Autowired
+	protected ILocalityService localityService;
+	@Autowired
+	protected IAddressService addressService;
 	@Autowired
 	protected ICompanyService companyService;
 
@@ -215,6 +227,32 @@ public abstract class AbstractTest {
 		entity.setName("name-" + getRandomPrefix());
 		entity.setCountry(saveNewCountry());
 		regionService.save(entity);
+		return entity;
+	}
+	
+	protected IDistrict saveNewDistrict() {
+		final IDistrict entity = districtService.createEntity();
+		entity.setName("name-" + getRandomPrefix());
+		entity.setRegion(saveNewRegion());
+		districtService.save(entity);
+		return entity;
+	}
+	
+	protected ILocality saveNewLocality() {
+		final ILocality entity = localityService.createEntity();
+		entity.setName("name-" + getRandomPrefix());
+		entity.setDistrict(saveNewDistrict());
+		localityService.save(entity);
+		return entity;
+	}
+	
+	protected IAddress saveNewAddress() {
+		final IAddress entity = addressService.createEntity();
+		entity.setPostcode("#" + getRandomPrefix());
+		entity.setLocality(saveNewLocality());
+		entity.setExactAddress("exactAddress-" + getRandomPrefix());
+		entity.setNote("note-" + getRandomPrefix());
+		addressService.save(entity);
 		return entity;
 	}
 

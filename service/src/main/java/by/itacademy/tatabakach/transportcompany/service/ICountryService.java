@@ -19,8 +19,8 @@ public interface ICountryService {
 
 	ICountry createEntity();
 	
-	//List<ICountry> find(CountryFilter filter);
+	List<ICountry> find(CountryFilter filter);
 
-	//long getCount(CountryFilter filter);
+	long getCount(CountryFilter filter);
 
 }
