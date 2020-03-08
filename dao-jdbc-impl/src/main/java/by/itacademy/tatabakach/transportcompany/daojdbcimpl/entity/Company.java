@@ -1,6 +1,7 @@
 package by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.CompanyType;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IAddress;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
 
 public class Company extends BaseEntity implements ICompany {
@@ -11,9 +12,9 @@ public class Company extends BaseEntity implements ICompany {
 
 	private String payerRegistrationNumber;
 
-	private String legalAddress;
+	private IAddress legalAddress;
 
-	private String postAddress;
+	private IAddress postAddress;
 
 	private String bankData;
 
@@ -52,22 +53,22 @@ public class Company extends BaseEntity implements ICompany {
 	}
 
 	@Override
-	public String getLegalAddress() {
+	public IAddress getLegalAddress() {
 		return legalAddress;
 	}
 
 	@Override
-	public void setLegalAddress(final String legalAddress) {
+	public void setLegalAddress(final IAddress legalAddress) {
 		this.legalAddress = legalAddress;
 	}
 
 	@Override
-	public String getPostAddress() {
+	public IAddress getPostAddress() {
 		return postAddress;
 	}
 
 	@Override
-	public void setPostAddress(final String postAddress) {
+	public void setPostAddress(final IAddress postAddress) {
 		this.postAddress = postAddress;
 	}
 
