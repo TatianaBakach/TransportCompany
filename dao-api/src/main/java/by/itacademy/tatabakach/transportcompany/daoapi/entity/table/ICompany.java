@@ -13,16 +13,20 @@ public interface ICompany extends IBaseEntity {
 	void setName(String name);
 
 	String getPayerRegistrationNumber ();
-
+	
 	void setPayerRegistrationNumber(String payerRegistrationNumber);
 	
-	IAddress getLegalAddress ();
+	IAddress getAddress();
+	
+	void setAddress(IAddress address);
+	
+	/*IAddress getLegalAddress ();
 
-	void setLegalAddress(String legalAddress);
+	void setLegalAddress(IAddress legalAddress);
 	
 	IAddress getPostAddress ();
 
-	void setPostAddress(String postAddress);
+	void setPostAddress(IAddress postAddress);*/
 	
 	String getBankData ();
 

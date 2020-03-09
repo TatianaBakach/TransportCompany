@@ -5,17 +5,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import by.itacademy.tatabakach.transportcompany.daoapi.IAddressDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.ICompanyDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.CompanyType;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IAddress;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.CompanyFilter;
+import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Address;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Company;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.util.PreparedStatementAction;
 
 @Repository
 public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implements ICompanyDao {
+	
+	@Autowired
+	private IAddressDao addressDao;
 
 	@Override
 	public ICompany createEntity() {
@@ -25,15 +32,15 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 	@Override
 	public void insert(final ICompany entity) {
 		executeStatement(new PreparedStatementAction<ICompany>(String.format(
-				"insert into %s (company_type, name, payer_registration_number, legal_address, post_address, bank_data, e_mail, phone) values(?,?,?,?,?,?,?,?)",
+				"insert into %s (company_type_id, name, payer_registration_number, legal_address_id, post_address_id, bank_data, e_mail, phone) values(?,?,?,?,?,?,?,?)",
 				getTableName()), true) {
 			@Override
 			public ICompany doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setInt(1, entity.getCompanyType().ordinal());
 				pStmt.setString(2, entity.getName());
 				pStmt.setString(3, entity.getPayerRegistrationNumber());
-				pStmt.setString(4, entity.getLegalAddress());
-				pStmt.setString(5, entity.getPostAddress());
+				pStmt.setInt(4, entity.getAddress().getId());
+				pStmt.setInt(5, entity.getAddress().getId());
 				pStmt.setString(6, entity.getBankData());
 				pStmt.setString(7, entity.getEMail());
 				pStmt.setString(8, entity.getPhone());
@@ -61,11 +68,16 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 	protected ICompany parseRow(final ResultSet resultSet) throws SQLException {
 		final ICompany entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
-		entity.setCompanyType(CompanyType.values()[(resultSet.getInt("company_type"))]);
+		entity.setCompanyType(CompanyType.values()[(resultSet.getInt("company_type_id"))]);
 		entity.setName(resultSet.getString("name"));
 		entity.setPayerRegistrationNumber(resultSet.getString("payer_registration_number"));
-		entity.setLegalAddress(resultSet.getString("legal_address"));
-		entity.setPostAddress(resultSet.getString("post_address"));
+		
+		final IAddress address = new Address();
+		address.setId((Integer) resultSet.getObject("legal_address_id"));
+		entity.setAddress(address);
+		address.setId((Integer) resultSet.getObject("post_address_id"));
+		entity.setAddress(address);
+		
 		entity.setBankData(resultSet.getString("bank_data"));
 		entity.setEMail(resultSet.getString("e_mail"));
 		entity.setPhone(resultSet.getString("phone"));
@@ -81,6 +93,19 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 	@Override
 	public long getCount(final CompanyFilter filter) {
 		throw new RuntimeException("will be implemented in ORM layer. Too complex for plain jdbc ");
+	}
+	
+	@Override
+	public ICompany getFullInfo(final Integer id) {
+		final ICompany company = get(id);
+		
+		// как получить company_type?
+
+		if (company.getAddress() != null) {
+			company.setAddress(addressDao.get(company.getAddress().getId()));
+		}
+		
+		return company;
 	}
 
 	@Override

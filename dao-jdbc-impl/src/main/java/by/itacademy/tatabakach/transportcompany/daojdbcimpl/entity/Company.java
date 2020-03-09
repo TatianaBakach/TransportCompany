@@ -12,9 +12,11 @@ public class Company extends BaseEntity implements ICompany {
 
 	private String payerRegistrationNumber;
 
-	private IAddress legalAddress;
+	/*private IAddress legalAddress;
 
-	private IAddress postAddress;
+	private IAddress postAddress;*/
+	
+	private IAddress address;
 
 	private String bankData;
 
@@ -52,7 +54,7 @@ public class Company extends BaseEntity implements ICompany {
 		this.payerRegistrationNumber = payerRegistrationNumber;
 	}
 
-	@Override
+	/*@Override
 	public IAddress getLegalAddress() {
 		return legalAddress;
 	}
@@ -70,6 +72,17 @@ public class Company extends BaseEntity implements ICompany {
 	@Override
 	public void setPostAddress(final IAddress postAddress) {
 		this.postAddress = postAddress;
+	}*/
+	
+	@Override
+	public IAddress getAddress() {
+		return address;
+	}
+	
+	@Override
+	public void setAddress(final IAddress address) {
+		this.address = address;
+
 	}
 
 	@Override
@@ -104,7 +117,9 @@ public class Company extends BaseEntity implements ICompany {
 
 	@Override
 	public String toString() {
-		return "Company [name=" + name + ", companyType=" + companyType + ", getId()=" + getId() + "]";
+		return "Company [name=" + name + ", companyType=" + companyType + "payerRegistrationNumber="
+				+ payerRegistrationNumber + "legalAddress=" + address + "postAddress=" + address + "bankData="
+				+ bankData + "e-mail=" + eMail + "phone=" + phone + ", getId()=" + getId() + "]";
 	}
 
 }

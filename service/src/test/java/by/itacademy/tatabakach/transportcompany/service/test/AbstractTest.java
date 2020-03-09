@@ -27,6 +27,7 @@ import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.PaymentTerms
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IAddress;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICar;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IContract;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICountry;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDistrict;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDriver;
@@ -36,6 +37,7 @@ import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITransaction
 import by.itacademy.tatabakach.transportcompany.service.IAddressService;
 import by.itacademy.tatabakach.transportcompany.service.ICarService;
 import by.itacademy.tatabakach.transportcompany.service.ICompanyService;
+import by.itacademy.tatabakach.transportcompany.service.IContractService;
 import by.itacademy.tatabakach.transportcompany.service.ICountryService;
 import by.itacademy.tatabakach.transportcompany.service.IDistrictService;
 import by.itacademy.tatabakach.transportcompany.service.IDriverService;
@@ -66,6 +68,8 @@ public abstract class AbstractTest {
 	protected IAddressService addressService;
 	@Autowired
 	protected ICompanyService companyService;
+	@Autowired
+	protected IContractService contractService;
 
 	private static final Random RANDOM = new Random();
 
@@ -260,8 +264,7 @@ public abstract class AbstractTest {
 		final ICompany entity = companyService.createEntity();
 		entity.setName("name-" + getRandomPrefix());
 		entity.setPayerRegistrationNumber("rpn-" + getRandomPrefix());
-		entity.setLegalAddress("legalAddress-" + getRandomPrefix());
-		entity.setPostAddress("postAddress-" + getRandomPrefix());
+		entity.setAddress(saveNewAddress());
 		entity.setBankData("bankData-" + getRandomPrefix());
 		entity.setEMail("eMail-" + getRandomPrefix());
 		entity.setPhone("phone" + getRandomPrefix());
@@ -271,6 +274,16 @@ public abstract class AbstractTest {
 		entity.setCompanyType(allTypes[randomIndex]);
 
 		companyService.save(entity);
+		return entity;
+	}
+	
+	protected IContract saveNewContract() {
+		final IContract entity = contractService.createEntity();
+		entity.setNumber("number-" + getRandomPrefix());
+		entity.setCompany(saveNewCompany());
+		entity.setDate(getRandomDate());
+
+		contractService.save(entity);
 		return entity;
 	}
 }

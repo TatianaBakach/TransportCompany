@@ -23,12 +23,10 @@ public class CompanyServiceTest extends AbstractTest {
 		assertNotNull(entityFromDb.getCompanyType());
 		assertEquals(entity.getName(), entityFromDb.getName());
 		assertEquals(entity.getPayerRegistrationNumber(), entityFromDb.getPayerRegistrationNumber());
-		assertEquals(entity.getLegalAddress(), entityFromDb.getLegalAddress());
-		assertEquals(entity.getPostAddress(), entityFromDb.getPostAddress());
+		assertEquals(entity.getAddress().getId(), entityFromDb.getAddress().getId());
 		assertEquals(entity.getBankData(), entityFromDb.getBankData());
 		assertEquals(entity.getEMail(), entityFromDb.getEMail());
 		assertEquals(entity.getPhone(), entityFromDb.getPhone());
-		// FIXME: use assertEquals  
 
 	}
 
@@ -38,7 +36,7 @@ public class CompanyServiceTest extends AbstractTest {
 
 		final int randomObjectsCount = getRandomObjectsCount();
 		for (int i = 0; i < randomObjectsCount; i++) {
-			saveNewCar();
+			saveNewCompany();
 		}
 
 		final List<ICompany> allEntities = companyService.getAll();
@@ -48,8 +46,7 @@ public class CompanyServiceTest extends AbstractTest {
 			assertNotNull(entityFromDb.getCompanyType());
 			assertNotNull(entityFromDb.getName());
 			assertNotNull(entityFromDb.getPayerRegistrationNumber());
-			assertNotNull(entityFromDb.getLegalAddress());
-			assertNotNull(entityFromDb.getPostAddress());
+			assertNotNull(entityFromDb.getAddress());
 			assertNotNull(entityFromDb.getBankData());
 			assertNotNull(entityFromDb.getEMail());
 			assertNotNull(entityFromDb.getPhone());

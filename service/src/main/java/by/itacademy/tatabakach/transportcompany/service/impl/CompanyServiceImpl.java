@@ -71,5 +71,10 @@ public class CompanyServiceImpl implements ICompanyService {
 	public long getCount(CompanyFilter filter) {
 		return dao.getCount(filter);
 	}
+	
+	@Override
+	public ICompany getFullInfo(Integer id) {
+		return dao.getFullInfo(id);
+	}
 
 }

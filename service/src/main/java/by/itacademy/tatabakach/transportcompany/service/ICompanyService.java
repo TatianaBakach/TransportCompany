@@ -18,6 +18,8 @@ public interface ICompanyService {
 	void deleteAll();
 
 	ICompany createEntity();
+	
+	ICompany getFullInfo(Integer id);
 
 	List<ICompany> find(CompanyFilter filter);
 

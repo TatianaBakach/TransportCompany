@@ -115,9 +115,9 @@ CREATE TABLE "company" (
 	"name" character varying NOT NULL,
 	"payer_registration_number" character varying(20),
 	"legal_address_id" integer,
-	"post_address" integer,
+	"post_address_id" integer,
 	"bank_data" TEXT,
-	"e-mail" character varying,
+	"e_mail" character varying,
 	"phone" character varying,
 	CONSTRAINT "company_pk" PRIMARY KEY ("id")
 ) WITH (
@@ -334,7 +334,7 @@ ALTER TABLE "order" ADD CONSTRAINT "order_fk7" FOREIGN KEY ("carrier_cost_id") R
 ALTER TABLE "order" ADD CONSTRAINT "order_fk8" FOREIGN KEY ("vat_id") REFERENCES "vat"("id");
 
 ALTER TABLE "company" ADD CONSTRAINT "company_fk0" FOREIGN KEY ("legal_address_id") REFERENCES "address"("id");
-ALTER TABLE "company" ADD CONSTRAINT "company_fk1" FOREIGN KEY ("post_address") REFERENCES "address"("id");
+ALTER TABLE "company" ADD CONSTRAINT "company_fk1" FOREIGN KEY ("post_address_id") REFERENCES "address"("id");
 
 ALTER TABLE "employee" ADD CONSTRAINT "employee_fk0" FOREIGN KEY ("department_id") REFERENCES "department"("id");
 ALTER TABLE "employee" ADD CONSTRAINT "employee_fk1" FOREIGN KEY ("position_id") REFERENCES "position"("id");
