@@ -3,6 +3,7 @@ package by.itacademy.tatabakach.transportcompany.service;
 import java.util.List;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICar;
+import by.itacademy.tatabakach.transportcompany.daoapi.filter.CarFilter;
 
 public interface ICarService {
 
@@ -15,7 +16,9 @@ public interface ICarService {
 	void delete(Integer id);
 
 	void deleteAll();
-
+	
 	ICar createEntity();
+
+	List<ICar> find(CarFilter filter);
 
 }

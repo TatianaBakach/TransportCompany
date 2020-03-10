@@ -1,5 +1,6 @@
 package by.itacademy.tatabakach.transportcompany.service.test;
 
+import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -12,6 +13,29 @@ import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
 
 public class CompanyServiceTest extends AbstractTest {
 
+	
+	public void testUnique() {
+		ICompany entity = companyService.createEntity();
+		
+		//set fields
+		
+		
+		companyService.save(entity);
+		
+		try {
+			// save entity with the same fields
+			entity.setId(null);
+			companyService.save(entity);
+			
+			fail("object can't be saved with the same unique key");
+			
+		}catch (Exception e) {
+			// ok, constraint exists
+		}
+
+	}
+	
+	
 	@Test
 	public void testCreate() {
 		final ICompany entity = saveNewCompany();

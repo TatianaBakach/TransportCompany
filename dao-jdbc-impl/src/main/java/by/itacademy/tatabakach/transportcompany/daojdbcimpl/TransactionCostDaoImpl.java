@@ -75,7 +75,7 @@ public class TransactionCostDaoImpl extends AbstractDaoImpl<ITransactionCost, In
 	protected ITransactionCost parseRow(final ResultSet resultSet) throws SQLException {
 		final ITransactionCost entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
-		entity.setDate(resultSet.getDate("date"));
+		entity.setDate(resultSet.getTimestamp("date"));
 		entity.setCurrency(Currency.values()[(resultSet.getInt("currency_id"))]);
 		entity.setAmount(resultSet.getBigDecimal("amount"));
 		entity.setRate(resultSet.getBigDecimal("rate"));

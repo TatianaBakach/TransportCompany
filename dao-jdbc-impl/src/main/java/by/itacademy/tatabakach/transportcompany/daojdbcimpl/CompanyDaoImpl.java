@@ -23,6 +23,7 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 	
 	@Autowired
 	private IAddressDao addressDao;
+	
 
 	@Override
 	public ICompany createEntity() {
@@ -99,7 +100,7 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 	public ICompany getFullInfo(final Integer id) {
 		final ICompany company = get(id);
 		
-		// как получить company_type?
+		// company_type?
 
 		if (company.getAddress() != null) {
 			company.setAddress(addressDao.get(company.getAddress().getId()));

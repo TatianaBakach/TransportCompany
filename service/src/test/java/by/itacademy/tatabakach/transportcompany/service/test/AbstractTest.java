@@ -133,20 +133,21 @@ public abstract class AbstractTest {
 	protected Date getRandomDate() {
 		return new Date();
 	}
+
 	
-	 public static BigDecimal getRandomBigDecimal(int range) {
-	        BigDecimal max = new BigDecimal(range);
-	        BigDecimal randFromDouble = new BigDecimal(Math.random());
-	        BigDecimal actualRandomDec = randFromDouble.multiply(max);
-	        actualRandomDec = actualRandomDec
-	                .setScale(2, BigDecimal.ROUND_DOWN);
-	        return actualRandomDec;
-	    }
-	 
-	
+
+	public static BigDecimal getRandomBigDecimal(int scale) {
+		BigDecimal max = new BigDecimal(9);
+		BigDecimal randFromDouble = new BigDecimal(Math.random());
+		BigDecimal actualRandomDec = randFromDouble.multiply(max);
+		actualRandomDec = actualRandomDec.setScale(scale, BigDecimal.ROUND_DOWN);
+		return actualRandomDec;
+	}
+
 	public static <T> T getRandomFromCollection(final Collection<T> all) {
 		final int size = all.size();
-		final int item = new Random().nextInt(size); // In real life, the Random object should be rather more shared than this
+		final int item = new Random().nextInt(size); // In real life, the Random object should be rather more shared
+														// than this
 		int i = 0;
 		for (final T obj : all) {
 			if (i == item) {
@@ -160,7 +161,8 @@ public abstract class AbstractTest {
 	@SafeVarargs
 	public static <T> T getRandomFromArray(final T... all) {
 		final int size = all.length;
-		final int item = new Random().nextInt(size); // In real life, the Random object should be rather more shared than this
+		final int item = new Random().nextInt(size); // In real life, the Random object should be rather more shared
+														// than this
 		int i = 0;
 		for (final T obj : all) {
 			if (i == item) {
@@ -170,7 +172,7 @@ public abstract class AbstractTest {
 		}
 		return null;
 	}
-	
+
 	protected ICar saveNewCar() {
 		final ICar entity = carService.createEntity();
 		entity.setModel("model-" + getRandomPrefix());
@@ -189,10 +191,6 @@ public abstract class AbstractTest {
 		driverService.save(entity);
 		return entity;
 	}
-	
-	
-	
-	
 
 	protected ITransactionCost saveNewTransactionCost() {
 		final ITransactionCost entity = transactionCostService.createEntity();
@@ -200,21 +198,22 @@ public abstract class AbstractTest {
 		final Currency[] allCurrencyTypes = Currency.values();
 		final int randomCurrencyIndex = Math.max(0, getRANDOM().nextInt(allCurrencyTypes.length) - 1);
 
-		
 		Currency randomCurrency = getRandomFromArray(Currency.values());
-		
+
 		final PaymentTermsType[] allPaymentTermsTypes = PaymentTermsType.values();
 		final int randomPaymentTermsIndex = Math.max(0, getRANDOM().nextInt(allPaymentTermsTypes.length) - 1);
 
 		entity.setDate(getRandomDate());
 		entity.setCurrency(getRandomFromArray(Currency.values()));
-		entity.setAmount(BigDecimal.valueOf(getRandomObjectsCount()));
-		entity.setRate(BigDecimal.valueOf(getRandomObjectsCount()));
+		entity.setAmount(getRandomBigDecimal(2));
+		entity.setRate(getRandomBigDecimal(4));
 		entity.setIntermediateCurrency(allCurrencyTypes[randomCurrencyIndex]);
-		entity.setIntermediateCurrencyRate(BigDecimal.valueOf(getRandomObjectsCount()));
+		entity.setIntermediateCurrencyRate(getRandomBigDecimal(4));
 		entity.setPaymentPeriod(getRANDOM().nextInt(30));
 		entity.setPaymentTermsType(allPaymentTermsTypes[randomPaymentTermsIndex]);
 		entity.setNote("note" + getRandomPrefix());
+
+		transactionCostService.save(entity);
 
 		return entity;
 	}
@@ -225,7 +224,7 @@ public abstract class AbstractTest {
 		countryService.save(entity);
 		return entity;
 	}
-	
+
 	protected IRegion saveNewRegion() {
 		final IRegion entity = regionService.createEntity();
 		entity.setName("name-" + getRandomPrefix());
@@ -233,7 +232,7 @@ public abstract class AbstractTest {
 		regionService.save(entity);
 		return entity;
 	}
-	
+
 	protected IDistrict saveNewDistrict() {
 		final IDistrict entity = districtService.createEntity();
 		entity.setName("name-" + getRandomPrefix());
@@ -241,7 +240,7 @@ public abstract class AbstractTest {
 		districtService.save(entity);
 		return entity;
 	}
-	
+
 	protected ILocality saveNewLocality() {
 		final ILocality entity = localityService.createEntity();
 		entity.setName("name-" + getRandomPrefix());
@@ -249,7 +248,7 @@ public abstract class AbstractTest {
 		localityService.save(entity);
 		return entity;
 	}
-	
+
 	protected IAddress saveNewAddress() {
 		final IAddress entity = addressService.createEntity();
 		entity.setPostcode("#" + getRandomPrefix());
@@ -276,7 +275,7 @@ public abstract class AbstractTest {
 		companyService.save(entity);
 		return entity;
 	}
-	
+
 	protected IContract saveNewContract() {
 		final IContract entity = contractService.createEntity();
 		entity.setNumber("number-" + getRandomPrefix());

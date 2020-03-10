@@ -22,15 +22,12 @@
 	<Loggers>
 		<Root level="info">
 			<AppenderRef ref="Console" />
-			<AppenderRef ref="RollingFile" />
 		</Root>
 
-		<Logger name="by.itacademy.dzhivushko.cars.service.test"
-			level="debug" additivity="false">
+		<Logger name="org.springframework.web" level="debug"
+			additivity="false">
 			<AppenderRef ref="Console" />
-
-
 		</Logger>
 
 	</Loggers>
-</Configuration> 
+</Configuration>
