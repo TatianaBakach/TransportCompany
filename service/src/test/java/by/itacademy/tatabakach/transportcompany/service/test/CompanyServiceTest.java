@@ -1,6 +1,5 @@
 package by.itacademy.tatabakach.transportcompany.service.test;
 
-import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -12,29 +11,6 @@ import org.junit.jupiter.api.Test;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
 
 public class CompanyServiceTest extends AbstractTest {
-
-	
-	public void testUnique() {
-		ICompany entity = companyService.createEntity();
-		
-		//set fields
-		
-		
-		companyService.save(entity);
-		
-		try {
-			// save entity with the same fields
-			entity.setId(null);
-			companyService.save(entity);
-			
-			fail("object can't be saved with the same unique key");
-			
-		}catch (Exception e) {
-			// ok, constraint exists
-		}
-
-	}
-	
 	
 	@Test
 	public void testCreate() {
@@ -47,7 +23,8 @@ public class CompanyServiceTest extends AbstractTest {
 		assertNotNull(entityFromDb.getCompanyType());
 		assertEquals(entity.getName(), entityFromDb.getName());
 		assertEquals(entity.getPayerRegistrationNumber(), entityFromDb.getPayerRegistrationNumber());
-		assertEquals(entity.getAddress().getId(), entityFromDb.getAddress().getId());
+		assertEquals(entity.getLegalAddress().getId(), entityFromDb.getLegalAddress().getId());
+		assertEquals(entity.getPostAddress().getId(), entityFromDb.getPostAddress().getId());
 		assertEquals(entity.getBankData(), entityFromDb.getBankData());
 		assertEquals(entity.getEMail(), entityFromDb.getEMail());
 		assertEquals(entity.getPhone(), entityFromDb.getPhone());
@@ -70,7 +47,8 @@ public class CompanyServiceTest extends AbstractTest {
 			assertNotNull(entityFromDb.getCompanyType());
 			assertNotNull(entityFromDb.getName());
 			assertNotNull(entityFromDb.getPayerRegistrationNumber());
-			assertNotNull(entityFromDb.getAddress());
+			assertNotNull(entityFromDb.getLegalAddress());
+			assertNotNull(entityFromDb.getPostAddress());
 			assertNotNull(entityFromDb.getBankData());
 			assertNotNull(entityFromDb.getEMail());
 			assertNotNull(entityFromDb.getPhone());

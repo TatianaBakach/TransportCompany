@@ -21,6 +21,7 @@ public class ContractServiceTest extends AbstractTest{
 		assertNotNull(entityFromDb);
 		assertNotNull(entityFromDb.getId());
 		assertEquals(entity.getNumber(), entityFromDb.getNumber());
+		assertEquals(entity.getOurCompany().getId(), entityFromDb.getOurCompany().getId());
 		assertEquals(entity.getCompany().getId(), entityFromDb.getCompany().getId());
 		assertEquals(entity.getDate(), entityFromDb.getDate());
 
@@ -40,6 +41,7 @@ public class ContractServiceTest extends AbstractTest{
 		for (final IContract entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());
 			assertNotNull(entityFromDb.getNumber());
+			assertNotNull(entityFromDb.getOurCompany());
 			assertNotNull(entityFromDb.getCompany());
 			assertNotNull(entityFromDb.getDate());
 		}

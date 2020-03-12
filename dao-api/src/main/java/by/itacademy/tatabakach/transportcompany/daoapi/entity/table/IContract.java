@@ -8,6 +8,10 @@ public interface IContract extends IBaseEntity{
 
 	void setNumber(String number);
 	
+	ICompany getOurCompany();
+	
+	void setOurCompany(ICompany ourCompany);
+	
 	ICompany getCompany();
 	
 	void setCompany(ICompany company);

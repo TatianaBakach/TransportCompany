@@ -101,7 +101,7 @@ CREATE TABLE "order" (
 	"carrier_cost_id" integer NOT NULL,
 	"paid_carrier" BOOLEAN NOT NULL,
 	"vat_id" integer NOT NULL,
-	"additional_conditions" character varying,
+	"additional_conditions" TEXT,
 	CONSTRAINT "order_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE

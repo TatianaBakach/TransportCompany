@@ -40,8 +40,8 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 				pStmt.setInt(1, entity.getCompanyType().ordinal());
 				pStmt.setString(2, entity.getName());
 				pStmt.setString(3, entity.getPayerRegistrationNumber());
-				pStmt.setInt(4, entity.getAddress().getId());
-				pStmt.setInt(5, entity.getAddress().getId());
+				pStmt.setInt(4, entity.getLegalAddress().getId());
+				pStmt.setInt(5, entity.getPostAddress().getId());
 				pStmt.setString(6, entity.getBankData());
 				pStmt.setString(7, entity.getEMail());
 				pStmt.setString(8, entity.getPhone());
@@ -73,11 +73,12 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 		entity.setName(resultSet.getString("name"));
 		entity.setPayerRegistrationNumber(resultSet.getString("payer_registration_number"));
 		
-		final IAddress address = new Address();
-		address.setId((Integer) resultSet.getObject("legal_address_id"));
-		entity.setAddress(address);
-		address.setId((Integer) resultSet.getObject("post_address_id"));
-		entity.setAddress(address);
+		final IAddress legalAddress = new Address();
+		legalAddress.setId((Integer) resultSet.getObject("legal_address_id"));
+		entity.setLegalAddress(legalAddress);
+		final IAddress postAddress = new Address();
+		postAddress.setId((Integer) resultSet.getObject("post_address_id"));
+		entity.setPostAddress(postAddress);
 		
 		entity.setBankData(resultSet.getString("bank_data"));
 		entity.setEMail(resultSet.getString("e_mail"));
@@ -102,8 +103,12 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 		
 		// company_type?
 
-		if (company.getAddress() != null) {
-			company.setAddress(addressDao.get(company.getAddress().getId()));
+		if (company.getLegalAddress() != null) {
+			company.setLegalAddress(addressDao.get(company.getLegalAddress().getId()));
+		}
+		
+		if (company.getPostAddress() != null) {
+			company.setPostAddress(addressDao.get(company.getPostAddress().getId()));
 		}
 		
 		return company;

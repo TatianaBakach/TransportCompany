@@ -8,6 +8,8 @@ import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IContract;
 public class Contract extends BaseEntity implements IContract {
 
 	private String number;
+	
+	private ICompany ourCompany;
 
 	private ICompany company;
 
@@ -21,6 +23,17 @@ public class Contract extends BaseEntity implements IContract {
 	@Override
 	public void setNumber(final String number) {
 		this.number = number;
+	}
+	
+	@Override
+	public ICompany getOurCompany() {
+		return ourCompany;
+	}
+
+	@Override
+	public void setOurCompany(final ICompany ourCompany) {
+		this.ourCompany = ourCompany;
+
 	}
 
 	@Override
@@ -46,7 +59,7 @@ public class Contract extends BaseEntity implements IContract {
 
 	@Override
 	public String toString() {
-		return "Contract [number=" + number + ", our_company=" + company + "company=" + company + "date=" + date
+		return "Contract [number=" + number + ", our_company=" + ourCompany + "company=" + company + "date=" + date
 				+ ", getId()=" + getId() + "]";
 	}
 

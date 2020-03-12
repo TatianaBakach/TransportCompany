@@ -36,7 +36,7 @@ public class ContractDaoImpl extends AbstractDaoImpl<IContract, Integer> impleme
 			@Override
 			public IContract doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getNumber());
-				pStmt.setInt(2, entity.getCompany().getId());
+				pStmt.setInt(2, entity.getOurCompany().getId());
 				pStmt.setInt(3, entity.getCompany().getId());
 				pStmt.setObject(4, entity.getDate(), Types.TIMESTAMP);
 
@@ -65,13 +65,14 @@ public class ContractDaoImpl extends AbstractDaoImpl<IContract, Integer> impleme
 		entity.setId((Integer) resultSet.getObject("id"));
 		entity.setNumber(resultSet.getString("number"));
 
+		final ICompany ourCompany = new Company();
+		ourCompany.setId((Integer) resultSet.getObject("our_company_id"));
+		entity.setOurCompany(ourCompany);
 		final ICompany company = new Company();
-		company.setId((Integer) resultSet.getObject("our_company_id"));
-		entity.setCompany(company);
 		company.setId((Integer) resultSet.getObject("company_id"));
 		entity.setCompany(company);
 
-		entity.setDate(resultSet.getDate("date"));
+		entity.setDate(resultSet.getTimestamp("date"));
 
 		return entity;
 	}
@@ -90,6 +91,9 @@ public class ContractDaoImpl extends AbstractDaoImpl<IContract, Integer> impleme
 	public IContract getFullInfo(final Integer id) {
 		final IContract contract = get(id);
 
+		if (contract.getOurCompany() != null) {
+			contract.setOurCompany(companyDao.get(contract.getOurCompany().getId()));
+		}
 		if (contract.getCompany() != null) {
 			contract.setCompany(companyDao.get(contract.getCompany().getId()));
 		}

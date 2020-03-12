@@ -26,22 +26,28 @@ import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Currency;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.PaymentTermsType;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IAddress;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICar;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICfr;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IContract;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICountry;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDepartment;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDistrict;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDriver;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ILocality;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IPosition;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IRegion;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITransactionCost;
 import by.itacademy.tatabakach.transportcompany.service.IAddressService;
 import by.itacademy.tatabakach.transportcompany.service.ICarService;
+import by.itacademy.tatabakach.transportcompany.service.ICfrService;
 import by.itacademy.tatabakach.transportcompany.service.ICompanyService;
 import by.itacademy.tatabakach.transportcompany.service.IContractService;
 import by.itacademy.tatabakach.transportcompany.service.ICountryService;
+import by.itacademy.tatabakach.transportcompany.service.IDepartmentService;
 import by.itacademy.tatabakach.transportcompany.service.IDistrictService;
 import by.itacademy.tatabakach.transportcompany.service.IDriverService;
 import by.itacademy.tatabakach.transportcompany.service.ILocalityService;
+import by.itacademy.tatabakach.transportcompany.service.IPositionService;
 import by.itacademy.tatabakach.transportcompany.service.IRegionService;
 import by.itacademy.tatabakach.transportcompany.service.ITransactionCostService;
 
@@ -70,6 +76,12 @@ public abstract class AbstractTest {
 	protected ICompanyService companyService;
 	@Autowired
 	protected IContractService contractService;
+	@Autowired
+	protected ICfrService cfrService;
+	@Autowired
+	protected IDepartmentService departmentService;
+	@Autowired
+	protected IPositionService positionService;
 
 	private static final Random RANDOM = new Random();
 
@@ -92,8 +104,7 @@ public abstract class AbstractTest {
 				stmt.execute("DROP SCHEMA IF EXISTS \"public\" CASCADE;");
 				stmt.execute("CREATE SCHEMA \"public\";");
 				stmt.execute(getScript("../docs/грузоперевозки_postgres_create.sql"));
-				// stmt.execute(getScript(filePath)); //ДОПИСАТЬ ПУТЬ к файлу с уникальными
-				// ключами
+				 stmt.execute(getScript(".../docs/unique constraints.sql"));
 			} finally {
 				stmt.close();
 			}
@@ -109,7 +120,7 @@ public abstract class AbstractTest {
 
 		StringBuilder contentBuilder = new StringBuilder();
 
-		try (Stream<String> stream = Files.lines(Paths.get(filePath), StandardCharsets.UTF_8)) { // поменять путь
+		try (Stream<String> stream = Files.lines(Paths.get(filePath), StandardCharsets.UTF_8)) {
 			stream.forEach(s -> contentBuilder.append(s).append("\n"));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -263,7 +274,8 @@ public abstract class AbstractTest {
 		final ICompany entity = companyService.createEntity();
 		entity.setName("name-" + getRandomPrefix());
 		entity.setPayerRegistrationNumber("rpn-" + getRandomPrefix());
-		entity.setAddress(saveNewAddress());
+		entity.setLegalAddress(saveNewAddress());
+		entity.setPostAddress(saveNewAddress());
 		entity.setBankData("bankData-" + getRandomPrefix());
 		entity.setEMail("eMail-" + getRandomPrefix());
 		entity.setPhone("phone" + getRandomPrefix());
@@ -279,10 +291,34 @@ public abstract class AbstractTest {
 	protected IContract saveNewContract() {
 		final IContract entity = contractService.createEntity();
 		entity.setNumber("number-" + getRandomPrefix());
+		entity.setOurCompany(saveNewCompany());
 		entity.setCompany(saveNewCompany());
 		entity.setDate(getRandomDate());
 
 		contractService.save(entity);
+		return entity;
+	}
+	
+	protected ICfr saveNewCfr() {
+		final ICfr entity = cfrService.createEntity();
+		entity.setCompany(saveNewCompany());
+		entity.setYear(getRandomObjectsCount());
+
+		cfrService.save(entity);
+		return entity;
+	}
+	
+	protected IDepartment saveNewDepartment() {
+		final IDepartment entity = departmentService.createEntity();
+		entity.setName("name-" + getRandomPrefix());
+		departmentService.save(entity);
+		return entity;
+	}
+	
+	protected IPosition saveNewPosition() {
+		final IPosition entity = positionService.createEntity();
+		entity.setName("name-" + getRandomPrefix());
+		positionService.save(entity);
 		return entity;
 	}
 }
