@@ -13,7 +13,7 @@
             </div>
         </div>
     </div>
-    <div class="footer-copyright">
+    <div class="footer-copyright light-green darken-3">
         <div class="container">
              2018 Copyright Text <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
         </div>

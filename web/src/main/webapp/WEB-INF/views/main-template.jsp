@@ -9,6 +9,7 @@
 
 
 <c:set var="pagesCar" value="${contextPath}/car" scope="request" />
+<c:set var="pagesDriver" value="${contextPath}/driver" scope="request" />
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">

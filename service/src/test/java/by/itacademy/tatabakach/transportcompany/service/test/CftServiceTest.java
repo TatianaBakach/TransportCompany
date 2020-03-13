@@ -27,22 +27,23 @@ public class CftServiceTest extends AbstractTest {
 		assertEquals(entity.getYear(), entityFromDb.getYear());
 
 	}
-/*
+
 	@Test
 	public void testUnique() {
-		ICfr entity = cfrService.createEntity();
+		ICfr entity1 = cfrService.createEntity();
 
-		entity.setCompany(saveNewCompany());
-		entity.setYear(2010);
+		ICompany newCompany = saveNewCompany();
+		
+		entity1.setCompany(newCompany);
+		entity1.setYear(2010);
 
-		cfrService.save(entity);
+		cfrService.save(entity1);
 
 		try {
-			entity.setCompany(saveNewCompany());
-			entity.setYear(2010);
-
-			entity.setId(null);
-			cfrService.save(entity);
+			ICfr entity2 = cfrService.createEntity();
+			entity2.setCompany(newCompany);
+			entity2.setYear(2010);
+			cfrService.save(entity2);
 
 			fail("object can't be saved with the same unique key");
 
@@ -51,7 +52,7 @@ public class CftServiceTest extends AbstractTest {
 		}
 
 	}
-*/
+
 	@Test
 	public void testGetAll() {
 		final int intialCount = cfrService.getAll().size();
