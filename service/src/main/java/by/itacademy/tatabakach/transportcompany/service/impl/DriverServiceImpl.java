@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.IDriverDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDriver;
+import by.itacademy.tatabakach.transportcompany.daoapi.filter.DriverFilter;
 import by.itacademy.tatabakach.transportcompany.service.IDriverService;
 
 @Service
@@ -57,5 +58,11 @@ public class DriverServiceImpl implements IDriverService {
 		final List<IDriver> all = dao.selectAll();
 		return all;
 	}
+	
+	@Override
+	public List<IDriver> find(DriverFilter filter) {
+		return dao.selectAll();
+	}
+
 
 }

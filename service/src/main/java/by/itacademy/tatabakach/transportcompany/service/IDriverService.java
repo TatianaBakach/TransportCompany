@@ -3,6 +3,7 @@ package by.itacademy.tatabakach.transportcompany.service;
 import java.util.List;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDriver;
+import by.itacademy.tatabakach.transportcompany.daoapi.filter.DriverFilter;
 
 public interface IDriverService {
 	
@@ -17,5 +18,7 @@ public interface IDriverService {
 	void deleteAll();
 
 	IDriver createEntity();
+	
+	List<IDriver> find(DriverFilter filter);
 
 }

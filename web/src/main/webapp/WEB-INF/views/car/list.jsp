@@ -24,5 +24,5 @@
 		</c:forEach>
 	</tbody>
 </table>
-<a class="waves-effect waves-light btn right" href="${pagesBrand}/add"><i
+<a class="waves-effect waves-light btn right" href="${pagesCar}/add"><i
 	class="material-icons">add</i></a>

@@ -18,5 +18,9 @@
 	<definition name="car.list" extends="DefaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/car/list.jsp" />
 	</definition>
+	
+	<definition name="driver.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/driver/list.jsp" />
+	</definition>
 
 </tiles-definitions>
