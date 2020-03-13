@@ -21,8 +21,8 @@ CREATE TABLE "order_reward" (
 	"employee_id" integer NOT NULL,
 	"reward_type_id" integer NOT NULL,
 	"order_reward_percent_id" integer NOT NULL,
-	"additional_expenses" DECIMAL(12,2),
-	"amount" DECIMAL(12,2),
+	"additional_expenses" DECIMAL(18,2),
+	"amount" DECIMAL(18,2),
 	"payment_date" TIMESTAMP,
 	"reward_issued" BOOLEAN NOT NULL,
 	CONSTRAINT "order_reward_pk" PRIMARY KEY ("id")
@@ -133,11 +133,11 @@ CREATE TABLE "employee" (
 	"last_name" character varying NOT NULL,
 	"department_id" integer NOT NULL,
 	"position_id" integer NOT NULL,
-	"e-mail" character varying NOT NULL UNIQUE,
+	"e_mail" character varying NOT NULL UNIQUE,
 	"phone" character varying NOT NULL,
 	"login" character varying,
 	"password" character varying NOT NULL,
-	"salary" DECIMAL(12,2) NOT NULL,
+	"salary" DECIMAL(18,2) NOT NULL,
 	CONSTRAINT "employee_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -159,10 +159,10 @@ CREATE TABLE "transaction_cost" (
 	"id" serial NOT NULL,
 	"date" TIMESTAMP NOT NULL,
 	"currency_id" integer NOT NULL,
-	"amount" DECIMAL(12,2) NOT NULL,
-	"rate" DECIMAL(12,4),
+	"amount" DECIMAL(18,2) NOT NULL,
+	"rate" DECIMAL(18,4),
 	"intermediate_currency_id" integer,
-	"intermediate_currency_rate" DECIMAL(12,4),
+	"intermediate_currency_rate" DECIMAL(18,4),
 	"payment_period" integer NOT NULL,
 	"payment_terms_type_id" integer NOT NULL,
 	"note" TEXT,
@@ -176,7 +176,7 @@ CREATE TABLE "transaction_cost" (
 CREATE TABLE "vat" (
 	"id" serial NOT NULL,
 	"name" character varying NOT NULL,
-	"rate" DECIMAL(2,2),
+	"rate" DECIMAL(4,2),
 	CONSTRAINT "vat_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -215,8 +215,8 @@ CREATE TABLE "payment" (
 	"order_id" integer NOT NULL,
 	"company_id" integer NOT NULL,
 	"currency_id" integer NOT NULL,
-	"rate" DECIMAL(12,4),
-	"amount" DECIMAL(12,2) NOT NULL,
+	"rate" DECIMAL(18,4),
+	"amount" DECIMAL(18,2) NOT NULL,
 	CONSTRAINT "payment_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -226,7 +226,7 @@ CREATE TABLE "payment" (
 
 CREATE TABLE "order_reward_percent" (
 	"id" serial NOT NULL,
-	"percent" DECIMAL(2,2) NOT NULL,
+	"percent" DECIMAL(4,2) NOT NULL,
 	CONSTRAINT "order_reward_percent_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE

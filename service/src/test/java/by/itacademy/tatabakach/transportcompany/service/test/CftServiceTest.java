@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICfr;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
-import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Company;
 
 public class CftServiceTest extends AbstractTest {
 
@@ -35,14 +34,14 @@ public class CftServiceTest extends AbstractTest {
 		ICompany newCompany = saveNewCompany();
 		
 		entity1.setCompany(newCompany);
-		entity1.setYear(2010);
+		entity1.setYear(2020);
 
 		cfrService.save(entity1);
 
 		try {
 			ICfr entity2 = cfrService.createEntity();
 			entity2.setCompany(newCompany);
-			entity2.setYear(2010);
+			entity2.setYear(2020);
 			cfrService.save(entity2);
 
 			fail("object can't be saved with the same unique key");

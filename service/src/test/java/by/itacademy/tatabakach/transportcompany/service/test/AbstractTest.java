@@ -33,7 +33,9 @@ import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICountry;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDepartment;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDistrict;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDriver;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ILocality;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IOrderRewardPercent;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IPosition;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IRegion;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITransactionCost;
@@ -46,7 +48,9 @@ import by.itacademy.tatabakach.transportcompany.service.ICountryService;
 import by.itacademy.tatabakach.transportcompany.service.IDepartmentService;
 import by.itacademy.tatabakach.transportcompany.service.IDistrictService;
 import by.itacademy.tatabakach.transportcompany.service.IDriverService;
+import by.itacademy.tatabakach.transportcompany.service.IEmployeeService;
 import by.itacademy.tatabakach.transportcompany.service.ILocalityService;
+import by.itacademy.tatabakach.transportcompany.service.IOrderRewardPercentService;
 import by.itacademy.tatabakach.transportcompany.service.IPositionService;
 import by.itacademy.tatabakach.transportcompany.service.IRegionService;
 import by.itacademy.tatabakach.transportcompany.service.ITransactionCostService;
@@ -82,6 +86,10 @@ public abstract class AbstractTest {
 	protected IDepartmentService departmentService;
 	@Autowired
 	protected IPositionService positionService;
+	@Autowired
+	protected IOrderRewardPercentService orderRewardPercentService;
+	@Autowired
+	protected IEmployeeService employeeService;
 
 	private static final Random RANDOM = new Random();
 
@@ -148,7 +156,7 @@ public abstract class AbstractTest {
 	
 
 	public static BigDecimal getRandomBigDecimal(int scale) {
-		BigDecimal max = new BigDecimal(9);
+		BigDecimal max = new BigDecimal(99);
 		BigDecimal randFromDouble = new BigDecimal(Math.random());
 		BigDecimal actualRandomDec = randFromDouble.multiply(max);
 		actualRandomDec = actualRandomDec.setScale(scale, BigDecimal.ROUND_DOWN);
@@ -278,7 +286,7 @@ public abstract class AbstractTest {
 		entity.setPostAddress(saveNewAddress());
 		entity.setBankData("bankData-" + getRandomPrefix());
 		entity.setEMail("eMail-" + getRandomPrefix());
-		entity.setPhone("phone" + getRandomPrefix());
+		entity.setPhone("phone-" + getRandomPrefix());
 
 		final CompanyType[] allTypes = CompanyType.values();
 		final int randomIndex = Math.max(0, getRANDOM().nextInt(allTypes.length) - 1);
@@ -319,6 +327,30 @@ public abstract class AbstractTest {
 		final IPosition entity = positionService.createEntity();
 		entity.setName("name-" + getRandomPrefix());
 		positionService.save(entity);
+		return entity;
+	}
+	
+	protected IOrderRewardPercent saveNewOrderRewardPercent() {
+		final IOrderRewardPercent entity = orderRewardPercentService.createEntity();
+		entity.setPercent(getRandomBigDecimal(2));
+		orderRewardPercentService.save(entity);
+		return entity;
+	}
+	
+	protected IEmployee saveNewEmployee() {
+		final IEmployee entity = employeeService.createEntity();
+		entity.setFirstName("first_name-" + getRandomPrefix());
+		entity.setMiddleName("middle_name-" + getRandomPrefix());
+		entity.setLastName("last_name-" + getRandomPrefix());
+		entity.setDepartment(saveNewDepartment());
+		entity.setPosition(saveNewPosition());
+		entity.setEMail("eMail-" + getRandomPrefix());
+		entity.setPhone("phone-" + getRandomPrefix());
+		entity.setLogin("login-" + getRandomPrefix());
+		entity.setPassword("password-" + getRandomPrefix());
+		entity.setSalary(getRandomBigDecimal(2));
+		
+		employeeService.save(entity);
 		return entity;
 	}
 }
