@@ -1,7 +1,10 @@
 package by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDepartment;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IPosition;
@@ -27,6 +30,18 @@ public class Employee extends BaseEntity implements IEmployee {
 	private String password;
 
 	private BigDecimal salary;
+
+	private Set<ICompany> companies = new HashSet<>();
+
+	@Override
+	public Set<ICompany> getCompanies() {
+		return companies;
+	}
+
+	@Override
+	public void setCompanies(final Set<ICompany> companies) {
+		this.companies = companies;
+	}
 
 	@Override
 	public String getFirstName() {

@@ -1,6 +1,7 @@
 package by.itacademy.tatabakach.transportcompany.daoapi.entity.table;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 public interface IEmployee extends IBaseEntity {
 	
@@ -43,5 +44,9 @@ public interface IEmployee extends IBaseEntity {
 	BigDecimal getSalary();
 	
 	void setSalary(BigDecimal salary);
+	
+	Set<ICompany> getCompanies();
+
+	void setCompanies(Set<ICompany> companies);
 
 }
