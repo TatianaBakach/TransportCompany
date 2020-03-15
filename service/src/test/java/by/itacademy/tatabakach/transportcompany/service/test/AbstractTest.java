@@ -23,6 +23,7 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.CompanyType;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Currency;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.LoadingMethod;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.PaymentTermsType;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IAddress;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICar;
@@ -35,10 +36,12 @@ import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDistrict;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDriver;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ILocality;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IOrder;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IOrderRewardPercent;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IPosition;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IRegion;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITransactionCost;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IVat;
 import by.itacademy.tatabakach.transportcompany.service.IAddressService;
 import by.itacademy.tatabakach.transportcompany.service.ICarService;
 import by.itacademy.tatabakach.transportcompany.service.ICfrService;
@@ -51,9 +54,11 @@ import by.itacademy.tatabakach.transportcompany.service.IDriverService;
 import by.itacademy.tatabakach.transportcompany.service.IEmployeeService;
 import by.itacademy.tatabakach.transportcompany.service.ILocalityService;
 import by.itacademy.tatabakach.transportcompany.service.IOrderRewardPercentService;
+import by.itacademy.tatabakach.transportcompany.service.IOrderService;
 import by.itacademy.tatabakach.transportcompany.service.IPositionService;
 import by.itacademy.tatabakach.transportcompany.service.IRegionService;
 import by.itacademy.tatabakach.transportcompany.service.ITransactionCostService;
+import by.itacademy.tatabakach.transportcompany.service.IVatService;
 
 @SpringJUnitConfig(locations = "classpath:service-context-test.xml")
 public abstract class AbstractTest {
@@ -90,6 +95,10 @@ public abstract class AbstractTest {
 	protected IOrderRewardPercentService orderRewardPercentService;
 	@Autowired
 	protected IEmployeeService employeeService;
+	@Autowired
+	protected IVatService vatService;
+	@Autowired
+	protected IOrderService orderService;
 
 	private static final Random RANDOM = new Random();
 
@@ -214,22 +223,22 @@ public abstract class AbstractTest {
 	protected ITransactionCost saveNewTransactionCost() {
 		final ITransactionCost entity = transactionCostService.createEntity();
 
-		final Currency[] allCurrencyTypes = Currency.values();
-		final int randomCurrencyIndex = Math.max(0, getRANDOM().nextInt(allCurrencyTypes.length) - 1);
+		//final Currency[] allCurrencyTypes = Currency.values();
+		//final int randomCurrencyIndex = Math.max(0, getRANDOM().nextInt(allCurrencyTypes.length) - 1);
 
-		Currency randomCurrency = getRandomFromArray(Currency.values());
+		//Currency randomCurrency = getRandomFromArray(Currency.values());
 
-		final PaymentTermsType[] allPaymentTermsTypes = PaymentTermsType.values();
-		final int randomPaymentTermsIndex = Math.max(0, getRANDOM().nextInt(allPaymentTermsTypes.length) - 1);
+		//final PaymentTermsType[] allPaymentTermsTypes = PaymentTermsType.values();
+		//final int randomPaymentTermsIndex = Math.max(0, getRANDOM().nextInt(allPaymentTermsTypes.length) - 1);
 
 		entity.setDate(getRandomDate());
 		entity.setCurrency(getRandomFromArray(Currency.values()));
 		entity.setAmount(getRandomBigDecimal(2));
 		entity.setRate(getRandomBigDecimal(4));
-		entity.setIntermediateCurrency(allCurrencyTypes[randomCurrencyIndex]);
+		entity.setIntermediateCurrency(getRandomFromArray(Currency.values()));
 		entity.setIntermediateCurrencyRate(getRandomBigDecimal(4));
 		entity.setPaymentPeriod(getRANDOM().nextInt(30));
-		entity.setPaymentTermsType(allPaymentTermsTypes[randomPaymentTermsIndex]);
+		entity.setPaymentTermsType(getRandomFromArray(PaymentTermsType.values()));
 		entity.setNote("note" + getRandomPrefix());
 
 		transactionCostService.save(entity);
@@ -351,6 +360,38 @@ public abstract class AbstractTest {
 		entity.setSalary(getRandomBigDecimal(2));
 		
 		employeeService.save(entity);
+		return entity;
+	}
+	
+	protected IVat saveNewVat() {
+		final IVat entity = vatService.createEntity();
+		entity.setName("name-" + getRandomPrefix());
+		entity.setRate(getRandomBigDecimal(2));
+		vatService.save(entity);
+		return entity;
+	}
+	
+	protected IOrder saveNewOrder() {
+		final IOrder entity = orderService.createEntity();
+
+		entity.setNumber("number-" + getRandomPrefix());
+		entity.setOurCompany(saveNewCompany());
+		entity.setCustomer(saveNewCompany());
+		entity.setCarrier(saveNewCompany());
+		entity.setCar(saveNewCar());
+		entity.setDriver(saveNewDriver());
+		entity.setLoadingMethod(getRandomFromArray(LoadingMethod.values()));
+		entity.setCargoType("cargoType-" + getRandomPrefix());
+		entity.setCargoWeightVolume("cargoWeightVolume-" + getRandomPrefix());
+		entity.setCustomerCost(saveNewTransactionCost());
+		entity.setPaidCustomer(false);
+		entity.setCarrierCost(saveNewTransactionCost());
+		entity.setPaidCarrier(false);
+		entity.setVat(saveNewVat());
+		entity.setAdditionalConditions("additionalConditions-" + getRandomPrefix());
+		
+		orderService.save(entity);
+
 		return entity;
 	}
 }

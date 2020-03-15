@@ -45,13 +45,17 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
 	@Override
 	public void delete(final Integer id) {
-		LOGGER.info("delete entity: {}", id);
-		dao.delete(id);
+		// remove all references
+        final IEmployee iEmployee = dao.get(id);
+        iEmployee.getCompanies().clear();
+        dao.update(iEmployee);
+        LOGGER.info("delete entity: {}", id);
+        dao.delete(id);
 	}
-
+	
 	@Override
 	public void deleteAll() {
-		LOGGER.info("delete all employeeы entities");
+		LOGGER.info("delete all employee entities");
 		dao.deleteAll();
 	}
 

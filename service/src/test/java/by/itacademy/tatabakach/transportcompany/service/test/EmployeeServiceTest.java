@@ -56,7 +56,7 @@ public class EmployeeServiceTest extends AbstractTest {
 		for (int i = 0; i < randomObjectsCount; i++) {
 			companies.add(saveNewCompany());
 		}
-		entity.getCompanies.addAll(companies);
+		entity.getCompanies().addAll(companies);
 
 		employeeService.save(entity);
 

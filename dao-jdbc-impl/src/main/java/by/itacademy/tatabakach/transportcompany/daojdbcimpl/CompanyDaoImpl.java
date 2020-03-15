@@ -3,7 +3,10 @@ package by.itacademy.tatabakach.transportcompany.daojdbcimpl;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,13 +20,13 @@ import by.itacademy.tatabakach.transportcompany.daoapi.filter.CompanyFilter;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Address;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Company;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.util.PreparedStatementAction;
+import by.itacademy.tatabakach.transportcompany.daojdbcimpl.util.StatementAction;
 
 @Repository
 public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implements ICompanyDao {
-	
+
 	@Autowired
 	private IAddressDao addressDao;
-	
 
 	@Override
 	public ICompany createEntity() {
@@ -72,19 +75,44 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 		entity.setCompanyType(CompanyType.values()[(resultSet.getInt("company_type_id"))]);
 		entity.setName(resultSet.getString("name"));
 		entity.setPayerRegistrationNumber(resultSet.getString("payer_registration_number"));
-		
+
 		final IAddress legalAddress = new Address();
 		legalAddress.setId((Integer) resultSet.getObject("legal_address_id"));
 		entity.setLegalAddress(legalAddress);
 		final IAddress postAddress = new Address();
 		postAddress.setId((Integer) resultSet.getObject("post_address_id"));
 		entity.setPostAddress(postAddress);
-		
+
 		entity.setBankData(resultSet.getString("bank_data"));
 		entity.setEMail(resultSet.getString("e_mail"));
 		entity.setPhone(resultSet.getString("phone"));
 
 		return entity;
+	}
+
+	@Override
+	public Set<ICompany> getByEmployee(final Integer id) {
+		return executeStatement(new StatementAction<Set<ICompany>>() {
+			@Override
+			public Set<ICompany> doWithStatement(final Statement statement) throws SQLException {
+				// @formatter:off
+				statement.executeQuery(String.format("select * from %s e "
+						+ "inner join employee_2_company e2c on e.id=e2c.company_id " + "where e2c.employee_id=%s",
+						getTableName(), id));
+				// @formatter:on
+				final ResultSet resultSet = statement.getResultSet();
+
+				final Set<ICompany> result = new HashSet<ICompany>();
+				boolean hasNext = resultSet.next();
+				while (hasNext) {
+					result.add(parseRow(resultSet));
+					hasNext = resultSet.next();
+				}
+				resultSet.close();
+
+				return result;
+			}
+		});
 	}
 
 	@Override
@@ -96,21 +124,21 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 	public long getCount(final CompanyFilter filter) {
 		throw new RuntimeException("will be implemented in ORM layer. Too complex for plain jdbc ");
 	}
-	
+
 	@Override
 	public ICompany getFullInfo(final Integer id) {
 		final ICompany company = get(id);
-		
+
 		// company_type?
 
 		if (company.getLegalAddress() != null) {
 			company.setLegalAddress(addressDao.get(company.getLegalAddress().getId()));
 		}
-		
+
 		if (company.getPostAddress() != null) {
 			company.setPostAddress(addressDao.get(company.getPostAddress().getId()));
 		}
-		
+
 		return company;
 	}
 
