@@ -207,11 +207,11 @@ public class Order extends BaseEntity implements IOrder {
 
 	@Override
 	public String toString() {
-		return "Order [number=" + number + ", ourCompany=" + ourCompany + "employee=" + employees + "customer="
-				+ customer + "carrier=" + carrier + "car=" + car + "driver=" + driver + "loadingMethod=" + loadingMethod
-				+ "cargoType=" + cargoType + "cargoWeightVolume=" + cargoWeightVolume + "customerCost=" + customerCost
-				+ "paidCustomer=" + paidCustomer + "carrierCost=" + carrierCost + "paidCarrier=" + paidCarrier + "vat="
-				+ vat + "additionalConditions=" + additionalConditions + ", getId()=" + getId() + "]";
+		return "Order [number=" + number + ", ourCompany=" + ourCompany + "customer=" + customer + "carrier=" + carrier
+				+ "car=" + car + "driver=" + driver + "loadingMethod=" + loadingMethod + "cargoType=" + cargoType
+				+ "cargoWeightVolume=" + cargoWeightVolume + "customerCost=" + customerCost + "paidCustomer="
+				+ paidCustomer + "carrierCost=" + carrierCost + "paidCarrier=" + paidCarrier + "vat=" + vat
+				+ "additionalConditions=" + additionalConditions + ", getId()=" + getId() + "]";
 	}
 
 }

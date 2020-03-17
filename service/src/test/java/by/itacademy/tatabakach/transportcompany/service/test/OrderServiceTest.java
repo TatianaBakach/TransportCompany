@@ -43,7 +43,6 @@ public class OrderServiceTest extends AbstractTest {
 		assertEquals(entity.getAdditionalConditions(), entityFromDb.getAdditionalConditions());
 		
 	}
-	
 
 	@Test
 	public void createOrderWithEmployeeTest() {
@@ -137,5 +136,5 @@ public class OrderServiceTest extends AbstractTest {
 		orderService.deleteAll();
 		assertEquals(0, orderService.getAll().size());
 	}
-
+	
 }

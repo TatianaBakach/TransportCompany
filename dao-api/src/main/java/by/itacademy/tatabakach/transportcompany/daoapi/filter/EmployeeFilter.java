@@ -1,6 +1,6 @@
 package by.itacademy.tatabakach.transportcompany.daoapi.filter;
 
-public class EmployeeFilter {
+public class EmployeeFilter extends AbstractFilter {
 	
 	private boolean fetchDepartment;
 	private boolean fetchPosition;

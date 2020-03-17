@@ -22,5 +22,9 @@
 	<definition name="driver.list" extends="DefaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/driver/list.jsp" />
 	</definition>
+	
+	<definition name="company.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/company/list.jsp" />
+	</definition>
 
 </tiles-definitions>

@@ -10,6 +10,7 @@
 				
 				<li><a href="${pagesCar}">cars</a></li>
 				<li><a href="${pagesDriver}">drivers</a></li>
+				<li><a href="${pagesCompany}">companies</a></li>
 				
 			</ul>
 		</div>
