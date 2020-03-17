@@ -84,7 +84,7 @@ CREATE TABLE "correspondence" (
 
 
 
-CREATE TABLE "order" (
+CREATE TABLE "order_object" (
 	"id" serial NOT NULL,
 	"number" character varying(8) NOT NULL UNIQUE,
 	"our_company_id" integer NOT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE "order" (
 	"paid_carrier" BOOLEAN NOT NULL,
 	"vat_id" integer NOT NULL,
 	"additional_conditions" TEXT,
-	CONSTRAINT "order_pk" PRIMARY KEY ("id")
+	CONSTRAINT "order_object_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
@@ -304,11 +304,11 @@ CREATE TABLE "country" (
 
 
 
-ALTER TABLE "route_item" ADD CONSTRAINT "route_item_fk0" FOREIGN KEY ("order_id") REFERENCES "order"("id");
+ALTER TABLE "route_item" ADD CONSTRAINT "route_item_fk0" FOREIGN KEY ("order_id") REFERENCES "order_object"("id");
 ALTER TABLE "route_item" ADD CONSTRAINT "route_item_fk1" FOREIGN KEY ("address_id") REFERENCES "address"("id");
 ALTER TABLE "route_item" ADD CONSTRAINT "route_item_fk2" FOREIGN KEY ("custom_id") REFERENCES "address"("id");
 
-ALTER TABLE "order_reward" ADD CONSTRAINT "order_reward_fk0" FOREIGN KEY ("order_id") REFERENCES "order"("id");
+ALTER TABLE "order_reward" ADD CONSTRAINT "order_reward_fk0" FOREIGN KEY ("order_id") REFERENCES "order_object"("id");
 ALTER TABLE "order_reward" ADD CONSTRAINT "order_reward_fk1" FOREIGN KEY ("employee_id") REFERENCES "employee"("id");
 ALTER TABLE "order_reward" ADD CONSTRAINT "order_reward_fk2" FOREIGN KEY ("order_reward_percent_id") REFERENCES "order_reward_percent"("id");
 
@@ -319,17 +319,17 @@ ALTER TABLE "address" ADD CONSTRAINT "address_fk0" FOREIGN KEY ("locality_id") R
 
 ALTER TABLE "cfr" ADD CONSTRAINT "cfr_fk0" FOREIGN KEY ("company_id") REFERENCES "company"("id");
 
-ALTER TABLE "correspondence" ADD CONSTRAINT "correspondence_fk0" FOREIGN KEY ("order_id") REFERENCES "order"("id");
+ALTER TABLE "correspondence" ADD CONSTRAINT "correspondence_fk0" FOREIGN KEY ("order_id") REFERENCES "order_object"("id");
 ALTER TABLE "correspondence" ADD CONSTRAINT "correspondence_fk1" FOREIGN KEY ("company_id") REFERENCES "company"("id");
 
-ALTER TABLE "order" ADD CONSTRAINT "order_fk0" FOREIGN KEY ("our_company_id") REFERENCES "company"("id");
-ALTER TABLE "order" ADD CONSTRAINT "order_fk1" FOREIGN KEY ("customer_id") REFERENCES "company"("id");
-ALTER TABLE "order" ADD CONSTRAINT "order_fk2" FOREIGN KEY ("carrier_id") REFERENCES "company"("id");
-ALTER TABLE "order" ADD CONSTRAINT "order_fk3" FOREIGN KEY ("car_id") REFERENCES "car"("id");
-ALTER TABLE "order" ADD CONSTRAINT "order_fk4" FOREIGN KEY ("driver_id") REFERENCES "driver"("id");
-ALTER TABLE "order" ADD CONSTRAINT "order_fk5" FOREIGN KEY ("customer_cost_id") REFERENCES "transaction_cost"("id");
-ALTER TABLE "order" ADD CONSTRAINT "order_fk6" FOREIGN KEY ("carrier_cost_id") REFERENCES "transaction_cost"("id");
-ALTER TABLE "order" ADD CONSTRAINT "order_fk7" FOREIGN KEY ("vat_id") REFERENCES "vat"("id");
+ALTER TABLE "order_object" ADD CONSTRAINT "order_object_fk0" FOREIGN KEY ("our_company_id") REFERENCES "company"("id");
+ALTER TABLE "order_object" ADD CONSTRAINT "order_object_fk1" FOREIGN KEY ("customer_id") REFERENCES "company"("id");
+ALTER TABLE "order_object" ADD CONSTRAINT "order_object_fk2" FOREIGN KEY ("carrier_id") REFERENCES "company"("id");
+ALTER TABLE "order_object" ADD CONSTRAINT "order_object_fk3" FOREIGN KEY ("car_id") REFERENCES "car"("id");
+ALTER TABLE "order_object" ADD CONSTRAINT "order_object_fk4" FOREIGN KEY ("driver_id") REFERENCES "driver"("id");
+ALTER TABLE "order_object" ADD CONSTRAINT "order_object_fk5" FOREIGN KEY ("customer_cost_id") REFERENCES "transaction_cost"("id");
+ALTER TABLE "order_object" ADD CONSTRAINT "order_object_fk6" FOREIGN KEY ("carrier_cost_id") REFERENCES "transaction_cost"("id");
+ALTER TABLE "order_object" ADD CONSTRAINT "order_object_fk7" FOREIGN KEY ("vat_id") REFERENCES "vat"("id");
 
 ALTER TABLE "company" ADD CONSTRAINT "company_fk0" FOREIGN KEY ("legal_address_id") REFERENCES "address"("id");
 ALTER TABLE "company" ADD CONSTRAINT "company_fk1" FOREIGN KEY ("post_address_id") REFERENCES "address"("id");
@@ -342,11 +342,11 @@ ALTER TABLE "employee" ADD CONSTRAINT "employee_fk1" FOREIGN KEY ("position_id")
 
 
 
-ALTER TABLE "payment" ADD CONSTRAINT "payment_fk0" FOREIGN KEY ("order_id") REFERENCES "order"("id");
+ALTER TABLE "payment" ADD CONSTRAINT "payment_fk0" FOREIGN KEY ("order_id") REFERENCES "order_object"("id");
 ALTER TABLE "payment" ADD CONSTRAINT "payment_fk1" FOREIGN KEY ("company_id") REFERENCES "company"("id");
 
 
-ALTER TABLE "order_2_employee" ADD CONSTRAINT "order_2_employee_fk0" FOREIGN KEY ("order_id") REFERENCES "order"("id");
+ALTER TABLE "order_2_employee" ADD CONSTRAINT "order_2_employee_fk0" FOREIGN KEY ("order_id") REFERENCES "order_object"("id");
 ALTER TABLE "order_2_employee" ADD CONSTRAINT "order_2_employee_fk1" FOREIGN KEY ("employee_id") REFERENCES "employee"("id");
 
 
@@ -358,5 +358,4 @@ ALTER TABLE "locality" ADD CONSTRAINT "locality_fk0" FOREIGN KEY ("district_id")
 ALTER TABLE "district" ADD CONSTRAINT "district_fk0" FOREIGN KEY ("region_id") REFERENCES "region"("id");
 
 ALTER TABLE "region" ADD CONSTRAINT "region_fk0" FOREIGN KEY ("country_id") REFERENCES "country"("id");
-
 

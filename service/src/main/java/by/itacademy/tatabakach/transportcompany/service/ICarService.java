@@ -21,4 +21,6 @@ public interface ICarService {
 
 	List<ICar> find(CarFilter filter);
 
+	long getCount(CarFilter filter);
+
 }

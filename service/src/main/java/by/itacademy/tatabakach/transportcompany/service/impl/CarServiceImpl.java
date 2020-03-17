@@ -64,4 +64,9 @@ public class CarServiceImpl implements ICarService {
 		return dao.selectAll();
 	}
 
+	@Override
+	public long getCount(CarFilter filter) {
+		return dao.getCount(filter);
+	}
+
 }

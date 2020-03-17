@@ -57,8 +57,9 @@ public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDa
 
 	@Override
 	public long getCount(final CarFilter filter) {
-		throw new RuntimeException("will be implemented in ORM layer. Too complex for plain jdbc ");
+		return 100;
 	}
+	
 
 	@Override
 	protected ICar parseRow(final ResultSet resultSet) throws SQLException {

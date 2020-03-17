@@ -47,7 +47,7 @@ public class OrderServiceTest extends AbstractTest {
 	@Test
 	public void createOrderWithEmployeeTest() {
 		final IOrder entity = orderService.createEntity();
-		entity.setNumber("number-" + getRandomPrefix());
+		entity.setNumber("#-" + getRandomPrefix());
 		entity.setOurCompany(saveNewCompany());
 		entity.setCustomer(saveNewCompany());
 		entity.setCarrier(saveNewCompany());

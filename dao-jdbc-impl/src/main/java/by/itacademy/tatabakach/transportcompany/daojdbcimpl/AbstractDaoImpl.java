@@ -58,12 +58,11 @@ public abstract class AbstractDaoImpl<ENTITY, ID> implements IDao<ENTITY, ID> {
 			statement.executeQuery("select * from " + getTableName() + " where id=" + id);
 
 			final ResultSet resultSet = statement.getResultSet();
-			final Set<String> columns = resolveColumnNames(resultSet);
 
 			final boolean hasNext = resultSet.next();
 			ENTITY result = null;
 			if (hasNext) {
-				result = parseRow(resultSet, columns);
+				result = parseRow(resultSet);
 			}
 
 			resultSet.close();
@@ -81,11 +80,10 @@ public abstract class AbstractDaoImpl<ENTITY, ID> implements IDao<ENTITY, ID> {
 				statement.executeQuery("select * from " + getTableName());
 
 				final ResultSet resultSet = statement.getResultSet();
-				final Set<String> columns = resolveColumnNames(resultSet);
 				final List<ENTITY> result = new ArrayList<>();
 				boolean hasNext = resultSet.next();
 				while (hasNext) {
-					result.add(parseRow(resultSet, columns));
+					result.add(parseRow(resultSet));
 					hasNext = resultSet.next();
 				}
 				resultSet.close();
@@ -150,32 +148,12 @@ public abstract class AbstractDaoImpl<ENTITY, ID> implements IDao<ENTITY, ID> {
 		}
 	}
 
-	private Set<String> resolveColumnNames(final ResultSet resultSet) throws SQLException {
-		final ResultSetMetaData rsMetaData = resultSet.getMetaData();
-		final int numberOfColumns = rsMetaData.getColumnCount();
-		final Set<String> columns = new HashSet<>();
-		for (int i = 1; i <= numberOfColumns; i++) {
-			columns.add(rsMetaData.getColumnName(i));
-		}
-		return columns;
-	}
-
 	protected Connection getConnection() throws SQLException {
 		return DriverManager.getConnection(url, user, password);
 	}
 
-	protected ENTITY parseRow(final ResultSet resultSet) throws SQLException {
-		throw new UnsupportedOperationException(
-				"this method should be overriden in particular *Impl class or use alternative "
-						+ "com.itacademy.jd2.dz.cardealer.dao.jdbc.AbstractDaoImpl.parseRow(ResultSet, List<String>)");
-	};
+	protected abstract ENTITY parseRow(final ResultSet resultSet) throws SQLException;
 
-	protected ENTITY parseRow(final ResultSet resultSet, final Set<String> columns) throws SQLException {
-		// this method allows to specify in particular DAO the parser which
-		// accepts list of columns. but by default it will fall back to
-		// com.itacademy.jd2.dz.cardealer.dao.jdbc.AbstractDaoImpl.parseRow(ResultSet)
-		return parseRow(resultSet);
-	};
 
 	protected abstract String getTableName();
 }

@@ -16,10 +16,10 @@
 		<c:forEach var="driver" items="${gridItems}" varStatus="loopCounter">
 			<tr>
 				<td><c:out value="${driver.id}" /></td>
-				<td><c:out value="${driver.first_name}" /></td>
-				<td><c:out value="${driver.middle_name}" /></td>
-				<td><c:out value="${driver.last_name}" /></td>
-				<td><c:out value="${driver.passport_data}" /></td>
+				<td><c:out value="${driver.firstName}" /></td>
+				<td><c:out value="${driver.middleName}" /></td>
+				<td><c:out value="${driver.lastName}" /></td>
+				<td><c:out value="${driver.passportData}" /></td>
 				<td><c:out value="${driver.phone}" /></td>
 				<td class="right">
 				<a class="btn-floating"	href="${pagesDriver}/${driver.id}"><i class="material-icons">info</i></a>

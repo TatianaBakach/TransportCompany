@@ -117,7 +117,7 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 
 	@Override
 	public List<ICompany> find(final CompanyFilter filter) {
-		throw new RuntimeException("will be implemented in ORM layer. Too complex for plain jdbc ");
+		return selectAll();
 	}
 
 	@Override

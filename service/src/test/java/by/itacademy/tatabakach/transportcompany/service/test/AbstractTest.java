@@ -121,7 +121,7 @@ public abstract class AbstractTest {
 				stmt.execute("DROP SCHEMA IF EXISTS \"public\" CASCADE;");
 				stmt.execute("CREATE SCHEMA \"public\";");
 				stmt.execute(getScript("../docs/грузоперевозки_postgres_create.sql"));
-				 stmt.execute(getScript(".../docs/unique constraints.sql"));
+				 stmt.execute(getScript("../docs/unique_constraints.sql"));
 			} finally {
 				stmt.close();
 			}
@@ -374,7 +374,7 @@ public abstract class AbstractTest {
 	protected IOrder saveNewOrder() {
 		final IOrder entity = orderService.createEntity();
 
-		entity.setNumber("number-" + getRandomPrefix());
+		entity.setNumber("#-" + getRandomPrefix());
 		entity.setOurCompany(saveNewCompany());
 		entity.setCustomer(saveNewCompany());
 		entity.setCarrier(saveNewCompany());

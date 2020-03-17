@@ -1,8 +1,13 @@
 package by.itacademy.tatabakach.transportcompany.web.dto;
 
+import javax.validation.constraints.Size;
+
 public class CarDTO {
 	private Integer id;
+	
 	private String model;
+	
+	@Size(min = 1, max = 250)
 	private String number;
 
 	public String getModel() {

@@ -112,7 +112,7 @@ public class OrderDaoImpl extends AbstractDaoImpl<IOrder, Integer> implements IO
 	}
 	
 	@Override
-	protected IOrder parseRow(final ResultSet resultSet, final Set<String> columns) throws SQLException {
+	protected IOrder parseRow(final ResultSet resultSet) throws SQLException {
 		final IOrder entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
 		entity.setNumber(resultSet.getString("number"));
@@ -266,7 +266,7 @@ public class OrderDaoImpl extends AbstractDaoImpl<IOrder, Integer> implements IO
 	
 	@Override
 	protected String getTableName() {
-		return "order";
+		return "order_object";
 	}
 	
 	private void updateEmployees(final IOrder entity, final Connection c) throws SQLException {

@@ -17,6 +17,7 @@ import by.itacademy.tatabakach.transportcompany.daoapi.IDepartmentDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.IEmployeeDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.IPositionDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDepartment;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.EmployeeFilter;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Department;
@@ -109,8 +110,9 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<IEmployee, Integer> impleme
 	@Override
 	public void update(final IEmployee entity) {
 		try (Connection c = getConnection();
-				PreparedStatement pStmt = c.prepareStatement(
-						String.format("update %s set first_name=?, middle_name=?, last_name=?, department_id=?, position_id=?, e_mail=?, phone=?, login=?, password=?, salary=? where id=?", getTableName()))) {
+				PreparedStatement pStmt = c.prepareStatement(String.format(
+						"update %s set first_name=?, middle_name=?, last_name=?, department_id=?, position_id=?, e_mail=?, phone=?, login=?, password=?, salary=? where id=?",
+						getTableName()))) {
 			c.setAutoCommit(false);
 			try {
 				pStmt.setString(1, entity.getFirstName());
@@ -136,12 +138,12 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<IEmployee, Integer> impleme
 		} catch (final SQLException e) {
 			throw new SQLExecutionException(e);
 		}
-		
-		//throw new RuntimeException("will be implemented in ORM layer");
+
+		// throw new RuntimeException("will be implemented in ORM layer");
 	}
 
 	@Override
-	protected IEmployee parseRow(final ResultSet resultSet, final Set<String> columns) throws SQLException {
+	protected IEmployee parseRow(final ResultSet resultSet) throws SQLException {
 
 		final IEmployee entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
@@ -153,7 +155,6 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<IEmployee, Integer> impleme
 		 * final IDepartment department = new Department(); department.setId((Integer)
 		 * resultSet.getObject("department_id")); entity.setDepartment(department);
 		 */
-
 		final Integer departmentId = (Integer) resultSet.getObject("department_id");
 		if (departmentId != null) {
 			final Department department = new Department();
@@ -282,7 +283,6 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<IEmployee, Integer> impleme
 		for (final ICompany e : entity.getCompanies()) {
 			pStmt.setInt(1, entity.getId());
 			pStmt.setInt(2, e.getId());
-			
 
 			pStmt.addBatch();
 		}
