@@ -25,6 +25,7 @@ CREATE TABLE "order_reward" (
 	"amount" DECIMAL(18,2),
 	"payment_date" TIMESTAMP,
 	"reward_issued" BOOLEAN NOT NULL,
+	"note" TEXT,
 	CONSTRAINT "order_reward_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -92,15 +93,16 @@ CREATE TABLE "order_object" (
 	"carrier_id" integer NOT NULL,
 	"car_id" integer,
 	"driver_id" integer,
-	"loading_method_id" integer NOT NULL,
+	"loading_method_id" integer,
 	"cargo_type" TEXT,
 	"cargo_weight_volume" character varying,
 	"customer_cost_id" integer NOT NULL,
 	"paid_customer" BOOLEAN NOT NULL,
 	"carrier_cost_id" integer NOT NULL,
 	"paid_carrier" BOOLEAN NOT NULL,
-	"vat_id" integer NOT NULL,
+	"tax_id" integer,
 	"additional_conditions" TEXT,
+	"creator_id" integer NOT NULL,
 	CONSTRAINT "order_object_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -118,6 +120,7 @@ CREATE TABLE "company" (
 	"bank_data" TEXT,
 	"e_mail" character varying,
 	"phone" character varying,
+	"creator_id" integer NOT NULL,
 	CONSTRAINT "company_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -130,24 +133,14 @@ CREATE TABLE "employee" (
 	"first_name" character varying NOT NULL,
 	"middle_name" character varying,
 	"last_name" character varying NOT NULL,
-	"department_id" integer NOT NULL,
-	"position_id" integer NOT NULL,
-	"e_mail" character varying NOT NULL UNIQUE,
-	"phone" character varying NOT NULL,
+	"department_id" integer,
+	"position_id" integer,
+	"e_mail" character varying UNIQUE,
+	"phone" character varying,
 	"login" character varying,
-	"password" character varying NOT NULL,
-	"salary" DECIMAL(18,2) NOT NULL,
+	"password" character varying,
+	"salary" DECIMAL(18,2),
 	CONSTRAINT "employee_pk" PRIMARY KEY ("id")
-) WITH (
-  OIDS=FALSE
-);
-
-
-
-CREATE TABLE "department" (
-	"id" serial NOT NULL,
-	"name" character varying NOT NULL,
-	CONSTRAINT "department_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
@@ -172,11 +165,11 @@ CREATE TABLE "transaction_cost" (
 
 
 
-CREATE TABLE "vat" (
+CREATE TABLE "tax" (
 	"id" serial NOT NULL,
 	"name" character varying NOT NULL,
 	"rate" DECIMAL(4,2),
-	CONSTRAINT "vat_pk" PRIMARY KEY ("id")
+	CONSTRAINT "tax_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
@@ -188,7 +181,7 @@ CREATE TABLE "driver" (
 	"first_name" character varying NOT NULL,
 	"middle_name" character varying,
 	"last_name" character varying NOT NULL,
-	"passport_data" character varying NOT NULL,
+	"passport_data" character varying,
 	"phone" character varying,
 	CONSTRAINT "driver_pk" PRIMARY KEY ("id")
 ) WITH (
@@ -242,16 +235,6 @@ CREATE TABLE "order_2_employee" (
 
 
 
-CREATE TABLE "position" (
-	"id" serial NOT NULL,
-	"name" character varying NOT NULL,
-	CONSTRAINT "position_pk" PRIMARY KEY ("id")
-) WITH (
-  OIDS=FALSE
-);
-
-
-
 CREATE TABLE "employee_2_company" (
 	"employee_id" integer NOT NULL,
 	"company_id" integer NOT NULL
@@ -264,19 +247,8 @@ CREATE TABLE "employee_2_company" (
 CREATE TABLE "locality" (
 	"id" serial NOT NULL,
 	"name" character varying NOT NULL,
-	"district_id" integer NOT NULL,
+	"region_id" integer,
 	CONSTRAINT "locality_pk" PRIMARY KEY ("id")
-) WITH (
-  OIDS=FALSE
-);
-
-
-
-CREATE TABLE "district" (
-	"id" serial NOT NULL,
-	"name" character varying NOT NULL,
-	"region_id" integer NOT NULL,
-	CONSTRAINT "district_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
@@ -329,13 +301,12 @@ ALTER TABLE "order_object" ADD CONSTRAINT "order_object_fk3" FOREIGN KEY ("car_i
 ALTER TABLE "order_object" ADD CONSTRAINT "order_object_fk4" FOREIGN KEY ("driver_id") REFERENCES "driver"("id");
 ALTER TABLE "order_object" ADD CONSTRAINT "order_object_fk5" FOREIGN KEY ("customer_cost_id") REFERENCES "transaction_cost"("id");
 ALTER TABLE "order_object" ADD CONSTRAINT "order_object_fk6" FOREIGN KEY ("carrier_cost_id") REFERENCES "transaction_cost"("id");
-ALTER TABLE "order_object" ADD CONSTRAINT "order_object_fk7" FOREIGN KEY ("vat_id") REFERENCES "vat"("id");
+ALTER TABLE "order_object" ADD CONSTRAINT "order_object_fk7" FOREIGN KEY ("tax_id") REFERENCES "tax"("id");
+ALTER TABLE "order_object" ADD CONSTRAINT "order_object_fk8" FOREIGN KEY ("creator_id") REFERENCES "employee"("id");
 
 ALTER TABLE "company" ADD CONSTRAINT "company_fk0" FOREIGN KEY ("legal_address_id") REFERENCES "address"("id");
 ALTER TABLE "company" ADD CONSTRAINT "company_fk1" FOREIGN KEY ("post_address_id") REFERENCES "address"("id");
-
-ALTER TABLE "employee" ADD CONSTRAINT "employee_fk0" FOREIGN KEY ("department_id") REFERENCES "department"("id");
-ALTER TABLE "employee" ADD CONSTRAINT "employee_fk1" FOREIGN KEY ("position_id") REFERENCES "position"("id");
+ALTER TABLE "company" ADD CONSTRAINT "company_fk2" FOREIGN KEY ("creator_id") REFERENCES "employee"("id");
 
 
 
@@ -349,13 +320,11 @@ ALTER TABLE "payment" ADD CONSTRAINT "payment_fk1" FOREIGN KEY ("company_id") RE
 ALTER TABLE "order_2_employee" ADD CONSTRAINT "order_2_employee_fk0" FOREIGN KEY ("order_id") REFERENCES "order_object"("id");
 ALTER TABLE "order_2_employee" ADD CONSTRAINT "order_2_employee_fk1" FOREIGN KEY ("employee_id") REFERENCES "employee"("id");
 
-
 ALTER TABLE "employee_2_company" ADD CONSTRAINT "employee_2_company_fk0" FOREIGN KEY ("employee_id") REFERENCES "employee"("id");
 ALTER TABLE "employee_2_company" ADD CONSTRAINT "employee_2_company_fk1" FOREIGN KEY ("company_id") REFERENCES "company"("id");
 
-ALTER TABLE "locality" ADD CONSTRAINT "locality_fk0" FOREIGN KEY ("district_id") REFERENCES "district"("id");
-
-ALTER TABLE "district" ADD CONSTRAINT "district_fk0" FOREIGN KEY ("region_id") REFERENCES "region"("id");
+ALTER TABLE "locality" ADD CONSTRAINT "locality_fk0" FOREIGN KEY ("region_id") REFERENCES "region"("id");
 
 ALTER TABLE "region" ADD CONSTRAINT "region_fk0" FOREIGN KEY ("country_id") REFERENCES "country"("id");
+
 

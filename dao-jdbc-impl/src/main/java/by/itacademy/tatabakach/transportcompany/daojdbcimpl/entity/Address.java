@@ -55,7 +55,7 @@ public class Address extends BaseEntity implements IAddress {
 
 	@Override
 	public String toString() {
-		return "Address [postcode=" + postcode + "getLocality()=" + getLocality() + "exactAddress=" + exactAddress
+		return "Address [postcode=" + postcode + "дocality=" + locality + "exactAddress=" + exactAddress
 				+ "note=" + note + ", getId()=" + getId() + "]";
 	}
 

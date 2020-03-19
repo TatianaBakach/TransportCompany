@@ -9,8 +9,8 @@ import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDriver;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IOrder;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITax;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITransactionCost;
-import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IVat;
 
 public class Order extends BaseEntity implements IOrder {
 
@@ -40,9 +40,11 @@ public class Order extends BaseEntity implements IOrder {
 
 	private Boolean paidCarrier;
 
-	private IVat vat;
+	private ITax tax;
 
 	private String additionalConditions;
+	
+	private IEmployee creator;
 
 	private Set<IEmployee> employees = new HashSet<>();
 
@@ -177,13 +179,13 @@ public class Order extends BaseEntity implements IOrder {
 	}
 
 	@Override
-	public IVat getVat() {
-		return vat;
+	public ITax getTax() {
+		return tax;
 	}
 
 	@Override
-	public void setVat(final IVat vat) {
-		this.vat = vat;
+	public void setTax(final ITax tax) {
+		this.tax = tax;
 	}
 
 	@Override
@@ -194,6 +196,16 @@ public class Order extends BaseEntity implements IOrder {
 	@Override
 	public void setAdditionalConditions(final String additionalConditions) {
 		this.additionalConditions = additionalConditions;
+	}
+	
+	@Override
+	public IEmployee getCreator() {
+		return creator;
+	}
+
+	@Override
+	public void setCreator(final IEmployee creator) {
+		this.creator = creator;
 	}
 
 	@Override
@@ -210,8 +222,8 @@ public class Order extends BaseEntity implements IOrder {
 		return "Order [number=" + number + ", ourCompany=" + ourCompany + "customer=" + customer + "carrier=" + carrier
 				+ "car=" + car + "driver=" + driver + "loadingMethod=" + loadingMethod + "cargoType=" + cargoType
 				+ "cargoWeightVolume=" + cargoWeightVolume + "customerCost=" + customerCost + "paidCustomer="
-				+ paidCustomer + "carrierCost=" + carrierCost + "paidCarrier=" + paidCarrier + "vat=" + vat
-				+ "additionalConditions=" + additionalConditions + ", getId()=" + getId() + "]";
+				+ paidCustomer + "carrierCost=" + carrierCost + "paidCarrier=" + paidCarrier + "tax=" + tax
+				+ "additionalConditions=" + additionalConditions + "creator=" + creator + ", getId()=" + getId() + "]";
 	}
 
 }

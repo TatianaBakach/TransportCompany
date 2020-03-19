@@ -6,8 +6,8 @@ public interface ILocality extends IBaseEntity{
 
     void setName(String name);
 
-    IDistrict getDistrict();
+    IRegion getRegion();
 
-    void setDistrict(IDistrict district);
+    void setRegion(IRegion region);
 
 }

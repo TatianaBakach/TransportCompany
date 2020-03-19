@@ -13,27 +13,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.ICompanyDao;
-import by.itacademy.tatabakach.transportcompany.daoapi.IDepartmentDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.IEmployeeDao;
-import by.itacademy.tatabakach.transportcompany.daoapi.IPositionDao;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Department;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Position;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
-import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDepartment;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.EmployeeFilter;
-import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Department;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Employee;
-import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Position;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.util.SQLExecutionException;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.util.StatementAction;
 
 @Repository
 public class EmployeeDaoImpl extends AbstractDaoImpl<IEmployee, Integer> implements IEmployeeDao {
-
-	@Autowired
-	private IDepartmentDao departmentDao;
-
-	@Autowired
-	private IPositionDao positionDao;
 
 	@Autowired
 	private ICompanyDao companyDao;
@@ -55,8 +46,8 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<IEmployee, Integer> impleme
 				pStmt.setString(1, entity.getFirstName());
 				pStmt.setString(2, entity.getMiddleName());
 				pStmt.setString(3, entity.getLastName());
-				pStmt.setInt(4, entity.getDepartment().getId());
-				pStmt.setInt(5, entity.getPosition().getId());
+				pStmt.setInt(4, entity.getDepartment().ordinal());
+				pStmt.setInt(5, entity.getPosition().ordinal());
 				pStmt.setString(6, entity.getEMail());
 				pStmt.setString(7, entity.getPhone());
 				pStmt.setString(8, entity.getLogin());
@@ -118,8 +109,8 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<IEmployee, Integer> impleme
 				pStmt.setString(1, entity.getFirstName());
 				pStmt.setString(2, entity.getMiddleName());
 				pStmt.setString(3, entity.getLastName());
-				pStmt.setInt(4, entity.getDepartment().getId());
-				pStmt.setInt(5, entity.getPosition().getId());
+				pStmt.setInt(4, entity.getDepartment().ordinal());
+				pStmt.setInt(5, entity.getPosition().ordinal());
 				pStmt.setString(6, entity.getEMail());
 				pStmt.setString(7, entity.getPhone());
 				pStmt.setString(8, entity.getLogin());
@@ -155,7 +146,7 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<IEmployee, Integer> impleme
 		 * final IDepartment department = new Department(); department.setId((Integer)
 		 * resultSet.getObject("department_id")); entity.setDepartment(department);
 		 */
-		final Integer departmentId = (Integer) resultSet.getObject("department_id");
+		/*final Integer departmentId = (Integer) resultSet.getObject("department_id");
 		if (departmentId != null) {
 			final Department department = new Department();
 			department.setId(departmentId);
@@ -167,13 +158,15 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<IEmployee, Integer> impleme
 		 * resultSet.getObject("position_id")); entity.setPosition(position);
 		 */
 
-		final Integer positionId = (Integer) resultSet.getObject("position_id");
+		/*final Integer positionId = (Integer) resultSet.getObject("position_id");
 		if (positionId != null) {
 			final Position position = new Position();
 			position.setId(positionId);
 			entity.setPosition(position);
-		}
+		}*/
 
+		entity.setDepartment(Department.values()[(resultSet.getInt("department_id"))]);
+		entity.setPosition(Position.values()[(resultSet.getInt("position_id"))]);
 		entity.setEMail(resultSet.getString("e_mail"));
 		entity.setPhone(resultSet.getString("phone"));
 		entity.setLogin(resultSet.getString("login"));
@@ -223,15 +216,6 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<IEmployee, Integer> impleme
 		final IEmployee employee = get(id);
 		final Set<ICompany> companies = companyDao.getByEmployee(id);
 		employee.setCompanies(companies);
-
-		if (employee.getDepartment() != null) {
-			employee.setDepartment(departmentDao.get(employee.getDepartment().getId()));
-		}
-
-		if (employee.getPosition() != null) {
-			employee.setPosition(positionDao.get(employee.getPosition().getId()));
-		}
-
 		return employee;
 	}
 

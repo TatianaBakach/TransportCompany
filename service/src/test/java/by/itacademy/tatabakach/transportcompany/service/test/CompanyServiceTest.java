@@ -28,6 +28,7 @@ public class CompanyServiceTest extends AbstractTest {
 		assertEquals(entity.getBankData(), entityFromDb.getBankData());
 		assertEquals(entity.getEMail(), entityFromDb.getEMail());
 		assertEquals(entity.getPhone(), entityFromDb.getPhone());
+		assertEquals(entity.getCreator().getId(), entityFromDb.getCreator().getId());
 
 	}
 
@@ -52,6 +53,7 @@ public class CompanyServiceTest extends AbstractTest {
 			assertNotNull(entityFromDb.getBankData());
 			assertNotNull(entityFromDb.getEMail());
 			assertNotNull(entityFromDb.getPhone());
+			assertNotNull(entityFromDb.getCreator());
 		}
 
 		assertEquals(randomObjectsCount + intialCount, allEntities.size());

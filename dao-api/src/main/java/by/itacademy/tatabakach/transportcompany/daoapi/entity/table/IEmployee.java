@@ -3,6 +3,9 @@ package by.itacademy.tatabakach.transportcompany.daoapi.entity.table;
 import java.math.BigDecimal;
 import java.util.Set;
 
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Department;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Position;
+
 public interface IEmployee extends IBaseEntity {
 	
 	String getFirstName();
@@ -17,13 +20,13 @@ public interface IEmployee extends IBaseEntity {
 
 	void setLastName(String lastName);
 	
-	IDepartment getDepartment();
+	Department getDepartment();
 	
-	void setDepartment(IDepartment department);
+	void setDepartment(Department department);
 	
-	IPosition getPosition();
+	Position getPosition();
 	
-	void setPosition(IPosition position);
+	void setPosition(Position position);
 	
 	String getEMail ();
 

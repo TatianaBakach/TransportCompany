@@ -1,13 +1,13 @@
 package by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity;
 
-import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDistrict;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ILocality;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IRegion;
 
 public class Locality extends BaseEntity implements ILocality{
 	
 	private String name;
 
-	private IDistrict district;
+	private IRegion region;
 
 	@Override
 	public String getName() {
@@ -18,20 +18,20 @@ public class Locality extends BaseEntity implements ILocality{
 	public void setName(final String name) {
 		this.name = name;
 	}
-
+	
 	@Override
-	public IDistrict getDistrict() {
-		return district;
+	public IRegion getRegion() {
+		return region;
 	}
 
 	@Override
-	public void setDistrict(final IDistrict district) {
-		this.district = district;
+	public void setRegion(final IRegion region) {
+		this.region = region;
 	}
 
 	@Override
 	public String toString() {
-		return "Locality [name=" + name + "getDistrict()=" + getDistrict() + ", getId()=" + getId() + "]";
+		return "Locality [name=" + name + "region=" + region + ", getId()=" + getId() + "]";
 	}
 
 }

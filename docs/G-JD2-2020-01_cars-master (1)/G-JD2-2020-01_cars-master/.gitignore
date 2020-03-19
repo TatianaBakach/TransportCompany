@@ -1,0 +1,11 @@
+.project
+.classpath
+.settings/org.eclipse.m2e.core.prefs
+dao-api/.settings/
+dao-api/.classpath
+dao-jdbc-impl/.settings/
+service/.settings/
+web/.settings/
+service/logs/
+.settings/
+web/logs/

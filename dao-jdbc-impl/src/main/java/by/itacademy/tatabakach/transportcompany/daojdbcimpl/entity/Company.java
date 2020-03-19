@@ -3,6 +3,7 @@ package by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.CompanyType;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IAddress;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
 
 public class Company extends BaseEntity implements ICompany {
 
@@ -21,6 +22,8 @@ public class Company extends BaseEntity implements ICompany {
 	private String eMail;
 
 	private String phone;
+	
+	private IEmployee creator;
 
 	@Override
 	public CompanyType getCompanyType() {
@@ -101,12 +104,22 @@ public class Company extends BaseEntity implements ICompany {
 	public void setPhone(final String phone) {
 		this.phone = phone;
 	}
+	
+	@Override
+	public IEmployee getCreator() {
+		return creator;
+	}
+
+	@Override
+	public void setCreator(final IEmployee creator) {
+		this.creator = creator;
+	}
 
 	@Override
 	public String toString() {
 		return "Company [name=" + name + ", companyType=" + companyType + "payerRegistrationNumber="
 				+ payerRegistrationNumber + "legalAddress=" + legalAddress + "postAddress=" + postAddress + "bankData="
-				+ bankData + "e-mail=" + eMail + "phone=" + phone + ", getId()=" + getId() + "]";
+				+ bankData + "e-mail=" + eMail + "phone=" + phone + "creator=" + creator +  ", getId()=" + getId() + "]";
 	}
 
 }

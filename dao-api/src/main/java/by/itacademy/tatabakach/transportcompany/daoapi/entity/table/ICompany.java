@@ -35,4 +35,8 @@ public interface ICompany extends IBaseEntity {
 	String getPhone ();
 
 	void setPhone(String phone);
+	
+	IEmployee getCreator();
+	
+	void setCreator(IEmployee creator);
 }

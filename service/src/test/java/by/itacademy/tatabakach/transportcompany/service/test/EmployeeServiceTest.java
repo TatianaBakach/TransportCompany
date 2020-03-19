@@ -11,6 +11,8 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Department;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Position;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
 
@@ -27,8 +29,8 @@ public class EmployeeServiceTest extends AbstractTest {
 		assertEquals(entity.getFirstName(), entityFromDb.getFirstName());
 		assertEquals(entity.getMiddleName(), entityFromDb.getMiddleName());
 		assertEquals(entity.getLastName(), entityFromDb.getLastName());
-		assertEquals(entity.getDepartment().getId(), entityFromDb.getDepartment().getId());
-		assertEquals(entity.getPosition().getId(), entityFromDb.getPosition().getId());
+		assertEquals(entity.getDepartment(), entityFromDb.getDepartment());
+		assertEquals(entity.getPosition(), entityFromDb.getPosition());
 		assertEquals(entity.getEMail(), entityFromDb.getEMail());
 		assertEquals(entity.getPhone(), entityFromDb.getPhone());
 		assertEquals(entity.getLogin(), entityFromDb.getLogin());
@@ -43,8 +45,8 @@ public class EmployeeServiceTest extends AbstractTest {
 		entity.setFirstName("first_name-" + getRandomPrefix());
 		entity.setMiddleName("middle_name-" + getRandomPrefix());
 		entity.setLastName("last_name-" + getRandomPrefix());
-		entity.setDepartment(saveNewDepartment());
-		entity.setPosition(saveNewPosition());
+		entity.setDepartment(getRandomFromArray(Department.values()));
+		entity.setPosition(getRandomFromArray(Position.values()));
 		entity.setEMail("eMail-" + getRandomPrefix());
 		entity.setPhone("phone-" + getRandomPrefix());
 		entity.setLogin("login-" + getRandomPrefix());

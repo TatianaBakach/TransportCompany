@@ -16,8 +16,8 @@ import by.itacademy.tatabakach.transportcompany.daoapi.ICompanyDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.IDriverDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.IEmployeeDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.IOrderDao;
+import by.itacademy.tatabakach.transportcompany.daoapi.ITaxDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.ITransactionCostDao;
-import by.itacademy.tatabakach.transportcompany.daoapi.IVatDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.LoadingMethod;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IOrder;
@@ -25,9 +25,10 @@ import by.itacademy.tatabakach.transportcompany.daoapi.filter.OrderFilter;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Car;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Company;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Driver;
+import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Employee;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Order;
+import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Tax;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.TransactionCost;
-import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Vat;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.util.SQLExecutionException;
 
 @Repository
@@ -46,7 +47,7 @@ public class OrderDaoImpl extends AbstractDaoImpl<IOrder, Integer> implements IO
 	private ITransactionCostDao transactionCostDao;
 	
 	@Autowired
-	private IVatDao vatDao;
+	private ITaxDao taxDao;
 	
 	@Autowired
 	private IEmployeeDao employeeDao;
@@ -62,8 +63,8 @@ public class OrderDaoImpl extends AbstractDaoImpl<IOrder, Integer> implements IO
 				PreparedStatement pStmt = c.prepareStatement(String
 						.format("insert into %s (number, our_company_id, customer_id, carrier_id, car_id, driver_id, "
 								+ "loading_method_id, cargo_type, cargo_weight_volume, customer_cost_id, paid_customer, "
-								+ "carrier_cost_id, paid_carrier, vat_id, additional_conditions) "
-								+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", getTableName()),
+								+ "carrier_cost_id, paid_carrier, tax_id, additional_conditions, creator_id) "
+								+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", getTableName()),
 						Statement.RETURN_GENERATED_KEYS)) {
 			c.setAutoCommit(false);
 			try {
@@ -80,8 +81,9 @@ public class OrderDaoImpl extends AbstractDaoImpl<IOrder, Integer> implements IO
 				pStmt.setBoolean(11, entity.getPaidCustomer());
 				pStmt.setInt(12, entity.getCarrierCost().getId());
 				pStmt.setBoolean(13, entity.getPaidCarrier());
-				pStmt.setInt(14, entity.getVat().getId());
+				pStmt.setInt(14, entity.getTax().getId());
 				pStmt.setString(15, entity.getAdditionalConditions());
+				pStmt.setInt(16, entity.getCreator().getId());
 				
 				
 
@@ -174,15 +176,21 @@ public class OrderDaoImpl extends AbstractDaoImpl<IOrder, Integer> implements IO
 		
 		entity.setPaidCarrier(resultSet.getBoolean("paid_carrier"));
 		
-		final Integer vatId = (Integer) resultSet.getObject("vat_id");
-		if(vatId !=null) {
-			final Vat vat = new Vat();
-			vat.setId(vatId);
-			entity.setVat(vat);
+		final Integer taxId = (Integer) resultSet.getObject("tax_id");
+		if(taxId !=null) {
+			final Tax tax = new Tax();
+			tax.setId(taxId);
+			entity.setTax(tax);
 		}
 		
 		entity.setAdditionalConditions(resultSet.getString("additional_conditions"));
-				
+		
+		final Integer creatorId = (Integer) resultSet.getObject("creator_id");
+		if(creatorId !=null) {
+			final Employee creator = new Employee();
+			creator.setId(creatorId);
+			entity.setCreator(creator);
+		}
 
 		return entity;
 	}
@@ -257,8 +265,12 @@ public class OrderDaoImpl extends AbstractDaoImpl<IOrder, Integer> implements IO
 			order.setCarrierCost(transactionCostDao.get(order.getCarrierCost().getId()));
 		}
 		
-		if(order.getVat() !=null) {
-			order.setVat(vatDao.get(order.getVat().getId()));
+		if(order.getTax() !=null) {
+			order.setTax(taxDao.get(order.getTax().getId()));
+		}
+		
+		if(order.getCreator() !=null) {
+			order.setCreator(employeeDao.get(order.getCreator().getId()));
 		}
 		
 		return order;

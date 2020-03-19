@@ -58,13 +58,17 @@ public interface IOrder extends IBaseEntity {
 
 	void setPaidCarrier(Boolean paidCarrier);
 	
-	IVat getVat();
+	ITax getTax();
 	
-	void setVat(IVat vat);
+	void setTax(ITax tax);
 	
 	String 	getAdditionalConditions();
 	
 	void setAdditionalConditions (String additionalConditions);
+	
+	IEmployee getCreator();
+	
+	void setCreator(IEmployee creator);
 	
 	Set<IEmployee> getEmployees();
 

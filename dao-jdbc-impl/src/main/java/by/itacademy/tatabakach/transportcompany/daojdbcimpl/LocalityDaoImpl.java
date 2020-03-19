@@ -8,20 +8,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import by.itacademy.tatabakach.transportcompany.daoapi.IDistrictDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.ILocalityDao;
-import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDistrict;
+import by.itacademy.tatabakach.transportcompany.daoapi.IRegionDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ILocality;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IRegion;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.LocalityFilter;
-import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.District;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Locality;
+import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Region;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.util.PreparedStatementAction;
 
 @Repository
 public class LocalityDaoImpl extends AbstractDaoImpl<ILocality, Integer> implements ILocalityDao {
 
 	@Autowired
-	private IDistrictDao districtDao;
+	private IRegionDao regionDao;
 
 	@Override
 	public ILocality createEntity() {
@@ -31,11 +31,11 @@ public class LocalityDaoImpl extends AbstractDaoImpl<ILocality, Integer> impleme
 	@Override
 	public void insert(final ILocality entity) {
 		executeStatement(new PreparedStatementAction<ILocality>(
-				String.format("insert into %s (name, district_id) values(?,?)", getTableName()), true) {
+				String.format("insert into %s (name, region_id) values(?,?)", getTableName()), true) {
 			@Override
 			public ILocality doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getName());
-				pStmt.setInt(2, entity.getDistrict().getId());
+				pStmt.setInt(2, entity.getRegion().getId());
 
 				pStmt.executeUpdate();
 
@@ -72,9 +72,9 @@ public class LocalityDaoImpl extends AbstractDaoImpl<ILocality, Integer> impleme
 		entity.setId((Integer) resultSet.getObject("id"));
 		entity.setName(resultSet.getString("name"));
 
-		final IDistrict district = new District();
-		district.setId((Integer) resultSet.getObject("district_id"));
-		entity.setDistrict(district);
+		final IRegion region = new Region();
+		region.setId((Integer) resultSet.getObject("region_id"));
+		entity.setRegion(region);
 		;
 		return entity;
 	}
@@ -83,8 +83,8 @@ public class LocalityDaoImpl extends AbstractDaoImpl<ILocality, Integer> impleme
 	public ILocality getFullInfo(final Integer id) {
 		final ILocality locality = get(id);
 
-		if (locality.getDistrict() != null) {
-			locality.setDistrict(districtDao.get(locality.getDistrict().getId()));
+		if (locality.getRegion() != null) {
+			locality.setRegion(regionDao.get(locality.getRegion().getId()));
 		}
 
 		return locality;

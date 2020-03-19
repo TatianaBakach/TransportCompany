@@ -21,7 +21,7 @@ public class LocalityServiceTest extends AbstractTest{
 		assertNotNull(entityFromDb);
 		assertNotNull(entityFromDb.getId());
 		assertEquals(entity.getName(), entityFromDb.getName());
-		assertEquals(entity.getDistrict().getId(), entityFromDb.getDistrict().getId());
+		assertEquals(entity.getRegion().getId(), entityFromDb.getRegion().getId());
 
 	}
 
@@ -39,7 +39,7 @@ public class LocalityServiceTest extends AbstractTest{
 		for (final ILocality entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());
 			assertNotNull(entityFromDb.getName());
-			assertNotNull(entityFromDb.getDistrict().getId());
+			assertNotNull(entityFromDb.getRegion().getId());
 		}
 
 		assertEquals(randomObjectsCount + intialCount, allEntities.size());

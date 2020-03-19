@@ -31,7 +31,7 @@ public class Region extends BaseEntity implements IRegion {
 
 	@Override
 	public String toString() {
-		return "Region [name=" + name + "getCountry()=" + getCountry() + ", getId()=" + getId() + "]";
+		return "Region [name=" + name + "country=" + country + ", getId()=" + getId() + "]";
 	}
 
 }

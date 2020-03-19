@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Department;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Position;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
-import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDepartment;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
-import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IPosition;
 
 public class Employee extends BaseEntity implements IEmployee {
 
@@ -17,9 +17,9 @@ public class Employee extends BaseEntity implements IEmployee {
 
 	private String lastName;
 
-	private IDepartment department;
+	private Department department;
 
-	private IPosition position;
+	private Position position;
 
 	private String eMail;
 
@@ -74,22 +74,22 @@ public class Employee extends BaseEntity implements IEmployee {
 	}
 
 	@Override
-	public IDepartment getDepartment() {
+	public Department getDepartment() {
 		return department;
 	}
 
 	@Override
-	public void setDepartment(final IDepartment department) {
+	public void setDepartment(final Department department) {
 		this.department = department;
 	}
 
 	@Override
-	public IPosition getPosition() {
+	public Position getPosition() {
 		return position;
 	}
 
 	@Override
-	public void setPosition(final IPosition position) {
+	public void setPosition(final Position position) {
 		this.position = position;
 	}
 
@@ -146,7 +146,7 @@ public class Employee extends BaseEntity implements IEmployee {
 	@Override
 	public String toString() {
 		return "Employee [firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName
-				+ ", getDepartment=" + getDepartment() + ", getPosition=" + getPosition() + "e-mail=" + eMail + "phone="
+				+ ", department=" + department + ", position=" + position + "e-mail=" + eMail + "phone="
 				+ phone + "login=" + login + "password=" + password + "salary=" + salary + ", getId()=" + getId() + "]";
 	}
 

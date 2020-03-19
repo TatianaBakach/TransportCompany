@@ -13,12 +13,15 @@ import org.springframework.stereotype.Repository;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.IAddressDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.ICompanyDao;
+import by.itacademy.tatabakach.transportcompany.daoapi.IEmployeeDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.CompanyType;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IAddress;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.CompanyFilter;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Address;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Company;
+import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Employee;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.util.PreparedStatementAction;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.util.StatementAction;
 
@@ -27,6 +30,9 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 
 	@Autowired
 	private IAddressDao addressDao;
+	
+	@Autowired
+	private IEmployeeDao employeeDao;
 
 	@Override
 	public ICompany createEntity() {
@@ -36,7 +42,7 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 	@Override
 	public void insert(final ICompany entity) {
 		executeStatement(new PreparedStatementAction<ICompany>(String.format(
-				"insert into %s (company_type_id, name, payer_registration_number, legal_address_id, post_address_id, bank_data, e_mail, phone) values(?,?,?,?,?,?,?,?)",
+				"insert into %s (company_type_id, name, payer_registration_number, legal_address_id, post_address_id, bank_data, e_mail, phone, creator_id) values(?,?,?,?,?,?,?,?,?)",
 				getTableName()), true) {
 			@Override
 			public ICompany doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
@@ -48,6 +54,7 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 				pStmt.setString(6, entity.getBankData());
 				pStmt.setString(7, entity.getEMail());
 				pStmt.setString(8, entity.getPhone());
+				pStmt.setInt(9, entity.getCreator().getId());
 
 				pStmt.executeUpdate();
 
@@ -86,6 +93,11 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 		entity.setBankData(resultSet.getString("bank_data"));
 		entity.setEMail(resultSet.getString("e_mail"));
 		entity.setPhone(resultSet.getString("phone"));
+		
+		final IEmployee creator = new Employee();
+		creator.setId((Integer) resultSet.getObject("creator_id"));
+		entity.setCreator(creator);
+		
 
 		return entity;
 	}
@@ -129,14 +141,16 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 	public ICompany getFullInfo(final Integer id) {
 		final ICompany company = get(id);
 
-		// company_type?
-
 		if (company.getLegalAddress() != null) {
 			company.setLegalAddress(addressDao.get(company.getLegalAddress().getId()));
 		}
 
 		if (company.getPostAddress() != null) {
 			company.setPostAddress(addressDao.get(company.getPostAddress().getId()));
+		}
+		
+		if(company.getCreator() !=null) {
+			company.setCreator(employeeDao.get(company.getCreator().getId()));
 		}
 
 		return company;

@@ -1,6 +1,5 @@
 package by.itacademy.tatabakach.transportcompany.service.test;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -36,11 +35,13 @@ public class OrderServiceTest extends AbstractTest {
 		assertEquals(entity.getCargoType(), entityFromDb.getCargoType());
 		assertEquals(entity.getCargoWeightVolume(), entityFromDb.getCargoWeightVolume());
 		assertEquals(entity.getCustomerCost().getId(), entityFromDb.getCustomerCost().getId());
-		assertFalse(entityFromDb.getPaidCustomer());
+		assertEquals(entity.getPaidCustomer(), entityFromDb.getPaidCustomer());
 		assertEquals(entity.getCarrierCost().getId(), entityFromDb.getCarrierCost().getId());
-		assertFalse(entityFromDb.getPaidCarrier());
-		assertEquals(entity.getVat().getId(), entityFromDb.getVat().getId());
+		assertEquals(entity.getPaidCarrier(), entityFromDb.getPaidCarrier());
+		assertEquals(entity.getTax().getId(), entityFromDb.getTax().getId());
 		assertEquals(entity.getAdditionalConditions(), entityFromDb.getAdditionalConditions());
+		assertEquals(entity.getCreator().getId(), entityFromDb.getCreator().getId());
+	
 		
 	}
 
@@ -60,8 +61,9 @@ public class OrderServiceTest extends AbstractTest {
 		entity.setPaidCustomer(false);
 		entity.setCarrierCost(saveNewTransactionCost());
 		entity.setPaidCarrier(false);
-		entity.setVat(saveNewVat());
+		entity.setTax(saveNewTax());
 		entity.setAdditionalConditions("additionalConditions-" + getRandomPrefix());
+		entity.setCreator(saveNewEmployee());
 
 		final int randomObjectsCount = getRandomObjectsCount();
 		final List<IEmployee> employees = new ArrayList<>();
@@ -116,8 +118,9 @@ public class OrderServiceTest extends AbstractTest {
 			assertNotNull(entityFromDb.getPaidCustomer());
 			assertNotNull(entityFromDb.getCarrierCost());
 			assertNotNull(entityFromDb.getPaidCarrier());
-			assertNotNull(entityFromDb.getVat());
+			assertNotNull(entityFromDb.getTax());
 			assertNotNull(entityFromDb.getAdditionalConditions());
+			assertNotNull(entityFromDb.getCreator());
 		}
 
 		assertEquals(randomObjectsCount + intialCount, allEntities.size());

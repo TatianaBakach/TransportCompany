@@ -63,6 +63,11 @@ public class DriverServiceImpl implements IDriverService {
 	public List<IDriver> find(DriverFilter filter) {
 		return dao.selectAll();
 	}
+	
+	@Override
+	public long getCount(DriverFilter filter) {
+		return dao.getCount(filter);
+	}
 
 
 }

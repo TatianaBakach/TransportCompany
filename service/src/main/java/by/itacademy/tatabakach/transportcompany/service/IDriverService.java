@@ -20,5 +20,7 @@ public interface IDriverService {
 	IDriver createEntity();
 	
 	List<IDriver> find(DriverFilter filter);
+	
+	long getCount(DriverFilter filter);
 
 }
