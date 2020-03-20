@@ -42,6 +42,7 @@ import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IOrder;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IOrderRewardPercent;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IPayment;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IRegion;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IRouteItem;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITax;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITransactionCost;
 import by.itacademy.tatabakach.transportcompany.service.IAddressService;
@@ -58,6 +59,7 @@ import by.itacademy.tatabakach.transportcompany.service.IOrderRewardPercentServi
 import by.itacademy.tatabakach.transportcompany.service.IOrderService;
 import by.itacademy.tatabakach.transportcompany.service.IPaymentService;
 import by.itacademy.tatabakach.transportcompany.service.IRegionService;
+import by.itacademy.tatabakach.transportcompany.service.IRouteItemService;
 import by.itacademy.tatabakach.transportcompany.service.ITaxService;
 import by.itacademy.tatabakach.transportcompany.service.ITransactionCostService;
 
@@ -98,6 +100,8 @@ public abstract class AbstractTest {
 	protected ICorrespondenceService correspondenceService;
 	@Autowired
 	protected IPaymentService paymentService;
+	@Autowired
+	protected IRouteItemService routeItemService;
 
 	private static final Random RANDOM = new Random();
 
@@ -402,6 +406,22 @@ public abstract class AbstractTest {
 		
 		paymentService.save(entity);
 
+		return entity;
+	}
+	
+	protected IRouteItem saveNewRouteItem() {
+		final IRouteItem entity = routeItemService.createEntity();
+		entity.setOrder(saveNewOrder());
+		entity.setAddress(saveNewAddress());
+		entity.setDate(getRandomDate());
+		entity.setCargoWeight("cargoWeight-" + getRandomPrefix());
+		entity.setCargoVolume("cargoVolume-" + getRandomPrefix());
+		entity.setCustom(saveNewAddress());
+		entity.setContactPerson("contactPerson-" + getRandomPrefix());
+		entity.setContactPhone("contactPhone-" + getRandomPrefix());
+
+		routeItemService.save(entity);
+		
 		return entity;
 	}
 }

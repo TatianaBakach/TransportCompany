@@ -10,15 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.IAddressDao;
-import by.itacademy.tatabakach.transportcompany.daoapi.ICompanyDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.IOrderDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.IRouteItemDao;
-import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
-import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IContract;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IAddress;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IOrder;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IRouteItem;
-import by.itacademy.tatabakach.transportcompany.daoapi.filter.ContractFilter;
-import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Company;
-import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Contract;
+import by.itacademy.tatabakach.transportcompany.daoapi.filter.RouteItemFilter;
+import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Address;
+import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Order;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.RouteItem;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.util.PreparedStatementAction;
 
@@ -38,14 +37,18 @@ public class RouteItemDaoImpl extends AbstractDaoImpl<IRouteItem, Integer> imple
 
 	@Override
 	public void insert(final IRouteItem entity) {
-		executeStatement(new PreparedStatementAction<IContract>(String.format(
-				"insert into %s (number, our_company_id, company_id, date) values(?,?,?,?)", getTableName()), true) {
+		executeStatement(new PreparedStatementAction<IRouteItem>(String.format(
+				"insert into %s (order_id, address_id, date, cargo_weight, cargo_volume, custom_id, contact_person, contact_phone) values(?,?,?,?,?,?,?,?)", getTableName()), true) {
 			@Override
-			public IContract doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
-				pStmt.setString(1, entity.getNumber());
-				pStmt.setInt(2, entity.getOurCompany().getId());
-				pStmt.setInt(3, entity.getCompany().getId());
-				pStmt.setObject(4, entity.getDate(), Types.TIMESTAMP);
+			public IRouteItem doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
+				pStmt.setInt(1, entity.getOrder().getId());
+				pStmt.setInt(2, entity.getAddress().getId());
+				pStmt.setObject(3, entity.getDate(), Types.TIMESTAMP);
+				pStmt.setString(4, entity.getCargoWeight());
+				pStmt.setString(5, entity.getCargoVolume());
+				pStmt.setInt(6, entity.getCustom().getId());
+				pStmt.setString(7, entity.getContactPerson());
+				pStmt.setString(8, entity.getContactPhone());
 
 				pStmt.executeUpdate();
 
@@ -62,55 +65,69 @@ public class RouteItemDaoImpl extends AbstractDaoImpl<IRouteItem, Integer> imple
 	}
 
 	@Override
-	public void update(final IContract entity) {
+	public void update(final IRouteItem entity) {
 		throw new RuntimeException("will be implemented in ORM layer");
 	}
 
 	@Override
-	protected IContract parseRow(final ResultSet resultSet) throws SQLException {
-		final IContract entity = createEntity();
+	protected IRouteItem parseRow(final ResultSet resultSet) throws SQLException {
+		final IRouteItem entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
-		entity.setNumber(resultSet.getString("number"));
 
-		final ICompany ourCompany = new Company();
-		ourCompany.setId((Integer) resultSet.getObject("our_company_id"));
-		entity.setOurCompany(ourCompany);
-		final ICompany company = new Company();
-		company.setId((Integer) resultSet.getObject("company_id"));
-		entity.setCompany(company);
+		final IOrder order = new Order();
+		order.setId((Integer) resultSet.getObject("order_id"));
+		entity.setOrder(order);;
+		
+		final IAddress address = new Address();
+		address.setId((Integer) resultSet.getObject("address_id"));
+		entity.setAddress(address);
 
 		entity.setDate(resultSet.getTimestamp("date"));
+		entity.setCargoWeight(resultSet.getString("cargo_weight"));
+		entity.setCargoVolume(resultSet.getString("cargo_volume"));
+		
+		final IAddress custom = new Address();
+		custom.setId((Integer) resultSet.getObject("custom_id"));
+		entity.setCustom(custom);
+		
+		entity.setContactPerson(resultSet.getString("contact_person"));
+		entity.setContactPhone(resultSet.getString("contact_phone"));
+
 
 		return entity;
 	}
 
 	@Override
-	public List<IContract> find(final ContractFilter filter) {
+	public List<IRouteItem> find(final RouteItemFilter filter) {
 		throw new RuntimeException("will be implemented in ORM layer. Too complex for plain jdbc ");
 	}
 
 	@Override
-	public long getCount(final ContractFilter filter) {
+	public long getCount(final RouteItemFilter filter) {
 		throw new RuntimeException("will be implemented in ORM layer. Too complex for plain jdbc ");
 	}
 
 	@Override
-	public IContract getFullInfo(final Integer id) {
-		final IContract contract = get(id);
+	public IRouteItem getFullInfo(final Integer id) {
+		final IRouteItem routeItem = get(id);
 
-		if (contract.getOurCompany() != null) {
-			contract.setOurCompany(companyDao.get(contract.getOurCompany().getId()));
+		if (routeItem.getOrder() != null) {
+			routeItem.setOrder(orderDao.get(routeItem.getOrder().getId()));
 		}
-		if (contract.getCompany() != null) {
-			contract.setCompany(companyDao.get(contract.getCompany().getId()));
+		if (routeItem.getAddress() != null) {
+			routeItem.setAddress(addressDao.get(routeItem.getAddress().getId()));
+		}
+		
+		if (routeItem.getCustom() != null) {
+			routeItem.setCustom(addressDao.get(routeItem.getCustom().getId()));
 		}
 
-		return contract;
+		return routeItem;
 	}
 
 	@Override
 	protected String getTableName() {
-		return "contract";
+		return "route_item";
 	}
 
 }
