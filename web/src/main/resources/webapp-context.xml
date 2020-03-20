@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context" xmlns:jee="http://www.springframework.org/schema/jee"
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/jee
@@ -9,11 +11,19 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-	<context:property-placeholder location="classpath:jdbc.properties"
-		ignore-unresolvable="false" />
-		
+	<context:property-placeholder
+		location="classpath:jdbc.properties" ignore-unresolvable="false" />
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
 	<import resource="service-context.xml" />
 
-	<context:component-scan base-package="by.itacademy.tatabakach.transportcompany.web.converter" />
+	<context:component-scan
+		base-package="by.itacademy.tatabakach.transportcompany.web.converter" />
 
 </beans>

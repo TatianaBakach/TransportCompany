@@ -61,7 +61,7 @@ public class CarServiceImpl implements ICarService {
 
 	@Override
 	public List<ICar> find(CarFilter filter) {
-		return dao.selectAll();
+		return dao.find(filter);
 	}
 
 	@Override

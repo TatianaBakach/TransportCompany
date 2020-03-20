@@ -10,6 +10,7 @@
 	<modules>
 		<module>dao-api</module>
 		<module>dao-jdbc-impl</module>
+		<module>dao-orm-impl</module>
 		<module>service</module>
 		<module>web</module>
 	</modules>
@@ -43,6 +44,12 @@
 			<dependency>
 				<groupId>by.itacademy.tatabakach.transportcompany</groupId>
 				<artifactId>dao-jdbc-impl</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>by.itacademy.tatabakach.transportcompany</groupId>
+				<artifactId>dao-orm-impl</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 
