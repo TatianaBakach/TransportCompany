@@ -27,8 +27,36 @@
 		<put-attribute name="body" value="/WEB-INF/views/driver/list.jsp" />
 	</definition>
 	
+	<definition name="driver.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/driver/form.jsp" />
+	</definition>
+	
 	<definition name="company.list" extends="DefaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/company/list.jsp" />
+	</definition>
+	
+	<definition name="country.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/country/list.jsp" />
+	</definition>
+	
+	<definition name="country.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/country/form.jsp" />
+	</definition>
+	
+	<definition name="region.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/region/list.jsp" />
+	</definition>
+	
+	<definition name="region.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/region/form.jsp" />
+	</definition>
+	
+	<definition name="transactionCost.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/transactionCost/list.jsp" />
+	</definition>
+	
+	<definition name="transactionCost.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/transactionCost/form.jsp" />
 	</definition>
 
 </tiles-definitions>

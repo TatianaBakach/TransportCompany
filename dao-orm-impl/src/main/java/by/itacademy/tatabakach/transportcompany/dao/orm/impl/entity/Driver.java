@@ -1,13 +1,26 @@
 package by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDriver;
 
+@Entity
 public class Driver extends BaseEntity implements IDriver {
 
+	@Column
 	private String firstName;
+	
+	@Column
 	private String middleName;
+	
+	@Column
 	private String lastName;
+	
+	@Column
 	private String passportData;
+	
+	@Column
 	private String phone;
 
 	@Override

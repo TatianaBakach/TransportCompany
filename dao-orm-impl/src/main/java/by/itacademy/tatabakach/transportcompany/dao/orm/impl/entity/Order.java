@@ -1,7 +1,21 @@
 package by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.LoadingMethod;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICar;
@@ -12,40 +26,69 @@ import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IOrder;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITax;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITransactionCost;
 
+@Entity
+@Table(name = "order_object")
 public class Order extends BaseEntity implements IOrder {
 
+	@Column
 	private String number;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column
+	private Date date;
 
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Company.class)
 	private ICompany ourCompany;
 
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Company.class)
 	private ICompany customer;
 
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Company.class)
 	private ICompany carrier;
 
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Car.class)
 	private ICar car;
 
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Driver.class)
 	private IDriver driver;
 
+	@Column
+	@Enumerated(EnumType.ORDINAL)
 	private LoadingMethod loadingMethod;
 
+	@Column
 	private String cargoType;
 
+	@Column
 	private String cargoWeightVolume;
 
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = TransactionCost.class)
 	private ITransactionCost customerCost;
 
+	@Column
 	private Boolean paidCustomer;
 
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = TransactionCost.class)
 	private ITransactionCost carrierCost;
 
+	@Column
 	private Boolean paidCarrier;
 
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Tax.class)
 	private ITax tax;
 
+	@Column
 	private String additionalConditions;
 	
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Employee.class)
 	private IEmployee creator;
+	
+	@Column
+	private String note;
 
+	@JoinTable(name = "order_2_employee", joinColumns = { @JoinColumn(name = "order_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "employee_id") })
+	@ManyToMany(targetEntity = Employee.class, fetch = FetchType.LAZY)
 	private Set<IEmployee> employees = new HashSet<>();
 
 	@Override
@@ -56,6 +99,16 @@ public class Order extends BaseEntity implements IOrder {
 	@Override
 	public void setNumber(final String number) {
 		this.number = number;
+	}
+	
+	@Override
+	public Date getDate() {
+		return date;
+	}
+
+	@Override
+	public void setDate(final Date date) {
+		this.date = date;
 	}
 
 	@Override
@@ -206,6 +259,16 @@ public class Order extends BaseEntity implements IOrder {
 	@Override
 	public void setCreator(final IEmployee creator) {
 		this.creator = creator;
+	}
+	
+	@Override
+	public String getNote() {
+		return note;
+	}
+
+	@Override
+	public void setNote(final String note) {
+		this.note = note;
 	}
 
 	@Override

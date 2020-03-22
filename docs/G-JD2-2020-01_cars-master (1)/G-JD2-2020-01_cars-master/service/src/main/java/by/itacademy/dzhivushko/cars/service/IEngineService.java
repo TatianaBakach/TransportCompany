@@ -2,24 +2,29 @@ package by.itacademy.dzhivushko.cars.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import by.itacademy.dzhivushko.cars.dao.api.entity.table.IEngine;
 import by.itacademy.dzhivushko.cars.dao.api.filter.EngineFilter;
 
 public interface IEngineService {
 
-    IEngine get(Integer id);
+	IEngine get(Integer id);
 
-    List<IEngine> getAll();
+	List<IEngine> getAll();
 
-    void save(IEngine entity);
+	@Transactional
+	void save(IEngine entity);
 
-    void delete(Integer id);
+	@Transactional
+	void delete(Integer id);
 
-    void deleteAll();
+	@Transactional
+	void deleteAll();
 
-    IEngine createEntity();
+	IEngine createEntity();
 
-    List<IEngine> find(EngineFilter filter);
+	List<IEngine> find(EngineFilter filter);
 
-    long getCount(EngineFilter filter);
+	long getCount(EngineFilter filter);
 }

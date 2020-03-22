@@ -2,11 +2,18 @@ package by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITax;
 
+@Entity
 public class Tax extends BaseEntity implements ITax {
 	
+	@Column
 	private String name;
+	
+	@Column
 	private BigDecimal rate;
 
 	@Override

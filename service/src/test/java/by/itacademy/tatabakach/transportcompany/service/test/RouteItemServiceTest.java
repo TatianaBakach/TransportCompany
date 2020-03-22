@@ -28,6 +28,7 @@ public class RouteItemServiceTest extends AbstractTest {
 		assertEquals(entity.getCustom().getId(), entityFromDb.getCustom().getId());
 		assertEquals(entity.getContactPerson(), entityFromDb.getContactPerson());
 		assertEquals(entity.getContactPhone(), entityFromDb.getContactPhone());
+		assertEquals(entity.getNote(), entityFromDb.getNote());
 
 	}
 
@@ -52,6 +53,7 @@ public class RouteItemServiceTest extends AbstractTest {
 			assertNotNull(entityFromDb.getCustom());
 			assertNotNull(entityFromDb.getContactPerson());
 			assertNotNull(entityFromDb.getContactPhone());
+			assertNotNull(entityFromDb.getNote());
 		}
 
 		assertEquals(randomObjectsCount + intialCount, allEntities.size());

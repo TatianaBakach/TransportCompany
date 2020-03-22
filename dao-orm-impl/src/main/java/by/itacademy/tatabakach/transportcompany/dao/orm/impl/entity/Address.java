@@ -1,16 +1,26 @@
 package by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IAddress;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ILocality;
 
+@Entity
 public class Address extends BaseEntity implements IAddress {
 
+	@Column
 	private String postcode;
 
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Locality.class)
 	private ILocality locality;
 
+	@Column
 	private String exactAddress;
 
+	@Column
 	private String note;
 
 	@Override

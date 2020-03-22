@@ -3,23 +3,20 @@ package by.itacademy.dzhivushko.cars.dao.api.entity.table;
 import java.util.Date;
 
 public interface ICar extends IBaseEntity {
-    Integer getVersion();
 
-    void setVersion(Integer version);
+	void setSoldDate(Date soldDate);
 
-    void setSoldDate(Date soldDate);
+	Date getSoldDate();
 
-    Date getSoldDate();
+	void setSold(Boolean sold);
 
-    void setSold(Boolean sold);
+	Boolean getSold();
 
-    Boolean getSold();
+	void setModel(IModel model);
 
-    void setModel(IModel model);
+	IModel getModel();
 
-    IModel getModel();
+	void setVin(String vin);
 
-    void setVin(String vin);
-
-    String getVin();
+	String getVin();
 }

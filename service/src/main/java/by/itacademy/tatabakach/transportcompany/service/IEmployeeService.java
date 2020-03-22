@@ -2,6 +2,8 @@ package by.itacademy.tatabakach.transportcompany.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.EmployeeFilter;
 
@@ -11,10 +13,13 @@ public interface IEmployeeService {
 
 	List<IEmployee> getAll();
 
+	@Transactional
 	void save(IEmployee entity);
 
+	@Transactional
 	void delete(Integer id);
 
+	@Transactional
 	void deleteAll();
 
 	IEmployee createEntity();

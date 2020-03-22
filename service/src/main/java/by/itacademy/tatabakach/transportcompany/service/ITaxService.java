@@ -2,6 +2,8 @@ package by.itacademy.tatabakach.transportcompany.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITax;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.TaxFilter;
 
@@ -11,10 +13,13 @@ public interface ITaxService {
 
 	List<ITax> getAll();
 
+	@Transactional
 	void save(ITax entity);
 
+	@Transactional
 	void delete(Integer id);
 
+	@Transactional
 	void deleteAll();
 
 	ITax createEntity();

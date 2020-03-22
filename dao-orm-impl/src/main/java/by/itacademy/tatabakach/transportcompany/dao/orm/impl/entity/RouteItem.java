@@ -2,27 +2,47 @@ package by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IAddress;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IOrder;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IRouteItem;
 
+@Entity
 public class RouteItem extends BaseEntity implements IRouteItem{
 	
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Order.class)
 	private IOrder order;
 	
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Address.class)
 	private IAddress address;
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column
 	private Date date;
 	
+	@Column
 	private String 	cargoWeight;
 	
+	@Column
 	private String cargoVolume;
 	
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Address.class)
 	private IAddress custom;
 	
+	@Column
 	private String contactPerson;
 	
+	@Column
 	private String contactPhone;
+	
+	@Column
+	private String note;
 
 	@Override
 	public IOrder getOrder() {
@@ -102,6 +122,16 @@ public class RouteItem extends BaseEntity implements IRouteItem{
 	@Override
 	public void setContactPhone(final String contactPhone) {
 		this.contactPhone = contactPhone;
+	}
+	
+	@Override
+	public String getNote() {
+		return note;
+	}
+
+	@Override
+	public void setNote(final String note) {
+		this.note = note;
 	}
 	
 }

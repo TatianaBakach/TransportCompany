@@ -28,6 +28,7 @@ import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Department;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.LoadingMethod;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.PaymentTermsType;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Position;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.RewardType;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IAddress;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICar;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICfr;
@@ -39,6 +40,7 @@ import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IDriver;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ILocality;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IOrder;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IOrderReward;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IOrderRewardPercent;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IPayment;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IRegion;
@@ -56,6 +58,7 @@ import by.itacademy.tatabakach.transportcompany.service.IDriverService;
 import by.itacademy.tatabakach.transportcompany.service.IEmployeeService;
 import by.itacademy.tatabakach.transportcompany.service.ILocalityService;
 import by.itacademy.tatabakach.transportcompany.service.IOrderRewardPercentService;
+import by.itacademy.tatabakach.transportcompany.service.IOrderRewardService;
 import by.itacademy.tatabakach.transportcompany.service.IOrderService;
 import by.itacademy.tatabakach.transportcompany.service.IPaymentService;
 import by.itacademy.tatabakach.transportcompany.service.IRegionService;
@@ -102,6 +105,8 @@ public abstract class AbstractTest {
 	protected IPaymentService paymentService;
 	@Autowired
 	protected IRouteItemService routeItemService;
+	@Autowired
+	protected IOrderRewardService orderRewardService;
 
 	private static final Random RANDOM = new Random();
 
@@ -358,6 +363,7 @@ public abstract class AbstractTest {
 		final IOrder entity = orderService.createEntity();
 
 		entity.setNumber("#-" + getRandomPrefix());
+		entity.setDate(getRandomDate());
 		entity.setOurCompany(saveNewCompany());
 		entity.setCustomer(saveNewCompany());
 		entity.setCarrier(saveNewCompany());
@@ -373,6 +379,7 @@ public abstract class AbstractTest {
 		entity.setTax(saveNewTax());
 		entity.setAdditionalConditions("additionalConditions-" + getRandomPrefix());
 		entity.setCreator(saveNewEmployee());
+		entity.setNote("note" + getRandomPrefix());
 		
 		orderService.save(entity);
 
@@ -403,6 +410,7 @@ public abstract class AbstractTest {
 		entity.setCurrency(getRandomFromArray(Currency.values()));
 		entity.setRate(getRandomBigDecimal(4));
 		entity.setAmount(getRandomBigDecimal(2));
+		entity.setNote("note" + getRandomPrefix());
 		
 		paymentService.save(entity);
 
@@ -419,8 +427,26 @@ public abstract class AbstractTest {
 		entity.setCustom(saveNewAddress());
 		entity.setContactPerson("contactPerson-" + getRandomPrefix());
 		entity.setContactPhone("contactPhone-" + getRandomPrefix());
+		entity.setNote("note" + getRandomPrefix());
 
 		routeItemService.save(entity);
+		
+		return entity;
+	}
+	
+	protected IOrderReward saveNewOrderReward() {
+		final IOrderReward entity = orderRewardService.createEntity();
+		entity.setOrder(saveNewOrder());
+		entity.setEmployee(saveNewEmployee());
+		entity.setRewardType(getRandomFromArray(RewardType.values()));
+		entity.setOrderRewardPercent(saveNewOrderRewardPercent());
+		entity.setAdditionalExpenses(getRandomBigDecimal(2));
+		entity.setAmount(getRandomBigDecimal(2));
+		entity.setPaymentDate(getRandomDate());
+		entity.setRewardIssued(getRandomBoolean());
+		entity.setNote("note" + getRandomPrefix());
+
+		orderRewardService.save(entity);
 		
 		return entity;
 	}

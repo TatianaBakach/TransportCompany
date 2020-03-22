@@ -1,12 +1,21 @@
 package by.itacademy.tatabakach.transportcompany.web.dto;
 
+import javax.validation.constraints.Size;
+
 public class DriverDTO {
 	
 	private Integer id;
+	
+	@Size(min = 1, max = 250)
 	private String firstName;
+	
 	private String middleName;
+	
+	@Size(min = 1, max = 250)
 	private String lastName;
+	
 	private String passportData;
+	
 	private String phone;
 
 	public String getFirstName() {

@@ -3,14 +3,12 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"
 	scope="request" />
-<c:set var="pagesBrand" value="${contextPath}/brand" scope="request" />
-<c:set var="pagesModel" value="${contextPath}/model" scope="request" />
-<c:set var="pagesEngine" value="${contextPath}/engine" scope="request" />
-
-
 <c:set var="pagesCar" value="${contextPath}/car" scope="request" />
 <c:set var="pagesDriver" value="${contextPath}/driver" scope="request" />
+<c:set var="pagesCountry" value="${contextPath}/country" scope="request" />
+<c:set var="pagesRegion" value="${contextPath}/region" scope="request" />
 <c:set var="pagesCompany" value="${contextPath}/company" scope="request" />
+<c:set var="pagesTransactionCost" value="${contextPath}/transactionCost" scope="request" />
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">

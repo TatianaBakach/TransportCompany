@@ -30,6 +30,10 @@ public interface IPayment extends IBaseEntity {
 	BigDecimal getAmount();
 
 	void setAmount(BigDecimal amount);
+	
+	String getNote();
+
+	void setNote(String note);
 
 
 }

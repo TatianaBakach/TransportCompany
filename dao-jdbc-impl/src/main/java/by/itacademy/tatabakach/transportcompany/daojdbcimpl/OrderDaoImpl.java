@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.List;
 import java.util.Set;
 
@@ -61,29 +62,31 @@ public class OrderDaoImpl extends AbstractDaoImpl<IOrder, Integer> implements IO
 	public void insert(final IOrder entity) {
 		try (Connection c = getConnection();
 				PreparedStatement pStmt = c.prepareStatement(String
-						.format("insert into %s (number, our_company_id, customer_id, carrier_id, car_id, driver_id, "
+						.format("insert into %s (number, date, our_company_id, customer_id, carrier_id, car_id, driver_id, "
 								+ "loading_method_id, cargo_type, cargo_weight_volume, customer_cost_id, paid_customer, "
-								+ "carrier_cost_id, paid_carrier, tax_id, additional_conditions, creator_id) "
-								+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", getTableName()),
+								+ "carrier_cost_id, paid_carrier, tax_id, additional_conditions, creator_id, note) "
+								+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", getTableName()),
 						Statement.RETURN_GENERATED_KEYS)) {
 			c.setAutoCommit(false);
 			try {
 				pStmt.setString(1, entity.getNumber());
-				pStmt.setInt(2, entity.getOurCompany().getId());
-				pStmt.setInt(3, entity.getCustomer().getId());
-				pStmt.setInt(4, entity.getCarrier().getId());
-				pStmt.setInt(5, entity.getCar().getId());
-				pStmt.setInt(6, entity.getDriver().getId());
-				pStmt.setInt(7, entity.getLoadingMethod().ordinal());
-				pStmt.setString(8, entity.getCargoType());
-				pStmt.setString(9, entity.getCargoWeightVolume());
-				pStmt.setInt(10, entity.getCustomerCost().getId());
-				pStmt.setBoolean(11, entity.getPaidCustomer());
-				pStmt.setInt(12, entity.getCarrierCost().getId());
-				pStmt.setBoolean(13, entity.getPaidCarrier());
-				pStmt.setInt(14, entity.getTax().getId());
-				pStmt.setString(15, entity.getAdditionalConditions());
-				pStmt.setInt(16, entity.getCreator().getId());
+				pStmt.setObject(2, entity.getDate(), Types.TIMESTAMP);
+				pStmt.setInt(3, entity.getOurCompany().getId());
+				pStmt.setInt(4, entity.getCustomer().getId());
+				pStmt.setInt(5, entity.getCarrier().getId());
+				pStmt.setInt(6, entity.getCar().getId());
+				pStmt.setInt(7, entity.getDriver().getId());
+				pStmt.setInt(8, entity.getLoadingMethod().ordinal());
+				pStmt.setString(9, entity.getCargoType());
+				pStmt.setString(10, entity.getCargoWeightVolume());
+				pStmt.setInt(11, entity.getCustomerCost().getId());
+				pStmt.setBoolean(12, entity.getPaidCustomer());
+				pStmt.setInt(13, entity.getCarrierCost().getId());
+				pStmt.setBoolean(14, entity.getPaidCarrier());
+				pStmt.setInt(15, entity.getTax().getId());
+				pStmt.setString(16, entity.getAdditionalConditions());
+				pStmt.setInt(17, entity.getCreator().getId());
+				pStmt.setString(18, entity.getNote());
 				
 				
 
@@ -118,6 +121,7 @@ public class OrderDaoImpl extends AbstractDaoImpl<IOrder, Integer> implements IO
 		final IOrder entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
 		entity.setNumber(resultSet.getString("number"));
+		entity.setDate(resultSet.getTimestamp("date"));
 		
 		final Integer ourCompanyId = (Integer) resultSet.getObject("our_company_id");
 		if (ourCompanyId != null) {
@@ -191,6 +195,8 @@ public class OrderDaoImpl extends AbstractDaoImpl<IOrder, Integer> implements IO
 			creator.setId(creatorId);
 			entity.setCreator(creator);
 		}
+		
+		entity.setNote(resultSet.getString("note"));
 
 		return entity;
 	}

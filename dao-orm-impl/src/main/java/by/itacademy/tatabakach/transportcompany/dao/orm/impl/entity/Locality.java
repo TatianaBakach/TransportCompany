@@ -1,12 +1,20 @@
 package by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ILocality;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IRegion;
 
+@Entity
 public class Locality extends BaseEntity implements ILocality{
 	
+	@Column
 	private String name;
 
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Region.class)
 	private IRegion region;
 
 	@Override

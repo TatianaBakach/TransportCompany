@@ -1,5 +1,6 @@
 package by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +16,8 @@ import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITransaction
 public class Order extends BaseEntity implements IOrder {
 
 	private String number;
+	
+	private Date date;
 
 	private ICompany ourCompany;
 
@@ -45,6 +48,8 @@ public class Order extends BaseEntity implements IOrder {
 	private String additionalConditions;
 	
 	private IEmployee creator;
+	
+	private String note;
 
 	private Set<IEmployee> employees = new HashSet<>();
 
@@ -56,6 +61,16 @@ public class Order extends BaseEntity implements IOrder {
 	@Override
 	public void setNumber(final String number) {
 		this.number = number;
+	}
+	
+	@Override
+	public Date getDate() {
+		return date;
+	}
+
+	@Override
+	public void setDate(final Date date) {
+		this.date = date;
 	}
 
 	@Override
@@ -206,6 +221,16 @@ public class Order extends BaseEntity implements IOrder {
 	@Override
 	public void setCreator(final IEmployee creator) {
 		this.creator = creator;
+	}
+	
+	@Override
+	public String getNote() {
+		return note;
+	}
+
+	@Override
+	public void setNote(final String note) {
+		this.note = note;
 	}
 
 	@Override

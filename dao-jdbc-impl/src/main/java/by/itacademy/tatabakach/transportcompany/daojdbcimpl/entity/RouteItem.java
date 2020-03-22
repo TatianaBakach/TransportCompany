@@ -23,6 +23,8 @@ public class RouteItem extends BaseEntity implements IRouteItem{
 	private String contactPerson;
 	
 	private String contactPhone;
+	
+	private String note;
 
 	@Override
 	public IOrder getOrder() {
@@ -102,6 +104,16 @@ public class RouteItem extends BaseEntity implements IRouteItem{
 	@Override
 	public void setContactPhone(final String contactPhone) {
 		this.contactPhone = contactPhone;
+	}
+	
+	@Override
+	public String getNote() {
+		return note;
+	}
+
+	@Override
+	public void setNote(final String note) {
+		this.note = note;
 	}
 	
 }

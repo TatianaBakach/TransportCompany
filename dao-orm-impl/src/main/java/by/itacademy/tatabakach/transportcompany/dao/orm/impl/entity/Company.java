@@ -1,28 +1,46 @@
 package by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.CompanyType;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IAddress;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
 
+@Entity
 public class Company extends BaseEntity implements ICompany {
 
+	@Column
+	@Enumerated(EnumType.ORDINAL)
 	private CompanyType companyType;
 
+	@Column
 	private String name;
 
+	@Column
 	private String payerRegistrationNumber;
 
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Address.class)
 	private IAddress legalAddress;
 
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Address.class)
 	private IAddress postAddress;
 	
+	@Column
 	private String bankData;
 
+	@Column
 	private String eMail;
 
+	@Column
 	private String phone;
 	
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Employee.class)
 	private IEmployee creator;
 
 	@Override

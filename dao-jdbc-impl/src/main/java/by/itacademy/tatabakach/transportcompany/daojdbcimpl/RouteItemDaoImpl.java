@@ -38,7 +38,7 @@ public class RouteItemDaoImpl extends AbstractDaoImpl<IRouteItem, Integer> imple
 	@Override
 	public void insert(final IRouteItem entity) {
 		executeStatement(new PreparedStatementAction<IRouteItem>(String.format(
-				"insert into %s (order_id, address_id, date, cargo_weight, cargo_volume, custom_id, contact_person, contact_phone) values(?,?,?,?,?,?,?,?)", getTableName()), true) {
+				"insert into %s (order_id, address_id, date, cargo_weight, cargo_volume, custom_id, contact_person, contact_phone, note) values(?,?,?,?,?,?,?,?,?)", getTableName()), true) {
 			@Override
 			public IRouteItem doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setInt(1, entity.getOrder().getId());
@@ -49,6 +49,7 @@ public class RouteItemDaoImpl extends AbstractDaoImpl<IRouteItem, Integer> imple
 				pStmt.setInt(6, entity.getCustom().getId());
 				pStmt.setString(7, entity.getContactPerson());
 				pStmt.setString(8, entity.getContactPhone());
+				pStmt.setString(9, entity.getNote());
 
 				pStmt.executeUpdate();
 
@@ -92,6 +93,7 @@ public class RouteItemDaoImpl extends AbstractDaoImpl<IRouteItem, Integer> imple
 		
 		entity.setContactPerson(resultSet.getString("contact_person"));
 		entity.setContactPhone(resultSet.getString("contact_phone"));
+		entity.setNote(resultSet.getString("note"));
 
 
 		return entity;

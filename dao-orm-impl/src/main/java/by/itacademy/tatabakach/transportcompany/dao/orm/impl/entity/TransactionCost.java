@@ -3,20 +3,49 @@ package by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Currency;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.PaymentTermsType;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITransactionCost;
 
+@Entity
 public class TransactionCost extends BaseEntity implements ITransactionCost {
 
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column
 	private Date date;
+	
+	@Column
+	@Enumerated(EnumType.ORDINAL)
 	private Currency currency;
+	
+	@Column
 	private BigDecimal amount;
+	
+	@Column
 	private BigDecimal rate;
+	
+	@Column
+	@Enumerated(EnumType.ORDINAL)
 	private Currency intermediateCurrency;
+	
+	@Column
 	private BigDecimal intermediateCurrencyRate;
+	
+	@Column
 	private Integer paymentPeriod;
+	
+	@Column
+	@Enumerated(EnumType.ORDINAL)
 	private PaymentTermsType paymentTermsType;
+	
+	@Column
 	private String note;
 
 	@Override

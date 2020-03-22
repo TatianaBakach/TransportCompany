@@ -2,6 +2,8 @@ package by.itacademy.tatabakach.transportcompany.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IPayment;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.PaymentFilter;
 
@@ -11,10 +13,13 @@ public interface IPaymentService {
 
 	List<IPayment> getAll();
 
+	@Transactional
 	void save(IPayment entity);
 
+	@Transactional
 	void delete(Integer id);
 
+	@Transactional
 	void deleteAll();
 
 	IPayment createEntity();

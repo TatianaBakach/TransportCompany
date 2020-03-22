@@ -10,6 +10,7 @@ public class Car extends BaseEntity implements ICar {
 
 	@Column // simple column
 	private String model;
+	
 	@Column
 	private String number;
 

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import by.itacademy.dzhivushko.cars.dao.api.ICarDao;
@@ -16,10 +17,12 @@ import by.itacademy.dzhivushko.cars.dao.api.filter.CarFilter;
 import by.itacademy.dzhivushko.cars.dao.jdbc.entity.Car;
 import by.itacademy.dzhivushko.cars.dao.jdbc.entity.Model;
 import by.itacademy.dzhivushko.cars.dao.jdbc.util.PreparedStatementAction;
+
 @Repository
 public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDao {
 
-	private IModelDao modelDao = new ModelDaoImpl();
+	@Autowired
+	private IModelDao modelDao;
 
 	@Override
 	public ICar createEntity() {

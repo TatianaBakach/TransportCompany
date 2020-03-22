@@ -1,12 +1,20 @@
 package by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICfr;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
 
+@Entity
 public class Cfr extends BaseEntity implements ICfr {
 
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Company.class)
 	private ICompany company;
 
+	@Column
 	private Integer year;
 
 	@Override

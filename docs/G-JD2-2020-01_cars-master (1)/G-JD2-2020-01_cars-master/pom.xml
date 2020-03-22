@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
@@ -13,6 +12,7 @@
 	<modules>
 		<module>dao-api</module>
 		<module>dao-jdbc-impl</module>
+		<module>dao-orm-impl</module>
 		<module>service</module>
 		<module>web</module>
 	</modules>
@@ -40,6 +40,12 @@
 			<dependency>
 				<groupId>by.itacademy.dzhivushko.cars</groupId>
 				<artifactId>dao-jdbc-impl</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+
+			<dependency>
+				<groupId>by.itacademy.dzhivushko.cars</groupId>
+				<artifactId>dao-orm-impl</artifactId>
 				<version>1.0.0</version>
 			</dependency>
 
@@ -328,6 +334,7 @@
 						<showDeprecation>true</showDeprecation>
 					</configuration>
 				</plugin>
+				
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>

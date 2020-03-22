@@ -37,7 +37,7 @@ public class PaymentDaoImpl extends AbstractDaoImpl<IPayment, Integer> implement
 	@Override
 	public void insert(final IPayment entity) {
 		executeStatement(new PreparedStatementAction<IPayment>(String.format(
-				"insert into %s (date, order_id, company_id, currency_id, rate, amount) values(?,?,?,?,?,?)",
+				"insert into %s (date, order_id, company_id, currency_id, rate, amount, note) values(?,?,?,?,?,?,?)",
 				getTableName()), true) {
 			@Override
 			public IPayment doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
@@ -47,6 +47,7 @@ public class PaymentDaoImpl extends AbstractDaoImpl<IPayment, Integer> implement
 				pStmt.setInt(4, entity.getCurrency().ordinal());
 				pStmt.setBigDecimal(5, entity.getRate());
 				pStmt.setBigDecimal(6, entity.getAmount());
+				pStmt.setString(7, entity.getNote());
 				
 				pStmt.executeUpdate();
 
@@ -101,6 +102,7 @@ public class PaymentDaoImpl extends AbstractDaoImpl<IPayment, Integer> implement
 		entity.setCurrency(Currency.values()[(resultSet.getInt("currency_id"))]);
 		entity.setRate(resultSet.getBigDecimal("rate"));
 		entity.setAmount(resultSet.getBigDecimal("amount"));
+		entity.setNote(resultSet.getString("note"));
 		
 		return entity;
 	}

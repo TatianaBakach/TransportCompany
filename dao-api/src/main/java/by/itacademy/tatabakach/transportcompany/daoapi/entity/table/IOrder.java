@@ -1,5 +1,6 @@
 package by.itacademy.tatabakach.transportcompany.daoapi.entity.table;
 
+import java.util.Date;
 import java.util.Set;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.LoadingMethod;
@@ -9,6 +10,10 @@ public interface IOrder extends IBaseEntity {
 	String getNumber();
 
 	void setNumber(String number);
+
+	Date getDate();
+
+	void setDate(Date date);
 
 	ICompany getOurCompany();
 
@@ -53,25 +58,29 @@ public interface IOrder extends IBaseEntity {
 	ITransactionCost getCarrierCost();
 
 	void setCarrierCost(ITransactionCost carrierCost);
-	
+
 	Boolean getPaidCarrier();
 
 	void setPaidCarrier(Boolean paidCarrier);
-	
+
 	ITax getTax();
-	
+
 	void setTax(ITax tax);
-	
-	String 	getAdditionalConditions();
-	
-	void setAdditionalConditions (String additionalConditions);
-	
+
+	String getAdditionalConditions();
+
+	void setAdditionalConditions(String additionalConditions);
+
 	IEmployee getCreator();
-	
+
 	void setCreator(IEmployee creator);
-	
+
+	String getNote();
+
+	void setNote(String note);
+
 	Set<IEmployee> getEmployees();
 
-    void setEmployees(Set<IEmployee> employees);
+	void setEmployees(Set<IEmployee> employees);
 
 }

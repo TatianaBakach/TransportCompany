@@ -8,6 +8,7 @@ CREATE TABLE "route_item" (
 	"custom_id" integer,
 	"contact_person" character varying,
 	"contact_phone" character varying,
+	"note" TEXT,
 	CONSTRAINT "route_item_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -50,8 +51,8 @@ CREATE TABLE "address" (
 	"id" serial NOT NULL,
 	"postcode" character varying(10),
 	"locality_id" integer NOT NULL,
-	"exact_address" character varying,
-	"note" character varying,
+	"exact_address" TEXT,
+	"note" TEXT,
 	CONSTRAINT "address_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -77,7 +78,7 @@ CREATE TABLE "correspondence" (
 	"company_id" integer NOT NULL,
 	"date" TIMESTAMP NOT NULL,
 	"content" TEXT NOT NULL,
-	"note" character varying,
+	"note" TEXT,
 	CONSTRAINT "correspondence_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -88,6 +89,7 @@ CREATE TABLE "correspondence" (
 CREATE TABLE "order_object" (
 	"id" serial NOT NULL,
 	"number" character varying(8) NOT NULL UNIQUE,
+	"date" TIMESTAMP NOT NULL,
 	"our_company_id" integer NOT NULL,
 	"customer_id" integer NOT NULL,
 	"carrier_id" integer NOT NULL,
@@ -103,6 +105,7 @@ CREATE TABLE "order_object" (
 	"tax_id" integer,
 	"additional_conditions" TEXT,
 	"creator_id" integer NOT NULL,
+	"note" TEXT,
 	CONSTRAINT "order_object_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -209,6 +212,7 @@ CREATE TABLE "payment" (
 	"currency_id" integer NOT NULL,
 	"rate" DECIMAL(18,4),
 	"amount" DECIMAL(18,2) NOT NULL,
+	"note" TEXT,
 	CONSTRAINT "payment_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE

@@ -12,7 +12,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>by.itacademy.tatabakach.transportcompany</groupId>
-			<artifactId>dao-orm-impl</artifactId>
+			<artifactId>dao-orm-impl</artifactId> <!-- исправила -->
 		</dependency>
 
 		<dependency>

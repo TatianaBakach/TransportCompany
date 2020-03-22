@@ -26,6 +26,7 @@ public class PaymentServiceTest extends AbstractTest {
 		assertEquals(entity.getCurrency(), entityFromDb.getCurrency());
 		assertEquals(entity.getRate(), entityFromDb.getRate());
 		assertEquals(entity.getAmount(), entityFromDb.getAmount());
+		assertEquals(entity.getNote(), entityFromDb.getNote());
 		
 	}
 
@@ -48,6 +49,7 @@ public class PaymentServiceTest extends AbstractTest {
 			assertNotNull(entityFromDb.getCurrency());
 			assertNotNull(entityFromDb.getRate());
 			assertNotNull(entityFromDb.getAmount());
+			assertNotNull(entityFromDb.getNote());
 			
 		}
 

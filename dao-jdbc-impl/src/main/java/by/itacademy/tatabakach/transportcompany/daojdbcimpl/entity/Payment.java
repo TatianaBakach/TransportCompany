@@ -22,6 +22,8 @@ public class Payment extends BaseEntity implements IPayment {
 	
 	private BigDecimal amount;
 	
+	private String note;
+	
 	@Override
 	public Date getDate() {
 		return date;
@@ -81,6 +83,16 @@ public class Payment extends BaseEntity implements IPayment {
 	@Override
 	public void setAmount(final BigDecimal amount) {
 		this.amount = amount;
+	}
+	
+	@Override
+	public String getNote() {
+		return note;
+	}
+
+	@Override
+	public void setNote(final String note) {
+		this.note = note;
 	}
 
 }

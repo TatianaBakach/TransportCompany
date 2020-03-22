@@ -35,5 +35,9 @@ public interface IRouteItem extends IBaseEntity {
 	String getContactPhone();
 
 	void setContactPhone(String contactPhone);
+	
+	String getNote();
+
+	void setNote(String note);
 
 }

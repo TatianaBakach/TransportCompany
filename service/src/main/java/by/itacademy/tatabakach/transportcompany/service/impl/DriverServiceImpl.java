@@ -61,7 +61,7 @@ public class DriverServiceImpl implements IDriverService {
 	
 	@Override
 	public List<IDriver> find(DriverFilter filter) {
-		return dao.selectAll();
+		return dao.find(filter);
 	}
 	
 	@Override

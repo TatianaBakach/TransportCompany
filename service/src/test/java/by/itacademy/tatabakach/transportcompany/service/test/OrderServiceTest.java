@@ -26,6 +26,7 @@ public class OrderServiceTest extends AbstractTest {
 		assertNotNull(entityFromDb);
 		assertNotNull(entityFromDb.getId());
 		assertEquals(entity.getNumber(), entityFromDb.getNumber());
+		assertEquals(entity.getDate(), entityFromDb.getDate());
 		assertEquals(entity.getOurCompany().getId(), entityFromDb.getOurCompany().getId());
 		assertEquals(entity.getCustomer().getId(), entityFromDb.getCustomer().getId());
 		assertEquals(entity.getCarrier().getId(), entityFromDb.getCarrier().getId());
@@ -41,6 +42,7 @@ public class OrderServiceTest extends AbstractTest {
 		assertEquals(entity.getTax().getId(), entityFromDb.getTax().getId());
 		assertEquals(entity.getAdditionalConditions(), entityFromDb.getAdditionalConditions());
 		assertEquals(entity.getCreator().getId(), entityFromDb.getCreator().getId());
+		assertEquals(entity.getNote(), entityFromDb.getNote());
 	
 		
 	}
@@ -49,6 +51,7 @@ public class OrderServiceTest extends AbstractTest {
 	public void createOrderWithEmployeeTest() {
 		final IOrder entity = orderService.createEntity();
 		entity.setNumber("#-" + getRandomPrefix());
+		entity.setDate(getRandomDate());
 		entity.setOurCompany(saveNewCompany());
 		entity.setCustomer(saveNewCompany());
 		entity.setCarrier(saveNewCompany());
@@ -64,6 +67,7 @@ public class OrderServiceTest extends AbstractTest {
 		entity.setTax(saveNewTax());
 		entity.setAdditionalConditions("additionalConditions-" + getRandomPrefix());
 		entity.setCreator(saveNewEmployee());
+		entity.setNote("note" + getRandomPrefix());
 
 		final int randomObjectsCount = getRandomObjectsCount();
 		final List<IEmployee> employees = new ArrayList<>();
@@ -106,6 +110,7 @@ public class OrderServiceTest extends AbstractTest {
 		for (final IOrder entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());
 			assertNotNull(entityFromDb.getNumber());
+			assertNotNull(entityFromDb.getDate());
 			assertNotNull(entityFromDb.getOurCompany());
 			assertNotNull(entityFromDb.getCustomer());
 			assertNotNull(entityFromDb.getCarrier());
@@ -121,6 +126,7 @@ public class OrderServiceTest extends AbstractTest {
 			assertNotNull(entityFromDb.getTax());
 			assertNotNull(entityFromDb.getAdditionalConditions());
 			assertNotNull(entityFromDb.getCreator());
+			assertNotNull(entityFromDb.getNote());
 		}
 
 		assertEquals(randomObjectsCount + intialCount, allEntities.size());

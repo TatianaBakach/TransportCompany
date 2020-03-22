@@ -2,6 +2,8 @@ package by.itacademy.tatabakach.transportcompany.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ILocality;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.LocalityFilter;
 
@@ -9,10 +11,13 @@ public interface ILocalityService {
 	
 	ILocality get(Integer id);
 
-    void save(ILocality entity);
+    @Transactional
+	void save(ILocality entity);
 
+    @Transactional
     void delete(Integer id);
     
+    @Transactional
     void deleteAll();
 
     ILocality createEntity();

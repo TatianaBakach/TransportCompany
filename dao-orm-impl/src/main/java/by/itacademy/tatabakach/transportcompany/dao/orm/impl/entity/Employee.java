@@ -4,33 +4,58 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Department;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Position;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
 
+@Entity
 public class Employee extends BaseEntity implements IEmployee {
 
+	@Column
 	private String firstName;
 
+	@Column
 	private String middleName;
 
+	@Column
 	private String lastName;
 
+	@Column
+	@Enumerated(EnumType.ORDINAL)
 	private Department department;
 
+	@Column
+	@Enumerated(EnumType.ORDINAL)
 	private Position position;
 
+	@Column
 	private String eMail;
 
+	@Column
 	private String phone;
 
+	@Column
 	private String login;
 
+	@Column
 	private String password;
 
+	@Column
 	private BigDecimal salary;
 
+	@JoinTable(name = "employee_2_company", joinColumns = { @JoinColumn(name = "employee_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "company_id") })
+	@ManyToMany(targetEntity = Company.class, fetch = FetchType.LAZY)
 	private Set<ICompany> companies = new HashSet<>();
 
 	@Override
