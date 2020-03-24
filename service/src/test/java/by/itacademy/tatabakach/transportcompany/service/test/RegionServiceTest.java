@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IRegion;
+import by.itacademy.tatabakach.transportcompany.daoapi.filter.RegionFilter;
 
 public class RegionServiceTest extends AbstractTest {
 
@@ -16,7 +17,7 @@ public class RegionServiceTest extends AbstractTest {
 	public void testCreate() {
 		final IRegion entity = saveNewRegion();
 
-		final IRegion entityFromDb = regionService.get(entity.getId());
+		final IRegion entityFromDb = regionService.getFullInfo(entity.getId()); // fixme full load
 
 		assertNotNull(entityFromDb);
 		assertNotNull(entityFromDb.getId());
@@ -27,14 +28,17 @@ public class RegionServiceTest extends AbstractTest {
 
 	@Test
 	public void testGetAll() {
-		final int intialCount = regionService.getAll().size();
+		RegionFilter filter = new RegionFilter();
+		final long intialCount = regionService.getCount(filter);
 
 		final int randomObjectsCount = getRandomObjectsCount();
 		for (int i = 0; i < randomObjectsCount; i++) {
 			saveNewRegion();
 		}
+		
+		filter.setFetchCountry(true);
 
-		final List<IRegion> allEntities = regionService.getAll();
+		final List<IRegion> allEntities = regionService.find(filter);
 
 		for (final IRegion entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());

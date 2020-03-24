@@ -12,6 +12,8 @@ public interface IEmployeeService {
 	IEmployee get(Integer id);
 
 	List<IEmployee> getAll();
+	
+	IEmployee getFullInfo(Integer id);
 
 	@Transactional
 	void save(IEmployee entity);
@@ -24,8 +26,6 @@ public interface IEmployeeService {
 
 	IEmployee createEntity();
 	
-	IEmployee getFullInfo(Integer id);
-
 	List<IEmployee> find(EmployeeFilter filter);
 
 	long getCount(EmployeeFilter filter);

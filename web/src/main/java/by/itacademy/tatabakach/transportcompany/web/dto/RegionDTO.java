@@ -11,9 +11,10 @@ public class RegionDTO {
 
 	@Size(min = 1, max = 250)
 	private String name;
+	
+	private Integer countryId;
+	private String countryName;
 
-	@NotNull
-	private ICountry country;
 
 	public Integer getId() {
 		return id;
@@ -31,14 +32,20 @@ public class RegionDTO {
 		this.name = name;
 	}
 
-	public ICountry getCountry() {
-		return country;
+	public String getCountryName() {
+		return countryName;
 	}
 
-	public void setCountry(ICountry country) {
-		this.country = country;
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
 	}
 
+	public Integer getCountryId() {
+		return countryId;
+	}
 
+	public void setCountryId(Integer countryId) {
+		this.countryId = countryId;
+	}
 
 }

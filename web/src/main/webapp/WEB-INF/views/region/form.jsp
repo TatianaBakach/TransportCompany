@@ -18,9 +18,9 @@
         
          <div class="row">
             <div class="input-field col s12">
-                <form:input path="country" type="text" disabled="${readonly}" />
-                <form:errors path="country" cssClass="red-text" />
-                <label for="country">Region country</label>
+                <form:input path="countryId" type="text" disabled="${readonly}" />
+                <form:errors path="countryId" cssClass="red-text" />
+                <label for="countryId">Region country</label>
             </div>
         </div>
         

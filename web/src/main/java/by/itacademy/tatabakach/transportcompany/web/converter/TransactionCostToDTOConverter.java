@@ -1,14 +1,10 @@
 package by.itacademy.tatabakach.transportcompany.web.converter;
 
-import java.sql.Types;
 import java.util.function.Function;
 
 import org.springframework.stereotype.Component;
 
-import by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity.TransactionCost_;
-import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICar;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITransactionCost;
-import by.itacademy.tatabakach.transportcompany.web.dto.CarDTO;
 import by.itacademy.tatabakach.transportcompany.web.dto.TransactionCostDTO;
 
 @Component

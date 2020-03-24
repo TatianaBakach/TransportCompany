@@ -5,11 +5,8 @@ import java.util.function.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICar;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITransactionCost;
-import by.itacademy.tatabakach.transportcompany.service.ICarService;
 import by.itacademy.tatabakach.transportcompany.service.ITransactionCostService;
-import by.itacademy.tatabakach.transportcompany.web.dto.CarDTO;
 import by.itacademy.tatabakach.transportcompany.web.dto.TransactionCostDTO;
 
 

@@ -20,7 +20,7 @@ CREATE TABLE "order_reward" (
 	"id" serial NOT NULL,
 	"order_id" integer NOT NULL,
 	"employee_id" integer NOT NULL,
-	"reward_type_id" integer NOT NULL,
+	"reward_type" integer NOT NULL,
 	"order_reward_percent_id" integer NOT NULL,
 	"additional_expenses" DECIMAL(18,2),
 	"amount" DECIMAL(18,2),
@@ -73,7 +73,7 @@ CREATE TABLE "cfr" (
 
 CREATE TABLE "correspondence" (
 	"id" serial NOT NULL,
-	"correspondence_type_id" integer NOT NULL,
+	"correspondence_type" integer NOT NULL,
 	"order_id" integer,
 	"company_id" integer NOT NULL,
 	"date" TIMESTAMP NOT NULL,
@@ -95,7 +95,7 @@ CREATE TABLE "order_object" (
 	"carrier_id" integer NOT NULL,
 	"car_id" integer,
 	"driver_id" integer,
-	"loading_method_id" integer,
+	"loading_method" integer,
 	"cargo_type" TEXT,
 	"cargo_weight_volume" character varying,
 	"customer_cost_id" integer NOT NULL,
@@ -115,7 +115,7 @@ CREATE TABLE "order_object" (
 
 CREATE TABLE "company" (
 	"id" serial NOT NULL,
-	"company_type_id" integer NOT NULL,
+	"company_type" integer NOT NULL,
 	"name" character varying NOT NULL,
 	"payer_registration_number" character varying(20),
 	"legal_address_id" integer,
@@ -136,8 +136,8 @@ CREATE TABLE "employee" (
 	"first_name" character varying NOT NULL,
 	"middle_name" character varying,
 	"last_name" character varying NOT NULL,
-	"department_id" integer,
-	"position_id" integer,
+	"department" integer,
+	"position" integer,
 	"e_mail" character varying UNIQUE,
 	"phone" character varying,
 	"login" character varying,
@@ -153,13 +153,13 @@ CREATE TABLE "employee" (
 CREATE TABLE "transaction_cost" (
 	"id" serial NOT NULL,
 	"date" TIMESTAMP NOT NULL,
-	"currency_id" integer NOT NULL,
+	"currency" integer NOT NULL,
 	"amount" DECIMAL(18,2) NOT NULL,
 	"rate" DECIMAL(18,4),
-	"intermediate_currency_id" integer,
+	"intermediate_currency" integer,
 	"intermediate_currency_rate" DECIMAL(18,4),
 	"payment_period" integer NOT NULL,
-	"payment_terms_type_id" integer NOT NULL,
+	"payment_terms_type" integer NOT NULL,
 	"note" TEXT,
 	CONSTRAINT "transaction_cost_pk" PRIMARY KEY ("id")
 ) WITH (
@@ -209,7 +209,7 @@ CREATE TABLE "payment" (
 	"date" TIMESTAMP NOT NULL,
 	"order_id" integer NOT NULL,
 	"company_id" integer NOT NULL,
-	"currency_id" integer NOT NULL,
+	"currency" integer NOT NULL,
 	"rate" DECIMAL(18,4),
 	"amount" DECIMAL(18,2) NOT NULL,
 	"note" TEXT,
@@ -330,5 +330,4 @@ ALTER TABLE "employee_2_company" ADD CONSTRAINT "employee_2_company_fk1" FOREIGN
 ALTER TABLE "locality" ADD CONSTRAINT "locality_fk0" FOREIGN KEY ("region_id") REFERENCES "region"("id");
 
 ALTER TABLE "region" ADD CONSTRAINT "region_fk0" FOREIGN KEY ("country_id") REFERENCES "country"("id");
-
 

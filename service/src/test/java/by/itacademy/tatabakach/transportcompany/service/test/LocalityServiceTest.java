@@ -16,7 +16,7 @@ public class LocalityServiceTest extends AbstractTest{
 	public void testCreate() {
 		final ILocality entity = saveNewLocality();
 
-		final ILocality entityFromDb = localityService.get(entity.getId());
+		final ILocality entityFromDb = localityService.getFullInfo(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertNotNull(entityFromDb.getId());

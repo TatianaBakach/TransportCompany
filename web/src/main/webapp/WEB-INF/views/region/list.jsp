@@ -16,7 +16,7 @@
 			<tr>
 				<td><c:out value="${region.id}" /></td>
 				<td><c:out value="${region.name}" /></td>
-				<td><c:out value="${region.country}" /></td>
+				<td><c:out value="${region.countryName}" /></td>
 				<td class="right">
 				<a class="btn-floating"	href="${pagesRegion}/${region.id}"><i class="material-icons">info</i></a>
 				<a class="btn-floating" href="${pagesRegion}/${region.id}/edit"><i class="material-icons">edit</i></a> 

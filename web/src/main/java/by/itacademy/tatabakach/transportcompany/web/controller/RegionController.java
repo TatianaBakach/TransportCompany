@@ -50,6 +50,7 @@ public class RegionController extends AbstractController {
 		gridState.setSort(sortColumn, "id");
 
 		final RegionFilter filter = new RegionFilter();
+		filter.setFetchCountry(true);
 		prepareFilter(gridState, filter);
 
 		final List<IRegion> entities = regionService.find(filter);
@@ -89,7 +90,7 @@ public class RegionController extends AbstractController {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView viewDetails(@PathVariable(name = "id", required = true) final Integer id) {
-		final IRegion dbModel = regionService.get(id);
+		final IRegion dbModel = regionService.getFullInfo(id);
 		final RegionDTO dto = toDtoConverter.apply(dbModel);
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
@@ -100,7 +101,7 @@ public class RegionController extends AbstractController {
 	
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@PathVariable(name = "id", required = true) final Integer id) {
-		final RegionDTO dto = toDtoConverter.apply(regionService.get(id));
+		final RegionDTO dto = toDtoConverter.apply(regionService.getFullInfo(id));
 
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);

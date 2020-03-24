@@ -7,8 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Currency;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.PaymentTermsType;
@@ -17,7 +15,6 @@ import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITransaction
 @Entity
 public class TransactionCost extends BaseEntity implements ITransactionCost {
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column
 	private Date date;
 	

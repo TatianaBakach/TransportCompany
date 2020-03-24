@@ -9,11 +9,11 @@ import by.itacademy.tatabakach.transportcompany.daoapi.filter.EmployeeFilter;
 public interface IEmployeeDao extends IDao<IEmployee, Integer>{
 	
 	List<IEmployee> find(EmployeeFilter filter);
+	
+	IEmployee getFullInfo(final Integer id);
 
 	long getCount(EmployeeFilter filter);
 
-	IEmployee getFullInfo(Integer id);
-	
 	Set<IEmployee> getByOrder(Integer id);
 
 

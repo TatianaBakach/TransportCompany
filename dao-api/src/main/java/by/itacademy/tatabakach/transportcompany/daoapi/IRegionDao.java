@@ -10,7 +10,7 @@ public interface IRegionDao extends IDao<IRegion, Integer> {
 	IRegion getFullInfo(final Integer id);
 
 	List<IRegion> find(RegionFilter filter);
-
+	
 	long getCount(RegionFilter filter);
 
 }

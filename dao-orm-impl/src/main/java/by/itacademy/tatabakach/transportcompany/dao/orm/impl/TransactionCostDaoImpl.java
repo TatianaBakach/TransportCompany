@@ -31,18 +31,6 @@ public class TransactionCostDaoImpl extends AbstractDaoImpl<ITransactionCost, In
 	}
 
 	@Override
-	public List<ITransactionCost> find(TransactionCostFilter filter) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public long getCount(TransactionCostFilter filter) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	/*@Override
 	public List<ITransactionCost> find(final TransactionCostFilter filter) {
 		final EntityManager em = getEntityManager();
 		final CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -98,6 +86,6 @@ public class TransactionCostDaoImpl extends AbstractDaoImpl<ITransactionCost, In
 	        default:
 	            throw new UnsupportedOperationException("sorting is not supported by column:" + sortColumn);
 	        }
-	}*/
+	}
 
 }
