@@ -1,21 +1,14 @@
 package by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Department;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Position;
-import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
 
 @Entity
@@ -52,21 +45,6 @@ public class Employee extends BaseEntity implements IEmployee {
 
 	@Column
 	private BigDecimal salary;
-
-	@JoinTable(name = "employee_2_company", joinColumns = { @JoinColumn(name = "employee_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "company_id") })
-	@ManyToMany(targetEntity = Company.class, fetch = FetchType.LAZY)
-	private Set<ICompany> companies = new HashSet<>();
-
-	@Override
-	public Set<ICompany> getCompanies() {
-		return companies;
-	}
-
-	@Override
-	public void setCompanies(final Set<ICompany> companies) {
-		this.companies = companies;
-	}
 
 	@Override
 	public String getFirstName() {

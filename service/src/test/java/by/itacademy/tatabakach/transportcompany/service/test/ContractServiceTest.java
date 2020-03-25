@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IContract;
+import by.itacademy.tatabakach.transportcompany.daoapi.filter.ContractFilter;
 
 public class ContractServiceTest extends AbstractTest{
 	
@@ -16,7 +17,7 @@ public class ContractServiceTest extends AbstractTest{
 	public void testCreate() {
 		final IContract entity = saveNewContract();
 
-		final IContract entityFromDb = contractService.get(entity.getId());
+		final IContract entityFromDb = contractService.getFullInfo(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertNotNull(entityFromDb.getId());
@@ -29,14 +30,15 @@ public class ContractServiceTest extends AbstractTest{
 
 	@Test
 	public void testGetAll() {
-		final int intialCount = contractService.getAll().size();
+		ContractFilter filter = new ContractFilter();
+		final long intialCount = contractService.getCount(filter);
 
 		final int randomObjectsCount = getRandomObjectsCount();
 		for (int i = 0; i < randomObjectsCount; i++) {
 			saveNewContract();
 		}
 
-		final List<IContract> allEntities = contractService.getAll();
+		final List<IContract> allEntities = contractService.find(filter);
 
 		for (final IContract entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());

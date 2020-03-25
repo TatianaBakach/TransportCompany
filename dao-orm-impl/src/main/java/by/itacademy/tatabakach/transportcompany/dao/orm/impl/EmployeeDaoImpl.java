@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 
@@ -30,27 +29,6 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<IEmployee, Integer> impleme
 	@Override
 	public IEmployee createEntity() {
 		return new Employee();
-	}
-
-	@Override
-	public IEmployee getFullInfo(final Integer id) {
-		final EntityManager em = getEntityManager();
-		final CriteriaBuilder cb = em.getCriteriaBuilder();
-
-		final CriteriaQuery<IEmployee> cq = cb.createQuery(IEmployee.class);
-		final Root<Employee> from = cq.from(Employee.class);
-
-		cq.select(from);
-
-		from.fetch(Employee_.companies, JoinType.LEFT);
-		cq.distinct(true);
-
-		// .. where id=...
-		cq.where(cb.equal(from.get(Employee_.id), id));
-
-		final TypedQuery<IEmployee> q = em.createQuery(cq);
-
-		return q.getSingleResult();
 	}
 
 	@Override
@@ -120,6 +98,11 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<IEmployee, Integer> impleme
 
 	@Override
 	public Set<IEmployee> getByOrder(Integer id) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Set<IEmployee> getByCompany(Integer id) {
 		throw new UnsupportedOperationException();
 	}
 

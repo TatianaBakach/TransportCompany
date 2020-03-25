@@ -1,10 +1,10 @@
 package by.itacademy.tatabakach.transportcompany.daojdbcimpl;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -22,8 +22,7 @@ import by.itacademy.tatabakach.transportcompany.daoapi.filter.CompanyFilter;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Address;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Company;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Employee;
-import by.itacademy.tatabakach.transportcompany.daojdbcimpl.util.PreparedStatementAction;
-import by.itacademy.tatabakach.transportcompany.daojdbcimpl.util.StatementAction;
+import by.itacademy.tatabakach.transportcompany.daojdbcimpl.util.SQLExecutionException;
 
 @Repository
 public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implements ICompanyDao {
@@ -41,11 +40,12 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 
 	@Override
 	public void insert(final ICompany entity) {
-		executeStatement(new PreparedStatementAction<ICompany>(String.format(
-				"insert into %s (company_type_id, name, payer_registration_number, legal_address_id, post_address_id, bank_data, e_mail, phone, creator_id) values(?,?,?,?,?,?,?,?,?)",
-				getTableName()), true) {
-			@Override
-			public ICompany doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
+		try (Connection c = getConnection();
+				PreparedStatement pStmt = c.prepareStatement(String
+						.format("insert into %s (company_type_id, name, payer_registration_number, legal_address_id, post_address_id, bank_data, e_mail, phone, creator_id) values(?,?,?,?,?,?,?,?,?)", getTableName()),
+						Statement.RETURN_GENERATED_KEYS)) {
+			c.setAutoCommit(false);
+			try {
 				pStmt.setInt(1, entity.getCompanyType().ordinal());
 				pStmt.setString(2, entity.getName());
 				pStmt.setString(3, entity.getPayerRegistrationNumber());
@@ -55,7 +55,7 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 				pStmt.setString(7, entity.getEMail());
 				pStmt.setString(8, entity.getPhone());
 				pStmt.setInt(9, entity.getCreator().getId());
-
+				
 				pStmt.executeUpdate();
 
 				final ResultSet rs = pStmt.getGeneratedKeys();
@@ -63,13 +63,20 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 				final int id = rs.getInt("id");
 
 				rs.close();
-
 				entity.setId(id);
-				return entity;
+				// the same should be done in 'update' DAO method
+				updateEmployees(entity, c);
+				c.commit();
+			} catch (final Exception e) {
+				c.rollback();
+				throw new RuntimeException(e);
 			}
-		});
-	}
 
+		} catch (final SQLException e) {
+			throw new SQLExecutionException(e);
+		}
+	}
+		
 	@Override
 	public void update(final ICompany entity) {
 		throw new RuntimeException("will be implemented in ORM layer");
@@ -103,33 +110,8 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 	}
 
 	@Override
-	public Set<ICompany> getByEmployee(final Integer id) {
-		return executeStatement(new StatementAction<Set<ICompany>>() {
-			@Override
-			public Set<ICompany> doWithStatement(final Statement statement) throws SQLException {
-				// @formatter:off
-				statement.executeQuery(String.format("select * from %s e "
-						+ "inner join employee_2_company e2c on e.id=e2c.company_id " + "where e2c.employee_id=%s",
-						getTableName(), id));
-				// @formatter:on
-				final ResultSet resultSet = statement.getResultSet();
-
-				final Set<ICompany> result = new HashSet<ICompany>();
-				boolean hasNext = resultSet.next();
-				while (hasNext) {
-					result.add(parseRow(resultSet));
-					hasNext = resultSet.next();
-				}
-				resultSet.close();
-
-				return result;
-			}
-		});
-	}
-
-	@Override
 	public List<ICompany> find(final CompanyFilter filter) {
-		return selectAll();
+		throw new RuntimeException("will be implemented in ORM layer. Too complex for plain jdbc ");
 	}
 
 	@Override
@@ -140,6 +122,8 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 	@Override
 	public ICompany getFullInfo(final Integer id) {
 		final ICompany company = get(id);
+		final Set<IEmployee> employees = employeeDao.getByOrder(id);
+		company.setEmployees(employees);;
 
 		if (company.getLegalAddress() != null) {
 			company.setLegalAddress(addressDao.get(company.getLegalAddress().getId()));
@@ -159,6 +143,56 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 	@Override
 	protected String getTableName() {
 		return "company";
+	}
+	
+	private void updateEmployees(final ICompany entity, final Connection c) throws SQLException {
+		// clear all existing records related to the current order
+		final PreparedStatement deleteStmt = c.prepareStatement("delete from company_2_employee where company_id=?");
+		deleteStmt.setInt(1, entity.getId());
+		deleteStmt.executeUpdate();
+		deleteStmt.close();
+
+		if (entity.getEmployees().isEmpty()) {
+			return;
+		}
+
+		// insert actual list of records using 'batch'
+		final PreparedStatement pStmt = c
+				.prepareStatement("insert into company_2_employee (company_id, employee_id) values(?,?)");
+
+		for (final IEmployee e : entity.getEmployees()) {
+			pStmt.setInt(1, entity.getId());
+			pStmt.setInt(2, e.getId());
+			pStmt.addBatch();
+		}
+		pStmt.executeBatch();
+		pStmt.close();
+	}
+	
+	
+	@Override
+	public void deleteAll() {
+		try (Connection c = getConnection();
+				PreparedStatement deleteEmployeeRefsStmt = c.prepareStatement("delete from company_2_employee");
+				PreparedStatement deleteAllStmt = c.prepareStatement("delete from " + getTableName());) {
+			c.setAutoCommit(false);
+			try {
+				deleteEmployeeRefsStmt.executeUpdate();
+				deleteAllStmt.executeUpdate();
+
+				deleteEmployeeRefsStmt.close();
+				deleteAllStmt.close();
+
+				c.commit();
+			} catch (final Exception e) {
+				c.rollback();
+				throw new RuntimeException(e);
+			}
+
+		} catch (final SQLException e) {
+			throw new SQLExecutionException(e);
+		}
+
 	}
 
 }

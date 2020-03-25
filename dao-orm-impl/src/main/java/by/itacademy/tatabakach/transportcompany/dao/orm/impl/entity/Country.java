@@ -20,5 +20,10 @@ public class Country extends BaseEntity implements ICountry {
 	public void setName(final String name) {
 		this.name = name;
 	}
+	
+	@Override
+	public String toString() {
+		return "Country [name=" + name + ", getId()=" + getId() + "]";
+	}
 
 }

@@ -10,11 +10,11 @@ public interface IEmployeeDao extends IDao<IEmployee, Integer>{
 	
 	List<IEmployee> find(EmployeeFilter filter);
 	
-	IEmployee getFullInfo(final Integer id);
-
 	long getCount(EmployeeFilter filter);
 
 	Set<IEmployee> getByOrder(Integer id);
+	
+	Set<IEmployee> getByCompany(Integer id);
 
 
 }

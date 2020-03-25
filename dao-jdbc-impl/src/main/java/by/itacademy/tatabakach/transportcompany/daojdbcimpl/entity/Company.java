@@ -1,5 +1,8 @@
 package by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.CompanyType;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IAddress;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
@@ -24,6 +27,8 @@ public class Company extends BaseEntity implements ICompany {
 	private String phone;
 	
 	private IEmployee creator;
+	
+	private Set<IEmployee> employees = new HashSet<>();
 
 	@Override
 	public CompanyType getCompanyType() {
@@ -113,6 +118,15 @@ public class Company extends BaseEntity implements ICompany {
 	@Override
 	public void setCreator(final IEmployee creator) {
 		this.creator = creator;
+	}
+	
+	@Override
+	public Set<IEmployee> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(Set<IEmployee> employees) {
+		this.employees = employees;
 	}
 
 	@Override

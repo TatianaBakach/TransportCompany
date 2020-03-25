@@ -241,7 +241,7 @@ public class OrderDaoImpl extends AbstractDaoImpl<IOrder, Integer> implements IO
 	public IOrder getFullInfo(final Integer id) {
 		final IOrder order = get(id);
 		final Set<IEmployee> employees = employeeDao.getByOrder(id);
-		order.setEmployees(employees);;
+		order.setEmployees(employees);
 		
 		if (order.getOurCompany() != null) {
 			order.setOurCompany(companyDao.get(order.getOurCompany().getId()));

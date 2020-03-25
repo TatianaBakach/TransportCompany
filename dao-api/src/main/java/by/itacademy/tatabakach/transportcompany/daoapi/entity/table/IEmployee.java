@@ -1,7 +1,6 @@
 package by.itacademy.tatabakach.transportcompany.daoapi.entity.table;
 
 import java.math.BigDecimal;
-import java.util.Set;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Department;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Position;
@@ -48,8 +47,4 @@ public interface IEmployee extends IBaseEntity {
 	
 	void setSalary(BigDecimal salary);
 	
-	Set<ICompany> getCompanies();
-
-	void setCompanies(Set<ICompany> companies);
-
 }

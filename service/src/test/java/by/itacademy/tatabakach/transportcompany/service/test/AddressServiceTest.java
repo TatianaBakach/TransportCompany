@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IAddress;
+import by.itacademy.tatabakach.transportcompany.daoapi.filter.AddressFilter;
 
 public class AddressServiceTest extends AbstractTest {
 
@@ -16,7 +17,7 @@ public class AddressServiceTest extends AbstractTest {
 	public void testCreate() {
 		final IAddress entity = saveNewAddress();
 
-		final IAddress entityFromDb = addressService.get(entity.getId());
+		final IAddress entityFromDb = addressService.getFullInfo(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertNotNull(entityFromDb.getId());
@@ -29,14 +30,17 @@ public class AddressServiceTest extends AbstractTest {
 
 	@Test
 	public void testGetAll() {
-		final int intialCount = addressService.getAll().size();
+		AddressFilter filter = new AddressFilter();
+		final long intialCount = addressService.getCount(filter);
 
 		final int randomObjectsCount = getRandomObjectsCount();
 		for (int i = 0; i < randomObjectsCount; i++) {
 			saveNewAddress();
 		}
+		
+		filter.setFetchLocality(true);
 
-		final List<IAddress> allEntities = addressService.getAll();
+		final List<IAddress> allEntities = addressService.find(filter);
 
 		for (final IAddress entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());

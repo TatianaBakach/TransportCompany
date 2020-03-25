@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.LoadingMethod;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IOrder;
+import by.itacademy.tatabakach.transportcompany.daoapi.filter.OrderFilter;
 
 public class OrderServiceTest extends AbstractTest {
 
@@ -21,7 +22,7 @@ public class OrderServiceTest extends AbstractTest {
 	public void testCreate() {
 		final IOrder entity = saveNewOrder();
 
-		final IOrder entityFromDb = orderService.get(entity.getId());
+		final IOrder entityFromDb = orderService.getFullInfo(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertNotNull(entityFromDb.getId());
@@ -98,14 +99,15 @@ public class OrderServiceTest extends AbstractTest {
 
 	@Test
 	public void testGetAll() {
-		final int intialCount = orderService.getAll().size();
+		OrderFilter filter = new OrderFilter();
+		final long intialCount = orderService.getCount(filter);
 
 		final int randomObjectsCount = getRandomObjectsCount();
 		for (int i = 0; i < randomObjectsCount; i++) {
 			saveNewOrder();
 		}
 
-		final List<IOrder> allEntities = orderService.getAll();
+		final List<IOrder> allEntities = orderService.find(filter);
 
 		for (final IOrder entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());

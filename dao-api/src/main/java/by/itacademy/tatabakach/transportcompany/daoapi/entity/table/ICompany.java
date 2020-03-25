@@ -1,5 +1,7 @@
 package by.itacademy.tatabakach.transportcompany.daoapi.entity.table;
 
+import java.util.Set;
+
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.CompanyType;
 
 public interface ICompany extends IBaseEntity {
@@ -39,4 +41,8 @@ public interface ICompany extends IBaseEntity {
 	IEmployee getCreator();
 	
 	void setCreator(IEmployee creator);
+	
+	Set<IEmployee> getEmployees();
+
+	void setEmployees(Set<IEmployee> employees);
 }

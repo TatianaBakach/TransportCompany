@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICfr;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
+import by.itacademy.tatabakach.transportcompany.daoapi.filter.CfrFilter;
 
 public class CftServiceTest extends AbstractTest {
 
@@ -18,7 +19,7 @@ public class CftServiceTest extends AbstractTest {
 	public void testCreate() {
 		final ICfr entity = saveNewCfr();
 
-		final ICfr entityFromDb = cfrService.get(entity.getId());
+		final ICfr entityFromDb = cfrService.getFullInfo(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertNotNull(entityFromDb.getId());
@@ -54,14 +55,15 @@ public class CftServiceTest extends AbstractTest {
 
 	@Test
 	public void testGetAll() {
-		final int intialCount = cfrService.getAll().size();
+		CfrFilter filter = new CfrFilter();
+		final long intialCount = cfrService.getCount(filter);
 
 		final int randomObjectsCount = getRandomObjectsCount();
 		for (int i = 0; i < randomObjectsCount; i++) {
 			saveNewCfr();
 		}
 
-		final List<ICfr> allEntities = cfrService.getAll();
+		final List<ICfr> allEntities = cfrService.find(filter);
 
 		for (final ICfr entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());

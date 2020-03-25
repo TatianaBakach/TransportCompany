@@ -239,9 +239,9 @@ CREATE TABLE "order_2_employee" (
 
 
 
-CREATE TABLE "employee_2_company" (
-	"employee_id" integer NOT NULL,
-	"company_id" integer NOT NULL
+CREATE TABLE "company_2_employee" (
+	"company_id" integer NOT NULL,
+	"employee_id" integer NOT NULL
 ) WITH (
   OIDS=FALSE
 );
@@ -324,8 +324,8 @@ ALTER TABLE "payment" ADD CONSTRAINT "payment_fk1" FOREIGN KEY ("company_id") RE
 ALTER TABLE "order_2_employee" ADD CONSTRAINT "order_2_employee_fk0" FOREIGN KEY ("order_id") REFERENCES "order_object"("id");
 ALTER TABLE "order_2_employee" ADD CONSTRAINT "order_2_employee_fk1" FOREIGN KEY ("employee_id") REFERENCES "employee"("id");
 
-ALTER TABLE "employee_2_company" ADD CONSTRAINT "employee_2_company_fk0" FOREIGN KEY ("employee_id") REFERENCES "employee"("id");
-ALTER TABLE "employee_2_company" ADD CONSTRAINT "employee_2_company_fk1" FOREIGN KEY ("company_id") REFERENCES "company"("id");
+ALTER TABLE "company_2_employee" ADD CONSTRAINT "company_2_employee_fk0" FOREIGN KEY ("company_id") REFERENCES "company"("id");
+ALTER TABLE "company_2_employee" ADD CONSTRAINT "company_2_employee_fk1" FOREIGN KEY ("employee_id") REFERENCES "employee"("id");
 
 ALTER TABLE "locality" ADD CONSTRAINT "locality_fk0" FOREIGN KEY ("region_id") REFERENCES "region"("id");
 

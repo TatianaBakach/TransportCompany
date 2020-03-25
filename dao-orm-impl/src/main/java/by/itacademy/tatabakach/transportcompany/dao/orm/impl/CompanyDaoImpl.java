@@ -1,7 +1,6 @@
 package by.itacademy.tatabakach.transportcompany.dao.orm.impl;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -35,11 +34,6 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 	}
 
 	@Override
-	public Set<ICompany> getByEmployee(Integer id) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
 	public ICompany getFullInfo(final Integer id) {
 		final EntityManager em = getEntityManager();
 		final CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -51,13 +45,17 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 
 		from.fetch(Company_.legalAddress, JoinType.LEFT);
 		from.fetch(Company_.postAddress, JoinType.LEFT);
+		from.fetch(Company_.creator, JoinType.LEFT);
+		
+		from.fetch(Company_.employees, JoinType.LEFT);
+		cq.distinct(true);
 
 		// .. where id=...
 		cq.where(cb.equal(from.get(Company_.id), id));
 
 		final TypedQuery<ICompany> q = em.createQuery(cq);
 
-		return getSingleResult(q);
+		return q.getSingleResult();
 	}
 
 	@Override

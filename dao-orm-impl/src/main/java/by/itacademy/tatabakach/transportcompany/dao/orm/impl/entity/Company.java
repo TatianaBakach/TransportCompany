@@ -1,10 +1,16 @@
 package by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.CompanyType;
@@ -42,7 +48,12 @@ public class Company extends BaseEntity implements ICompany {
 	
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Employee.class)
 	private IEmployee creator;
-
+	
+	@JoinTable(name = "company_2_employee", joinColumns = { @JoinColumn(name = "company_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "employee_id") })
+	@ManyToMany(targetEntity = Employee.class, fetch = FetchType.LAZY)
+	private Set<IEmployee> employees = new HashSet<>();
+	
 	@Override
 	public CompanyType getCompanyType() {
 		return companyType;
@@ -131,6 +142,15 @@ public class Company extends BaseEntity implements ICompany {
 	@Override
 	public void setCreator(final IEmployee creator) {
 		this.creator = creator;
+	}
+	
+	@Override
+	public Set<IEmployee> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(Set<IEmployee> employees) {
+		this.employees = employees;
 	}
 
 	@Override

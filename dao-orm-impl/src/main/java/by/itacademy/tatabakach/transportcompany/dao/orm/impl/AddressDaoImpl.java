@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity.Address;
 import by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity.Address_;
 import by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity.Locality_;
+import by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity.Region_;
 import by.itacademy.tatabakach.transportcompany.daoapi.IAddressDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IAddress;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.AddressFilter;
@@ -42,14 +43,14 @@ public class AddressDaoImpl extends AbstractDaoImpl<IAddress, Integer> implement
 
 		cq.select(from);
 
-		from.fetch(Address_.locality, JoinType.LEFT);
+		from.fetch(Address_.locality, JoinType.LEFT).fetch(Locality_.region, JoinType.LEFT).fetch(Region_.country, JoinType.LEFT);;
 
 		// .. where id=...
 		cq.where(cb.equal(from.get(Address_.id), id));
 
 		final TypedQuery<IAddress> q = em.createQuery(cq);
 
-		return getSingleResult(q);
+		return q.getSingleResult();
 	}
 	
 	

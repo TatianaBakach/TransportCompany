@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.IEmployeeDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
-import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ILocality;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.EmployeeFilter;
 import by.itacademy.tatabakach.transportcompany.service.IEmployeeService;
 
@@ -46,12 +45,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
 	@Override
 	public void delete(final Integer id) {
-		// remove all references
-        final IEmployee iEmployee = dao.get(id);
-        iEmployee.getCompanies().clear();
-        dao.update(iEmployee);
-        LOGGER.info("delete entity: {}", id);
-        dao.delete(id);
+		dao.delete(id);
 	}
 	
 	@Override
@@ -75,11 +69,6 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	@Override
 	public long getCount(EmployeeFilter filter) {
 		return dao.getCount(filter);
-	}
-
-	@Override
-	public IEmployee getFullInfo(Integer id) {
-		return dao.getFullInfo(id);
 	}
 
 }

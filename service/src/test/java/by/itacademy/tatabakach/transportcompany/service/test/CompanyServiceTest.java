@@ -3,12 +3,18 @@ package by.itacademy.tatabakach.transportcompany.service.test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.CompanyType;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
+import by.itacademy.tatabakach.transportcompany.daoapi.filter.CompanyFilter;
 
 public class CompanyServiceTest extends AbstractTest {
 	
@@ -16,7 +22,7 @@ public class CompanyServiceTest extends AbstractTest {
 	public void testCreate() {
 		final ICompany entity = saveNewCompany();
 
-		final ICompany entityFromDb = companyService.get(entity.getId());
+		final ICompany entityFromDb = companyService.getFullInfo(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertNotNull(entityFromDb.getId());
@@ -34,7 +40,8 @@ public class CompanyServiceTest extends AbstractTest {
 
 	@Test
 	public void testGetAll() {
-		final int intialCount = companyService.getAll().size();
+		CompanyFilter filter = new CompanyFilter();
+		final long intialCount = companyService.getCount(filter);
 
 		final int randomObjectsCount = getRandomObjectsCount();
 		for (int i = 0; i < randomObjectsCount; i++) {
@@ -71,6 +78,46 @@ public class CompanyServiceTest extends AbstractTest {
 		saveNewCompany();
 		companyService.deleteAll();
 		assertEquals(0, companyService.getAll().size());
+	}
+	
+	@Test
+	public void createCompanyWithEmployeeTest() {
+		final ICompany entity = companyService.createEntity();
+		entity.setCompanyType(getRandomFromArray(CompanyType.values()));
+		entity.setName("name-" + getRandomPrefix());
+		entity.setPayerRegistrationNumber("rpn-" + getRandomPrefix());
+		entity.setLegalAddress(saveNewAddress());
+		entity.setPostAddress(saveNewAddress());
+		entity.setBankData("bankData-" + getRandomPrefix());
+		entity.setEMail("eMail-" + getRandomPrefix());
+		entity.setPhone("phone-" + getRandomPrefix());
+		entity.setCreator(saveNewEmployee());
+
+		final int randomObjectsCount = getRandomObjectsCount();
+		final List<IEmployee> employees = new ArrayList<>();
+		for (int i = 0; i < randomObjectsCount; i++) {
+			employees.add(saveNewEmployee());
+		}
+		entity.getEmployees().addAll(employees);
+
+		companyService.save(entity);
+
+		final ICompany entityFromDb = companyService.getFullInfo(entity.getId());
+		final Set<IEmployee> employeesFromDb = entityFromDb.getEmployees();
+		assertEquals(employees.size(), employeesFromDb.size());
+
+		// check that correct (by id) engines were returned
+		for (final IEmployee employee : employees) {
+			boolean found = false;
+			for (final IEmployee dbEmployee : employeesFromDb) {
+				if (employee.getId().equals(dbEmployee.getId())) {
+					found = true;
+					break;
+				}
+
+			}
+			assertTrue(found, "can't find entity:" + employee);
+		}
 	}
 
 }

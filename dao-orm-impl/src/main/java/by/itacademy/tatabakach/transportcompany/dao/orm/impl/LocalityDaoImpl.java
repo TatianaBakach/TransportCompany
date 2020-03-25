@@ -25,7 +25,6 @@ public class LocalityDaoImpl extends AbstractDaoImpl<ILocality, Integer> impleme
 
 	protected LocalityDaoImpl() {
 		super(Locality.class);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -50,7 +49,7 @@ public class LocalityDaoImpl extends AbstractDaoImpl<ILocality, Integer> impleme
 
 		final TypedQuery<ILocality> q = em.createQuery(cq);
 
-		return getSingleResult(q);
+		return q.getSingleResult();
 	}
 	
 	

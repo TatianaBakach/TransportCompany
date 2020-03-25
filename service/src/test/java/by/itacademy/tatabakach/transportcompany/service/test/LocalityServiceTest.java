@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ILocality;
+import by.itacademy.tatabakach.transportcompany.daoapi.filter.LocalityFilter;
 
 public class LocalityServiceTest extends AbstractTest{
 	
@@ -27,14 +28,17 @@ public class LocalityServiceTest extends AbstractTest{
 
 	@Test
 	public void testGetAll() {
-		final int intialCount = localityService.getAll().size();
+		LocalityFilter filter = new LocalityFilter();
+		final long intialCount = localityService.getCount(filter);
 
 		final int randomObjectsCount = getRandomObjectsCount();
 		for (int i = 0; i < randomObjectsCount; i++) {
 			saveNewLocality();
 		}
+		
+		filter.setFetchRegion(true);
 
-		final List<ILocality> allEntities = localityService.getAll();
+		final List<ILocality> allEntities = localityService.find(filter);
 
 		for (final ILocality entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());

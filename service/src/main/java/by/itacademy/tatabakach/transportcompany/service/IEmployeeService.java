@@ -13,8 +13,6 @@ public interface IEmployeeService {
 
 	List<IEmployee> getAll();
 	
-	IEmployee getFullInfo(Integer id);
-
 	@Transactional
 	void save(IEmployee entity);
 

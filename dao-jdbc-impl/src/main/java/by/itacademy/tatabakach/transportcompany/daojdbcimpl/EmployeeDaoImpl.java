@@ -9,25 +9,20 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import by.itacademy.tatabakach.transportcompany.daoapi.ICompanyDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.IEmployeeDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Department;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Position;
-import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.EmployeeFilter;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.entity.Employee;
+import by.itacademy.tatabakach.transportcompany.daojdbcimpl.util.PreparedStatementAction;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.util.SQLExecutionException;
 import by.itacademy.tatabakach.transportcompany.daojdbcimpl.util.StatementAction;
 
 @Repository
 public class EmployeeDaoImpl extends AbstractDaoImpl<IEmployee, Integer> implements IEmployeeDao {
-
-	@Autowired
-	private ICompanyDao companyDao;
 
 	@Override
 	public IEmployee createEntity() {
@@ -36,13 +31,12 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<IEmployee, Integer> impleme
 
 	@Override
 	public void insert(final IEmployee entity) {
+		executeStatement(new PreparedStatementAction<IEmployee>(String.format(
+				"insert into %s (first_name, middle_name, last_name, department_id, position_id, e_mail, phone, login, password, salary) values(?,?,?,?,?,?,?,?,?,?)",
+				getTableName()), true) {
 
-		try (Connection c = getConnection();
-				PreparedStatement pStmt = c.prepareStatement(String.format(
-						"insert into %s (first_name, middle_name, last_name, department_id, position_id, e_mail, phone, login, password, salary) values(?,?,?,?,?,?,?,?,?,?)",
-						getTableName()), Statement.RETURN_GENERATED_KEYS)) {
-			c.setAutoCommit(false);
-			try {
+			@Override
+			public IEmployee doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getFirstName());
 				pStmt.setString(2, entity.getMiddleName());
 				pStmt.setString(3, entity.getLastName());
@@ -61,76 +55,17 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<IEmployee, Integer> impleme
 				final int id = rs.getInt("id");
 
 				rs.close();
-				entity.setId(id);
-				// the same should be done in 'update' DAO method
-				updateCompanies(entity, c);
-				c.commit();
-			} catch (final Exception e) {
-				c.rollback();
-				throw new RuntimeException(e);
-			}
 
-		} catch (final SQLException e) {
-			throw new SQLExecutionException(e);
-		}
-		/*
-		 * executeStatement(new PreparedStatementAction<IEmployee>(String.format(
-		 * "insert into %s (first_name, middle_name, last_name, department_id, position_id, e_mail, phone, login, password, salary) values(?,?,?,?,?,?,?,?,?,?)"
-		 * , getTableName()), true) {
-		 * 
-		 * @Override public IEmployee doWithPreparedStatement(final PreparedStatement
-		 * pStmt) throws SQLException { pStmt.setString(1, entity.getFirstName());
-		 * pStmt.setString(2, entity.getMiddleName()); pStmt.setString(3,
-		 * entity.getLastName()); pStmt.setInt(4, entity.getDepartment().getId());
-		 * pStmt.setInt(5, entity.getPosition().getId()); pStmt.setString(6,
-		 * entity.getEMail()); pStmt.setString(7, entity.getPhone()); pStmt.setString(8,
-		 * entity.getLogin()); pStmt.setString(9, entity.getPassword());
-		 * pStmt.setBigDecimal(10, entity.getSalary());
-		 * 
-		 * pStmt.executeUpdate();
-		 * 
-		 * final ResultSet rs = pStmt.getGeneratedKeys(); rs.next(); final int id =
-		 * rs.getInt("id");
-		 * 
-		 * rs.close();
-		 * 
-		 * entity.setId(id); return entity; } });
-		 */
+				entity.setId(id);
+				return entity;
+			}
+		});
+
 	}
 
 	@Override
 	public void update(final IEmployee entity) {
-		try (Connection c = getConnection();
-				PreparedStatement pStmt = c.prepareStatement(String.format(
-						"update %s set first_name=?, middle_name=?, last_name=?, department_id=?, position_id=?, e_mail=?, phone=?, login=?, password=?, salary=? where id=?",
-						getTableName()))) {
-			c.setAutoCommit(false);
-			try {
-				pStmt.setString(1, entity.getFirstName());
-				pStmt.setString(2, entity.getMiddleName());
-				pStmt.setString(3, entity.getLastName());
-				pStmt.setInt(4, entity.getDepartment().ordinal());
-				pStmt.setInt(5, entity.getPosition().ordinal());
-				pStmt.setString(6, entity.getEMail());
-				pStmt.setString(7, entity.getPhone());
-				pStmt.setString(8, entity.getLogin());
-				pStmt.setString(9, entity.getPassword());
-				pStmt.setBigDecimal(10, entity.getSalary());
-				pStmt.setInt(11, entity.getId());
-				pStmt.executeUpdate();
-				// the same should be done in 'update' DAO method
-				updateCompanies(entity, c);
-				c.commit();
-			} catch (final Exception e) {
-				c.rollback();
-				throw new RuntimeException(e);
-			}
-
-		} catch (final SQLException e) {
-			throw new SQLExecutionException(e);
-		}
-
-		// throw new RuntimeException("will be implemented in ORM layer");
+		throw new RuntimeException("will be implemented in ORM layer");
 	}
 
 	@Override
@@ -146,24 +81,20 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<IEmployee, Integer> impleme
 		 * final IDepartment department = new Department(); department.setId((Integer)
 		 * resultSet.getObject("department_id")); entity.setDepartment(department);
 		 */
-		/*final Integer departmentId = (Integer) resultSet.getObject("department_id");
-		if (departmentId != null) {
-			final Department department = new Department();
-			department.setId(departmentId);
-			entity.setDepartment(department);
-		}
-
 		/*
-		 * final IPosition position = new Position(); position.setId((Integer)
+		 * final Integer departmentId = (Integer) resultSet.getObject("department_id");
+		 * if (departmentId != null) { final Department department = new Department();
+		 * department.setId(departmentId); entity.setDepartment(department); }
+		 * 
+		 * /* final IPosition position = new Position(); position.setId((Integer)
 		 * resultSet.getObject("position_id")); entity.setPosition(position);
 		 */
 
-		/*final Integer positionId = (Integer) resultSet.getObject("position_id");
-		if (positionId != null) {
-			final Position position = new Position();
-			position.setId(positionId);
-			entity.setPosition(position);
-		}*/
+		/*
+		 * final Integer positionId = (Integer) resultSet.getObject("position_id"); if
+		 * (positionId != null) { final Position position = new Position();
+		 * position.setId(positionId); entity.setPosition(position); }
+		 */
 
 		entity.setDepartment(Department.values()[(resultSet.getInt("department_id"))]);
 		entity.setPosition(Position.values()[(resultSet.getInt("position_id"))]);
@@ -212,14 +143,6 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<IEmployee, Integer> impleme
 	}
 
 	@Override
-	public IEmployee getFullInfo(final Integer id) {
-		final IEmployee employee = get(id);
-		final Set<ICompany> companies = companyDao.getByEmployee(id);
-		employee.setCompanies(companies);
-		return employee;
-	}
-
-	@Override
 	public Set<IEmployee> getByOrder(final Integer id) {
 		return executeStatement(new StatementAction<Set<IEmployee>>() {
 			@Override
@@ -245,33 +168,33 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<IEmployee, Integer> impleme
 	}
 
 	@Override
-	protected String getTableName() {
-		return "employee";
+	public Set<IEmployee> getByCompany(final Integer id) {
+		return executeStatement(new StatementAction<Set<IEmployee>>() {
+			@Override
+			public Set<IEmployee> doWithStatement(final Statement statement) throws SQLException {
+				// @formatter:off
+				statement.executeQuery(String.format("select * from %s e "
+						+ "inner join company_2_employee c2e on e.id=c2e.employee_id " + "where c2e.company_id=%s",
+						getTableName(), id));
+				// @formatter:on
+				final ResultSet resultSet = statement.getResultSet();
+
+				final Set<IEmployee> result = new HashSet<IEmployee>();
+				boolean hasNext = resultSet.next();
+				while (hasNext) {
+					result.add(parseRow(resultSet));
+					hasNext = resultSet.next();
+				}
+				resultSet.close();
+
+				return result;
+			}
+		});
 	}
 
-	private void updateCompanies(final IEmployee entity, final Connection c) throws SQLException {
-		// clear all existing records related to the current employee
-		final PreparedStatement deleteStmt = c.prepareStatement("delete from employee_2_company where employee_id=?");
-		deleteStmt.setInt(1, entity.getId());
-		deleteStmt.executeUpdate();
-		deleteStmt.close();
-
-		if (entity.getCompanies().isEmpty()) {
-			return;
-		}
-
-		// insert actual list of records using 'batch'
-		final PreparedStatement pStmt = c
-				.prepareStatement("insert into employee_2_company (employee_id, company_id) values(?,?)");
-
-		for (final ICompany e : entity.getCompanies()) {
-			pStmt.setInt(1, entity.getId());
-			pStmt.setInt(2, e.getId());
-
-			pStmt.addBatch();
-		}
-		pStmt.executeBatch();
-		pStmt.close();
+	@Override
+	protected String getTableName() {
+		return "employee";
 	}
 
 }
