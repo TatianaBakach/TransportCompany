@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IRouteItem;
+import by.itacademy.tatabakach.transportcompany.daoapi.filter.RouteItemFilter;
 
 public class RouteItemServiceTest extends AbstractTest {
 	
@@ -16,7 +17,7 @@ public class RouteItemServiceTest extends AbstractTest {
 	public void testCreate() {
 		final IRouteItem entity = saveNewRouteItem();
 
-		final IRouteItem entityFromDb = routeItemService.get(entity.getId());
+		final IRouteItem entityFromDb = routeItemService.getFullInfo(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertNotNull(entityFromDb.getId());
@@ -34,14 +35,15 @@ public class RouteItemServiceTest extends AbstractTest {
 
 	@Test
 	public void testGetAll() {
-		final int intialCount = routeItemService.getAll().size();
+		RouteItemFilter filter = new RouteItemFilter();
+		final long intialCount = routeItemService.getCount(filter);
 
 		final int randomObjectsCount = getRandomObjectsCount();
 		for (int i = 0; i < randomObjectsCount; i++) {
 			saveNewRouteItem();
 		}
 
-		final List<IRouteItem> allEntities = routeItemService.getAll();
+		final List<IRouteItem> allEntities = routeItemService.find(filter);
 
 		for (final IRouteItem entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());

@@ -20,33 +20,33 @@ import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IOrderReward
 
 @Entity
 public class OrderReward extends BaseEntity implements IOrderReward {
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Order.class)
 	private IOrder order;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Employee.class)
 	private IEmployee employee;
-	
+
 	@Column
 	@Enumerated(EnumType.ORDINAL)
 	private RewardType rewardType;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = OrderRewardPercent.class)
 	private IOrderRewardPercent orderRewardPercent;
-	
+
 	@Column
 	private BigDecimal additionalExpenses;
-	
+
 	@Column
 	private BigDecimal amount;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column
 	private Date paymentDate;
-	
+
 	@Column
 	private Boolean rewardIssued;
-	
+
 	@Column
 	private String note;
 
@@ -138,6 +138,14 @@ public class OrderReward extends BaseEntity implements IOrderReward {
 	@Override
 	public void setNote(final String note) {
 		this.note = note;
+	}
+
+	@Override
+	public String toString() {
+		return "OrderReward [order=" + order + ", employee=" + employee + "rewardType=" + rewardType
+				+ "orderRewardPercent=" + orderRewardPercent + "additionalExpenses=" + additionalExpenses + "amount="
+				+ amount + "paymentDate=" + paymentDate + "rewardIssued=" + rewardIssued + "note=" + note + ", getId()="
+				+ getId() + "]";
 	}
 
 }

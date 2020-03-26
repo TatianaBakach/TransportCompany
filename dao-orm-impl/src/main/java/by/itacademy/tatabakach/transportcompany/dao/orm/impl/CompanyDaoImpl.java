@@ -48,7 +48,7 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 		from.fetch(Company_.creator, JoinType.LEFT);
 		
 		from.fetch(Company_.employees, JoinType.LEFT);
-		cq.distinct(true);
+		cq.distinct(true); // to avoid duplicate rows in result
 
 		// .. where id=...
 		cq.where(cb.equal(from.get(Company_.id), id));
@@ -66,6 +66,16 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 		final CriteriaQuery<ICompany> cq = cb.createQuery(ICompany.class);
 		final Root<Company> from = cq.from(Company.class);
 		cq.select(from);
+		
+		if(filter.getFetchLegalAddress()) {
+			from.fetch(Company_.legalAddress, JoinType.LEFT);
+		}
+		if(filter.getFetchPostAddress()) {
+			from.fetch(Company_.postAddress, JoinType.LEFT);
+		}
+		if(filter.getFetchCreator()) {
+			from.fetch(Company_.creator, JoinType.LEFT);
+		}
 
 		final String sortColumn = filter.getSortColumn();
 		if (sortColumn != null) {

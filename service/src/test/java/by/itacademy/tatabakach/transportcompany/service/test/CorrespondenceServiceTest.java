@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICorrespondence;
+import by.itacademy.tatabakach.transportcompany.daoapi.filter.CorrespondenceFilter;
 
 public class CorrespondenceServiceTest extends AbstractTest {
 
@@ -16,7 +17,7 @@ public class CorrespondenceServiceTest extends AbstractTest {
 	public void testCreate() {
 		final ICorrespondence entity = saveNewCorrespondence();
 
-		final ICorrespondence entityFromDb = correspondenceService.get(entity.getId());
+		final ICorrespondence entityFromDb = correspondenceService.getFullInfo(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertNotNull(entityFromDb.getId());
@@ -31,14 +32,15 @@ public class CorrespondenceServiceTest extends AbstractTest {
 
 	@Test
 	public void testGetAll() {
-		final int intialCount = correspondenceService.getAll().size();
+		CorrespondenceFilter filter = new CorrespondenceFilter();
+		final long intialCount = correspondenceService.getCount(filter);
 
 		final int randomObjectsCount = getRandomObjectsCount();
 		for (int i = 0; i < randomObjectsCount; i++) {
 			saveNewCorrespondence();
 		}
 
-		final List<ICorrespondence> allEntities = correspondenceService.getAll();
+		final List<ICorrespondence> allEntities = correspondenceService.find(filter);
 
 		for (final ICorrespondence entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());

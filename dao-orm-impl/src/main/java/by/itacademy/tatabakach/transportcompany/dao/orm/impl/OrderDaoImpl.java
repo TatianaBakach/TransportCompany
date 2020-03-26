@@ -59,7 +59,7 @@ public class OrderDaoImpl extends AbstractDaoImpl<IOrder, Integer> implements IO
 		from.fetch(Order_.creator, JoinType.LEFT);
 		
 		from.fetch(Order_.employees, JoinType.LEFT);
-		cq.distinct(true);
+		cq.distinct(true); // to avoid duplicate rows in result
 
 		// .. where id=...
 		cq.where(cb.equal(from.get(Order_.id), id));

@@ -9,7 +9,7 @@ import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IOrderReward
 
 @Entity
 public class OrderRewardPercent extends BaseEntity implements IOrderRewardPercent {
-	
+
 	@Column
 	private BigDecimal percent;
 
@@ -21,6 +21,11 @@ public class OrderRewardPercent extends BaseEntity implements IOrderRewardPercen
 	@Override
 	public void setPercent(final BigDecimal percent) {
 		this.percent = percent;
+	}
+
+	@Override
+	public String toString() {
+		return "OrderRewardPercent [percent=" + percent + ", getId()=" + getId() + "]";
 	}
 
 }

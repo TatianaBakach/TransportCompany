@@ -32,7 +32,7 @@ public class Order extends BaseEntity implements IOrder {
 
 	@Column
 	private String number;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column
 	private Date date;
@@ -79,10 +79,10 @@ public class Order extends BaseEntity implements IOrder {
 
 	@Column
 	private String additionalConditions;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Employee.class)
 	private IEmployee creator;
-	
+
 	@Column
 	private String note;
 
@@ -100,7 +100,7 @@ public class Order extends BaseEntity implements IOrder {
 	public void setNumber(final String number) {
 		this.number = number;
 	}
-	
+
 	@Override
 	public Date getDate() {
 		return date;
@@ -250,7 +250,7 @@ public class Order extends BaseEntity implements IOrder {
 	public void setAdditionalConditions(final String additionalConditions) {
 		this.additionalConditions = additionalConditions;
 	}
-	
+
 	@Override
 	public IEmployee getCreator() {
 		return creator;
@@ -260,7 +260,7 @@ public class Order extends BaseEntity implements IOrder {
 	public void setCreator(final IEmployee creator) {
 		this.creator = creator;
 	}
-	
+
 	@Override
 	public String getNote() {
 		return note;
@@ -286,7 +286,8 @@ public class Order extends BaseEntity implements IOrder {
 				+ "car=" + car + "driver=" + driver + "loadingMethod=" + loadingMethod + "cargoType=" + cargoType
 				+ "cargoWeightVolume=" + cargoWeightVolume + "customerCost=" + customerCost + "paidCustomer="
 				+ paidCustomer + "carrierCost=" + carrierCost + "paidCarrier=" + paidCarrier + "tax=" + tax
-				+ "additionalConditions=" + additionalConditions + "creator=" + creator + ", getId()=" + getId() + "]";
+				+ "additionalConditions=" + additionalConditions + "creator=" + creator + "note=" + note + ", getId()="
+				+ getId() + "]";
 	}
 
 }

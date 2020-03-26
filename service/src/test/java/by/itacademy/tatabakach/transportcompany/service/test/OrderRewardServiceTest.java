@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IOrderReward;
+import by.itacademy.tatabakach.transportcompany.daoapi.filter.OrderRewardFilter;
 
 public class OrderRewardServiceTest extends AbstractTest {
 	
@@ -16,7 +17,7 @@ public class OrderRewardServiceTest extends AbstractTest {
 	public void testCreate() {
 		final IOrderReward entity = saveNewOrderReward();
 
-		final IOrderReward entityFromDb = orderRewardService.get(entity.getId());
+		final IOrderReward entityFromDb = orderRewardService.getFullInfo(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertNotNull(entityFromDb.getId());
@@ -34,14 +35,15 @@ public class OrderRewardServiceTest extends AbstractTest {
 
 	@Test
 	public void testGetAll() {
-		final int intialCount = orderRewardService.getAll().size();
+		OrderRewardFilter filter = new OrderRewardFilter();
+		final long intialCount = orderRewardService.getCount(filter);
 
 		final int randomObjectsCount = getRandomObjectsCount();
 		for (int i = 0; i < randomObjectsCount; i++) {
 			saveNewOrderReward();
 		}
 
-		final List<IOrderReward> allEntities = orderRewardService.getAll();
+		final List<IOrderReward> allEntities = orderRewardService.find(filter);
 
 		for (final IOrderReward entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());

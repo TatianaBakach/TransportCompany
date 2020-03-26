@@ -18,24 +18,24 @@ import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IOrder;
 
 @Entity
 public class Correspondence extends BaseEntity implements ICorrespondence {
-	
+
 	@Column
 	@Enumerated(EnumType.ORDINAL)
 	private CorrespondenceType correspondenceType;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Order.class)
 	private IOrder order;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Company.class)
 	private ICompany company;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column
 	private Date date;
-	
+
 	@Column
-	private String 	content;
-	
+	private String content;
+
 	@Column
 	private String note;
 
@@ -99,4 +99,9 @@ public class Correspondence extends BaseEntity implements ICorrespondence {
 		this.note = note;
 	}
 
+	@Override
+	public String toString() {
+		return "Correspondence [correspondenceType=" + correspondenceType + ", order=" + order + "company=" + company
+				+ "date=" + date + "content=" + content + "note=" + note + ", getId()=" + getId() + "]";
+	}
 }

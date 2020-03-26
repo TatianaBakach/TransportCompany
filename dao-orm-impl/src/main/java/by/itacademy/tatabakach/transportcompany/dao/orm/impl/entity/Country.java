@@ -7,7 +7,7 @@ import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICountry;
 
 @Entity
 public class Country extends BaseEntity implements ICountry {
-	
+
 	@Column
 	private String name;
 
@@ -20,7 +20,7 @@ public class Country extends BaseEntity implements ICountry {
 	public void setName(final String name) {
 		this.name = name;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Country [name=" + name + ", getId()=" + getId() + "]";

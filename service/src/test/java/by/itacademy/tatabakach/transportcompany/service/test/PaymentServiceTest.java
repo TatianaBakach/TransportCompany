@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IPayment;
+import by.itacademy.tatabakach.transportcompany.daoapi.filter.PaymentFilter;
 
 public class PaymentServiceTest extends AbstractTest {
 	
@@ -16,7 +17,7 @@ public class PaymentServiceTest extends AbstractTest {
 	public void testCreate() {
 		final IPayment entity = saveNewPayment();
 
-		final IPayment entityFromDb = paymentService.get(entity.getId());
+		final IPayment entityFromDb = paymentService.getFullInfo(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertNotNull(entityFromDb.getId());
@@ -32,14 +33,15 @@ public class PaymentServiceTest extends AbstractTest {
 
 	@Test
 	public void testGetAll() {
-		final int intialCount = paymentService.getAll().size();
+		PaymentFilter filter = new PaymentFilter();
+		final long intialCount = paymentService.getCount(filter);
 
 		final int randomObjectsCount = getRandomObjectsCount();
 		for (int i = 0; i < randomObjectsCount; i++) {
 			saveNewPayment();
 		}
 
-		final List<IPayment> allEntities = paymentService.getAll();
+		final List<IPayment> allEntities = paymentService.find(filter);
 
 		for (final IPayment entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());

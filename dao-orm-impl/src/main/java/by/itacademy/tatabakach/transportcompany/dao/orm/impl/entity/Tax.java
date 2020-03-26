@@ -35,6 +35,11 @@ public class Tax extends BaseEntity implements ITax {
 	public void setRate(final BigDecimal rate) {
 		this.rate = rate;
 	}
+	
+	@Override
+	public String toString() {
+		return "Tax [name=" + name + ", rate=" + rate + ", getId()=" + getId() + "]";
+	}
 
 
 }
