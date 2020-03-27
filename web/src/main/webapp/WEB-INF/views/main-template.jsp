@@ -7,6 +7,8 @@
 <c:set var="pagesDriver" value="${contextPath}/driver" scope="request" />
 <c:set var="pagesCountry" value="${contextPath}/country" scope="request" />
 <c:set var="pagesRegion" value="${contextPath}/region" scope="request" />
+<c:set var="pagesLocality" value="${contextPath}/locality" scope="request" />
+<c:set var="pagesAddress" value="${contextPath}/address" scope="request" />
 <c:set var="pagesCompany" value="${contextPath}/company" scope="request" />
 <c:set var="pagesTransactionCost" value="${contextPath}/transactionCost" scope="request" />
 

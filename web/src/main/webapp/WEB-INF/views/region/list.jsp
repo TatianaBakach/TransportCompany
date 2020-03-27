@@ -29,3 +29,4 @@
 <jspFragments:paging />
 <a class="waves-effect waves-light btn right" href="${pagesRegion}/add"><i
 	class="material-icons">add</i></a>
+

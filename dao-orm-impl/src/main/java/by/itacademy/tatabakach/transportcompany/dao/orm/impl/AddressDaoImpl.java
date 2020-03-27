@@ -64,7 +64,6 @@ public class AddressDaoImpl extends AbstractDaoImpl<IAddress, Integer> implement
 	        cq.select(from);
 
 	        if (filter.getFetchLocality()) {
-				// select m, b from model m left join brand b ...
 				from.fetch(Address_.locality, JoinType.LEFT);
 			}
 	        

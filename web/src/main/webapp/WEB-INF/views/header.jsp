@@ -8,6 +8,8 @@
 				<li><a href="${pagesDriver}">drivers</a></li>
 				<li><a href="${pagesCountry}">countries</a></li>
 				<li><a href="${pagesRegion}">regions</a></li>
+				<li><a href="${pagesLocality}">localities</a></li>
+				<li><a href="${pagesAddress}">addresses</a></li>
 				<li><a href="${pagesCompany}">companies</a></li>
 				<li><a href="${pagesTransactionCost}">transaction costs</a></li>
 				

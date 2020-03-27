@@ -51,6 +51,22 @@
 		<put-attribute name="body" value="/WEB-INF/views/region/form.jsp" />
 	</definition>
 	
+	<definition name="locality.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/locality/list.jsp" />
+	</definition>
+	
+	<definition name="locality.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/locality/form.jsp" />
+	</definition>
+	
+		<definition name="address.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/address/list.jsp" />
+	</definition>
+	
+	<definition name="address.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/address/form.jsp" />
+	</definition>
+	
 	<definition name="transactionCost.list" extends="DefaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/transactionCost/list.jsp" />
 	</definition>
