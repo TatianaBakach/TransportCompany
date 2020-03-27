@@ -1,9 +1,6 @@
 package by.itacademy.tatabakach.transportcompany.web.dto;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICountry;
 
 public class RegionDTO {
 
