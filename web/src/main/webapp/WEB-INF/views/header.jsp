@@ -12,6 +12,7 @@
 				<li><a href="${pagesAddress}">addresses</a></li>
 				<li><a href="${pagesCompany}">companies</a></li>
 				<li><a href="${pagesTransactionCost}">transaction costs</a></li>
+				<li><a href="${pagesEmployee}">employees</a></li>
 				
 			</ul>
 		</div>

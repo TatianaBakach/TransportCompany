@@ -1,19 +1,38 @@
 package by.itacademy.tatabakach.transportcompany.web.dto;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.CompanyType;
-import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IAddress;
 
 public class CompanyDTO {
 	
 	private Integer id;
+	
+	@NotNull
 	private CompanyType companyType;
+	
+	@Size(min = 1, max = 250)
 	private String name;
+	
 	private String payerRegistrationNumber;
-	private IAddress legalAddress;
-	private IAddress postAddress;
+	
+	private Integer legalAddressId;
+	private String legalAddressName;
+	
+	private Integer postAddressId;
+	private String postAddressName;
+	
 	private String bankData;
+	
 	private String eMail;
+	
 	private String phone;
+	
+	@NotNull
+	private Integer creatorId;
+	@Size(min = 1, max = 250)
+	private String creatorName;
 	
 	public Integer getId() {
 		return id;
@@ -39,17 +58,29 @@ public class CompanyDTO {
 	public void setPayerRegistrationNumber(String payerRegistrationNumber) {
 		this.payerRegistrationNumber = payerRegistrationNumber;
 	}
-	public IAddress getLegalAddress() {
-		return legalAddress;
+	public Integer getLegalAddressId() {
+		return legalAddressId;
 	}
-	public void setLegalAddress(IAddress legalAddress) {
-		this.legalAddress = legalAddress;
+	public void setLegalAddressId(Integer legalAddressId) {
+		this.legalAddressId = legalAddressId;
 	}
-	public IAddress getPostAddress() {
-		return postAddress;
+	public String getLegalAddressName() {
+		return legalAddressName;
 	}
-	public void setPostAddress(IAddress postAddress) {
-		this.postAddress = postAddress;
+	public void setLegalAddressName(String legalAddressName) {
+		this.legalAddressName = legalAddressName;
+	}
+	public Integer getPostAddressId() {
+		return postAddressId;
+	}
+	public void setPostAddressId(Integer postAddressId) {
+		this.postAddressId = postAddressId;
+	}
+	public String getPostAddressName() {
+		return postAddressName;
+	}
+	public void setPostAddressName(String postAddressName) {
+		this.postAddressName = postAddressName;
 	}
 	public String getBankData() {
 		return bankData;
@@ -57,10 +88,10 @@ public class CompanyDTO {
 	public void setBankData(String bankData) {
 		this.bankData = bankData;
 	}
-	public String geteMail() {
+	public String getEMail() {
 		return eMail;
 	}
-	public void seteMail(String eMail) {
+	public void setEMail(String eMail) {
 		this.eMail = eMail;
 	}
 	public String getPhone() {
@@ -68,6 +99,18 @@ public class CompanyDTO {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	public Integer getCreatorId() {
+		return creatorId;
+	}
+	public void setCreatorId(Integer creatorId) {
+		this.creatorId = creatorId;
+	}
+	public String getCreatorName() {
+		return creatorName;
+	}
+	public void setCreatorName(String creatorName) {
+		this.creatorName = creatorName;
 	}
 	
 }

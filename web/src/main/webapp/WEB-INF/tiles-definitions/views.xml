@@ -5,7 +5,7 @@
 <tiles-definitions>
 
 	<definition name="DefaultTemplate" template="/WEB-INF/views/main-template.jsp">
-		<put-attribute name="title" value="Джылли и Ко" />
+		<put-attribute name="title" value="Транспортно-логистическая компания" />
 		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
@@ -33,6 +33,10 @@
 	
 	<definition name="company.list" extends="DefaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/company/list.jsp" />
+	</definition>
+	
+	<definition name="company.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/company/form.jsp" />
 	</definition>
 	
 	<definition name="country.list" extends="DefaultTemplate">
@@ -73,6 +77,14 @@
 	
 	<definition name="transactionCost.edit" extends="DefaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/transactionCost/form.jsp" />
+	</definition>
+	
+	<definition name="employee.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/employee/list.jsp" />
+	</definition>
+	
+	<definition name="employee.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/employee/form.jsp" />
 	</definition>
 
 </tiles-definitions>

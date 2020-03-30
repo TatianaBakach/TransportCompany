@@ -9,7 +9,7 @@
 		<tr>
 			<th><mytaglib:sort-link pageUrl="${pagesLocality}" column="id">id</mytaglib:sort-link></th>
 			<th><mytaglib:sort-link pageUrl="${pagesLocality}" column="name">name</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesLocality}" column="region">country</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesLocality}" column="region">region</mytaglib:sort-link></th>
             <th></th>
 		</tr>
 		<c:forEach var="locality" items="${gridItems}" varStatus="loopCounter">

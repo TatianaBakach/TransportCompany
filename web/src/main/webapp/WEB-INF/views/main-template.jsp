@@ -11,6 +11,7 @@
 <c:set var="pagesAddress" value="${contextPath}/address" scope="request" />
 <c:set var="pagesCompany" value="${contextPath}/company" scope="request" />
 <c:set var="pagesTransactionCost" value="${contextPath}/transactionCost" scope="request" />
+<c:set var="pagesEmployee" value="${contextPath}/employee" scope="request" />
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">

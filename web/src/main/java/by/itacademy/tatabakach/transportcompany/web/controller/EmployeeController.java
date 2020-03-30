@@ -1,5 +1,4 @@
 package by.itacademy.tatabakach.transportcompany.web.controller;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,26 +17,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
-import by.itacademy.tatabakach.transportcompany.daoapi.filter.CompanyFilter;
-import by.itacademy.tatabakach.transportcompany.service.ICompanyService;
-import by.itacademy.tatabakach.transportcompany.web.converter.CompanyFromDTOConverter;
-import by.itacademy.tatabakach.transportcompany.web.converter.CompanyToDTOConverter;
-import by.itacademy.tatabakach.transportcompany.web.dto.CompanyDTO;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
+import by.itacademy.tatabakach.transportcompany.daoapi.filter.EmployeeFilter;
+import by.itacademy.tatabakach.transportcompany.service.IEmployeeService;
+import by.itacademy.tatabakach.transportcompany.web.converter.EmployeeFromDTOConverter;
+import by.itacademy.tatabakach.transportcompany.web.converter.EmployeeToDTOConverter;
+import by.itacademy.tatabakach.transportcompany.web.dto.EmployeeDTO;
 import by.itacademy.tatabakach.transportcompany.web.dto.grid.GridStateDTO;
 
 @Controller
-@RequestMapping(value = "/company")
-public class CompanyController extends AbstractController {
+@RequestMapping(value = "/employee")
+public class EmployeeController extends AbstractController {
 	
 	@Autowired
-	private ICompanyService companyService;
+	private IEmployeeService employeeService;
 
 	@Autowired
-	private CompanyToDTOConverter toDtoConverter;
+	private EmployeeToDTOConverter toDtoConverter;
 	
 	@Autowired
-	private CompanyFromDTOConverter fromDtoConverter;
+	private EmployeeFromDTOConverter fromDtoConverter;
 	
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -50,66 +49,63 @@ public class CompanyController extends AbstractController {
 		gridState.setPage(pageNumber);
 		gridState.setSort(sortColumn, "id");
 
-		final CompanyFilter filter = new CompanyFilter();
-		filter.setFetchLegalAddress(true);
-		filter.setFetchPostAddress(true);
-		filter.setFetchCreator(true);
+		final EmployeeFilter filter = new EmployeeFilter();
 		prepareFilter(gridState, filter);
 
-		final List<ICompany> entities = companyService.find(filter);
-		List<CompanyDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
-		gridState.setTotalCount(companyService.getCount(filter));
+		final List<IEmployee> entities = employeeService.find(filter);
+		List<EmployeeDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
+		gridState.setTotalCount(employeeService.getCount(filter));
 
 		final Map<String, Object> models = new HashMap<>();
 		models.put("gridItems", dtos);
-		return new ModelAndView("company.list", models);
+		return new ModelAndView("employee.list", models);
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView showForm() {
 		final Map<String, Object> hashMap = new HashMap<>();
-		final ICompany newEntity = companyService.createEntity();
+		final IEmployee newEntity = employeeService.createEntity();
 		hashMap.put("formModel", toDtoConverter.apply(newEntity));
 
-		return new ModelAndView("company.edit", hashMap);
+		return new ModelAndView("employee.edit", hashMap);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String save(@Valid @ModelAttribute("formModel") final CompanyDTO formModel, final BindingResult result) {
+	public String save(@Valid @ModelAttribute("formModel") final EmployeeDTO formModel, final BindingResult result) {
 		if (result.hasErrors()) {
-			return "company.edit";
+			return "employee.edit";
 		} else {
-			final ICompany entity = fromDtoConverter.apply(formModel);
-			companyService.save(entity);
-			return "redirect:/company";
+			final IEmployee entity = fromDtoConverter.apply(formModel);
+			employeeService.save(entity);
+			return "redirect:/employee";
 		}
 	}
 	
 	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
 	public String delete(@PathVariable(name = "id", required = true) final Integer id) {
-		companyService.delete(id);
-		return "redirect:/company";
+		employeeService.delete(id);
+		return "redirect:/employee";
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView viewDetails(@PathVariable(name = "id", required = true) final Integer id) {
-		final ICompany dbModel = companyService.getFullInfo(id);
-		final CompanyDTO dto = toDtoConverter.apply(dbModel);
+		final IEmployee dbModel = employeeService.get(id);
+		final EmployeeDTO dto = toDtoConverter.apply(dbModel);
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
 		hashMap.put("readonly", true);
 
-		return new ModelAndView("company.edit", hashMap);
+		return new ModelAndView("employee.edit", hashMap);
 	}
 	
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@PathVariable(name = "id", required = true) final Integer id) {
-		final CompanyDTO dto = toDtoConverter.apply(companyService.getFullInfo(id));
+		final EmployeeDTO dto = toDtoConverter.apply(employeeService.get(id));
 
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
 
-		return new ModelAndView("company.edit", hashMap);
+		return new ModelAndView("employee.edit", hashMap);
 	}
 
 }
