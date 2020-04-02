@@ -1,4 +1,5 @@
 package by.itacademy.tatabakach.transportcompany.web.controller;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,26 +31,24 @@ import by.itacademy.tatabakach.transportcompany.web.dto.grid.GridStateDTO;
 @Controller
 @RequestMapping(value = "/region")
 public class RegionController extends AbstractController {
-	
+
 	@Autowired
 	private ICountryService countryService;
-	
+
 	@Autowired
 	private IRegionService regionService;
 
 	@Autowired
 	private RegionToDTOConverter toDtoConverter;
-	
+
 	@Autowired
 	private RegionFromDTOConverter fromDtoConverter;
-	
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView index(final HttpServletRequest req, 
+	public ModelAndView index(final HttpServletRequest req,
 			@RequestParam(name = "page", required = false) final Integer pageNumber,
 			@RequestParam(name = "sort", required = false) final String sortColumn) {
 
-		
 		final GridStateDTO gridState = getListDTO(req);
 		gridState.setPage(pageNumber);
 		gridState.setSort(sortColumn, "id");
@@ -66,7 +65,7 @@ public class RegionController extends AbstractController {
 		models.put("gridItems", dtos);
 		return new ModelAndView("region.list", models);
 	}
-	
+
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView showForm() {
 		final Map<String, Object> hashMap = new HashMap<>();
@@ -76,10 +75,10 @@ public class RegionController extends AbstractController {
 
 		return new ModelAndView("region.edit", hashMap);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST)
 	public Object save(@Valid @ModelAttribute("formModel") final RegionDTO formModel, final BindingResult result) {
-		
+
 		if (result.hasErrors()) {
 			final Map<String, Object> hashMap = new HashMap<>();
 			loadCommonFormModels(hashMap);
@@ -91,13 +90,13 @@ public class RegionController extends AbstractController {
 			return "redirect:/region";
 		}
 	}
-	
+
 	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
 	public String delete(@PathVariable(name = "id", required = true) final Integer id) {
 		regionService.delete(id);
 		return "redirect:/region";
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView viewDetails(@PathVariable(name = "id", required = true) final Integer id) {
 		final IRegion dbModel = regionService.getFullInfo(id);
@@ -105,32 +104,35 @@ public class RegionController extends AbstractController {
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
 		hashMap.put("readonly", true);
-		
+
 		loadCommonFormModels(hashMap);
 
 		return new ModelAndView("region.edit", hashMap);
 	}
-	
+
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@PathVariable(name = "id", required = true) final Integer id) {
 		final RegionDTO dto = toDtoConverter.apply(regionService.getFullInfo(id));
 
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
-		
+
 		loadCommonFormModels(hashMap);
 
 		return new ModelAndView("region.edit", hashMap);
 	}
-	
+
 	private void loadCommonFormModels(final Map<String, Object> hashMap) {
-        final List<ICountry> countries = countryService.getAll();
+		final List<ICountry> countries = countryService.getAll();
+		Map<Integer, String> countriesMap = new HashMap<Integer, String>();
+		for (ICountry iCountry : countries) {
+			countriesMap.put(iCountry.getId(), iCountry.getName());
+		}
 
+		// final Map<Integer, String> brandsMap = countries.stream()
+		// .collect(Collectors.toMap(ICountry::getId, ICountry::getName));
+		hashMap.put("countriesChoices", countriesMap);
 
-        final Map<Integer, String> brandsMap = countries.stream()
-                .collect(Collectors.toMap(ICountry::getId, ICountry::getName));
-        hashMap.put("countriesChoices", brandsMap);
-
-    }
+	}
 
 }
