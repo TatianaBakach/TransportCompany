@@ -1,5 +1,6 @@
 package by.itacademy.tatabakach.transportcompany.web.dto;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class RegionDTO {
@@ -9,6 +10,7 @@ public class RegionDTO {
 	@Size(min = 1, max = 250)
 	private String name;
 	
+	@NotNull
 	private Integer countryId;
 	private String countryName;
 

@@ -1,0 +1,14 @@
+<header>
+	<nav>
+		<div class="nav-wrapper container">
+			<ul class="left hide-on-med-and-down">
+				<li><a href="${contextPath}">files/images</a></li>
+				<li><a href="${pagesBrand}">brands</a></li>
+				<li><a href="${pagesModel}">models</a></li>
+				<li><a href="${pagesEngine}">engines</a></li>
+				<li><a href="${pagesCar}">cars</a></li>
+				<li><a href="${contextPath}/ajax-samples">AJAX</a></li>
+			</ul>
+		</div>
+	</nav>
+</header>

@@ -18,9 +18,11 @@
         
          <div class="row">
             <div class="input-field col s12">
-                <form:input path="countryId" type="text" disabled="${readonly}" />
+                <form:select path="countryId" disabled="${readonly}">
+                    <form:options items="${countriesChoices}" />
+                </form:select>
                 <form:errors path="countryId" cssClass="red-text" />
-                <label for="countryId">Region country</label>
+                <label for="countryId">region country</label>
             </div>
         </div>
         
