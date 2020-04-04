@@ -1,5 +1,6 @@
 package by.itacademy.tatabakach.transportcompany.web.dto;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class AddressDTO {
@@ -9,6 +10,7 @@ public class AddressDTO {
 	@Size(min = 0, max = 10)
 	private String postcode;
 	
+	@NotNull
 	private Integer localityId;
 	private String localityName;
 	

@@ -128,7 +128,6 @@ public class RegionController extends AbstractController {
 		for (ICountry iCountry : countries) {
 			countriesMap.put(iCountry.getId(), iCountry.getName());
 		}
-
 		// final Map<Integer, String> brandsMap = countries.stream()
 		// .collect(Collectors.toMap(ICountry::getId, ICountry::getName));
 		hashMap.put("countriesChoices", countriesMap);

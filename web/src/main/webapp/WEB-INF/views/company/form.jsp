@@ -1,26 +1,82 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<h4 class="header">Edit locality</h4>
+<h4 class="header">Edit company</h4>
 <div class="row">
 
-    <form:form class="col s12" method="POST" action="${pagesLocality}"
+    <form:form class="col s12" method="POST" action="${pagesCompany}"
         modelAttribute="formModel">
         <form:input path="id" type="hidden" />
         
         <div class="row">
             <div class="input-field col s12">
+                <form:input path="companyType" type="text" disabled="${readonly}" />
+                <form:errors path="companyType" cssClass="red-text" />
+                <label for="companyType">Company company type</label>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="input-field col s12">
                 <form:input path="name" type="text" disabled="${readonly}" />
                 <form:errors path="name" cssClass="red-text" />
-                <label for="name">Locality name</label>
+                <label for="name">Company name</label>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="input-field col s12">
+                <form:input path="payerRegistrationNumber" type="text" disabled="${readonly}" />
+                <form:errors path="payerRegistrationNumber" cssClass="red-text" />
+                <label for="payerRegistrationNumber">Company payer registration number</label>
             </div>
         </div>
         
          <div class="row">
             <div class="input-field col s12">
-                <form:input path="regionId" type="text" disabled="${readonly}" />
-                <form:errors path="regionId" cssClass="red-text" />
-                <label for="regionId">Locality region</label>
+                <form:input path="legalAddressId" type="text" disabled="${readonly}" />
+                <form:errors path="legalAddressId" cssClass="red-text" />
+                <label for="legalAddressId">Company legal address</label>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="input-field col s12">
+                <form:input path="postAddressId" type="text" disabled="${readonly}" />
+                <form:errors path="postAddressId" cssClass="red-text" />
+                <label for="postAddressId">Company post address</label>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="input-field col s12">
+                <form:input path="bankData" type="text" disabled="${readonly}" />
+                <form:errors path="bankData" cssClass="red-text" />
+                <label for="bankData">Company bank data</label>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="input-field col s12">
+                <form:input path="eMail" type="text" disabled="${readonly}" />
+                <form:errors path="eMail" cssClass="red-text" />
+                <label for="eMail">Company e-mail</label>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="input-field col s12">
+                <form:input path="phone" type="text" disabled="${readonly}" />
+                <form:errors path="phone" cssClass="red-text" />
+                <label for="phone">Company phone</label>
+            </div>
+        </div>
+        
+         <div class="row">
+            <div class="input-field col s12">
+                <form:input path="creatorId" type="text" disabled="${readonly}" />
+                <form:errors path="creatorId" cssClass="red-text" />
+                <label for="creatorId">Company creator</label>
             </div>
         </div>
         
@@ -32,7 +88,7 @@
                 </c:if>
             </div>
             <div class="col s3">
-                <a class="btn waves-effect waves-light right" href="${pagesLocality}">Cancel</a>
+                <a class="btn waves-effect waves-light right" href="${pagesCompany}">Cancel</a>
             </div>
         </div>
     </form:form>

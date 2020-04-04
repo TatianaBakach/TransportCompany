@@ -1,4 +1,5 @@
 package by.itacademy.tatabakach.transportcompany.web.controller;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IAddress;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ILocality;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.AddressFilter;
 import by.itacademy.tatabakach.transportcompany.service.IAddressService;
+import by.itacademy.tatabakach.transportcompany.service.ILocalityService;
 import by.itacademy.tatabakach.transportcompany.web.converter.AddressFromDTOConverter;
 import by.itacademy.tatabakach.transportcompany.web.converter.AddressToDTOConverter;
 import by.itacademy.tatabakach.transportcompany.web.dto.AddressDTO;
@@ -30,6 +33,9 @@ import by.itacademy.tatabakach.transportcompany.web.dto.grid.GridStateDTO;
 public class AddressController extends AbstractController {
 	
 	@Autowired
+	private ILocalityService localityService;
+	
+	@Autowired
 	private IAddressService addressService;
 
 	@Autowired
@@ -38,13 +44,11 @@ public class AddressController extends AbstractController {
 	@Autowired
 	private AddressFromDTOConverter fromDtoConverter;
 	
-
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index(final HttpServletRequest req, 
 			@RequestParam(name = "page", required = false) final Integer pageNumber,
 			@RequestParam(name = "sort", required = false) final String sortColumn) {
 
-		
 		final GridStateDTO gridState = getListDTO(req);
 		gridState.setPage(pageNumber);
 		gridState.setSort(sortColumn, "id");
@@ -67,14 +71,19 @@ public class AddressController extends AbstractController {
 		final Map<String, Object> hashMap = new HashMap<>();
 		final IAddress newEntity = addressService.createEntity();
 		hashMap.put("formModel", toDtoConverter.apply(newEntity));
+		loadCommonFormModels(hashMap);
 
 		return new ModelAndView("address.edit", hashMap);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String save(@Valid @ModelAttribute("formModel") final AddressDTO formModel, final BindingResult result) {
+	public Object save(@Valid @ModelAttribute("formModel") final AddressDTO formModel, final BindingResult result) {
+		
 		if (result.hasErrors()) {
-			return "address.edit";
+			final Map<String, Object> hashMap = new HashMap<>();
+			loadCommonFormModels(hashMap);
+
+			return new ModelAndView("address.edit", hashMap);
 		} else {
 			final IAddress entity = fromDtoConverter.apply(formModel);
 			addressService.save(entity);
@@ -95,6 +104,8 @@ public class AddressController extends AbstractController {
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
 		hashMap.put("readonly", true);
+		
+		loadCommonFormModels(hashMap);
 
 		return new ModelAndView("address.edit", hashMap);
 	}
@@ -105,8 +116,22 @@ public class AddressController extends AbstractController {
 
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
+		
+		loadCommonFormModels(hashMap);
 
 		return new ModelAndView("address.edit", hashMap);
+	}
+	
+	private void loadCommonFormModels(final Map<String, Object> hashMap) {
+		final List<ILocality> localities = localityService.getAll();
+		Map<Integer, String> localitiesMap = new HashMap<Integer, String>();
+		for (ILocality iLocality : localities) {
+			localitiesMap.put(iLocality.getId(), iLocality.getName());
+		}
+		// final Map<Integer, String> brandsMap = countries.stream()
+		// .collect(Collectors.toMap(ICountry::getId, ICountry::getName));
+		hashMap.put("localitiesChoices", localitiesMap);
+
 	}
 
 }

@@ -16,9 +16,11 @@
             </div>
         </div>
         
-         <div class="row">
+          <div class="row">
             <div class="input-field col s12">
-                <form:input path="localityId" type="text" disabled="${readonly}" />
+                <form:select path="localityId" disabled="${readonly}">
+                    <form:options items="${localitiesChoices}" />
+                </form:select>
                 <form:errors path="localityId" cssClass="red-text" />
                 <label for="localityId">Address locality</label>
             </div>

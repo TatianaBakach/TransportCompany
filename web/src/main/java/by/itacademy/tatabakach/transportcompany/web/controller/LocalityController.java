@@ -1,4 +1,5 @@
 package by.itacademy.tatabakach.transportcompany.web.controller;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ILocality;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IRegion;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.LocalityFilter;
 import by.itacademy.tatabakach.transportcompany.service.ILocalityService;
+import by.itacademy.tatabakach.transportcompany.service.IRegionService;
 import by.itacademy.tatabakach.transportcompany.web.converter.LocalityFromDTOConverter;
 import by.itacademy.tatabakach.transportcompany.web.converter.LocalityToDTOConverter;
 import by.itacademy.tatabakach.transportcompany.web.dto.LocalityDTO;
@@ -30,6 +33,9 @@ import by.itacademy.tatabakach.transportcompany.web.dto.grid.GridStateDTO;
 public class LocalityController extends AbstractController {
 	
 	@Autowired
+	private IRegionService regionService;
+	
+	@Autowired
 	private ILocalityService localityService;
 
 	@Autowired
@@ -38,13 +44,11 @@ public class LocalityController extends AbstractController {
 	@Autowired
 	private LocalityFromDTOConverter fromDtoConverter;
 	
-
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index(final HttpServletRequest req, 
 			@RequestParam(name = "page", required = false) final Integer pageNumber,
 			@RequestParam(name = "sort", required = false) final String sortColumn) {
 
-		
 		final GridStateDTO gridState = getListDTO(req);
 		gridState.setPage(pageNumber);
 		gridState.setSort(sortColumn, "id");
@@ -67,14 +71,19 @@ public class LocalityController extends AbstractController {
 		final Map<String, Object> hashMap = new HashMap<>();
 		final ILocality newEntity = localityService.createEntity();
 		hashMap.put("formModel", toDtoConverter.apply(newEntity));
+		loadCommonFormModels(hashMap);
 
 		return new ModelAndView("locality.edit", hashMap);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String save(@Valid @ModelAttribute("formModel") final LocalityDTO formModel, final BindingResult result) {
+	public Object save(@Valid @ModelAttribute("formModel") final LocalityDTO formModel, final BindingResult result) {
+		
 		if (result.hasErrors()) {
-			return "locality.edit";
+			final Map<String, Object> hashMap = new HashMap<>();
+			loadCommonFormModels(hashMap);
+
+			return new ModelAndView("locality.edit", hashMap);
 		} else {
 			final ILocality entity = fromDtoConverter.apply(formModel);
 			localityService.save(entity);
@@ -95,6 +104,8 @@ public class LocalityController extends AbstractController {
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
 		hashMap.put("readonly", true);
+		
+		loadCommonFormModels(hashMap);
 
 		return new ModelAndView("locality.edit", hashMap);
 	}
@@ -105,8 +116,22 @@ public class LocalityController extends AbstractController {
 
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
+		
+		loadCommonFormModels(hashMap);
 
 		return new ModelAndView("locality.edit", hashMap);
+	}
+	
+	private void loadCommonFormModels(final Map<String, Object> hashMap) {
+		final List<IRegion> regions = regionService.getAll();
+		Map<Integer, String> regionsMap = new HashMap<Integer, String>();
+		for (IRegion iRegion : regions) {
+			regionsMap.put(iRegion.getId(), iRegion.getName());
+		}
+		// final Map<Integer, String> brandsMap = countries.stream()
+		// .collect(Collectors.toMap(ICountry::getId, ICountry::getName));
+		hashMap.put("regionsChoices", regionsMap);
+
 	}
 
 }
