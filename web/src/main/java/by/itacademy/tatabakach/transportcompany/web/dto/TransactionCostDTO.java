@@ -3,8 +3,10 @@ package by.itacademy.tatabakach.transportcompany.web.dto;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Currency;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.PaymentTermsType;
@@ -14,6 +16,7 @@ public class TransactionCostDTO {
 	private Integer id;
 	
 	@NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date date;
 	
 	@NotNull
@@ -29,6 +32,7 @@ public class TransactionCostDTO {
 	private BigDecimal intermediateCurrencyRate;
 	
 	@NotNull
+	@Min(1)
 	private Integer paymentPeriod;
 	
 	@NotNull

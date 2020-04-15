@@ -9,8 +9,9 @@
 		<form:input path="id" type="hidden" />
 
 		<div class="row">
-			<div class="input-field col s12">
-				<form:input path="date" type="text" disabled="${readonly}" />
+			<div class="input-field col s4">
+				<form:input path="date" type="text" disabled="${readonly}"
+					cssClass="datepicker" />
 				<form:errors path="date" cssClass="red-text" />
 				<label for="date">Transaction cost date</label>
 			</div>
@@ -18,10 +19,13 @@
 
 		<div class="row">
 			<div class="input-field col s12">
-				<form:input path="currency" type="text" disabled="${readonly}" />
+				<form:select path="currency" disabled="${readonly}">
+					<form:options items="${currencyChoices}" />
+				</form:select>
 				<form:errors path="currency" cssClass="red-text" />
-				<label for="currency">Transaction cost currency</label>
+				<label for="currency">currency</label>
 			</div>
+
 		</div>
 
 		<div class="row">
@@ -31,7 +35,7 @@
 				<label for="amount">Transaction cost amount</label>
 			</div>
 		</div>
-		
+
 		<div class="row">
 			<div class="input-field col s12">
 				<form:input path="rate" type="text" disabled="${readonly}" />
@@ -39,42 +43,49 @@
 				<label for="rate">Transaction cost rate</label>
 			</div>
 		</div>
-		
+
 		<div class="row">
 			<div class="input-field col s12">
-				<form:input path="intermediateCurrency" type="text" disabled="${readonly}" />
+				<form:input path="intermediateCurrency" type="text"
+					disabled="${readonly}" />
 				<form:errors path="intermediateCurrency" cssClass="red-text" />
-				<label for="intermediateCurrency">Transaction cost intermediate currency</label>
+				<label for="intermediateCurrency">Transaction cost
+					intermediate currency</label>
 			</div>
 		</div>
-		
+
 		<div class="row">
 			<div class="input-field col s12">
-				<form:input path="intermediateCurrencyRate" type="text" disabled="${readonly}" />
+				<form:input path="intermediateCurrencyRate" type="text"
+					disabled="${readonly}" />
 				<form:errors path="intermediateCurrencyRate" cssClass="red-text" />
-				<label for="intermediateCurrencyRate">Transaction cost intermediate currency rate</label>
+				<label for="intermediateCurrencyRate">Transaction cost
+					intermediate currency rate</label>
 			</div>
 		</div>
-		
+
 		<div class="row">
 			<div class="input-field col s12">
-				<form:input path="paymentPeriod" type="text" disabled="${readonly}" />
+				<form:input path="paymentPeriod" type="number"
+					disabled="${readonly}" />
 				<form:errors path="paymentPeriod" cssClass="red-text" />
 				<label for="paymentPeriod">Transaction cost payment period</label>
 			</div>
 		</div>
-		
+
 		<div class="row">
 			<div class="input-field col s12">
-				<form:input path="paymentTermsType" type="text" disabled="${readonly}" />
+				<form:input path="paymentTermsType" type="text"
+					disabled="${readonly}" />
 				<form:errors path="paymentTermsType" cssClass="red-text" />
-				<label for="paymentTermsType">Transaction cost payment terms type</label>
+				<label for="paymentTermsType">Transaction cost payment terms
+					type</label>
 			</div>
 		</div>
-		
+
 		<div class="row">
 			<div class="input-field col s12">
-				<form:input path="note" type="text" disabled="${readonly}" />
+				<form:textarea path="note" disabled="${readonly}" cssClass="materialize-textarea" />
 				<form:errors path="note" cssClass="red-text" />
 				<label for="note">Transaction cost note</label>
 			</div>
@@ -88,7 +99,8 @@
 				</c:if>
 			</div>
 			<div class="col s3">
-				<a class="btn waves-effect waves-light right" href="${pagesTransactionCost}">Cancel</a>
+				<a class="btn waves-effect waves-light right"
+					href="${pagesTransactionCost}">Cancel</a>
 			</div>
 		</div>
 	</form:form>

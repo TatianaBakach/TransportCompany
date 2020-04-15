@@ -1,5 +1,6 @@
 package by.itacademy.tatabakach.transportcompany.web.controller;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,8 +19,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.CompanyType;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IAddress;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.CompanyFilter;
+import by.itacademy.tatabakach.transportcompany.service.IAddressService;
 import by.itacademy.tatabakach.transportcompany.service.ICompanyService;
 import by.itacademy.tatabakach.transportcompany.web.converter.CompanyFromDTOConverter;
 import by.itacademy.tatabakach.transportcompany.web.converter.CompanyToDTOConverter;
@@ -29,6 +33,9 @@ import by.itacademy.tatabakach.transportcompany.web.dto.grid.GridStateDTO;
 @Controller
 @RequestMapping(value = "/company")
 public class CompanyController extends AbstractController {
+	
+	@Autowired
+	private IAddressService addressService;
 	
 	@Autowired
 	private ICompanyService companyService;
@@ -70,14 +77,21 @@ public class CompanyController extends AbstractController {
 		final Map<String, Object> hashMap = new HashMap<>();
 		final ICompany newEntity = companyService.createEntity();
 		hashMap.put("formModel", toDtoConverter.apply(newEntity));
+		
+		loadCommonFormModels(hashMap);
+		loadComboboxesModels(hashMap);
 
 		return new ModelAndView("company.edit", hashMap);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String save(@Valid @ModelAttribute("formModel") final CompanyDTO formModel, final BindingResult result) {
+	public Object save(@Valid @ModelAttribute("formModel") final CompanyDTO formModel, final BindingResult result) {
 		if (result.hasErrors()) {
-			return "company.edit";
+			final Map<String, Object> hashMap = new HashMap<>();
+			loadCommonFormModels(hashMap);
+			loadComboboxesModels(hashMap);
+
+			return new ModelAndView("company.edit", hashMap);
 		} else {
 			final ICompany entity = fromDtoConverter.apply(formModel);
 			companyService.save(entity);
@@ -98,6 +112,9 @@ public class CompanyController extends AbstractController {
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
 		hashMap.put("readonly", true);
+		
+		loadCommonFormModels(hashMap);
+		loadComboboxesModels(hashMap);
 
 		return new ModelAndView("company.edit", hashMap);
 	}
@@ -108,8 +125,33 @@ public class CompanyController extends AbstractController {
 
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
+		
+		loadCommonFormModels(hashMap);
+		loadComboboxesModels(hashMap);
 
 		return new ModelAndView("company.edit", hashMap);
 	}
+	
+	private void loadCommonFormModels(final Map<String, Object> hashMap) {
+		final List<IAddress> adresses = addressService.getAll();
+		Map<Integer, String> addressesMap = new HashMap<Integer, String>();
+		for (IAddress iAddress : adresses) {
+			addressesMap.put(iAddress.getId(), iAddress.getPostcode()+iAddress.getExactAddress());
+		}
+		// final Map<Integer, String> brandsMap = countries.stream()
+		// .collect(Collectors.toMap(ICountry::getId, ICountry::getName));
+		hashMap.put("addressesChoices", addressesMap);
+
+	}
+	
+	private void loadComboboxesModels(final Map<String, Object> hashMap) {
+
+        final List<CompanyType> companyTypesList = Arrays.asList(CompanyType.values());
+        final Map<String, String> companyTypesMap = companyTypesList.stream()
+                .collect(Collectors.toMap(CompanyType::name, CompanyType::name));
+
+        hashMap.put("CompanyTypeChoices", companyTypesMap);
+
+    }
 
 }

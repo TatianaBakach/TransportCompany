@@ -9,7 +9,7 @@
         <form:input path="id" type="hidden" />
         
         <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s6">
                 <form:input path="number" type="text" disabled="${readonly}" />
                 <form:errors path="number" cssClass="red-text" />
                 <label for="number">Car number</label>
@@ -17,7 +17,7 @@
         </div>
         
          <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s6">
                 <form:input path="model" type="text" disabled="${readonly}" />
                 <form:errors path="model" cssClass="red-text" />
                 <label for="model">Car model</label>
@@ -25,7 +25,7 @@
         </div>
         
         <div class="row">
-            <div class="col s6"></div>
+            <div class="col s12"></div>
             <div class="col s3">
                 <c:if test="${!readonly}">
                     <button class="btn waves-effect waves-light right" type="submit">Save</button>

@@ -8,23 +8,19 @@
         <form:input path="id" type="hidden" />
         
         <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s4">
                 <form:input path="firstName" type="text" disabled="${readonly}" />
                 <form:errors path="firstName" cssClass="red-text" />
                 <label for="firstName">Driver first_name</label>
             </div>
-        </div>
         
-         <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s4">
                 <form:input path="middleName" type="text" disabled="${readonly}" />
                 <form:errors path="middleName" cssClass="red-text" />
                 <label for="middleName">Driver middle_name</label>
             </div>
-        </div>
-        
-        <div class="row">
-            <div class="input-field col s12">
+
+            <div class="input-field col s4">
                 <form:input path="lastName" type="text" disabled="${readonly}" />
                 <form:errors path="lastName" cssClass="red-text" />
                 <label for="lastName">Driver last_name</label>
@@ -32,15 +28,13 @@
         </div>
         
         <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s6">
                 <form:input path="passportData" type="text" disabled="${readonly}" />
                 <form:errors path="passportData" cssClass="red-text" />
                 <label for="passportData">Driver passport_data</label>
             </div>
-        </div>
-        
-         <div class="row">
-            <div class="input-field col s12">
+
+            <div class="input-field col s6">
                 <form:input path="phone" type="text" disabled="${readonly}" />
                 <form:errors path="phone" cssClass="red-text" />
                 <label for="phone">Driver phone</label>

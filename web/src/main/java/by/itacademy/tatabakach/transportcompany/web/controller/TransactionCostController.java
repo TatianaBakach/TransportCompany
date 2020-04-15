@@ -1,4 +1,5 @@
 package by.itacademy.tatabakach.transportcompany.web.controller;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Currency;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITransactionCost;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.TransactionCostFilter;
 import by.itacademy.tatabakach.transportcompany.service.ITransactionCostService;
@@ -66,14 +68,19 @@ public class TransactionCostController extends AbstractController {
 		final Map<String, Object> hashMap = new HashMap<>();
 		final ITransactionCost newEntity = transactionCostService.createEntity();
 		hashMap.put("formModel", toDtoConverter.apply(newEntity));
+		
+		loadComboboxesModels(hashMap);
 
 		return new ModelAndView("transactionCost.edit", hashMap);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String save(@Valid @ModelAttribute("formModel") final TransactionCostDTO formModel, final BindingResult result) {
+	public Object save(@Valid @ModelAttribute("formModel") final TransactionCostDTO formModel, final BindingResult result) {
 		if (result.hasErrors()) {
-			return "transactionCost.edit";
+			final Map<String, Object> hashMap = new HashMap<>();
+			loadComboboxesModels(hashMap);
+
+			return new ModelAndView("transactionCost.edit", hashMap);
 		} else {
 			final ITransactionCost entity = fromDtoConverter.apply(formModel);
 			transactionCostService.save(entity);
@@ -94,6 +101,8 @@ public class TransactionCostController extends AbstractController {
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
 		hashMap.put("readonly", true);
+		
+		loadComboboxesModels(hashMap);
 
 		return new ModelAndView("transactionCost.edit", hashMap);
 	}
@@ -104,8 +113,21 @@ public class TransactionCostController extends AbstractController {
 
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
+		
+		loadComboboxesModels(hashMap);
 
 		return new ModelAndView("transactionCost.edit", hashMap);
 	}
+	
+
+    private void loadComboboxesModels(final Map<String, Object> hashMap) {
+
+        final List<Currency> currencyTypesList = Arrays.asList(Currency.values());
+        final Map<String, String> currencyTypesMap = currencyTypesList.stream()
+                .collect(Collectors.toMap(Currency::name, Currency::name));
+
+        hashMap.put("currencyChoices", currencyTypesMap);
+
+    }
 
 }

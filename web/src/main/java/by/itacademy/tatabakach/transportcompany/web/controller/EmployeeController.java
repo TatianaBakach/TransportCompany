@@ -1,4 +1,5 @@
 package by.itacademy.tatabakach.transportcompany.web.controller;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Department;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Position;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.EmployeeFilter;
 import by.itacademy.tatabakach.transportcompany.service.IEmployeeService;
@@ -66,14 +69,19 @@ public class EmployeeController extends AbstractController {
 		final Map<String, Object> hashMap = new HashMap<>();
 		final IEmployee newEntity = employeeService.createEntity();
 		hashMap.put("formModel", toDtoConverter.apply(newEntity));
+		
+		 loadCommonFormModels(hashMap);
 
 		return new ModelAndView("employee.edit", hashMap);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String save(@Valid @ModelAttribute("formModel") final EmployeeDTO formModel, final BindingResult result) {
+	public Object save(@Valid @ModelAttribute("formModel") final EmployeeDTO formModel, final BindingResult result) {
 		if (result.hasErrors()) {
-			return "employee.edit";
+			final Map<String, Object> hashMap = new HashMap<>();
+            hashMap.put("formModel", formModel);
+            loadCommonFormModels(hashMap);
+            return new ModelAndView("employee.edit", hashMap);
 		} else {
 			final IEmployee entity = fromDtoConverter.apply(formModel);
 			employeeService.save(entity);
@@ -94,6 +102,8 @@ public class EmployeeController extends AbstractController {
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
 		hashMap.put("readonly", true);
+		
+		loadCommonFormModels(hashMap);
 
 		return new ModelAndView("employee.edit", hashMap);
 	}
@@ -104,8 +114,26 @@ public class EmployeeController extends AbstractController {
 
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
+		
+		loadCommonFormModels(hashMap);
 
 		return new ModelAndView("employee.edit", hashMap);
 	}
+	
+	private void loadCommonFormModels(final Map<String, Object> hashMap) {
+		
+        final List<Department> departmentTypesList = Arrays.asList(Department.values());
+        final Map<String, String> departmentTypesMap = departmentTypesList.stream()
+                .collect(Collectors.toMap(Department::name, Department::name));
+
+        hashMap.put("departmentChoices", departmentTypesMap);
+        
+        final List<Position> positionTypesList = Arrays.asList(Position.values());
+        final Map<String, String> positionTypesMap = positionTypesList.stream()
+                .collect(Collectors.toMap(Position::name, Position::name));
+
+        hashMap.put("positionChoices", positionTypesMap);
+
+    }
 
 }

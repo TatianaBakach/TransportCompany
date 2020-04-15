@@ -10,9 +10,11 @@
         
         <div class="row">
             <div class="input-field col s12">
-                <form:input path="companyType" type="text" disabled="${readonly}" />
-                <form:errors path="companyType" cssClass="red-text" />
-                <label for="companyType">Company company type</label>
+                <form:select path="companyType" disabled="${readonly}">
+					<form:options items="${companyTypeChoices}" />
+				</form:select>
+				<form:errors path="companyType" cssClass="red-text" />
+				<label for="companyType">Company company type</label>
             </div>
         </div>
         
@@ -34,7 +36,9 @@
         
          <div class="row">
             <div class="input-field col s12">
-                <form:input path="legalAddressId" type="text" disabled="${readonly}" />
+                <form:select path="legalAddressId" disabled="${readonly}">
+                    <form:options items="${addressesChoices}" />
+                </form:select>
                 <form:errors path="legalAddressId" cssClass="red-text" />
                 <label for="legalAddressId">Company legal address</label>
             </div>
@@ -42,7 +46,9 @@
         
         <div class="row">
             <div class="input-field col s12">
-                <form:input path="postAddressId" type="text" disabled="${readonly}" />
+                <form:select path="postAddressId" disabled="${readonly}">
+                    <form:options items="${addressesChoices}" />
+                </form:select>
                 <form:errors path="postAddressId" cssClass="red-text" />
                 <label for="postAddressId">Company post address</label>
             </div>
@@ -50,7 +56,7 @@
         
         <div class="row">
             <div class="input-field col s12">
-                <form:input path="bankData" type="text" disabled="${readonly}" />
+                <form:textarea path="bankData" disabled="${readonly}" cssClass="materialize-textarea" />
                 <form:errors path="bankData" cssClass="red-text" />
                 <label for="bankData">Company bank data</label>
             </div>
