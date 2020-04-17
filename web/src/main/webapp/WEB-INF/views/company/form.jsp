@@ -11,7 +11,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <form:select path="companyType" disabled="${readonly}">
-					<form:options items="${companyTypeChoices}" />
+					<form:options items="${companyTypesChoices}" />
 				</form:select>
 				<form:errors path="companyType" cssClass="red-text" />
 				<label for="companyType">Company company type</label>
@@ -80,7 +80,9 @@
         
          <div class="row">
             <div class="input-field col s12">
-                <form:input path="creatorId" type="text" disabled="${readonly}" />
+            <form:select path="creatorId" disabled="${readonly}">
+                    <form:options items="${employeesChoices}" />
+                </form:select>
                 <form:errors path="creatorId" cssClass="red-text" />
                 <label for="creatorId">Company creator</label>
             </div>

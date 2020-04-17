@@ -27,9 +27,9 @@ public interface IEmployee extends IBaseEntity {
 	
 	void setPosition(Position position);
 	
-	String getEMail ();
+	String getMail ();
 
-	void setEMail(String eMail);
+	void setMail(String mail);
 	
 	String getPhone ();
 

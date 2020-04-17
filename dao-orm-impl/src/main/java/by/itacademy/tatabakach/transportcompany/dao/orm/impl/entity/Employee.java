@@ -32,7 +32,7 @@ public class Employee extends BaseEntity implements IEmployee {
 	private Position position;
 
 	@Column
-	private String eMail;
+	private String mail;
 
 	@Column
 	private String phone;
@@ -97,13 +97,13 @@ public class Employee extends BaseEntity implements IEmployee {
 	}
 
 	@Override
-	public String getEMail() {
-		return eMail;
+	public String getMail() {
+		return mail;
 	}
 
 	@Override
-	public void setEMail(final String eMail) {
-		this.eMail = eMail;
+	public void setMail(final String mail) {
+		this.mail = mail;
 	}
 
 	@Override
@@ -149,7 +149,7 @@ public class Employee extends BaseEntity implements IEmployee {
 	@Override
 	public String toString() {
 		return "Employee [firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName
-				+ ", department=" + department + ", position=" + position + "e-mail=" + eMail + "phone="
+				+ ", department=" + department + ", position=" + position + "e-mail=" + mail + "phone="
 				+ phone + "login=" + login + "password=" + password + "salary=" + salary + ", getId()=" + getId() + "]";
 	}
 

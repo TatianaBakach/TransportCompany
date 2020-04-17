@@ -23,7 +23,7 @@ public class EmployeeDTO {
 	
 	private Position position;
 	
-	private String eMail;
+	private String mail;
 	
 	private String phone;
 	
@@ -81,12 +81,12 @@ public class EmployeeDTO {
 		this.position = position;
 	}
 
-	public String getEMail() {
-		return eMail;
+	public String getMail() {
+		return mail;
 	}
 
-	public void setEMail(String eMail) {
-		this.eMail = eMail;
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 
 	public String getPhone() {

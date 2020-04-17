@@ -81,8 +81,8 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<IEmployee, Integer> impleme
 			return from.get(Employee_.department);
 		case "position":
 			return from.get(Employee_.position);
-		case "eMail":
-			return from.get(Employee_.eMail);
+		case "mail":
+			return from.get(Employee_.mail);
 		case "phone":
 			return from.get(Employee_.phone);
 		case "login":

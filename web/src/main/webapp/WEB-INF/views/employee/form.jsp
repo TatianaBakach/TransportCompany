@@ -48,9 +48,9 @@
 		
 		<div class="row">
 			<div class="input-field col s6">
-				<form:input path="eMail" type="text" disabled="${readonly}" />
-				<form:errors path="eMail" cssClass="red-text" />
-				<label for="eMail">Employee e-mail</label>
+				<form:input path="mail" type="text" disabled="${readonly}" />
+				<form:errors path="mail" cssClass="red-text" />
+				<label for="mail">Employee e-mail</label>
 			</div>
 			
 			<div class="input-field col s6">

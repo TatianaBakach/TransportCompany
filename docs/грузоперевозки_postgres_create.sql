@@ -138,7 +138,7 @@ CREATE TABLE "employee" (
 	"last_name" character varying NOT NULL,
 	"department" integer,
 	"position" integer,
-	"e_mail" character varying UNIQUE,
+	"mail" character varying UNIQUE,
 	"phone" character varying,
 	"login" character varying,
 	"password" character varying,
