@@ -32,7 +32,7 @@ public class CompanyServiceTest extends AbstractTest {
 		assertEquals(entity.getLegalAddress().getId(), entityFromDb.getLegalAddress().getId());
 		assertEquals(entity.getPostAddress().getId(), entityFromDb.getPostAddress().getId());
 		assertEquals(entity.getBankData(), entityFromDb.getBankData());
-		assertEquals(entity.getEMail(), entityFromDb.getEMail());
+		assertEquals(entity.getMail(), entityFromDb.getMail());
 		assertEquals(entity.getPhone(), entityFromDb.getPhone());
 		assertEquals(entity.getCreator().getId(), entityFromDb.getCreator().getId());
 
@@ -58,7 +58,7 @@ public class CompanyServiceTest extends AbstractTest {
 			assertNotNull(entityFromDb.getLegalAddress());
 			assertNotNull(entityFromDb.getPostAddress());
 			assertNotNull(entityFromDb.getBankData());
-			assertNotNull(entityFromDb.getEMail());
+			assertNotNull(entityFromDb.getMail());
 			assertNotNull(entityFromDb.getPhone());
 			assertNotNull(entityFromDb.getCreator());
 		}
@@ -89,7 +89,7 @@ public class CompanyServiceTest extends AbstractTest {
 		entity.setLegalAddress(saveNewAddress());
 		entity.setPostAddress(saveNewAddress());
 		entity.setBankData("bankData-" + getRandomPrefix());
-		entity.setEMail("eMail-" + getRandomPrefix());
+		entity.setMail("mail-" + getRandomPrefix());
 		entity.setPhone("phone-" + getRandomPrefix());
 		entity.setCreator(saveNewEmployee());
 

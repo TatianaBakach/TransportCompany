@@ -25,7 +25,7 @@ public class CompanyDTO {
 	
 	private String bankData;
 	
-	private String eMail;
+	private String mail;
 	
 	private String phone;
 	
@@ -88,11 +88,11 @@ public class CompanyDTO {
 	public void setBankData(String bankData) {
 		this.bankData = bankData;
 	}
-	public String getEMail() {
-		return eMail;
+	public String getMail() {
+		return mail;
 	}
-	public void setEMail(String eMail) {
-		this.eMail = eMail;
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 	public String getPhone() {
 		return phone;

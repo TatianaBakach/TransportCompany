@@ -41,7 +41,7 @@ public class Company extends BaseEntity implements ICompany {
 	private String bankData;
 
 	@Column
-	private String eMail;
+	private String mail;
 
 	@Column
 	private String phone;
@@ -115,13 +115,13 @@ public class Company extends BaseEntity implements ICompany {
 	}
 
 	@Override
-	public String getEMail() {
-		return eMail;
+	public String getMail() {
+		return mail;
 	}
 
 	@Override
-	public void setEMail(final String eMail) {
-		this.eMail = eMail;
+	public void setMail(final String mail) {
+		this.mail = mail;
 	}
 
 	@Override
@@ -157,7 +157,7 @@ public class Company extends BaseEntity implements ICompany {
 	public String toString() {
 		return "Company [name=" + name + ", companyType=" + companyType + "payerRegistrationNumber="
 				+ payerRegistrationNumber + "legalAddress=" + legalAddress + "postAddress=" + postAddress + "bankData="
-				+ bankData + "e-mail=" + eMail + "phone=" + phone + "creator=" + creator +  ", getId()=" + getId() + "]";
+				+ bankData + "e-mail=" + mail + "phone=" + phone + "creator=" + creator +  ", getId()=" + getId() + "]";
 	}
 
 }

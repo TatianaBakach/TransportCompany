@@ -49,7 +49,7 @@ public class CompanyFromDTOConverter implements Function<CompanyDTO, ICompany> {
 		}
 		
 		entity.setBankData(dto.getBankData());
-		entity.setEMail(dto.getEMail());
+		entity.setMail(dto.getMail());
 		entity.setPhone(dto.getPhone());
 		
 		Integer creatorId = dto.getCreatorId();

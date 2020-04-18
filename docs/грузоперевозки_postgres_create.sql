@@ -121,7 +121,7 @@ CREATE TABLE "company" (
 	"legal_address_id" integer,
 	"post_address_id" integer,
 	"bank_data" TEXT,
-	"e_mail" character varying,
+	"mail" character varying,
 	"phone" character varying,
 	"creator_id" integer NOT NULL,
 	CONSTRAINT "company_pk" PRIMARY KEY ("id")

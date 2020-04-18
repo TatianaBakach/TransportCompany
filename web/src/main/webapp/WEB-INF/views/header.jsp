@@ -13,6 +13,7 @@
 				<li><a href="${pagesCompany}">companies</a></li>
 				<li><a href="${pagesTransactionCost}">transaction costs</a></li>
 				<li><a href="${pagesEmployee}">employees</a></li>
+				<li><a href="${pagesContract}">contracts</a></li>
 				
 			</ul>
 		</div>

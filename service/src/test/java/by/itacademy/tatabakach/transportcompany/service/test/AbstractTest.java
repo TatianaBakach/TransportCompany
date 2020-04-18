@@ -299,7 +299,7 @@ public abstract class AbstractTest {
 		entity.setLegalAddress(saveNewAddress());
 		entity.setPostAddress(saveNewAddress());
 		entity.setBankData("bankData-" + getRandomPrefix());
-		entity.setEMail("eMail-" + getRandomPrefix());
+		entity.setMail("mail-" + getRandomPrefix());
 		entity.setPhone("phone-" + getRandomPrefix());
 		entity.setCreator(saveNewEmployee());
 

@@ -121,7 +121,7 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 		case "bankData":
 			return from.get(Company_.bankData);
 		case "eMail":
-			return from.get(Company_.eMail);
+			return from.get(Company_.mail);
 		case "phone":
 			return from.get(Company_.phone);
 		case "creator":

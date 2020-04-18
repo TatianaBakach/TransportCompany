@@ -3,11 +3,11 @@
 <%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 <%@ taglib prefix="jspFragments" tagdir="/WEB-INF/tags"%>
 
-<h4 class="header">Companies</h4>
+<h4 class="header">Contracts</h4>
 <table class="bordered highlight">
 	<tbody>
 		<tr>
-			<th><mytaglib:sort-link pageUrl="${pagesCompany}" column="id">id</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesContract}" column="id">id</mytaglib:sort-link></th>
 			<th><mytaglib:sort-link pageUrl="${pagesCompany}" column="companyType">company_type</mytaglib:sort-link></th>
 			<th><mytaglib:sort-link pageUrl="${pagesCompany}" column="name">name</mytaglib:sort-link></th>
 			<th><mytaglib:sort-link pageUrl="${pagesCompany}" column="payerRegistrationNumber">payer_registration_number</mytaglib:sort-link></th>

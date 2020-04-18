@@ -30,9 +30,9 @@ public interface ICompany extends IBaseEntity {
 
 	void setBankData(String bankData);
 	
-	String getEMail ();
+	String getMail ();
 
-	void setEMail(String eMail);
+	void setMail(String mail);
 	
 	String getPhone ();
 
