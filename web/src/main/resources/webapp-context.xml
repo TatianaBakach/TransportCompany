@@ -25,5 +25,6 @@
 
 	<context:component-scan
 		base-package="by.itacademy.tatabakach.transportcompany.web.converter" />
+	<import resource="security-context.xml" />
 
 </beans>

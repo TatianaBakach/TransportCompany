@@ -4,95 +4,132 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
-	<definition name="DefaultTemplate" template="/WEB-INF/views/main-template.jsp">
-		<put-attribute name="title" value="Транспортно-логистическая компания" />
-		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />
+	<definition name="DefaultTemplate"
+		template="/WEB-INF/views/main-template.jsp">
+		<put-attribute name="title"
+			value="Транспортно-логистическая компания" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/header.jsp" />
 		<put-attribute name="body" value="" />
-		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/footer.jsp" />
 	</definition>
 
 	<definition name="home" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/home.jsp" />
 	</definition>
-	
+
 	<definition name="car.list" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/car/list.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/car/list.jsp" />
 	</definition>
-	
+
 	<definition name="car.edit" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/car/form.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/car/form.jsp" />
 	</definition>
-	
+
 	<definition name="driver.list" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/driver/list.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/driver/list.jsp" />
 	</definition>
-	
+
 	<definition name="driver.edit" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/driver/form.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/driver/form.jsp" />
 	</definition>
-	
+
 	<definition name="company.list" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/company/list.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/company/list.jsp" />
 	</definition>
-	
+
 	<definition name="company.edit" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/company/form.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/company/form.jsp" />
 	</definition>
-	
+
 	<definition name="country.list" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/country/list.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/country/list.jsp" />
 	</definition>
-	
+
 	<definition name="country.edit" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/country/form.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/country/form.jsp" />
 	</definition>
-	
+
 	<definition name="region.list" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/region/list.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/region/list.jsp" />
 	</definition>
-	
+
 	<definition name="region.edit" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/region/form.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/region/form.jsp" />
 	</definition>
-	
+
 	<definition name="locality.list" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/locality/list.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/locality/list.jsp" />
 	</definition>
-	
+
 	<definition name="locality.edit" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/locality/form.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/locality/form.jsp" />
 	</definition>
-	
-		<definition name="address.list" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/address/list.jsp" />
+
+	<definition name="address.list" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/address/list.jsp" />
 	</definition>
-	
+
 	<definition name="address.edit" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/address/form.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/address/form.jsp" />
 	</definition>
-	
-	<definition name="transactionCost.list" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/transactionCost/list.jsp" />
+
+	<definition name="transactionCost.list"
+		extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/transactionCost/list.jsp" />
 	</definition>
-	
-	<definition name="transactionCost.edit" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/transactionCost/form.jsp" />
+
+	<definition name="transactionCost.edit"
+		extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/transactionCost/form.jsp" />
 	</definition>
-	
+
 	<definition name="employee.list" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/employee/list.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/employee/list.jsp" />
 	</definition>
-	
+
 	<definition name="employee.edit" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/employee/form.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/employee/form.jsp" />
 	</definition>
-	
+
 	<definition name="contract.list" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/contract/list.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/contract/list.jsp" />
 	</definition>
-	
+
 	<definition name="contract.edit" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/contract/form.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/contract/form.jsp" />
+	</definition>
+
+	<definition name="login" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/login.jsp" />
+	</definition>
+
+	<definition name="errors.404" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/errors/404.jsp" />
 	</definition>
 
 </tiles-definitions>

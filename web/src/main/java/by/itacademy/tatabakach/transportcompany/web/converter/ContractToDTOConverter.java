@@ -19,8 +19,8 @@ public class ContractToDTOConverter implements Function<IContract, ContractDTO> 
 
 		ICompany ourCompany = entity.getOurCompany();
 		if (ourCompany != null) {
-			dto.setCompanyName(ourCompany.getName());
-			dto.setCompanyId(ourCompany.getId());
+			dto.setOurCompanyName(ourCompany.getName());
+			dto.setOurCompanyId(ourCompany.getId());
 		}
 		
 		ICompany company = entity.getCompany();

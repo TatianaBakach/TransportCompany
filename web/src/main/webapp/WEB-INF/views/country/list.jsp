@@ -2,12 +2,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 <%@ taglib prefix="jspFragments" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <h4 class="header">Countries</h4>
 <table class="bordered highlight">
 	<tbody>
 		<tr>
-			<th><mytaglib:sort-link pageUrl="${pagesCountry}" column="id">id</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesCountry}" column="id"><spring:message code="table.column.id" /></mytaglib:sort-link></th>
 			<th><mytaglib:sort-link pageUrl="${pagesCountry}" column="name">name</mytaglib:sort-link></th>
             <th></th>
 		</tr>

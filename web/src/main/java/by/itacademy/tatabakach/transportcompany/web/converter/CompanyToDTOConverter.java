@@ -1,8 +1,5 @@
 package by.itacademy.tatabakach.transportcompany.web.converter;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.function.Function;
 
 import org.springframework.stereotype.Component;
@@ -10,7 +7,6 @@ import org.springframework.stereotype.Component;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IAddress;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
-import by.itacademy.tatabakach.transportcompany.daoapi.filter.AddressFilter;
 import by.itacademy.tatabakach.transportcompany.web.dto.CompanyDTO;
 
 @Component
@@ -42,7 +38,7 @@ public class CompanyToDTOConverter implements Function<ICompany, CompanyDTO> {
 		
 		IEmployee creator = entity.getCreator();
 		if (creator != null) {
-			dto.setCreatorName(String.format("%s %s", creator.getFirstName() + creator.getLastName()));
+			dto.setCreatorName(String.format("%s %s", creator.getFirstName(), creator.getLastName()));
 			dto.setCreatorId(creator.getId());
 		}
 		

@@ -26,7 +26,7 @@ public class ContractFromDTOConverter implements Function<ContractDTO, IContract
 		entity.setId(dto.getId());
 		entity.setNumber(dto.getNumber());
 
-		Integer ourCompanyId = dto.getCompanyId();
+		Integer ourCompanyId = dto.getOurCompanyId();
 		if (ourCompanyId != null) {
 			ICompany o = companyService.createEntity();
 			o.setId(ourCompanyId);

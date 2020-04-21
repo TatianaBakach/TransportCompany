@@ -1,92 +1,49 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<h4 class="header">Edit company</h4>
+<h4 class="header">Edit contract</h4>
 <div class="row">
 
-    <form:form class="col s12" method="POST" action="${pagesCompany}"
+    <form:form class="col s12" method="POST" action="${pagesContract}"
         modelAttribute="formModel">
         <form:input path="id" type="hidden" />
         
         <div class="row">
             <div class="input-field col s12">
-                <form:select path="companyType" disabled="${readonly}">
-					<form:options items="${companyTypesChoices}" />
-				</form:select>
-				<form:errors path="companyType" cssClass="red-text" />
-				<label for="companyType">Company company type</label>
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="input-field col s12">
-                <form:input path="name" type="text" disabled="${readonly}" />
-                <form:errors path="name" cssClass="red-text" />
-                <label for="name">Company name</label>
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="input-field col s12">
-                <form:input path="payerRegistrationNumber" type="text" disabled="${readonly}" />
-                <form:errors path="payerRegistrationNumber" cssClass="red-text" />
-                <label for="payerRegistrationNumber">Company payer registration number</label>
+                <form:input path="number" type="text" disabled="${readonly}" />
+                <form:errors path="number" cssClass="red-text" />
+                <label for="number">Contract number</label>
             </div>
         </div>
         
          <div class="row">
             <div class="input-field col s12">
-                <form:select path="legalAddressId" disabled="${readonly}">
-                    <form:options items="${addressesChoices}" />
+                <form:select path="ourCompany" disabled="${readonly}">
+                    <form:options items="${companiesChoices}" />
                 </form:select>
-                <form:errors path="legalAddressId" cssClass="red-text" />
-                <label for="legalAddressId">Company legal address</label>
+                <form:errors path="ourCompany" cssClass="red-text" />
+                <label for="ourCompany">Contract our company</label>
             </div>
         </div>
         
         <div class="row">
             <div class="input-field col s12">
-                <form:select path="postAddressId" disabled="${readonly}">
-                    <form:options items="${addressesChoices}" />
+                <form:select path="company" disabled="${readonly}">
+                    <form:options items="${companiesChoices}" />
                 </form:select>
-                <form:errors path="postAddressId" cssClass="red-text" />
-                <label for="postAddressId">Company post address</label>
+                <form:errors path="company" cssClass="red-text" />
+                <label for="company">Contract company</label>
             </div>
         </div>
         
-        <div class="row">
-            <div class="input-field col s12">
-                <form:textarea path="bankData" disabled="${readonly}" cssClass="materialize-textarea" />
-                <form:errors path="bankData" cssClass="red-text" />
-                <label for="bankData">Company bank data</label>
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="input-field col s12">
-                <form:input path="mail" type="text" disabled="${readonly}" />
-                <form:errors path="mail" cssClass="red-text" />
-                <label for="mail">Company e-mail</label>
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="input-field col s12">
-                <form:input path="phone" type="text" disabled="${readonly}" />
-                <form:errors path="phone" cssClass="red-text" />
-                <label for="phone">Company phone</label>
-            </div>
-        </div>
-        
-         <div class="row">
-            <div class="input-field col s12">
-            <form:select path="creatorId" disabled="${readonly}">
-                    <form:options items="${employeesChoices}" />
-                </form:select>
-                <form:errors path="creatorId" cssClass="red-text" />
-                <label for="creatorId">Company creator</label>
-            </div>
-        </div>
+       <div class="row">
+			<div class="input-field col s4">
+				<form:input path="date" type="text" disabled="${readonly}"
+					cssClass="datepicker" />
+				<form:errors path="date" cssClass="red-text" />
+				<label for="date">Contract date</label>
+			</div>
+		</div>
         
         <div class="row">
             <div class="col s6"></div>

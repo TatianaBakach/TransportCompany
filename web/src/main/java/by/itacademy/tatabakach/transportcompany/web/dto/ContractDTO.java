@@ -83,4 +83,5 @@ public class ContractDTO {
 		this.date = date;
 	}
 
+
 }
