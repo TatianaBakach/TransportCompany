@@ -2,6 +2,7 @@ package by.itacademy.tatabakach.transportcompany.web.dto;
 
 import java.math.BigDecimal;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 
 public class OrderRewardPercentDTO {
@@ -9,6 +10,7 @@ public class OrderRewardPercentDTO {
 	private Integer id;
 	
 	@NotNull
+	@Max(value = 100)
 	private BigDecimal percent;
 
 	public Integer getId() {

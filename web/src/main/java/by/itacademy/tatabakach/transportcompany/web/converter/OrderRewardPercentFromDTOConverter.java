@@ -5,23 +5,21 @@ import java.util.function.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICar;
-import by.itacademy.tatabakach.transportcompany.service.ICarService;
-import by.itacademy.tatabakach.transportcompany.web.dto.CarDTO;
-
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IOrderRewardPercent;
+import by.itacademy.tatabakach.transportcompany.service.IOrderRewardPercentService;
+import by.itacademy.tatabakach.transportcompany.web.dto.OrderRewardPercentDTO;
 
 @Component
-public class OrderRewardPercentFromDTOConverter implements Function<CarDTO, ICar> {
+public class OrderRewardPercentFromDTOConverter implements Function<OrderRewardPercentDTO, IOrderRewardPercent> {
 
 	@Autowired
-	private ICarService carService;
+	private IOrderRewardPercentService orderRewardPercentService;
 
 	@Override
-	public ICar apply(final CarDTO dto) {
-		final ICar entity = carService.createEntity();
+	public IOrderRewardPercent apply(final OrderRewardPercentDTO dto) {
+		final IOrderRewardPercent entity = orderRewardPercentService.createEntity();
 		entity.setId(dto.getId());
-		entity.setNumber(dto.getNumber());
-		entity.setModel(dto.getModel());
+		entity.setPercent(dto.getPercent());
 		return entity;
 	}
 }

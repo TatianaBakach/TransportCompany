@@ -121,6 +121,26 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/contract/form.jsp" />
 	</definition>
+	
+	<definition name="orderRewardPercent.list" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/orderRewardPercent/list.jsp" />
+	</definition>
+
+	<definition name="orderRewardPercent.edit" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/orderRewardPercent/form.jsp" />
+	</definition>
+	
+	<definition name="tax.list" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/tax/list.jsp" />
+	</definition>
+
+	<definition name="tax.edit" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/tax/form.jsp" />
+	</definition>
 
 	<definition name="login" extends="DefaultTemplate">
 		<put-attribute name="body"

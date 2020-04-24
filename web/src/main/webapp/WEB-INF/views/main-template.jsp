@@ -13,6 +13,8 @@
 <c:set var="pagesTransactionCost" value="${contextPath}/transactionCost" scope="request" />
 <c:set var="pagesEmployee" value="${contextPath}/employee" scope="request" />
 <c:set var="pagesContract" value="${contextPath}/contract" scope="request" />
+<c:set var="pagesOrderRewardPercent" value="${contextPath}/orderRewardPercent" scope="request" />
+<c:set var="pagesTax" value="${contextPath}/tax" scope="request" />
 
 
 
