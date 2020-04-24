@@ -17,6 +17,9 @@ http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 	<http>
 		<intercept-url pattern="/car/**" access="!isAnonymous()" />
 		<intercept-url pattern="/driver/**" access="!isAnonymous()" />
+		<intercept-url pattern="/country/**" access="hasRole('admin')" />
+		<intercept-url pattern="/region/**" access="hasRole('superadmin')" />
+		
 
 		<form-login login-page="/login" default-target-url="/"
 			authentication-failure-url="/login?error"

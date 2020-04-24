@@ -9,7 +9,7 @@
 	<tbody>
 		<tr>
 			<th><mytaglib:sort-link pageUrl="${pagesCountry}" column="id"><spring:message code="table.column.id" /></mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesCountry}" column="name">name</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesCountry}" column="name"><spring:message code="table.column.name" /></mytaglib:sort-link></th>
             <th></th>
 		</tr>
 		<c:forEach var="country" items="${gridItems}" varStatus="loopCounter">

@@ -6,4 +6,5 @@
 	<entry key="page.login.credentialsError">неверный логин или пароль!</entry>
 
 	<entry key="table.column.id">№</entry>
+	<entry key="table.column.name">Наименование</entry>
 </properties>
