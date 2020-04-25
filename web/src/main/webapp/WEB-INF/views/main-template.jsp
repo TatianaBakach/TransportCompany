@@ -15,6 +15,7 @@
 <c:set var="pagesContract" value="${contextPath}/contract" scope="request" />
 <c:set var="pagesOrderRewardPercent" value="${contextPath}/orderRewardPercent" scope="request" />
 <c:set var="pagesTax" value="${contextPath}/tax" scope="request" />
+<c:set var="pagesCfr" value="${contextPath}/cfr" scope="request" />
 
 
 

@@ -68,10 +68,10 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 		cq.select(from);
 		
 		if(filter.getFetchLegalAddress()) {
-			from.fetch(Company_.legalAddress, JoinType.LEFT);
+			from.fetch(Company_.legalAddress, JoinType.LEFT).fetch(Address_.locality, JoinType.LEFT);
 		}
 		if(filter.getFetchPostAddress()) {
-			from.fetch(Company_.postAddress, JoinType.LEFT);
+			from.fetch(Company_.postAddress, JoinType.LEFT).fetch(Address_.locality, JoinType.LEFT);
 		}
 		if(filter.getFetchCreator()) {
 			from.fetch(Company_.creator, JoinType.LEFT);

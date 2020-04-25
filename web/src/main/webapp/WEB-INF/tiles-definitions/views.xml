@@ -141,7 +141,17 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/tax/form.jsp" />
 	</definition>
+	
+	<definition name="cfr.list" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/cfr/list.jsp" />
+	</definition>
 
+	<definition name="cfr.edit" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/cfr/form.jsp" />
+	</definition>
+	
 	<definition name="login" extends="DefaultTemplate">
 		<put-attribute name="body"
 			value="/WEB-INF/views/login.jsp" />
