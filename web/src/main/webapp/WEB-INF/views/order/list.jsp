@@ -50,14 +50,14 @@
 				<td><c:out value="${order.creator}" /></td>
 				<td><c:out value="${order.note}" /></td>
 				<td class="right">
-				<a class="btn-floating"	href="${pagesOrder}/${company.id}"><i class="material-icons">info</i></a>
-				<a class="btn-floating" href="${pagesCompany}/${company.id}/edit"><i class="material-icons">edit</i></a> 
-				<a class="btn-floating red"	href="${pagesCompany}/${company.id}/delete"><i class="material-icons">delete</i></a>
+				<a class="btn-floating"	href="${pagesOrder}/${order.id}"><i class="material-icons">info</i></a>
+				<a class="btn-floating" href="${pagesOrder}/${order.id}/edit"><i class="material-icons">edit</i></a> 
+				<a class="btn-floating red"	href="${pagesOrder}/${order.id}/delete"><i class="material-icons">delete</i></a>
 				</td>
 			</tr>
 		</c:forEach>
 	</tbody>
 </table>
 <jspFragments:paging />
-<a class="waves-effect waves-light btn right" href="${pagesCompany}/add"><i
+<a class="waves-effect waves-light btn right" href="${pagesOrder}/add"><i
 	class="material-icons">add</i></a>

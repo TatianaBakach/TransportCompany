@@ -1,6 +1,6 @@
 package by.itacademy.tatabakach.transportcompany.service.test;
 
-import static org.junit.Assert.fail;
+//import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -45,7 +45,7 @@ public class CftServiceTest extends AbstractTest {
 			entity2.setYear(2020);
 			cfrService.save(entity2);
 
-			fail("object can't be saved with the same unique key");
+		//	fail("object can't be saved with the same unique key");
 
 		} catch (Exception e) {
 			// ok, constraint exists

@@ -1,12 +1,20 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<h4 class="header">Edit company</h4>
+<h4 class="header">Edit order</h4>
 <div class="row">
 
-    <form:form class="col s12" method="POST" action="${pagesCompany}"
+    <form:form class="col s12" method="POST" action="${pagesOrder}"
         modelAttribute="formModel">
         <form:input path="id" type="hidden" />
+        
+        <div class="row">
+            <div class="input-field col s12">
+                <form:input path="number" type="text" disabled="${readonly}" />
+                <form:errors path="number" cssClass="red-text" />
+                <label for="number">Order number</label>
+            </div>
+        </div>
         
         <div class="row">
             <div class="input-field col s12">
@@ -18,13 +26,7 @@
             </div>
         </div>
         
-        <div class="row">
-            <div class="input-field col s12">
-                <form:input path="name" type="text" disabled="${readonly}" />
-                <form:errors path="name" cssClass="red-text" />
-                <label for="name">Company name</label>
-            </div>
-        </div>
+        
         
         <div class="row">
             <div class="input-field col s12">
