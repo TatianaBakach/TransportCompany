@@ -28,7 +28,7 @@ public class CompanyToDTOConverter implements Function<ICompany, CompanyDTO> {
 
 		IAddress postAddress = entity.getPostAddress();
 		if (postAddress != null) {
-			dto.setPostAddressName(postAddress.getExactAddress());
+			dto.setPostAddressName(String.format("%s %s %s", postAddress.getPostcode(), postAddress.getLocality(), postAddress.getExactAddress()));
 			dto.setPostAddressId(postAddress.getId());
 		}
 		

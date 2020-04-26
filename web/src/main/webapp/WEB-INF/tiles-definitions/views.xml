@@ -152,6 +152,16 @@
 			value="/WEB-INF/views/cfr/form.jsp" />
 	</definition>
 	
+	<definition name="order.list" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/order/list.jsp" />
+	</definition>
+
+	<definition name="order.edit" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/order/form.jsp" />
+	</definition>
+	
 	<definition name="login" extends="DefaultTemplate">
 		<put-attribute name="body"
 			value="/WEB-INF/views/login.jsp" />
