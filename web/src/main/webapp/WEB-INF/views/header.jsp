@@ -22,6 +22,8 @@
 				<li><a href="${pagesOrderRewardPercent}">order reward percents</a></li>
 				<li><a href="${pagesTax}">taxes</a></li>
 				<li><a href="${pagesCfr}">cfrs</a></li>
+				<li><a href="${pagesOrder}">orders</a></li>
+				<li><a href="${pagesCorrespondence}">correspondences</a></li>
 
 				<sec:authorize access="!isAnonymous()">
 					<a class="right" href="${contextPath}/execute_logout"

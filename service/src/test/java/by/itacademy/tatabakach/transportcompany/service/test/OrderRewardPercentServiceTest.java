@@ -20,6 +20,7 @@ public class OrderRewardPercentServiceTest extends AbstractTest {
 
 		assertNotNull(entityFromDb);
 		assertNotNull(entityFromDb.getId());
+		assertEquals(entity.getName(), entityFromDb.getName());
 		assertEquals(entity.getPercent(), entityFromDb.getPercent());
 
 	}
@@ -37,6 +38,7 @@ public class OrderRewardPercentServiceTest extends AbstractTest {
 
 		for (final IOrderRewardPercent entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());
+			assertNotNull(entityFromDb.getName());
 			assertNotNull(entityFromDb.getPercent());
 		}
 

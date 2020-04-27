@@ -8,6 +8,14 @@
         modelAttribute="formModel">
         <form:input path="id" type="hidden" />
         
+         <div class="row">
+            <div class="input-field col s6">
+                <form:input path="name" type="text" disabled="${readonly}" />
+                <form:errors path="name" cssClass="red-text" />
+                <label for="name">Order Reward Percent name</label>
+            </div>
+        </div>
+        
         <div class="row">
             <div class="input-field col s6">
                 <form:input path="percent" type="text" disabled="${readonly}" />

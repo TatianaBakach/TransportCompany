@@ -162,6 +162,16 @@
 			value="/WEB-INF/views/order/form.jsp" />
 	</definition>
 	
+	<definition name="correspondence.list" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/correspondence/list.jsp" />
+	</definition>
+
+	<definition name="correspondence.edit" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/correspondence/form.jsp" />
+	</definition>
+	
 	<definition name="login" extends="DefaultTemplate">
 		<put-attribute name="body"
 			value="/WEB-INF/views/login.jsp" />

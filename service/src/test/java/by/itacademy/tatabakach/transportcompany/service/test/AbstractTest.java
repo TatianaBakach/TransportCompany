@@ -329,6 +329,7 @@ public abstract class AbstractTest {
 	
 	protected IOrderRewardPercent saveNewOrderRewardPercent() {
 		final IOrderRewardPercent entity = orderRewardPercentService.createEntity();
+		entity.setName("name-" + getRandomPrefix());
 		entity.setPercent(getRandomBigDecimal(2));
 		orderRewardPercentService.save(entity);
 		return entity;

@@ -8,12 +8,14 @@
 	<tbody>
 		<tr>
 			<th><mytaglib:sort-link pageUrl="${pagesOrderRewardPercent}" column="id">id</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesOrderRewardPercent}" column="name">name</mytaglib:sort-link></th>
 			<th><mytaglib:sort-link pageUrl="${pagesOrderRewardPercent}" column="percent">percent</mytaglib:sort-link></th>
             <th></th>
 		</tr>
 		<c:forEach var="orderRewardPercent" items="${gridItems}" varStatus="loopCounter">
 			<tr>
 				<td><c:out value="${orderRewardPercent.id}" /></td>
+				<td><c:out value="${orderRewardPercent.name}" /></td>
 				<td><c:out value="${orderRewardPercent.percent}" /></td>
 				<td class="right">
 				<a class="btn-floating"	href="${pagesOrderRewardPercent}/${orderRewardPercent.id}"><i class="material-icons">info</i></a>

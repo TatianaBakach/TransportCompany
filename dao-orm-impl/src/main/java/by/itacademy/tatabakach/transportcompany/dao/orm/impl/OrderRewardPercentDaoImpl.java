@@ -75,6 +75,8 @@ public class OrderRewardPercentDaoImpl extends AbstractDaoImpl<IOrderRewardPerce
 		switch (sortColumn) {
 		case "id":
 			return OrderRewardPercent_.id;
+		case "name":
+			return OrderRewardPercent_.name;
 		case "percent":
 			return OrderRewardPercent_.percent;
 		default:

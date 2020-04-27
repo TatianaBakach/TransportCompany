@@ -4,6 +4,10 @@ import java.math.BigDecimal;
 
 public interface IOrderRewardPercent extends IBaseEntity{
 	
+	String getName();
+
+	void setName(String name);
+	
 	BigDecimal getPercent();
 
 	void setPercent(BigDecimal percent);

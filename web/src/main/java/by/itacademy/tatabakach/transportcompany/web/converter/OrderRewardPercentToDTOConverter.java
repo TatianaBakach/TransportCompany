@@ -14,6 +14,7 @@ public class OrderRewardPercentToDTOConverter implements Function<IOrderRewardPe
 	public OrderRewardPercentDTO apply(final IOrderRewardPercent entity) {
 		final OrderRewardPercentDTO dto = new OrderRewardPercentDTO();
 		dto.setId(entity.getId());
+		dto.setName(entity.getName());
 		dto.setPercent(entity.getPercent());
 		return dto;
 	}

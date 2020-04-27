@@ -222,6 +222,7 @@ CREATE TABLE "payment" (
 
 CREATE TABLE "order_reward_percent" (
 	"id" serial NOT NULL,
+	"name" character varying NOT NULL,
 	"percent" DECIMAL(3,2) NOT NULL,
 	CONSTRAINT "order_reward_percent_pk" PRIMARY KEY ("id")
 ) WITH (

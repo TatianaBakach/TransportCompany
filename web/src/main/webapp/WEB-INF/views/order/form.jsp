@@ -17,66 +17,147 @@
         </div>
         
         <div class="row">
+			<div class="input-field col s4">
+				<form:input path="date" type="text" disabled="${readonly}"
+					cssClass="datepicker" />
+				<form:errors path="date" cssClass="red-text" />
+				<label for="date">Order date</label>
+			</div>
+		</div>
+		
+		 <div class="row">
             <div class="input-field col s12">
-                <form:select path="companyType" disabled="${readonly}">
-					<form:options items="${companyTypesChoices}" />
-				</form:select>
-				<form:errors path="companyType" cssClass="red-text" />
-				<label for="companyType">Company company type</label>
+                <form:select path="ourCompanyId" disabled="${readonly}">
+                    <form:options items="${companiesChoices}" />
+                </form:select>
+                <form:errors path="ourCompanyId" cssClass="red-text" />
+                <label for="ourCompanyId">Order our company</label>
+            </div>
+        </div>
+		
+		<div class="row">
+            <div class="input-field col s12">
+                <form:select path="customerId" disabled="${readonly}">
+                    <form:options items="${companiesChoices}" />
+                </form:select>
+                <form:errors path="customerId" cssClass="red-text" />
+                <label for="customerId">Order customer</label>
             </div>
         </div>
         
-        
+        <div class="row">
+            <div class="input-field col s12">
+                <form:select path="carrierId" disabled="${readonly}">
+                    <form:options items="${companiesChoices}" />
+                </form:select>
+                <form:errors path="carrierId" cssClass="red-text" />
+                <label for="carrierId">Order carrier</label>
+            </div>
+        </div>
         
         <div class="row">
             <div class="input-field col s12">
-                <form:input path="payerRegistrationNumber" type="text" disabled="${readonly}" />
-                <form:errors path="payerRegistrationNumber" cssClass="red-text" />
-                <label for="payerRegistrationNumber">Company payer registration number</label>
+                <form:select path="carId" disabled="${readonly}">
+                    <form:options items="${carsChoices}" />
+                </form:select>
+                <form:errors path="carId" cssClass="red-text" />
+                <label for="carId">Order car</label>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="input-field col s12">
+                <form:select path="driverId" disabled="${readonly}">
+                    <form:options items="${driversChoices}" />
+                </form:select>
+                <form:errors path="driverId" cssClass="red-text" />
+                <label for="driverId">Order driver</label>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="input-field col s12">
+                <form:select path="loadingMethod" disabled="${readonly}">
+					<form:options items="${loadingMethodsChoices}" />
+				</form:select>
+				<form:errors path="loadingMethod" cssClass="red-text" />
+				<label for="loadingMethod">Order loading method</label>
             </div>
         </div>
         
          <div class="row">
             <div class="input-field col s12">
-                <form:select path="legalAddressId" disabled="${readonly}">
-                    <form:options items="${addressesChoices}" />
+                <form:input path="cargoType" type="text" disabled="${readonly}" />
+                <form:errors path="cargoType" cssClass="red-text" />
+                <label for="cargoType">Order cargo type</label>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="input-field col s12">
+                <form:input path="cargoWeightVolume" type="text" disabled="${readonly}" />
+                <form:errors path="cargoWeightVolume" cssClass="red-text" />
+                <label for="cargoWeightVolume">Order cargo weight volume</label>
+            </div>
+        </div>
+        
+         <div class="row">
+            <div class="input-field col s12">
+                <form:select path="customerCostId" disabled="${readonly}">
+                    <form:options items="${transactionCostsChoices}" />
                 </form:select>
-                <form:errors path="legalAddressId" cssClass="red-text" />
-                <label for="legalAddressId">Company legal address</label>
+                <form:errors path="customerCostId" cssClass="red-text" />
+                <label for="customerCostId">Order customer cost</label>
             </div>
         </div>
         
         <div class="row">
+			<div class="input-field col s12">
+				<div class="switch">
+					<label> paid <form:checkbox path="paidCustomer" disabled="${readonly}" /> <span
+						class="lever"></span> paid
+					</label>
+				</div>
+				<label class="switch-label">not</label> <br />
+			</div>
+		</div>
+		
+		 <div class="row">
             <div class="input-field col s12">
-                <form:select path="postAddressId" disabled="${readonly}">
-                    <form:options items="${addressesChoices}" />
+                <form:select path="carrierCostId" disabled="${readonly}">
+                    <form:options items="${transactionCostsChoices}" />
                 </form:select>
-                <form:errors path="postAddressId" cssClass="red-text" />
-                <label for="postAddressId">Company post address</label>
+                <form:errors path="carrierCostId" cssClass="red-text" />
+                <label for="carrierCostId">Order carrier cost</label>
+            </div>
+        </div>
+        
+        <div class="row">
+			<div class="input-field col s12">
+				<div class="switch">
+					<label> paid <form:checkbox path="paidCarrier" disabled="${readonly}" /> <span
+						class="lever"></span> paid
+					</label>
+				</div>
+				<label class="switch-label">not</label> <br />
+			</div>
+		</div>
+        
+        <div class="row">
+            <div class="input-field col s12">
+                <form:select path="taxId" disabled="${readonly}">
+                    <form:options items="${taxesChoices}" />
+                </form:select>
+                <form:errors path="taxId" cssClass="red-text" />
+                <label for="taxId">Order tax</label>
             </div>
         </div>
         
         <div class="row">
             <div class="input-field col s12">
-                <form:textarea path="bankData" disabled="${readonly}" cssClass="materialize-textarea" />
-                <form:errors path="bankData" cssClass="red-text" />
-                <label for="bankData">Company bank data</label>
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="input-field col s12">
-                <form:input path="mail" type="text" disabled="${readonly}" />
-                <form:errors path="mail" cssClass="red-text" />
-                <label for="mail">Company e-mail</label>
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="input-field col s12">
-                <form:input path="phone" type="text" disabled="${readonly}" />
-                <form:errors path="phone" cssClass="red-text" />
-                <label for="phone">Company phone</label>
+                <form:textarea path="additionalConditions" disabled="${readonly}" cssClass="materialize-textarea" />
+                <form:errors path="additionalConditions" cssClass="red-text" />
+                <label for="additionalConditions">Order additional conditions</label>
             </div>
         </div>
         
@@ -86,9 +167,17 @@
                     <form:options items="${employeesChoices}" />
                 </form:select>
                 <form:errors path="creatorId" cssClass="red-text" />
-                <label for="creatorId">Company creator</label>
+                <label for="creatorId">Order creator</label>
             </div>
         </div>
+        
+        <div class="row">
+			<div class="input-field col s12">
+				<form:textarea path="note" disabled="${readonly}" cssClass="materialize-textarea" />
+				<form:errors path="note" cssClass="red-text" />
+				<label for="note">Order note</label>
+			</div>
+		</div>
         
         <div class="row">
             <div class="col s6"></div>
@@ -98,7 +187,7 @@
                 </c:if>
             </div>
             <div class="col s3">
-                <a class="btn waves-effect waves-light right" href="${pagesCompany}">Cancel</a>
+                <a class="btn waves-effect waves-light right" href="${pagesOrder}">Cancel</a>
             </div>
         </div>
     </form:form>

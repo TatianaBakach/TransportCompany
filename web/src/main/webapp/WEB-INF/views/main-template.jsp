@@ -16,6 +16,8 @@
 <c:set var="pagesOrderRewardPercent" value="${contextPath}/orderRewardPercent" scope="request" />
 <c:set var="pagesTax" value="${contextPath}/tax" scope="request" />
 <c:set var="pagesCfr" value="${contextPath}/cfr" scope="request" />
+<c:set var="pagesOrder" value="${contextPath}/order" scope="request" />
+<c:set var="pagesCorrespondence" value="${contextPath}/correspondence" scope="request" />
 
 
 

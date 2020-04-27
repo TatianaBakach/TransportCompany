@@ -1,28 +1,30 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<h4 class="header">Edit contract</h4>
+<h4 class="header">Edit correspondence</h4>
 <div class="row">
 
-    <form:form class="col s12" method="POST" action="${pagesContract}"
+    <form:form class="col s12" method="POST" action="${pagesCorrespondence}"
         modelAttribute="formModel">
         <form:input path="id" type="hidden" />
         
         <div class="row">
             <div class="input-field col s12">
-                <form:input path="number" type="text" disabled="${readonly}" />
-                <form:errors path="number" cssClass="red-text" />
-                <label for="number">Contract number</label>
+                <form:select path="correspondenceType" disabled="${readonly}">
+					<form:options items="${correspondenceTypesChoices}" />
+				</form:select>
+				<form:errors path="correspondenceType" cssClass="red-text" />
+				<label for="correspondenceType">Correspondence correspondence type</label>
             </div>
         </div>
         
          <div class="row">
             <div class="input-field col s12">
-                <form:select path="ourCompanyId" disabled="${readonly}">
-                    <form:options items="${companiesChoices}" />
+                <form:select path="orderId" disabled="${readonly}">
+                    <form:options items="${ordersChoices}" />
                 </form:select>
-                <form:errors path="ourCompanyId" cssClass="red-text" />
-                <label for="ourCompanyId">Contract our company</label>
+                <form:errors path="orderId" cssClass="red-text" />
+                <label for="orderId">Correspondence order</label>
             </div>
         </div>
         
@@ -32,7 +34,7 @@
                     <form:options items="${companiesChoices}" />
                 </form:select>
                 <form:errors path="companyId" cssClass="red-text" />
-                <label for="companyId">Contract company</label>
+                <label for="companyId">Correspondence company</label>
             </div>
         </div>
         
@@ -41,7 +43,23 @@
 				<form:input path="date" type="text" disabled="${readonly}"
 					cssClass="datepicker" />
 				<form:errors path="date" cssClass="red-text" />
-				<label for="date">Contract date</label>
+				<label for="date">Correspondence date</label>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="input-field col s12">
+				<form:textarea path="content" disabled="${readonly}" cssClass="materialize-textarea" />
+				<form:errors path="content" cssClass="red-text" />
+				<label for="content">Correspondence content</label>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="input-field col s12">
+				<form:textarea path="note" disabled="${readonly}" cssClass="materialize-textarea" />
+				<form:errors path="note" cssClass="red-text" />
+				<label for="note">Correspondence note</label>
 			</div>
 		</div>
         
@@ -53,7 +71,7 @@
                 </c:if>
             </div>
             <div class="col s3">
-                <a class="btn waves-effect waves-light right" href="${pagesCompany}">Cancel</a>
+                <a class="btn waves-effect waves-light right" href="${pagesCorrespondence}">Cancel</a>
             </div>
         </div>
     </form:form>
