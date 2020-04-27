@@ -15,10 +15,10 @@ http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 		base-package="by.itacademy.tatabakach.transportcompany.web.security" />
 
 	<http>
-		<intercept-url pattern="/car/**" access="!isAnonymous()" />
+		<!-- <intercept-url pattern="/car/**" access="!isAnonymous()" />
 		<intercept-url pattern="/driver/**" access="!isAnonymous()" />
 		<intercept-url pattern="/country/**" access="hasRole('admin')" />
-		<intercept-url pattern="/region/**" access="hasRole('superadmin')" />
+		<intercept-url pattern="/region/**" access="hasRole('superadmin')" /> -->
 		
 
 		<form-login login-page="/login" default-target-url="/"

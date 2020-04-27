@@ -1,5 +1,7 @@
 package by.itacademy.tatabakach.transportcompany.web.dto;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -12,7 +14,8 @@ public class CfrDTO {
 	@Size(min = 1, max = 250)
 	private String companyName;
 
-	@Size(min = 4, max = 4)
+	@Min(1900)
+	@Max(2050)
 	private Integer year;
 
 	public Integer getId() {

@@ -44,8 +44,8 @@ public class CompanyDaoImpl extends AbstractDaoImpl<ICompany, Integer> implement
 
 		cq.select(from);
 
-		from.fetch(Company_.legalAddress, JoinType.LEFT);
-		from.fetch(Company_.postAddress, JoinType.LEFT);
+		from.fetch(Company_.legalAddress, JoinType.LEFT).fetch(Address_.locality, JoinType.LEFT);
+		from.fetch(Company_.postAddress, JoinType.LEFT).fetch(Address_.locality, JoinType.LEFT);
 		from.fetch(Company_.creator, JoinType.LEFT);
 		
 		from.fetch(Company_.employees, JoinType.LEFT);

@@ -5,21 +5,26 @@
 <header>
 	<nav>
 		<div class="nav-wrapper container">
-			<ul class="left hide-on-med-and-down">
-				
-				<li><a href="${contextPath}">home</a></li>
-
-				<li><a href="${pagesCar}">cars</a></li>
-				<li><a href="${pagesDriver}">drivers</a></li>
+			<ul id="dropdown1" class="dropdown-content">
 				<li><a href="${pagesCountry}">countries</a></li>
 				<li><a href="${pagesRegion}">regions</a></li>
 				<li><a href="${pagesLocality}">localities</a></li>
 				<li><a href="${pagesAddress}">addresses</a></li>
+			</ul>
+			<ul class="left hide-on-med-and-down">
+				<li><a class="dropdown-trigger" href="#!"
+					data-target="dropdown1">Addresses<i class="material-icons right">arrow_drop_down</i></a></li>
+				<li><a href="${contextPath}">home</a></li>
+
+				<li><a href="${pagesCar}">cars</a></li>
+				<li><a href="${pagesDriver}">drivers</a></li>
+				
 				<li><a href="${pagesCompany}">companies</a></li>
 				<li><a href="${pagesTransactionCost}">transaction costs</a></li>
 				<li><a href="${pagesEmployee}">employees</a></li>
 				<li><a href="${pagesContract}">contracts</a></li>
-				<li><a href="${pagesOrderRewardPercent}">order reward percents</a></li>
+				<li><a href="${pagesOrderRewardPercent}">order reward
+						percents</a></li>
 				<li><a href="${pagesTax}">taxes</a></li>
 				<li><a href="${pagesCfr}">cfrs</a></li>
 				<li><a href="${pagesOrder}">orders</a></li>
@@ -32,7 +37,7 @@
 
 				<li><a class="highlighted-menu-ru" href="?lang=ru">RU</a></li>
 				<li><a class="highlighted-menu-en" href="?lang=en">EN</a></li>
-				
+
 			</ul>
 		</div>
 	</nav>

@@ -22,13 +22,13 @@ public class CompanyToDTOConverter implements Function<ICompany, CompanyDTO> {
 		
 		IAddress legalAddress = entity.getLegalAddress();
 		if (legalAddress != null) {
-			dto.setLegalAddressName(String.format("%s %s %s", legalAddress.getPostcode(), legalAddress.getLocality(), legalAddress.getExactAddress()));
+			dto.setLegalAddressName(String.format("%s %s %s", legalAddress.getPostcode(), legalAddress.getLocality().getName(), legalAddress.getExactAddress()));
 			dto.setLegalAddressId(legalAddress.getId());
 		}
 
 		IAddress postAddress = entity.getPostAddress();
 		if (postAddress != null) {
-			dto.setPostAddressName(String.format("%s %s %s", postAddress.getPostcode(), postAddress.getLocality(), postAddress.getExactAddress()));
+			dto.setPostAddressName(String.format("%s %s %s", postAddress.getPostcode(), postAddress.getLocality().getName(), postAddress.getExactAddress()));
 			dto.setPostAddressId(postAddress.getId());
 		}
 		

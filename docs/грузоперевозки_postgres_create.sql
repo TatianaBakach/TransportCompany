@@ -171,7 +171,7 @@ CREATE TABLE "transaction_cost" (
 CREATE TABLE "tax" (
 	"id" serial NOT NULL,
 	"name" character varying NOT NULL,
-	"rate" DECIMAL(3,2),
+	"rate" DECIMAL(5,2),
 	CONSTRAINT "tax_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -223,7 +223,7 @@ CREATE TABLE "payment" (
 CREATE TABLE "order_reward_percent" (
 	"id" serial NOT NULL,
 	"name" character varying NOT NULL,
-	"percent" DECIMAL(3,2) NOT NULL,
+	"percent" DECIMAL(5,2) NOT NULL,
 	CONSTRAINT "order_reward_percent_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE

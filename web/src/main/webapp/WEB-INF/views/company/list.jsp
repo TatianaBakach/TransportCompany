@@ -8,11 +8,11 @@
 	<tbody>
 		<tr>
 			<th><mytaglib:sort-link pageUrl="${pagesCompany}" column="id">id</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesCompany}" column="companyType">company_type</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesCompany}" column="companyType">company type</mytaglib:sort-link></th>
 			<th><mytaglib:sort-link pageUrl="${pagesCompany}" column="name">name</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesCompany}" column="payerRegistrationNumber">payer_registration_number</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesCompany}" column="legalAddress">legal_address</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesCompany}" column="postAddress">	post_address</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesCompany}" column="payerRegistrationNumber">payer registration number</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesCompany}" column="legalAddress">legal address</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesCompany}" column="postAddress">	post address</mytaglib:sort-link></th>
 			<th><mytaglib:sort-link pageUrl="${pagesCompany}" column="bankData">bank_data</mytaglib:sort-link></th>
 			<th><mytaglib:sort-link pageUrl="${pagesCompany}" column="mail">e-mail</mytaglib:sort-link></th>
 			<th><mytaglib:sort-link pageUrl="${pagesCompany}" column="phone">phone</mytaglib:sort-link></th>
