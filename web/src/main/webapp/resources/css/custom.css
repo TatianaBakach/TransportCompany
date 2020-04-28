@@ -37,4 +37,14 @@ nav {
     background-color: #26a69a;
 }
 
+.page-footer {
+    background-color: #26a69a;;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
 

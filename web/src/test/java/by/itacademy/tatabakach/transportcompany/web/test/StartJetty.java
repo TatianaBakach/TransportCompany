@@ -1,4 +1,5 @@
 package by.itacademy.tatabakach.transportcompany.web.test;
+
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -21,51 +22,58 @@ import org.eclipse.jetty.webapp.WebXmlConfiguration;
  */
 public final class StartJetty {
 
-    private StartJetty() {
-    }
+	private StartJetty() {
+	}
 
-    /**
-     * Main function, starts the jetty server.
-     *
-     * @param args
-     * @throws MalformedURLException
-     */
+	/**
+	 * Main function, starts the jetty server.
+	 *
+	 * @param args
+	 * @throws MalformedURLException
+	 */
 
-    public static void main(final String[] args) throws MalformedURLException {
-        startInstance(8081);
-    }
+	public static void main(final String[] args) throws MalformedURLException {
+		startInstance(8081);
+	}
 
-    private static void startInstance(final int port) throws MalformedURLException {
-        final Server server = new Server();
+	private static void startInstance(final int port) throws MalformedURLException {
+		final Server server = new Server();
 
-        final HttpConfiguration httpConfig = new HttpConfiguration();
-        httpConfig.setOutputBufferSize(32768);
+		final HttpConfiguration httpConfig = new HttpConfiguration();
+		httpConfig.setOutputBufferSize(32768);
 
-        final ServerConnector http = new ServerConnector(server, new HttpConnectionFactory(httpConfig));
-        http.setPort(port);
-        http.setIdleTimeout(1000 * 60 * 60);
+		final ServerConnector http = new ServerConnector(server, new HttpConnectionFactory(httpConfig));
+		http.setPort(port);
+		http.setIdleTimeout(1000 * 60 * 60);
 
-        server.addConnector(http);
+		server.addConnector(http);
 
-        final ClassList classlist = ClassList.setServerDefault(server);
-        classlist.addAfter("org.eclipse.jetty.webapp.FragmentConfiguration",
-                "org.eclipse.jetty.plus.webapp.EnvConfiguration", "org.eclipse.jetty.plus.webapp.PlusConfiguration");
-        classlist.addBefore("org.eclipse.jetty.webapp.JettyWebXmlConfiguration",
-                "org.eclipse.jetty.annotations.AnnotationConfiguration");
+		final ClassList classlist = ClassList.setServerDefault(server);
+		classlist.addAfter("org.eclipse.jetty.webapp.FragmentConfiguration",
+				"org.eclipse.jetty.plus.webapp.EnvConfiguration", "org.eclipse.jetty.plus.webapp.PlusConfiguration");
+		classlist.addBefore("org.eclipse.jetty.webapp.JettyWebXmlConfiguration",
+				"org.eclipse.jetty.annotations.AnnotationConfiguration");
 
-        final WebAppContext bb = new WebAppContext();
-        bb.setAttribute("org.eclipse.jetty.server.webapp.ContainerIncludeJarPattern", ".*/[^/]*jstl.*\\.jar$");
-        bb.setServer(server);
-        bb.setContextPath("/cargotrans");
-        bb.setWar("src/main/webapp");
+		final WebAppContext bb = new WebAppContext();
+		bb.setAttribute("org.eclipse.jetty.server.webapp.ContainerIncludeJarPattern", ".*/[^/]*jstl.*\\.jar$");
+		bb.setServer(server);
+		bb.setContextPath("/cargotrans");
+		bb.setWar("src/main/webapp");
 
-        server.setHandler(bb);
+		server.setHandler(bb);
 
-        try {
-            server.start();
-        } catch (final Exception e) {
-            e.printStackTrace();
-            System.exit(100);
-        }
-    }
+		//setup JNDI 
+		final EnvConfiguration envConfiguration = new EnvConfiguration();
+		final URL url = new File("src/test/resources/jetty-env.xml").toURI().toURL();
+		envConfiguration.setJettyEnvXml(url); final Configuration[] configurations =
+		new Configuration[] { new WebInfConfiguration(), envConfiguration, new
+		WebXmlConfiguration() }; bb.setConfigurations(configurations);
+
+		try {
+			server.start();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			System.exit(100);
+		}
+	}
 }

@@ -172,6 +172,26 @@
 			value="/WEB-INF/views/correspondence/form.jsp" />
 	</definition>
 	
+	<definition name="orderReward.list" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/orderReward/list.jsp" />
+	</definition>
+
+	<definition name="orderReward.edit" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/orderReward/form.jsp" />
+	</definition>
+	
+	<definition name="payment.list" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/payment/list.jsp" />
+	</definition>
+
+	<definition name="payment.edit" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/payment/form.jsp" />
+	</definition>
+	
 	<definition name="login" extends="DefaultTemplate">
 		<put-attribute name="body"
 			value="/WEB-INF/views/login.jsp" />

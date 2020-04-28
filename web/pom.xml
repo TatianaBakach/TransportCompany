@@ -108,5 +108,9 @@
 
 	</dependencies>
 
+	<build>
+		<finalName>cargotrans</finalName>
+	</build>
+
 
 </project>
