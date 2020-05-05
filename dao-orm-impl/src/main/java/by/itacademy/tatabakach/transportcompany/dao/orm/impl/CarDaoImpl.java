@@ -11,6 +11,8 @@ import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.SingularAttribute;
 
 import org.hibernate.jpa.criteria.OrderImpl;
+import org.hibernate.search.jpa.FullTextEntityManager;
+import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.stereotype.Repository;
 
 import by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity.Car;
@@ -83,4 +85,25 @@ public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDa
 		}
 	}
 
+	
+	@Override
+	public List<ICar> search(String text) {
+
+	EntityManager em = getEntityManager();
+	FullTextEntityManager fullTextEntityManager = org.hibernate.search.jpa.Search.getFullTextEntityManager(em);
+
+	// create native Lucene query unsing the query DSL
+	// alternatively you can write the Lucene query using the Lucene query
+	// parser
+	// or the Lucene programmatic API. The Hibernate Search DSL is
+	// recommended though
+	QueryBuilder qb = fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Car.class).get();
+	org.apache.lucene.search.Query luceneQuery = qb.keyword().onFields("model").matching(text).createQuery();
+
+	// wrap Lucene query in a javax.persistence.Query
+	javax.persistence.Query jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery, Car.class);
+
+	return jpaQuery.getResultList();
+
+	}
 }

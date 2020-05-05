@@ -28,4 +28,7 @@ public interface ICarService {
 
 	long getCount(CarFilter filter);
 
+	@Transactional
+	List<ICar> search(String string);
+
 }

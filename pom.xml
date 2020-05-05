@@ -313,6 +313,13 @@
 				<artifactId>aspectjtools</artifactId>
 				<version>1.8.13</version>
 			</dependency>
+			
+			
+			<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>mail</artifactId>
+				<version>1.4</version>
+			</dependency>
 
 		</dependencies>
 	</dependencyManagement>

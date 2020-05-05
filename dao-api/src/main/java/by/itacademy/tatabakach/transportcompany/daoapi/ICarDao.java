@@ -11,4 +11,6 @@ public interface ICarDao extends IDao<ICar, Integer> {
 
 	long getCount(CarFilter filter);
 
+	List<ICar> search(String string);
+
 }
