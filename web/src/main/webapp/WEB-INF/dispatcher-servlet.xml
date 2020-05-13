@@ -17,6 +17,9 @@
 	<context:component-scan
 		base-package="by.itacademy.tatabakach.transportcompany.web.controller" />
 
+	<context:component-scan
+		base-package="by.itacademy.tatabakach.transportcompany.web.rest" />
+
 	<mvc:default-servlet-handler />
 
 	<mvc:resources mapping="/resources/**"
