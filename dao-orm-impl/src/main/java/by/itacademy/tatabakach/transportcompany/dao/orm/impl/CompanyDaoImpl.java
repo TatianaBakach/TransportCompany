@@ -17,7 +17,6 @@ import by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity.Address_;
 import by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity.Company;
 import by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity.Company_;
 import by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity.Employee_;
-import by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity.Locality_;
 import by.itacademy.tatabakach.transportcompany.daoapi.ICompanyDao;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.CompanyFilter;

@@ -3,7 +3,7 @@
 <%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 <%@ taglib prefix="jspFragments" tagdir="/WEB-INF/tags"%>
 
-<h4 class="header">Correspondences</h4>
+<h4 class="header">Correspondence</h4>
 <table class="bordered highlight">
 	<tbody>
 		<tr>

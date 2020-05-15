@@ -187,6 +187,16 @@
 			value="/WEB-INF/views/payment/list.jsp" />
 	</definition>
 
+	<definition name="routeItem.edit" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/routeItem/form.jsp" />
+	</definition>
+	
+	<definition name="routeItem.list" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/routeItem/list.jsp" />
+	</definition>
+
 	<definition name="payment.edit" extends="DefaultTemplate">
 		<put-attribute name="body"
 			value="/WEB-INF/views/payment/form.jsp" />

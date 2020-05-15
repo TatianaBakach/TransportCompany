@@ -45,8 +45,8 @@ public class RouteItemDaoImpl extends AbstractDaoImpl<IRouteItem, Integer> imple
 		cq.select(from);
 
 		from.fetch(RouteItem_.order, JoinType.LEFT);
-		from.fetch(RouteItem_.address, JoinType.LEFT);
-		from.fetch(RouteItem_.custom, JoinType.LEFT);
+		from.fetch(RouteItem_.address, JoinType.LEFT).fetch(Address_.locality, JoinType.LEFT);
+		from.fetch(RouteItem_.custom, JoinType.LEFT).fetch(Address_.locality, JoinType.LEFT);
 
 		// .. where id=...
 		cq.where(cb.equal(from.get(RouteItem_.id), id));
@@ -70,10 +70,10 @@ public class RouteItemDaoImpl extends AbstractDaoImpl<IRouteItem, Integer> imple
 				from.fetch(RouteItem_.order, JoinType.LEFT);
 			}
 	        if(filter.getFetchAddress()) {
-	        	from.fetch(RouteItem_.address, JoinType.LEFT);
+	        	from.fetch(RouteItem_.address, JoinType.LEFT).fetch(Address_.locality, JoinType.LEFT);
 	        }
 	        if(filter.getFetchCustom()) {
-	        	from.fetch(RouteItem_.custom, JoinType.LEFT);
+	        	from.fetch(RouteItem_.custom, JoinType.LEFT).fetch(Address_.locality, JoinType.LEFT);
 	        }
 	        
 	        final String sortColumn = filter.getSortColumn();

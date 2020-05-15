@@ -17,7 +17,9 @@
 				<li><a href="${pagesOrderReward}">order rewards</a></li>
 				<li><a href="${pagesOrderRewardPercent}">order reward
 						percents</a></li>
+				<li><a href="${pagesRouteItem}">route items</a></li>
 				<li><a href="${pagesTransactionCost}">transaction costs</a></li>
+				<li><a href="${pagesPayment}">payments</a></li>
 				<li><a href="${pagesCar}">cars</a></li>
 				<li><a href="${pagesDriver}">drivers</a></li>
 				<li><a href="${pagesTax}">taxes</a></li>
@@ -27,7 +29,7 @@
 				<li><a href="${pagesCompany}">companies</a></li>
 				<li><a href="${pagesEmployee}">employees</a></li>
 				<li><a href="${pagesContract}">contracts</a></li>
-				<li><a href="${pagesCfr}">cfrs</a></li>
+				<li><a href="${pagesCfr}">cfr</a></li>
 			</ul>
 
 			<ul class="left hide-on-med-and-down">

@@ -1,7 +1,10 @@
 package by.itacademy.tatabakach.transportcompany.web.converter;
 
+import java.util.Set;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -58,6 +61,15 @@ public class CompanyFromDTOConverter implements Function<CompanyDTO, ICompany> {
 			e.setId(creatorId);
 			entity.setCreator(e);
 		}
+		
+		final Set<Integer> employeeIds = dto.getEmployeeIds();
+        if (CollectionUtils.isNotEmpty(employeeIds)) {
+            entity.setEmployees(employeeIds.stream().map((id) -> {
+                final IEmployee employee = employeeService.createEntity();
+                employee.setId(id);
+                return employee;
+            }).collect(Collectors.toSet()));
+        }
 
 		return entity;
 	}
