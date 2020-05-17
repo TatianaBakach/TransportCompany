@@ -16,5 +16,7 @@ public interface IEmployeeDao extends IDao<IEmployee, Integer>{
 	
 	Set<IEmployee> getByCompany(Integer id);
 
+	IEmployee getByUserName(String username);
+
 
 }

@@ -35,9 +35,11 @@ public interface IEmployee extends IBaseEntity {
 
 	void setPhone(String phone);
 	
-	String getLogin();
-	
-	void setLogin(String login);
+	/*
+	 * String getLogin();
+	 * 
+	 * void setLogin(String login);
+	 */
 	
 	String getPassword();
 	

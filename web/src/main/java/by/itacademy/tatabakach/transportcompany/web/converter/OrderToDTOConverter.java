@@ -1,7 +1,11 @@
 package by.itacademy.tatabakach.transportcompany.web.converter;
 
+import java.util.Set;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICar;
@@ -15,6 +19,8 @@ import by.itacademy.tatabakach.transportcompany.web.dto.OrderDTO;
 
 @Component
 public class OrderToDTOConverter implements Function<IOrder, OrderDTO> {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(OrderToDTOConverter.class);
 
 	@Override
 	public OrderDTO apply(final IOrder entity) {
@@ -90,6 +96,15 @@ public class OrderToDTOConverter implements Function<IOrder, OrderDTO> {
 		}
 		
 		dto.setNote(entity.getNote());
+		
+		 try {
+	            final Set<IEmployee> employees = entity.getEmployees();
+	            if (employees != null) {
+	                dto.setEmployeeIds(employees.stream().map(IEmployee::getId).collect(Collectors.toSet()));
+	            }
+	        } catch (final Exception e) {
+	            LOGGER.warn("ignore conversion of 'employees' collection because of:" + e.getMessage());
+	        }
 
 		return dto;
 	}

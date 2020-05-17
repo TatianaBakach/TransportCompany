@@ -85,8 +85,9 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<IEmployee, Integer> impleme
 			return from.get(Employee_.mail);
 		case "phone":
 			return from.get(Employee_.phone);
-		case "login":
-			return from.get(Employee_.login);
+		/*
+		 * case "login": return from.get(Employee_.login);
+		 */
 		case "password":
 			return from.get(Employee_.password);
 		case "salary":
@@ -104,6 +105,22 @@ public class EmployeeDaoImpl extends AbstractDaoImpl<IEmployee, Integer> impleme
 	@Override
 	public Set<IEmployee> getByCompany(Integer id) {
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public IEmployee getByUserName(String username) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+
+		final CriteriaQuery<IEmployee> cq = cb.createQuery(IEmployee.class);
+		final Root<Employee> from = cq.from(Employee.class);
+
+		cq.select(from);
+
+		cq.where(cb.equal(from.get(Employee_.mail), username));
+
+		final TypedQuery<IEmployee> q = em.createQuery(cq);
+		return getSingleResult(q);
 	}
 
 }

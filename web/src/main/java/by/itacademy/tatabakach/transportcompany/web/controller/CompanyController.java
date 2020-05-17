@@ -75,7 +75,7 @@ public class CompanyController extends AbstractController {
 		models.put("gridItems", dtos);
 		return new ModelAndView("company.list", models);
 	}
-	
+
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView showForm() {
 		final Map<String, Object> hashMap = new HashMap<>();
@@ -139,7 +139,8 @@ public class CompanyController extends AbstractController {
 		final List<IAddress> adresses = addressService.find(filter);
 		Map<Integer, String> addressesMap = new HashMap<Integer, String>();
 		for (IAddress iAddress : adresses) {
-			addressesMap.put(iAddress.getId(), String.format("%s %s %s", iAddress.getPostcode(), iAddress.getLocality().getName(), iAddress.getExactAddress()));
+			addressesMap.put(iAddress.getId(), String.format("%s %s %s", iAddress.getPostcode(),
+					iAddress.getLocality().getName(), iAddress.getExactAddress()));
 		}
 		// final Map<Integer, String> brandsMap = countries.stream()
 		// .collect(Collectors.toMap(ICountry::getId, ICountry::getName));
@@ -154,10 +155,11 @@ public class CompanyController extends AbstractController {
 		final List<IEmployee> employees = employeeService.getAll();
 		Map<Integer, String> employeesMap = new HashMap<Integer, String>();
 		for (IEmployee iEmployee : employees) {
-			employeesMap.put(iEmployee.getId(), String.format("%s %s",iEmployee.getLastName(), iEmployee.getFirstName()));
+			employeesMap.put(iEmployee.getId(),
+					String.format("%s %s", iEmployee.getLastName(), iEmployee.getFirstName()));
 		}
 		hashMap.put("employeesChoices", employeesMap);
-		
+
 	}
 
 }

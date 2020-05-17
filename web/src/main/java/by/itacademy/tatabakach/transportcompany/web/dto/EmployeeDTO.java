@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
+
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Department;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Position;
 
@@ -23,11 +25,14 @@ public class EmployeeDTO {
 	
 	private Position position;
 	
+	@Size(min = 1, max = 50)
+	@Email(message = "Email address has invalid format: ${validatedValue}",
+    regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")
 	private String mail;
 	
 	private String phone;
 	
-	private String login;
+	/* private String login; */
 	
 	private String password;
 	
@@ -97,13 +102,11 @@ public class EmployeeDTO {
 		this.phone = phone;
 	}
 
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
+	/*
+	 * public String getLogin() { return login; }
+	 * 
+	 * public void setLogin(String login) { this.login = login; }
+	 */
 
 	public String getPassword() {
 		return password;

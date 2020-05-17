@@ -80,7 +80,10 @@ public abstract class AbstractDaoImpl<T, ID> implements IDao<T, ID> {
 	protected T getSingleResult(final TypedQuery<T> q) {
 		final List<T> resultList = q.getResultList();
 		final int size = resultList.size();
-		if (size != 1) {
+		if(size == 0) {
+			return null;
+		}
+		if (size > 1) {
 			throw new IllegalArgumentException("unexpected result count:" + size);
 		}
 		return resultList.get(0);

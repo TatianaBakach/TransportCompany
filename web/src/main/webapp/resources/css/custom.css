@@ -48,3 +48,18 @@ nav {
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
 
+#convertor p, #convertor td {
+	font: normal 15px Helvetica, Georgia, Arial;
+	padding: 2px;
+	margin: 0px;
+}
+
+#convertor input {
+	border: 1px solid #E9851D;
+	background: #FFFFFF;
+	font: normal 15px Arial, Helvetica, sans-serif;
+	color: #5D781D;
+	width: 65px;
+	height: 17px;
+}
+

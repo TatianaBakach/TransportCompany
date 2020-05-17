@@ -46,11 +46,11 @@
             <div class="col s12"></div>
             <div class="col s3">
                 <c:if test="${!readonly}">
-                    <button class="btn waves-effect waves-light right" type="submit">Save</button>
+                    <button class="btn waves-effect waves-light right green darken-3" type="submit">Save</button>
                 </c:if>
             </div>
             <div class="col s3">
-                <a class="btn waves-effect waves-light right" href="${pagesAddress}">Cancel</a>
+                <a class="btn waves-effect waves-light right red darken-2" href="${pagesAddress}">Cancel</a>
             </div>
         </div>
     </form:form>

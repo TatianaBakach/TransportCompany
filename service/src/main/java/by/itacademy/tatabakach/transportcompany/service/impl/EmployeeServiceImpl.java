@@ -71,4 +71,9 @@ public class EmployeeServiceImpl implements IEmployeeService {
 		return dao.getCount(filter);
 	}
 
+	@Override
+	public IEmployee getByUserName(String username) {
+		return dao.getByUserName(username);
+	}
+
 }

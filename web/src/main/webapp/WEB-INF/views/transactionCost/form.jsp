@@ -43,15 +43,17 @@
 				<label for="rate">Transaction cost rate</label>
 			</div>
 		</div>
-
+		
+		
 		<div class="row">
 			<div class="input-field col s12">
-				<form:input path="intermediateCurrency" type="text"
-					disabled="${readonly}" />
+				<form:select path="intermediateCurrency" disabled="${readonly}">
+					<form:options items="${currencyChoices}" />
+				</form:select>
 				<form:errors path="intermediateCurrency" cssClass="red-text" />
-				<label for="intermediateCurrency">Transaction cost
-					intermediate currency</label>
+				<label for="intermediateCurrency">intermediate currency</label>
 			</div>
+
 		</div>
 
 		<div class="row">
@@ -72,15 +74,16 @@
 				<label for="paymentPeriod">Transaction cost payment period</label>
 			</div>
 		</div>
-
+		
 		<div class="row">
 			<div class="input-field col s12">
-				<form:input path="paymentTermsType" type="text"
-					disabled="${readonly}" />
+				<form:select path="paymentTermsType" disabled="${readonly}">
+					<form:options items="${paymentTermsTypesChoices}" />
+				</form:select>
 				<form:errors path="paymentTermsType" cssClass="red-text" />
-				<label for="paymentTermsType">Transaction cost payment terms
-					type</label>
+				<label for="paymentTermsType">intermediate currency</label>
 			</div>
+
 		</div>
 
 		<div class="row">

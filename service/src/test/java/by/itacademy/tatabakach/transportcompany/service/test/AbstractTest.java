@@ -344,7 +344,7 @@ public abstract class AbstractTest {
 		entity.setPosition(getRandomFromArray(Position.values()));
 		entity.setMail("mail-" + getRandomPrefix());
 		entity.setPhone("phone-" + getRandomPrefix());
-		entity.setLogin("login-" + getRandomPrefix());
+		/* entity.setLogin("login-" + getRandomPrefix()); */
 		entity.setPassword("password-" + getRandomPrefix());
 		entity.setSalary(getRandomBigDecimal(2));
 		

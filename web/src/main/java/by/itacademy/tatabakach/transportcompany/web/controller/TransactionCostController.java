@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Currency;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.PaymentTermsType;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITransactionCost;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.TransactionCostFilter;
 import by.itacademy.tatabakach.transportcompany.service.ITransactionCostService;
@@ -127,6 +128,13 @@ public class TransactionCostController extends AbstractController {
                 .collect(Collectors.toMap(Currency::name, Currency::name));
 
         hashMap.put("currencyChoices", currencyTypesMap);
+        
+        final List<PaymentTermsType> paymentTermsTypesList = Arrays.asList(PaymentTermsType.values());
+		final Map<String, String> paymentTermsTypesMap = paymentTermsTypesList.stream()
+				.collect(Collectors.toMap(PaymentTermsType::name, PaymentTermsType::name));
+
+		hashMap.put("paymentTermsTypesChoices", paymentTermsTypesMap);
+
 
     }
 

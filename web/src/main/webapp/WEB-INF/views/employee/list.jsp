@@ -15,7 +15,7 @@
 			<th><mytaglib:sort-link pageUrl="${pagesEmployee}" column="position">position</mytaglib:sort-link></th>
 			<th><mytaglib:sort-link pageUrl="${pagesEmployee}" column="mail">e-mail</mytaglib:sort-link></th>
 			<th><mytaglib:sort-link pageUrl="${pagesEmployee}" column="phone">phone</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesEmployee}" column="login">login</mytaglib:sort-link></th>
+			<%-- <th><mytaglib:sort-link pageUrl="${pagesEmployee}" column="login">login</mytaglib:sort-link></th> --%>
 			<th><mytaglib:sort-link pageUrl="${pagesEmployee}" column="password">password</mytaglib:sort-link></th>
 			<th><mytaglib:sort-link pageUrl="${pagesEmployee}" column="salary">salary</mytaglib:sort-link></th>
             <th></th>
@@ -30,7 +30,7 @@
 				<td><c:out value="${employee.position}" /></td>
 				<td><c:out value="${employee.mail}" /></td>
 				<td><c:out value="${employee.phone}" /></td>
-				<td><c:out value="${employee.login}" /></td>
+				<%-- <td><c:out value="${employee.login}" /></td> --%>
 				<td><c:out value="${employee.password}" /></td>
 				<td><c:out value="${employee.salary}" /></td>
 				<td class="right">

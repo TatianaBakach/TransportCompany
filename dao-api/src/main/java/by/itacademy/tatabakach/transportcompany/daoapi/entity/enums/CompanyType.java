@@ -1,7 +1,7 @@
 package by.itacademy.tatabakach.transportcompany.daoapi.entity.enums;
 
 public enum CompanyType {
-	customer, carrier, our_company
+	заказчик, перевозчик, наша_компания
 	
 
 }

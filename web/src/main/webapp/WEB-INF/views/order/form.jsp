@@ -178,6 +178,17 @@
 				<label for="note">Order note</label>
 			</div>
 		</div>
+		
+		<div class="row">
+            <div class="input-field  col s12">
+                <form:select path="employeeIds" disabled="${readonly}" multiple="true">
+                    <option value="" disabled ${empty formModel.employeeIds? "selected":""}>выберите сотрудников</option>
+                    <form:options items="${employeesChoices}" />
+                </form:select>
+                <form:errors path="employeeIds" cssClass="red-text" />
+                <label for="employeeIds" class="multiselect-label">сотрудники</label>
+            </div>
+        </div>
         
         <div class="row">
             <div class="col s6"></div>

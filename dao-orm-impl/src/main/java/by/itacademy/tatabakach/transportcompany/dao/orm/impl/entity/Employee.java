@@ -37,8 +37,9 @@ public class Employee extends BaseEntity implements IEmployee {
 	@Column
 	private String phone;
 
-	@Column
-	private String login;
+	/*
+	 * @Column private String login;
+	 */
 
 	@Column
 	private String password;
@@ -116,15 +117,11 @@ public class Employee extends BaseEntity implements IEmployee {
 		this.phone = phone;
 	}
 
-	@Override
-	public String getLogin() {
-		return login;
-	}
-
-	@Override
-	public void setLogin(final String login) {
-		this.login = login;
-	}
+	/*
+	 * @Override public String getLogin() { return login; }
+	 * 
+	 * @Override public void setLogin(final String login) { this.login = login; }
+	 */
 
 	@Override
 	public String getPassword() {
@@ -150,7 +147,7 @@ public class Employee extends BaseEntity implements IEmployee {
 	public String toString() {
 		return "Employee [firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName
 				+ ", department=" + department + ", position=" + position + "e-mail=" + mail + "phone="
-				+ phone + "login=" + login + "password=" + password + "salary=" + salary + ", getId()=" + getId() + "]";
+				+ phone + "password=" + password + "salary=" + salary + ", getId()=" + getId() + "]";
 	}
 
 }

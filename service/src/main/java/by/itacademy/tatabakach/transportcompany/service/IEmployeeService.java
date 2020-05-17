@@ -28,4 +28,8 @@ public interface IEmployeeService {
 
 	long getCount(EmployeeFilter filter);
 
+	IEmployee getByUserName(String username);
+	
+	
+
 }

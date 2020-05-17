@@ -104,7 +104,7 @@ public class CarServiceImpl implements ICarService {
 
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("from@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("dmitri.zhyvushko@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("tata.bakach@gmail.com"));
 			message.setSubject(subject);
 			message.setText(body);
 

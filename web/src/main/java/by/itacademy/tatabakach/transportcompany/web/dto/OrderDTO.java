@@ -1,6 +1,7 @@
 package by.itacademy.tatabakach.transportcompany.web.dto;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -74,6 +75,8 @@ public class OrderDTO {
 	private String creatorName;
 
 	private String note;
+	
+	private Set<Integer> employeeIds;
 
 	public Integer getId() {
 		return id;
@@ -297,6 +300,14 @@ public class OrderDTO {
 
 	public void setNote(String note) {
 		this.note = note;
+	}
+
+	public Set<Integer> getEmployeeIds() {
+		return employeeIds;
+	}
+
+	public void setEmployeeIds(Set<Integer> employeeIds) {
+		this.employeeIds = employeeIds;
 	}
 	
 
