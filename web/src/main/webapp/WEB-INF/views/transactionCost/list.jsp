@@ -22,7 +22,7 @@
 		<c:forEach var="transactionCost" items="${gridItems}" varStatus="loopCounter">
 			<tr>
 				<td><c:out value="${transactionCost.id}" /></td>
-				<td><c:out value="${transactionCost.date}" /></td>
+				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${transactionCost.date}" /></td>
 				<td><c:out value="${transactionCost.currency}" /></td>
 				<td><c:out value="${transactionCost.amount}" /></td>
 				<td><c:out value="${transactionCost.rate}" /></td>

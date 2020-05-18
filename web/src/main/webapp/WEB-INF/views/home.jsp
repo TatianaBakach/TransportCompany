@@ -35,6 +35,10 @@
 
 </div>
 
+<a href="http://www.ecopress.by" title="Курсы валют на www.ecopress.by"
+	target="_blank"><img border="0"
+	src="http://www.ecopress.by/cgi/informer.php?nb=USD,EUR,RUB&vb=USD,EUR,RUB&b=&k=&inf=f0f8ff&bgc=ffffff&hbgc=cacaff&txtc=000000&htxtc=000000&border=000000&iborder=000000&numc=000000&datec=000080&copyc=000080&plusc=006600&minusc=ff0000&is_b=1&is_ib=1&l=240"
+	width="240" alt="Курсы валют на www.ecopress.by"></a>
 
 <div class="row">
 	<div class="col s3">

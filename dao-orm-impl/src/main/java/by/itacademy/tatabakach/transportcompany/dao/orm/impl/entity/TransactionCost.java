@@ -17,7 +17,7 @@ import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITransaction
 @Entity
 public class TransactionCost extends BaseEntity implements ITransactionCost {
 
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column
 	private Date date;
 	
