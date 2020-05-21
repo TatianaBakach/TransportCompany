@@ -123,6 +123,7 @@ public class ContractController extends AbstractController {
 	}
 	
 	private void loadCommonFormModels(final Map<String, Object> hashMap) {
+		
 		final List<ICompany> companies = companyService.getAll();
 		Map<Integer, String> companiesMap = new HashMap<Integer, String>();
 		for (ICompany iCompany : companies) {

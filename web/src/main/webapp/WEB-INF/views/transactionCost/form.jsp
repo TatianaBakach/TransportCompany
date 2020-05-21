@@ -25,30 +25,32 @@
 				<form:errors path="currency" cssClass="red-text" />
 				<label for="currency">currency</label>
 			</div>
-			
+
 			<div class="input-field col s4">
 				<form:input path="amount" type="text" disabled="${readonly}" />
 				<form:errors path="amount" cssClass="red-text" />
 				<label for="amount">Transaction cost amount</label>
 			</div>
-			
+
 			<div class="input-field col s4">
 				<form:input path="rate" type="text" disabled="${readonly}" />
 				<form:errors path="rate" cssClass="red-text" />
 				<label for="rate">Transaction cost rate</label>
 			</div>
-			</div>
+		</div>
 
-		
+
 		<div class="row">
 			<div class="input-field col s4">
 				<form:select path="intermediateCurrency" disabled="${readonly}">
+					<form:option value="">&nbsp;</form:option>
 					<form:options items="${currencyChoices}" />
+
 				</form:select>
 				<form:errors path="intermediateCurrency" cssClass="red-text" />
 				<label for="intermediateCurrency">intermediate currency</label>
 			</div>
-			
+
 			<div class="input-field col s4">
 				<form:input path="intermediateCurrencyRate" type="text"
 					disabled="${readonly}" />
@@ -66,7 +68,7 @@
 				<form:errors path="paymentPeriod" cssClass="red-text" />
 				<label for="paymentPeriod">Transaction cost payment period</label>
 			</div>
-			
+
 			<div class="input-field col s4">
 				<form:select path="paymentTermsType" disabled="${readonly}">
 					<form:options items="${paymentTermsTypesChoices}" />
@@ -75,10 +77,11 @@
 				<label for="paymentTermsType">intermediate currency</label>
 			</div>
 		</div>
-		
+
 		<div class="row">
 			<div class="input-field col s12">
-				<form:textarea path="note" disabled="${readonly}" cssClass="materialize-textarea" />
+				<form:textarea path="note" disabled="${readonly}"
+					cssClass="materialize-textarea" />
 				<form:errors path="note" cssClass="red-text" />
 				<label for="note">Transaction cost note</label>
 			</div>
@@ -88,7 +91,8 @@
 			<div class="col s6"></div>
 			<div class="col s3">
 				<c:if test="${!readonly}">
-					<button class="btn waves-effect waves-light right green darken-3" type="submit">Save</button>
+					<button class="btn waves-effect waves-light right green darken-3"
+						type="submit">Save</button>
 				</c:if>
 			</div>
 			<div class="col s3">

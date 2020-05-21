@@ -40,9 +40,11 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		final int userId = employee.getId(); 
 
 		List<String> userRoles = new ArrayList<>();
+		
+		
 		// TODO get list of user's
 // roles
-		userRoles.add("ROLE_" + "admin"); 
+		userRoles.add("ROLE_" + "admin"); // employee.getRole() 
 		// !!! ROLE_ prefix is required
 
 		final List<SimpleGrantedAuthority> authorities = new ArrayList<>();
