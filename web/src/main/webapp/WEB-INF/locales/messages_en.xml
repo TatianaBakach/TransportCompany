@@ -3,9 +3,18 @@
 <properties>
 	<entry key="page.home.title">Home Page</entry>
 	<entry key="page.home.welcomeMessage">Hello, {0}</entry>
+	
 	<entry key="page.login.credentialsError">Invalid username and password!</entry>
+	<entry key="page.login.h3">Login with Username and Password</entry>
+	<entry key="page.login.user">User</entry>
+	<entry key="page.login.password">Password</entry>
+	<entry key="page.login.button">Enter</entry>
 
 	<entry key="table.column.id">ID</entry>
+	<entry key="table.column.name">Name</entry>
+	
+	<entry key="page.button.save">Save</entry>
+	<entry key="page.button.cancel">Cancel</entry>
 
 
 </properties>

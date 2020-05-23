@@ -3,8 +3,16 @@
 <properties>
 	<entry key="page.home.title">Домашняя страница</entry>
 	<entry key="page.home.welcomeMessage">Привет, {0}</entry>
+	
 	<entry key="page.login.credentialsError">неверный логин или пароль!</entry>
+	<entry key="page.login.h3">Введите имя пользователя и пароль</entry>
+	<entry key="page.login.user">Имя пользователя</entry>
+	<entry key="page.login.password">Пароль</entry>
+	<entry key="page.login.button">Войти</entry>
 
 	<entry key="table.column.id">№</entry>
 	<entry key="table.column.name">Наименование</entry>
+	
+	<entry key="page.button.save">Сохранить</entry>
+	<entry key="page.button.cancel">Отмена</entry>
 </properties>

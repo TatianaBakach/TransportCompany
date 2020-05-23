@@ -70,10 +70,10 @@ public class Contract extends BaseEntity implements IContract {
 		this.date = date;
 	}
 
-	@Override
-	public String toString() {
-		return "Contract [number=" + number + ", our_company=" + ourCompany + "company=" + company + "date=" + date
-				+ ", getId()=" + getId() + "]";
-	}
+	/*
+	 * @Override public String toString() { return "Contract [number=" + number +
+	 * ", our_company=" + ourCompany + "company=" + company + "date=" + date +
+	 * ", getId()=" + getId() + "]"; }
+	 */
 
 }

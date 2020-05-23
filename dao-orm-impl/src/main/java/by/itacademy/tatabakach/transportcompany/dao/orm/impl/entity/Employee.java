@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Department;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Position;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Role;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
 
 @Entity
@@ -36,10 +37,10 @@ public class Employee extends BaseEntity implements IEmployee {
 
 	@Column
 	private String phone;
-
-	/*
-	 * @Column private String login;
-	 */
+	
+	@Column
+	@Enumerated(EnumType.ORDINAL)
+	private Role role;
 
 	@Column
 	private String password;
@@ -117,11 +118,15 @@ public class Employee extends BaseEntity implements IEmployee {
 		this.phone = phone;
 	}
 
-	/*
-	 * @Override public String getLogin() { return login; }
-	 * 
-	 * @Override public void setLogin(final String login) { this.login = login; }
-	 */
+	@Override
+	public Role getRole() {
+		return role;
+	}
+
+	@Override
+	public void setRole(final Role role) {
+		this.role = role;
+	}
 
 	@Override
 	public String getPassword() {

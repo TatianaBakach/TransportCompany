@@ -29,6 +29,7 @@ import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.LoadingMetho
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.PaymentTermsType;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Position;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.RewardType;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Role;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IAddress;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICar;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICfr;
@@ -344,7 +345,7 @@ public abstract class AbstractTest {
 		entity.setPosition(getRandomFromArray(Position.values()));
 		entity.setMail("mail-" + getRandomPrefix());
 		entity.setPhone("phone-" + getRandomPrefix());
-		/* entity.setLogin("login-" + getRandomPrefix()); */
+		entity.setRole(getRandomFromArray(Role.values()));
 		entity.setPassword("password-" + getRandomPrefix());
 		entity.setSalary(getRandomBigDecimal(2));
 		

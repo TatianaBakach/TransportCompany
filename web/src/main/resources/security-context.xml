@@ -15,14 +15,28 @@ http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 		base-package="by.itacademy.tatabakach.transportcompany.web.security" />
 
 	<http>
-		 <intercept-url pattern="/car/**" access="!isAnonymous()" />
-		
-		<!--<intercept-url pattern="/driver/**" access="!isAnonymous()" />
-		<intercept-url pattern="/country/**" access="hasRole('admin')" />
-		<intercept-url pattern="/region/**" access="hasRole('superadmin')" /> -->
-		
+		<intercept-url pattern="/car/**" access="isAuthenticated()" />
+		<intercept-url pattern="/driver/**" access="isAuthenticated()" />
+		<intercept-url pattern="/country/**" access="isAuthenticated()" />
+		<intercept-url pattern="/region/**" access="isAuthenticated()" />
+		<intercept-url pattern="/locality/**" access="isAuthenticated()" />
+		<intercept-url pattern="/address/**" access="isAuthenticated()" />
+		<intercept-url pattern="/routeItem/**" access="isAuthenticated()" />
+		<intercept-url pattern="/company/**" access="isAuthenticated()" />
+		<intercept-url pattern="/transactionCost/**" access="isAuthenticated()" />
+		<intercept-url pattern="/order/**" access="isAuthenticated()" />
+		<intercept-url pattern="/contract/**" access="hasAnyRole('admin,accountant')" />
+		<intercept-url pattern="/cfr/**" access="hasAnyRole('admin,accountant')" />
+		<intercept-url pattern="/payment/**" access="hasAnyRole('admin,accountant')" />
+		<intercept-url pattern="/tax/**" access="hasAnyRole('admin,accountant')" />
+		<intercept-url pattern="/orderReward/**" access="hasAnyRole('admin,accountant')" />
+		<intercept-url pattern="/orderRewardPercent/**" access="hasAnyRole('admin,accountant')" />
+		<intercept-url pattern="/correspondence/**" access="hasAnyRole('admin,accountant')" />
+		<intercept-url pattern="/employee/**" access="hasRole('admin')" />
+		<intercept-url pattern="/" access="isAuthenticated()" />
+
 		<intercept-url pattern="/rest/api/v1/**" access="!isAnonymous()" />
-		
+
 
 		<form-login login-page="/login" default-target-url="/"
 			authentication-failure-url="/login?error"

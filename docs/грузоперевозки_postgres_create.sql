@@ -140,7 +140,7 @@ CREATE TABLE "employee" (
 	"position" integer,
 	"mail" character varying UNIQUE,
 	"phone" character varying,
-	"login" character varying,
+	"role" integer,
 	"password" character varying,
 	"salary" DECIMAL(18,2),
 	CONSTRAINT "employee_pk" PRIMARY KEY ("id")

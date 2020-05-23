@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.Email;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Department;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Position;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Role;
 
 public class EmployeeDTO {
 	
@@ -32,7 +33,7 @@ public class EmployeeDTO {
 	
 	private String phone;
 	
-	/* private String login; */
+	private Role role;
 	
 	private String password;
 	
@@ -102,11 +103,13 @@ public class EmployeeDTO {
 		this.phone = phone;
 	}
 
-	/*
-	 * public String getLogin() { return login; }
-	 * 
-	 * public void setLogin(String login) { this.login = login; }
-	 */
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
 
 	public String getPassword() {
 		return password;

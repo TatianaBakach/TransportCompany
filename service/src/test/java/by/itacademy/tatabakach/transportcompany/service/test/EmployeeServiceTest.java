@@ -27,7 +27,7 @@ public class EmployeeServiceTest extends AbstractTest {
 		assertEquals(entity.getPosition(), entityFromDb.getPosition());
 		assertEquals(entity.getMail(), entityFromDb.getMail());
 		assertEquals(entity.getPhone(), entityFromDb.getPhone());
-		/* assertEquals(entity.getLogin(), entityFromDb.getLogin()); */
+		assertEquals(entity.getRole(), entityFromDb.getRole());
 		assertEquals(entity.getPassword(), entityFromDb.getPassword());
 		assertEquals(entity.getSalary(), entityFromDb.getSalary());
 
@@ -54,7 +54,7 @@ public class EmployeeServiceTest extends AbstractTest {
 			assertNotNull(entityFromDb.getPosition());
 			assertNotNull(entityFromDb.getMail());
 			assertNotNull(entityFromDb.getPhone());
-			/* assertNotNull(entityFromDb.getLogin()); */
+			assertNotNull(entityFromDb.getRole());
 			assertNotNull(entityFromDb.getPassword());
 			assertNotNull(entityFromDb.getSalary());
 		}

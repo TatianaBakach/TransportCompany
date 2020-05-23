@@ -1,9 +1,11 @@
 package by.itacademy.tatabakach.transportcompany.daoapi.entity.table;
 
+import java.awt.Robot;
 import java.math.BigDecimal;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Department;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Position;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Role;
 
 public interface IEmployee extends IBaseEntity {
 	
@@ -35,11 +37,9 @@ public interface IEmployee extends IBaseEntity {
 
 	void setPhone(String phone);
 	
-	/*
-	 * String getLogin();
-	 * 
-	 * void setLogin(String login);
-	 */
+	Role getRole();
+	
+	void setRole(Role role);
 	
 	String getPassword();
 	

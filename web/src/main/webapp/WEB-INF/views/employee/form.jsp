@@ -61,19 +61,21 @@
 		</div>
 		
 		<div class="row">
-			<%-- <div class="input-field col s6">
-				<form:input path="login" type="text" disabled="${readonly}" />
-				<form:errors path="login" cssClass="red-text" />
-				<label for="login">Employee login</label>
-			</div> --%>
+			<div class="input-field col s4">
+				<form:select path="role" disabled="${readonly}">
+					<form:options items="${roleChoices}" />
+				</form:select>
+				<form:errors path="role" cssClass="red-text" />
+				<label for="role">Employee role</label>
+			</div>
 			
-			<div class="input-field col s6">
+			<div class="input-field col s4">
 				<form:input path="password" type="text" disabled="${readonly}" />
 				<form:errors path="password" cssClass="red-text" />
 				<label for="password">Employee password</label>
 			</div>
 			
-			<div class="input-field col s6">
+			<div class="input-field col s4">
 				<form:input path="salary" type="text" disabled="${readonly}" />
 				<form:errors path="salary" cssClass="red-text" />
 				<label for="salary">Employee salary</label>

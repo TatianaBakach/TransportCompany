@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Department;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Position;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.Role;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IEmployee;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.EmployeeFilter;
 import by.itacademy.tatabakach.transportcompany.service.IEmployeeService;
@@ -133,6 +134,12 @@ public class EmployeeController extends AbstractController {
                 .collect(Collectors.toMap(Position::name, Position::name));
 
         hashMap.put("positionChoices", positionTypesMap);
+        
+        final List<Role> roleTypesList = Arrays.asList(Role.values());
+        final Map<String, String> roleTypesMap = roleTypesList.stream()
+                .collect(Collectors.toMap(Role::name, Role::name));
+
+        hashMap.put("roleChoices", roleTypesMap);
 
     }
 

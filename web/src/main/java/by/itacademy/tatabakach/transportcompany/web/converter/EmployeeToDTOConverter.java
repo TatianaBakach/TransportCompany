@@ -21,7 +21,7 @@ public class EmployeeToDTOConverter implements Function<IEmployee, EmployeeDTO> 
 		dto.setPosition(entity.getPosition());
 		dto.setMail(entity.getMail());
 		dto.setPhone(entity.getPhone());
-		/* dto.setLogin(entity.getLogin()); */
+		dto.setRole(entity.getRole());
 		dto.setPassword(entity.getPassword());
 		dto.setSalary(entity.getSalary());
 

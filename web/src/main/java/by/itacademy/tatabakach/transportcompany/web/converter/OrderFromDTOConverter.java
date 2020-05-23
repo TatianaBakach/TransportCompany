@@ -69,6 +69,13 @@ public class OrderFromDTOConverter implements Function<OrderDTO, IOrder> {
 			entity.setCarrier(cr);
 		}
 		
+		Integer customerId = dto.getCustomerId();
+		if (customerId != null) {
+			ICompany cs = companyService.createEntity();
+			cs.setId(customerId);
+			entity.setCustomer(cs);
+		}
+		
 		Integer carId = dto.getCarId();
 		if (carId != null) {
 			ICar car = carService.createEntity();
