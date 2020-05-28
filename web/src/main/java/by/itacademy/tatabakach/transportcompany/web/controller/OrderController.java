@@ -189,7 +189,7 @@ public class OrderController extends AbstractController {
 		final List<ITransactionCost> transactionCosts = transactionCostService.getAll();
 		Map<Integer, String> transactionCostsMap = new HashMap<Integer, String>();
 		for (ITransactionCost iTransactionCost : transactionCosts) {
-			transactionCostsMap.put(iTransactionCost.getId(), String.format("%s %s %s",iTransactionCost.getDate(), iTransactionCost.getCurrency(), iTransactionCost.getAmount()));
+			transactionCostsMap.put(iTransactionCost.getId(), String.format("%s %s", iTransactionCost.getCurrency(), iTransactionCost.getAmount()));
 		}
 		hashMap.put("transactionCostsChoices", transactionCostsMap);
 		
@@ -198,7 +198,7 @@ public class OrderController extends AbstractController {
 		for (ITax iTax : taxes) {
 			taxesMap.put(iTax.getId(), iTax.getName());
 		}
-		hashMap.put("carsChoices", taxesMap);
+		hashMap.put("taxesChoices", taxesMap);
 
 		final List<IEmployee> employees = employeeService.getAll();
 		Map<Integer, String> employeesMap = new HashMap<Integer, String>();

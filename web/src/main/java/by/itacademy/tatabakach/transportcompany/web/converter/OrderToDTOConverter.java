@@ -65,7 +65,7 @@ public class OrderToDTOConverter implements Function<IOrder, OrderDTO> {
 
 		ITransactionCost customerCost = entity.getCustomerCost();
 		if (customerCost != null) {
-			dto.setCustomerCostName(String.format("%s %s %s", customerCost.getDate(), customerCost.getCurrency(),
+			dto.setCustomerCostName(String.format("%s %s", customerCost.getCurrency(),
 					customerCost.getAmount()));
 			dto.setCustomerCostId(customerCost.getId());
 		}
@@ -74,7 +74,7 @@ public class OrderToDTOConverter implements Function<IOrder, OrderDTO> {
 
 		ITransactionCost carrierCost = entity.getCarrierCost();
 		if (carrierCost != null) {
-			dto.setCarrierCostName(String.format("%s %s %s", carrierCost.getDate(), carrierCost.getCurrency(),
+			dto.setCarrierCostName(String.format("%s %s", carrierCost.getCurrency(),
 					carrierCost.getAmount()));
 			dto.setCarrierCostId(carrierCost.getId());
 		}

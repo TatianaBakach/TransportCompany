@@ -9,17 +9,15 @@
 		<form:input path="id" type="hidden" />
 
 		<div class="row">
-			<div class="input-field col s12">
+			<div class="input-field col s6">
 				<form:select path="orderId" disabled="${readonly}">
 					<form:options items="${ordersChoices}" />
 				</form:select>
 				<form:errors path="orderId" cssClass="red-text" />
 				<label for="orderId">Order reward order</label>
 			</div>
-		</div>
-
-		<div class="row">
-			<div class="input-field col s12">
+			
+			<div class="input-field col s6">
 				<form:select path="employeeId" disabled="${readonly}">
 					<form:options items="${employeesChoices}" />
 				</form:select>
@@ -29,18 +27,15 @@
 		</div>
 
 		<div class="row">
-			<div class="input-field col s12">
+			<div class="input-field col s6">
 				<form:select path="rewardType" disabled="${readonly}">
 					<form:options items="${rewardTypesChoices}" />
 				</form:select>
 				<form:errors path="rewardType" cssClass="red-text" />
 				<label for="rewardType">Order reward reward type</label>
 			</div>
-		</div>
-
-
-		<div class="row">
-			<div class="input-field col s12">
+			
+			<div class="input-field col s6">
 				<form:select path="orderRewardPercentId" disabled="${readonly}">
 					<form:options items="${orderRewardPercentsChoices}" />
 				</form:select>
@@ -50,18 +45,17 @@
 			</div>
 		</div>
 
+
 		<div class="row">
-			<div class="input-field col s12">
+			<div class="input-field col s6">
 				<form:input path="additionalExpenses" type="number"
 					disabled="${readonly}" />
 				<form:errors path="additionalExpenses" cssClass="red-text" />
 				<label for="additionalExpenses">Order reward additional
 					expenses</label>
 			</div>
-		</div>
-
-		<div class="row">
-			<div class="input-field col s12">
+			
+			<div class="input-field col s6">
 				<form:input path="amount" type="number" disabled="${readonly}" />
 				<form:errors path="amount" cssClass="red-text" />
 				<label for="amount">Order reward amount</label>
@@ -69,16 +63,14 @@
 		</div>
 
 		<div class="row">
-			<div class="input-field col s4">
+			<div class="input-field col s6">
 				<form:input path="paymentDate" type="text" disabled="${readonly}"
 					cssClass="datepicker" />
 				<form:errors path="paymentDate" cssClass="red-text" />
 				<label for="paymentDate">Order reward payment date</label>
 			</div>
-		</div>
-
-		<div class="row">
-			<div class="input-field col s12">
+			
+			<div class="input-field col s6">
 				<div class="switch">
 					<label> issued <form:checkbox path="rewardIssued"
 							disabled="${readonly}" /> <span class="lever"></span> issued
@@ -101,11 +93,11 @@
 			<div class="col s6"></div>
 			<div class="col s3">
 				<c:if test="${!readonly}">
-					<button class="btn waves-effect waves-light right" type="submit">Save</button>
+					<button class="btn waves-effect waves-light right green darken-3" type="submit">Save</button>
 				</c:if>
 			</div>
 			<div class="col s3">
-				<a class="btn waves-effect waves-light right"
+				<a class="btn waves-effect waves-light right red darken-2"
 					href="${pagesOrderReward}">Cancel</a>
 			</div>
 		</div>

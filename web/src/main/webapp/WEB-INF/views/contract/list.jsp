@@ -18,8 +18,8 @@
 			<tr>
 				<td><c:out value="${contract.id}" /></td>
 				<td><c:out value="${contract.number}" /></td>
-				<td><c:out value="${contract.ourCompany}" /></td>
-				<td><c:out value="${contract.company}" /></td>
+				<td><c:out value="${contract.ourCompanyName}" /></td>
+				<td><c:out value="${contract.companyName}" /></td>
 				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${contract.date}" /></td>
 				<td class="right">
 				<a class="btn-floating"	href="${pagesContract}/${contract.id}"><i class="material-icons">info</i></a>

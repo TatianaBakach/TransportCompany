@@ -55,6 +55,7 @@ public class ContractController extends AbstractController {
 
 		final ContractFilter filter = new ContractFilter();
 		filter.setFetchCompany(true);
+		filter.setFetchOurCompany(true);
 		prepareFilter(gridState, filter);
 
 		final List<IContract> entities = contractService.find(filter);

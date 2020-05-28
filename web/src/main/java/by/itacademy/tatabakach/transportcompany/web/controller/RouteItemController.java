@@ -62,6 +62,7 @@ public class RouteItemController extends AbstractController {
 		final RouteItemFilter filter = new RouteItemFilter();
 		filter.setFetchOrder(true);
 		filter.setFetchAddress(true);
+		filter.setFetchCustom(true);
 		prepareFilter(gridState, filter);
 
 		final List<IRouteItem> entities = routeItemService.find(filter);

@@ -9,27 +9,33 @@
         <form:input path="id" type="hidden" />
         
         <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s4">
                 <form:select path="correspondenceType" disabled="${readonly}">
 					<form:options items="${correspondenceTypesChoices}" />
 				</form:select>
 				<form:errors path="correspondenceType" cssClass="red-text" />
 				<label for="correspondenceType">Correspondence correspondence type</label>
             </div>
+            
+            <div class="input-field col s4">
+				<form:input path="date" type="text" disabled="${readonly}"
+					cssClass="datepicker" />
+				<form:errors path="date" cssClass="red-text" />
+				<label for="date">Correspondence date</label>
+			</div>
+            
         </div>
         
-         <div class="row">
-            <div class="input-field col s12">
+        <div class="row">
+            <div class="input-field col s4">
                 <form:select path="orderId" disabled="${readonly}">
                     <form:options items="${ordersChoices}" />
                 </form:select>
                 <form:errors path="orderId" cssClass="red-text" />
                 <label for="orderId">Correspondence order</label>
             </div>
-        </div>
-        
-        <div class="row">
-            <div class="input-field col s12">
+            
+            <div class="input-field col s4">
                 <form:select path="companyId" disabled="${readonly}">
                     <form:options items="${companiesChoices}" />
                 </form:select>
@@ -38,15 +44,6 @@
             </div>
         </div>
         
-       <div class="row">
-			<div class="input-field col s4">
-				<form:input path="date" type="text" disabled="${readonly}"
-					cssClass="datepicker" />
-				<form:errors path="date" cssClass="red-text" />
-				<label for="date">Correspondence date</label>
-			</div>
-		</div>
-		
 		<div class="row">
 			<div class="input-field col s12">
 				<form:textarea path="content" disabled="${readonly}" cssClass="materialize-textarea" />
@@ -67,11 +64,11 @@
             <div class="col s6"></div>
             <div class="col s3">
                 <c:if test="${!readonly}">
-                    <button class="btn waves-effect waves-light right" type="submit">Save</button>
+                    <button class="btn waves-effect waves-light right green darken-3" type="submit">Save</button>
                 </c:if>
             </div>
             <div class="col s3">
-                <a class="btn waves-effect waves-light right" href="${pagesCorrespondence}">Cancel</a>
+                <a class="btn waves-effect waves-light right red darken-2" href="${pagesCorrespondence}">Cancel</a>
             </div>
         </div>
     </form:form>

@@ -20,9 +20,9 @@
 		<c:forEach var="payment" items="${gridItems}" varStatus="loopCounter">
 			<tr>
 				<td><c:out value="${payment.id}" /></td>
-				<td><c:out value="${payment.date}" /></td>
-				<td><c:out value="${payment.order}" /></td>
-				<td><c:out value="${payment.company}" /></td>
+				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${payment.date}" /></td>
+				<td><c:out value="${payment.orderName}" /></td>
+				<td><c:out value="${payment.companyName}" /></td>
 				<td><c:out value="${payment.currency}" /></td>
 				<td><c:out value="${payment.rate}" /></td>
 				<td><c:out value="${payment.amount}" /></td>

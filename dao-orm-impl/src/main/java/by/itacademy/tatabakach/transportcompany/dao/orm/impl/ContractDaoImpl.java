@@ -53,7 +53,7 @@ public class ContractDaoImpl extends AbstractDaoImpl<IContract, Integer> impleme
 
 		return getSingleResult(q);
 	}
-
+	
 	@Override
 	public List<IContract> find(final ContractFilter filter) {
 		final EntityManager em = getEntityManager();
@@ -63,16 +63,17 @@ public class ContractDaoImpl extends AbstractDaoImpl<IContract, Integer> impleme
 		final Root<Contract> from = cq.from(Contract.class);
 		cq.select(from);
 		
-		if (filter.getFetchCompany()) {
-			// select m, b from model m left join brand b ...
-			from.fetch(Contract_.company, JoinType.LEFT);
-		}
-		
 		if (filter.getFetchOurCompany()) {
 			// select m, b from model m left join brand b ...
 			from.fetch(Contract_.ourCompany, JoinType.LEFT);
 		}
 
+		if (filter.getFetchCompany()) {
+			// select m, b from model m left join brand b ...
+			from.fetch(Contract_.company, JoinType.LEFT);
+		}
+		
+		
 		final String sortColumn = filter.getSortColumn();
 		if (sortColumn != null) {
 			final Path<?> expression = getSortPath(from, sortColumn);

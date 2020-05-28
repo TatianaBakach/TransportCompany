@@ -22,13 +22,13 @@
 		<c:forEach var="orderReward" items="${gridItems}" varStatus="loopCounter">
 			<tr>
 				<td><c:out value="${orderReward.id}" /></td>
-				<td><c:out value="${orderReward.order}" /></td>
-				<td><c:out value="${orderReward.employee}" /></td>
+				<td><c:out value="${orderReward.orderName}" /></td>
+				<td><c:out value="${orderReward.employeeName}" /></td>
 				<td><c:out value="${orderReward.rewardType}" /></td>
-				<td><c:out value="${orderReward.orderRewardPercent}" /></td>
+				<td><c:out value="${orderReward.orderRewardPercentName}" /></td>
 				<td><c:out value="${orderReward.additionalExpenses}" /></td>
 				<td><c:out value="${orderReward.amount}" /></td>
-				<td><c:out value="${orderReward.paymentDate}" /></td>
+				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${orderReward.paymentDate}" /></td>
 				<td><c:out value="${orderReward.rewardIssued}" /></td>
 				<td><c:out value="${orderReward.note}" /></td>
 				<td class="right">

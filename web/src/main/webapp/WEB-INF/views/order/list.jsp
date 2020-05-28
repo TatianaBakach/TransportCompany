@@ -32,22 +32,22 @@
 			<tr>
 				<td><c:out value="${order.id}" /></td>
 				<td><c:out value="${order.number}" /></td>
-				<td><c:out value="${order.date}" /></td>
-				<td><c:out value="${order.ourCompany}" /></td>
-				<td><c:out value="${order.customer}" /></td>
-				<td><c:out value="${order.carrier}" /></td>
-				<td><c:out value="${order.car}" /></td>
-				<td><c:out value="${order.driver}" /></td>
+				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${order.date}" /></td>
+				<td><c:out value="${order.ourCompanyName}" /></td>
+				<td><c:out value="${order.customerName}" /></td>
+				<td><c:out value="${order.carrierName}" /></td>
+				<td><c:out value="${order.carName}" /></td>
+				<td><c:out value="${order.driverName}" /></td>
 				<td><c:out value="${order.loadingMethod}" /></td>
 				<td><c:out value="${order.cargoType}" /></td>
 				<td><c:out value="${order.cargoWeightVolume}" /></td>
-				<td><c:out value="${order.customerCost}" /></td>
+				<td><c:out value="${order.customerCostName}" /></td>
 				<td><c:out value="${order.paidCustomer}" /></td>
-				<td><c:out value="${order.carrierCost}" /></td>
+				<td><c:out value="${order.carrierCostName}" /></td>
 				<td><c:out value="${order.paidCarrier}" /></td>
-				<td><c:out value="${order.tax}" /></td>
+				<td><c:out value="${order.taxName}" /></td>
 				<td><c:out value="${order.additionalConditions}" /></td>
-				<td><c:out value="${order.creator}" /></td>
+				<td><c:out value="${order.creatorName}" /></td>
 				<td><c:out value="${order.note}" /></td>
 				<td class="right">
 				<a class="btn-floating"	href="${pagesOrder}/${order.id}"><i class="material-icons">info</i></a>

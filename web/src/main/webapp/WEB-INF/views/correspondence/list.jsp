@@ -20,9 +20,9 @@
 			<tr>
 				<td><c:out value="${correspondence.id}" /></td>
 				<td><c:out value="${correspondence.correspondenceType}" /></td>
-				<td><c:out value="${correspondence.order}" /></td>
-				<td><c:out value="${correspondence.company}" /></td>
-				<td><c:out value="${correspondence.date}" /></td>
+				<td><c:out value="${correspondence.orderName}" /></td>
+				<td><c:out value="${correspondence.companyName}" /></td>
+				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${correspondence.date}" /></td>
 				<td><c:out value="${correspondence.content}" /></td>
 				<td><c:out value="${correspondence.note}" /></td>
 				<td class="right">

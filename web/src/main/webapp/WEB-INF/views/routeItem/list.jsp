@@ -22,12 +22,12 @@
 		<c:forEach var="routeItem" items="${gridItems}" varStatus="loopCounter">
 			<tr>
 				<td><c:out value="${routeItem.id}" /></td>
-				<td><c:out value="${routeItem.order}" /></td>
-				<td><c:out value="${routeItem.address}" /></td>
-				<td><c:out value="${routeItem.date}" /></td>
+				<td><c:out value="${routeItem.orderName}" /></td>
+				<td><c:out value="${routeItem.addressName}" /></td>
+				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${routeItem.date}" /></td>
 				<td><c:out value="${routeItem.cargoWeight}" /></td>
 				<td><c:out value="${routeItem.cargoVolume}" /></td>
-				<td><c:out value="${routeItem.custom}" /></td>
+				<td><c:out value="${routeItem.customName}" /></td>
 				<td><c:out value="${routeItem.contactPerson}" /></td>
 				<td><c:out value="${routeItem.contactPhone}" /></td>
 				<td><c:out value="${routeItem.note}" /></td>
