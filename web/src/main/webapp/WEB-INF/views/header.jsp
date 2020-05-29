@@ -48,6 +48,7 @@
 
 
 				<li><a href="${pagesCorrespondence}">Correspondence</a></li>
+				<li><a href="${contextPath}/ajax-samples">AJAX</a></li>
 
 				<sec:authorize access="!isAnonymous()">
 					<a class="right" href="${contextPath}/execute_logout"
