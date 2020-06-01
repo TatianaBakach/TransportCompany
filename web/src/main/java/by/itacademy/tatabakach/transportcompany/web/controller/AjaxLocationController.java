@@ -59,7 +59,7 @@ public class AjaxLocationController {
 	public ResponseEntity<List<LocationDTO>> getRegions(
 			@RequestParam(name = "countryId", required = true) final Integer countryId) {
 		final RegionFilter filter = new RegionFilter();
-		filter.setFetchCountry(true);
+		filter.setCountryId(countryId);
 		final List<IRegion> entities = regionService.find(filter);
 		List<LocationDTO> regions = entities.stream().map((entity) -> {
 			return new LocationDTO(entity.getId(), entity.getName());
@@ -71,7 +71,7 @@ public class AjaxLocationController {
 	public ResponseEntity<List<LocationDTO>> getCities(
 			@RequestParam(name = "regionId", required = true) final Integer regionId) {
 		final LocalityFilter filter = new LocalityFilter();
-		filter.setFetchRegion(true);
+		filter.setRegionId(regionId);
 		final List<ILocality> entities = localityService.find(filter);
 		List<LocationDTO> cities = entities.stream().map((entity) -> {
 			return new LocationDTO(entity.getId(), entity.getName());

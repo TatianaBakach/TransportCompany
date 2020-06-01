@@ -13,6 +13,7 @@ import javax.persistence.criteria.Root;
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
 
+import by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity.Country_;
 import by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity.Locality;
 import by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity.Locality_;
 import by.itacademy.tatabakach.transportcompany.dao.orm.impl.entity.Region_;
@@ -66,6 +67,10 @@ public class LocalityDaoImpl extends AbstractDaoImpl<ILocality, Integer> impleme
 				// select m, b from model m left join brand b ...
 				from.fetch(Locality_.region, JoinType.LEFT);
 			}
+	        
+	        if(filter.getRegionId() != null) {
+	    		cq.where(cb.equal(from.get(Locality_.region).get(Region_.id), filter.getRegionId()));
+	    		}
 	        
 	        final String sortColumn = filter.getSortColumn();
 	        if (sortColumn != null) {

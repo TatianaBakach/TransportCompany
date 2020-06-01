@@ -22,7 +22,7 @@ public class AddressToDTOConverter implements Function<IAddress, AddressDTO> {
 		ILocality locality = entity.getLocality();
 		if (locality != null) {
 			dto.setLocalityName(locality.getName());
-			dto.setLocalityId(locality.getId());
+			dto.setCity(locality.getId());
 		}
 
 		return dto;

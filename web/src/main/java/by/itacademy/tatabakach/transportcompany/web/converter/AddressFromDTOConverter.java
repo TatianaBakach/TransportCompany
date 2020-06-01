@@ -28,7 +28,7 @@ public class AddressFromDTOConverter implements Function<AddressDTO, IAddress> {
 		entity.setExactAddress(dto.getExactAddress());
 		entity.setNote(dto.getNote());
 
-		Integer localityId = dto.getLocalityId();
+		Integer localityId = dto.getCity();
 		if (localityId != null) {
 			ILocality l = localityService.createEntity();
 			l.setId(localityId);

@@ -67,6 +67,10 @@ public class RegionDaoImpl extends AbstractDaoImpl<IRegion, Integer> implements 
 			// select m, b from model m left join brand b ...
 			from.fetch(Region_.country, JoinType.LEFT);
 		}
+		
+		if(filter.getCountryId() != null) {
+		cq.where(cb.equal(from.get(Region_.country).get(Country_.id), filter.getCountryId()));
+		}
 
 		final String sortColumn = filter.getSortColumn();
 		if (sortColumn != null) {

@@ -11,7 +11,9 @@ public class AddressDTO {
 	private String postcode;
 	
 	@NotNull
-	private Integer localityId;
+	private Integer country;
+	private Integer region;
+	private Integer city;
 	private String localityName;
 	
 	private String exactAddress;
@@ -32,14 +34,6 @@ public class AddressDTO {
 
 	public void setPostcode(String postcode) {
 		this.postcode = postcode;
-	}
-
-	public Integer getLocalityId() {
-		return localityId;
-	}
-
-	public void setLocalityId(Integer localityId) {
-		this.localityId = localityId;
 	}
 
 	public String getLocalityName() {
@@ -64,6 +58,30 @@ public class AddressDTO {
 
 	public void setNote(String note) {
 		this.note = note;
+	}
+
+	public Integer getCountry() {
+		return country;
+	}
+
+	public void setCountry(Integer country) {
+		this.country = country;
+	}
+
+	public Integer getRegion() {
+		return region;
+	}
+
+	public void setRegion(Integer region) {
+		this.region = region;
+	}
+
+	public Integer getCity() {
+		return city;
+	}
+
+	public void setCity(Integer city) {
+		this.city = city;
 	}
 
 

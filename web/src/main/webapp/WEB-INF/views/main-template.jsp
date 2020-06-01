@@ -21,6 +21,7 @@
 <c:set var="pagesOrderReward" value="${contextPath}/orderReward" scope="request" />
 <c:set var="pagesPayment" value="${contextPath}/payment" scope="request" />
 <c:set var="pagesRouteItem" value="${contextPath}/routeItem" scope="request" />
+<c:set var="pagesHome" value="${contextPath}/" scope="request" />
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">

@@ -19,12 +19,6 @@ function initSelectElement(htmlElementId, jsonArray) {
 	});
 }
 
-function submitForm() {
-	$.post( "/someurl",$( "#addressForm" ).serialize(), function( data ) {
-		  alert( "succes" );
-		});
-}
-
 function initComboboxes(contextUrl) {
 
 	
