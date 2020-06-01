@@ -6,8 +6,8 @@
 				pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
 		</Console>
 
-		<RollingFile name="RollingFile" fileName="./logs/app.log"
-			filePattern="./logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+		<RollingFile name="RollingFile" fileName="/usr/share/tomcat/logs/cars-app.log"
+			filePattern="/usr/share/tomcat/logs/$${date:yyyy-MM}/cars-app-%d{MM-dd-yyyy}-%i.log.gz">
 			<PatternLayout>
 				<Pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n
 				</Pattern>
@@ -20,12 +20,12 @@
 	</Appenders>
 
 	<Loggers>
-		<Root level="info">
+	    <Root level="info">
 			<AppenderRef ref="Console" />
+			<AppenderRef ref="RollingFile" />
 		</Root>
 
-		<Logger name="org.springframework.web" level="debug"
-			additivity="false">
+	    <Logger name="org.springframework.web" level="warn" additivity="false" >
 			<AppenderRef ref="Console" />
 		</Logger>
 

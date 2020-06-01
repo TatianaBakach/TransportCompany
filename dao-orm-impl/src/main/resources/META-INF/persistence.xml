@@ -11,7 +11,7 @@
 				value="org.hibernate.dialect.PostgreSQL9Dialect" />
 			<property name="hibernate.ejb.naming_strategy"
 				value="by.itacademy.tatabakach.transportcompany.dao.orm.CustomImprovedNamingStrategy" />
-			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="false" />
 
 			<!-- Hibernate Search configuration -->

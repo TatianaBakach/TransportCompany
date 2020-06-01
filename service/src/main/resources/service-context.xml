@@ -26,6 +26,6 @@
 	<context:component-scan
 		base-package="by.itacademy.tatabakach.transportcompany.service.impl" />
 
-	<import resource="spring-aop.xml" />
+	<!-- <import resource="spring-aop.xml" /> -->
 	
 </beans>
