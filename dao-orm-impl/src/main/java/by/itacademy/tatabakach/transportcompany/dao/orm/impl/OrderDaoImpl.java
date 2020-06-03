@@ -142,11 +142,11 @@ public class OrderDaoImpl extends AbstractDaoImpl<IOrder, Integer> implements IO
 		case "date":
 			return from.get(Order_.date);
 		case "ourCompany":
-			return from.get(Order_.ourCompany).get(Company_.id);
+			return from.get(Order_.ourCompany).get(Company_.name);
 		case "customer":
-			return from.get(Order_.customer).get(Company_.id);
+			return from.get(Order_.customer).get(Company_.name);
 		case "carrier":
-			return from.get(Order_.carrier).get(Company_.id);
+			return from.get(Order_.carrier).get(Company_.name);
 		case "car":
 			return from.get(Order_.car).get(Car_.id);
 		case "driver":
@@ -158,11 +158,11 @@ public class OrderDaoImpl extends AbstractDaoImpl<IOrder, Integer> implements IO
 		case "cargoWeightVolume":
 			return from.get(Order_.cargoWeightVolume);
 		case "customerCost":
-			return from.get(Order_.customerCost).get(TransactionCost_.id);
+			return from.get(Order_.customerCost).get(TransactionCost_.amount);
 		case "paidCustomer":
 			return from.get(Order_.paidCustomer);
 		case "carrierCost":
-			return from.get(Order_.carrierCost).get(TransactionCost_.id);
+			return from.get(Order_.carrierCost).get(TransactionCost_.amount);
 		case "paidCarrier":
 			return from.get(Order_.paidCarrier);
 		case "tax":

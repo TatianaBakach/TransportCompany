@@ -5,7 +5,7 @@ public class CorrespondenceFilter extends AbstractFilter {
 	private boolean fetchCompany;
 	
 	private boolean fetchOrder;
-
+	
     public boolean getFetchCompany() {
         return fetchCompany;
     }

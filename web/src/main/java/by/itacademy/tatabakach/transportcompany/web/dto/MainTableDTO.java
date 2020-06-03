@@ -1,14 +1,13 @@
 package by.itacademy.tatabakach.transportcompany.web.dto;
 
+import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Set;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import by.itacademy.tatabakach.transportcompany.daoapi.entity.enums.LoadingMethod;
 
 public class MainTableDTO {
 	
@@ -30,6 +29,24 @@ public class MainTableDTO {
 	private Integer carrierId;
 	@Size(min = 1, max = 250)
 	private String carrierName;
+	
+	@NotNull
+	private Integer customerCostId;
+	@Size(min = 1, max = 250)
+	private String customerCostName;
+
+	@NotNull
+	private Boolean paidCustomer;
+
+	@NotNull
+	private Integer carrierCostId;
+	@Size(min = 1, max = 250)
+	private String carrierCostName;
+
+	@NotNull
+	private Boolean paidCarrier;
+	
+	private BigDecimal margin;
 	
 	public Integer getId() {
 		return id;
@@ -72,6 +89,48 @@ public class MainTableDTO {
 	}
 	public void setCarrierName(String carrierName) {
 		this.carrierName = carrierName;
+	}
+	public Integer getCustomerCostId() {
+		return customerCostId;
+	}
+	public void setCustomerCostId(Integer customerCostId) {
+		this.customerCostId = customerCostId;
+	}
+	public String getCustomerCostName() {
+		return customerCostName;
+	}
+	public void setCustomerCostName(String customerCostName) {
+		this.customerCostName = customerCostName;
+	}
+	public Boolean getPaidCustomer() {
+		return paidCustomer;
+	}
+	public void setPaidCustomer(Boolean paidCustomer) {
+		this.paidCustomer = paidCustomer;
+	}
+	public Integer getCarrierCostId() {
+		return carrierCostId;
+	}
+	public void setCarrierCostId(Integer carrierCostId) {
+		this.carrierCostId = carrierCostId;
+	}
+	public String getCarrierCostName() {
+		return carrierCostName;
+	}
+	public void setCarrierCostName(String carrierCostName) {
+		this.carrierCostName = carrierCostName;
+	}
+	public Boolean getPaidCarrier() {
+		return paidCarrier;
+	}
+	public void setPaidCarrier(Boolean paidCarrier) {
+		this.paidCarrier = paidCarrier;
+	}
+	public BigDecimal getMargin() {
+		return margin;
+	}
+	public void setMargin(BigDecimal margin) {
+		this.margin = margin;
 	}
 
 }

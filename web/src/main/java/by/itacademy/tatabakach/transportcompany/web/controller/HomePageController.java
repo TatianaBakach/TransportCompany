@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import by.itacademy.tatabakach.transportcompany.web.jndi.SMTPCredentials;
 
-@Controller
-@RequestMapping(value = "/")
+/*@Controller
+@RequestMapping(value = "/")*/
 public class HomePageController {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(HomePageController.class);

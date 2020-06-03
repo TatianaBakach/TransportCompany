@@ -19,7 +19,7 @@
 				<td><c:out value="${car.number}" /></td>
 				<td class="right">
 				<a class="btn-floating"	href="${pagesCar}/${car.id}"><i class="material-icons">info</i></a>
-				<a class="btn-floating" href="${pagesCar}/${car.id}/edit"><i class="material-icons">edit</i></a> 
+				<a class="btn-floating" href="${pagesCar}/${cfr.id}/edit"><i class="material-icons">edit</i></a> 
 				<a class="btn-floating red"	href="${pagesCar}/${car.id}/delete"><i class="material-icons">delete</i></a>
 				</td>
 			</tr>

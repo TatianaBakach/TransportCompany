@@ -1,6 +1,7 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <header>
 	<nav>
@@ -44,11 +45,10 @@
 					data-target="dropdown3">Companies<i
 						class="material-icons right">arrow_drop_down</i></a></li>
 
-				<li><a href="${contextPath}">home</a></li>
+				<li><a href="${contextPath}"><i class="material-icons">home</i></a></li>
 
 
 				<li><a href="${pagesCorrespondence}">Correspondence</a></li>
-				<li><a href="${contextPath}/ajax-samples">AJAX</a></li>
 
 				<sec:authorize access="!isAnonymous()">
 					<a class="right" href="${contextPath}/execute_logout"

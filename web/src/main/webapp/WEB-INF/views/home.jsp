@@ -45,33 +45,30 @@
 
 </div>
 
-<h4 class="header">Main Table</h4>
 <table class="bordered highlight">
 	<tbody>
 		<tr>
-			<th><mytaglib:sort-link pageUrl="${pagesMainTable}" column="id">id</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesMainTable}" column="number">number</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesMainTable}" column="date">date</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesMainTable}" column="customer">customer</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesMainTable}" column="carrier">carrier</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="number">number</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="date">date</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="customer">customer</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="carrier">carrier</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="customerCost">customer_cost</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="paidCustomer">paid_customer</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="carrierCost">carrier_cost</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="paidCarrier">paid_carrier</mytaglib:sort-link></th>
             <th></th>
 		</tr>
 		<c:forEach var="mainTable" items="${gridItems}" varStatus="loopCounter">
 			<tr>
-				<td><c:out value="${mainTable.id}" /></td>
 				<td><c:out value="${mainTable.number}" /></td>
 				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${mainTable.date}" /></td>
 				<td><c:out value="${mainTable.customerName}" /></td>
 				<td><c:out value="${mainTable.carrierName}" /></td>
-				<td class="right">
-				<a class="btn-floating"	href="${pagesMainTable}/${mainTable.id}"><i class="material-icons">info</i></a>
-				<a class="btn-floating" href="${pagesMainTable}/${mainTable.id}/edit"><i class="material-icons">edit</i></a> 
-				<a class="btn-floating red"	href="${pagesMainTable}/${mainTable.id}/delete"><i class="material-icons">delete</i></a>
-				</td>
+				<td><c:out value="${mainTable.customerCostName}" /></td>
+				<td><c:out value="${mainTable.paidCustomer}" /></td>
+				<td><c:out value="${mainTable.carrierCostName}" /></td>
+				<td><c:out value="${mainTable.paidCarrier}" /></td>
 			</tr>
 		</c:forEach>
 	</tbody>
 </table>
-<jspFragments:paging />
-<a class="waves-effect waves-light btn right" href="${pagesMainTable}/add"><i
-	class="material-icons">add</i></a>

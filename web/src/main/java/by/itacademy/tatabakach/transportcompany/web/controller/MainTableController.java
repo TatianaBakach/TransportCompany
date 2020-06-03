@@ -20,9 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ICompany;
 import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.IOrder;
+import by.itacademy.tatabakach.transportcompany.daoapi.entity.table.ITransactionCost;
 import by.itacademy.tatabakach.transportcompany.daoapi.filter.OrderFilter;
 import by.itacademy.tatabakach.transportcompany.service.ICompanyService;
 import by.itacademy.tatabakach.transportcompany.service.IOrderService;
+import by.itacademy.tatabakach.transportcompany.service.ITransactionCostService;
 import by.itacademy.tatabakach.transportcompany.web.converter.OrderFromDTOConverter;
 import by.itacademy.tatabakach.transportcompany.web.converter.OrderToDTOConverter;
 import by.itacademy.tatabakach.transportcompany.web.dto.OrderDTO;
@@ -34,9 +36,12 @@ public class MainTableController extends AbstractController {
 
 	@Autowired
 	private ICompanyService companyService;
-	
+
 	@Autowired
 	private IOrderService orderService;
+	
+	@Autowired
+	private ITransactionCostService transactionCostService;
 
 	@Autowired
 	private OrderToDTOConverter toDtoConverter;
@@ -55,6 +60,14 @@ public class MainTableController extends AbstractController {
 
 		final OrderFilter filter = new OrderFilter();
 		filter.setFetchOurCompany(true);
+		filter.setFetchCustomer(true);
+		filter.setFetchCarrier(true);
+		filter.setFetchCar(true);
+		filter.setFetchDriver(true);
+		filter.setFetchCustomerCost(true);
+		filter.setFetchCarrierCost(true);
+		filter.setFetchTax(true);
+		filter.setFetchCreator(true);
 		prepareFilter(gridState, filter);
 
 		final List<IOrder> entities = orderService.find(filter);
@@ -63,7 +76,7 @@ public class MainTableController extends AbstractController {
 
 		final Map<String, Object> models = new HashMap<>();
 		models.put("gridItems", dtos);
-		return new ModelAndView("order.list", models);
+		return new ModelAndView("home", models);
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -123,14 +136,22 @@ public class MainTableController extends AbstractController {
 	}
 
 	private void loadCommonFormModels(final Map<String, Object> hashMap) {
-		
+
 		final List<ICompany> companies = companyService.getAll();
 		Map<Integer, String> companiesMap = new HashMap<Integer, String>();
 		for (ICompany iCompany : companies) {
 			companiesMap.put(iCompany.getId(), iCompany.getName());
 		}
 		hashMap.put("companiesChoices", companiesMap);
-		
+
+		final List<ITransactionCost> transactionCosts = transactionCostService.getAll();
+		Map<Integer, String> transactionCostsMap = new HashMap<Integer, String>();
+		for (ITransactionCost iTransactionCost : transactionCosts) {
+			transactionCostsMap.put(iTransactionCost.getId(),
+					String.format("%s %s", iTransactionCost.getCurrency(), iTransactionCost.getAmount()));
+		}
+		hashMap.put("transactionCostsChoices", transactionCostsMap);
+
 	}
 
 }
