@@ -2,14 +2,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 <%@ taglib prefix="jspFragments" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<h4 class="header">Cars</h4>
+<h4 class="header"><spring:message code="page.car.title" /></h4>
 <table class="bordered highlight">
 	<tbody>
 		<tr>
-			<th><mytaglib:sort-link pageUrl="${pagesCar}" column="id">id</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesCar}" column="model">model</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesCar}" column="number">number</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesCar}" column="id"><spring:message code="table.column.id" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesCar}" column="model"><spring:message code="car.column.model" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesCar}" column="number"><spring:message code="car.column.number" /></mytaglib:sort-link></th>
             <th></th>
 		</tr>
 		<c:forEach var="car" items="${gridItems}" varStatus="loopCounter">

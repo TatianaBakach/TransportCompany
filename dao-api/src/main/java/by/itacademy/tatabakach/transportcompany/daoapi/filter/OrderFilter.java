@@ -11,6 +11,15 @@ public class OrderFilter extends AbstractFilter {
 	private boolean fetchCarrierCost;
 	private boolean fetchTax;
 	private boolean fetchCreator;
+	private Integer loggedUserId;
+
+	public Integer getLoggedUserId() {
+		return loggedUserId;
+	}
+
+	public void setLoggedUserId(Integer loggedUserId) {
+		this.loggedUserId = loggedUserId;
+	}
 
 	public boolean getFetchOurCompany() {
 		return fetchOurCompany;

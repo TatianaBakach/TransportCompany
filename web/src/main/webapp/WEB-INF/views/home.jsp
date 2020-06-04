@@ -48,14 +48,14 @@
 <table class="bordered highlight">
 	<tbody>
 		<tr>
-			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="number">number</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="date">date</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="customer">customer</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="carrier">carrier</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="customerCost">customer_cost</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="paidCustomer">paid_customer</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="carrierCost">carrier_cost</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="paidCarrier">paid_carrier</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="number"><spring:message code="table.column.order" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="date"><spring:message code="table.column.date" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="customer"><spring:message code="order.column.customer" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="carrier"><spring:message code="order.column.carrier" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="customerCost"><spring:message code="order.column.customer_cost" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="paidCustomer"><spring:message code="order.column.paid_customer" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="carrierCost"><spring:message code="order.column.carrier_cost" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesHome}" column="paidCarrier"><spring:message code="order.column.paid_carrier" /></mytaglib:sort-link></th>
             <th></th>
 		</tr>
 		<c:forEach var="mainTable" items="${gridItems}" varStatus="loopCounter">
@@ -65,9 +65,9 @@
 				<td><c:out value="${mainTable.customerName}" /></td>
 				<td><c:out value="${mainTable.carrierName}" /></td>
 				<td><c:out value="${mainTable.customerCostName}" /></td>
-				<td><c:out value="${mainTable.paidCustomer}" /></td>
+				<td><c:out value="${mainTable.paidCustomer?'оплачено':'не оплачено'}" /></td>
 				<td><c:out value="${mainTable.carrierCostName}" /></td>
-				<td><c:out value="${mainTable.paidCarrier}" /></td>
+				<td><c:out value="${mainTable.paidCarrier?'оплачено':'не оплачено'}" /></td>
 			</tr>
 		</c:forEach>
 	</tbody>

@@ -4,7 +4,7 @@
 <%@ taglib prefix="jspFragments" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<h4 class="header">Countries</h4>
+<h4 class="header"><spring:message code="page.country.title" /></h4>
 <table class="bordered highlight">
 	<tbody>
 		<tr>

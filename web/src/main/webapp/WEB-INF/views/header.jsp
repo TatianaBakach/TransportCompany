@@ -7,23 +7,22 @@
 	<nav>
 		<div class="nav-wrapper container">
 			<ul id="dropdown1" class="dropdown-content">
-				<li><a href="${pagesCountry}">countries</a></li>
-				<li><a href="${pagesRegion}">regions</a></li>
-				<li><a href="${pagesLocality}">localities</a></li>
-				<li><a href="${pagesAddress}">addresses</a></li>
+				<li><a href="${pagesCountry}"><spring:message code="page.country.title" /></a></li>
+				<li><a href="${pagesRegion}"><spring:message code="page.region.title" /></a></li>
+				<li><a href="${pagesLocality}"><spring:message code="page.locality.title" /></a></li>
+				<li><a href="${pagesAddress}"><spring:message code="page.address.title" /></a></li>
 			</ul>
 
 			<ul id="dropdown2" class="dropdown-content">
-				<li><a href="${pagesOrder}">orders</a></li>
-				<li><a href="${pagesOrderReward}">order rewards</a></li>
-				<li><a href="${pagesOrderRewardPercent}">order reward
-						percents</a></li>
-				<li><a href="${pagesRouteItem}">route items</a></li>
-				<li><a href="${pagesTransactionCost}">transaction costs</a></li>
-				<li><a href="${pagesPayment}">payments</a></li>
-				<li><a href="${pagesCar}">cars</a></li>
-				<li><a href="${pagesDriver}">drivers</a></li>
-				<li><a href="${pagesTax}">taxes</a></li>
+				<li><a href="${pagesOrder}"><spring:message code="page.order.title" /></a></li>
+				<li><a href="${pagesOrderReward}"><spring:message code="page.order_reward.title" /></a></li>
+				<li><a href="${pagesOrderRewardPercent}"><spring:message code="page.reward_percent.title" /></a></li>
+				<li><a href="${pagesRouteItem}"><spring:message code="page.route_item.title" /></a></li>
+				<li><a href="${pagesTransactionCost}"><spring:message code="page.transaction_cost.title" /></a></li>
+				<li><a href="${pagesPayment}"><spring:message code="page.payment.title" /></a></li>
+				<li><a href="${pagesCar}"><spring:message code="page.car.title" /></a></li>
+				<li><a href="${pagesDriver}"><spring:message code="page.driver.title" /></a></li>
+				<li><a href="${pagesTax}"><spring:message code="page.taxes.title" /></a></li>
 			</ul>
 
 			<ul id="dropdown3" class="dropdown-content">
@@ -35,20 +34,20 @@
 
 			<ul class="left hide-on-med-and-down">
 				<li><a class="dropdown-trigger" href="#!"
-					data-target="dropdown1">Addresses<i
+					data-target="dropdown1"><spring:message code="page.address.title" /><i
 						class="material-icons right">arrow_drop_down</i></a></li>
 
 				<li><a class="dropdown-trigger" href="#!"
-					data-target="dropdown2">Orders<i class="material-icons right">arrow_drop_down</i></a></li>
+					data-target="dropdown2"><spring:message code="page.order.title" /><i class="material-icons right">arrow_drop_down</i></a></li>
 
 				<li><a class="dropdown-trigger" href="#!"
-					data-target="dropdown3">Companies<i
+					data-target="dropdown3"><spring:message code="page.company.title" /><i
 						class="material-icons right">arrow_drop_down</i></a></li>
 
 				<li><a href="${contextPath}"><i class="material-icons">home</i></a></li>
 
 
-				<li><a href="${pagesCorrespondence}">Correspondence</a></li>
+				<li><a href="${pagesCorrespondence}"></a><spring:message code="page.correspondence.title" /></li>
 
 				<sec:authorize access="!isAnonymous()">
 					<a class="right" href="${contextPath}/execute_logout"

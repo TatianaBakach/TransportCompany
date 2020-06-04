@@ -2,19 +2,20 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 <%@ taglib prefix="jspFragments" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<h4 class="header">Payments</h4>
+<h4 class="header"><spring:message code="page.payment.title" /></h4>
 <table class="bordered highlight">
 	<tbody>
 		<tr>
-			<th><mytaglib:sort-link pageUrl="${pagesPayment}" column="id">id</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesPayment}" column="date">date</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesPayment}" column="order">order</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesPayment}" column="company">company</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesPayment}" column="currency">currency</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesPayment}" column="rate">rate</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesPayment}" column="amount">amount</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesPayment}" column="note">note</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesPayment}" column="id"><spring:message code="table.column.id" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesPayment}" column="date"><spring:message code="table.column.date" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesPayment}" column="order"><spring:message code="table.column.order" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesPayment}" column="company"><spring:message code="payment.column.company" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesPayment}" column="currency"><spring:message code="payment.column.currency" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesPayment}" column="rate"><spring:message code="transaction_cost.column.rate" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesPayment}" column="amount"><spring:message code="payment.column.amount" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesPayment}" column="note"><spring:message code="table.column.note" /></mytaglib:sort-link></th>
             <th></th>
 		</tr>
 		<c:forEach var="payment" items="${gridItems}" varStatus="loopCounter">

@@ -29,6 +29,7 @@ import by.itacademy.tatabakach.transportcompany.web.converter.OrderFromDTOConver
 import by.itacademy.tatabakach.transportcompany.web.converter.OrderToDTOConverter;
 import by.itacademy.tatabakach.transportcompany.web.dto.OrderDTO;
 import by.itacademy.tatabakach.transportcompany.web.dto.grid.GridStateDTO;
+import by.itacademy.tatabakach.transportcompany.web.security.AuthHelper;
 
 @Controller
 @RequestMapping(value = "/")
@@ -69,6 +70,8 @@ public class MainTableController extends AbstractController {
 		filter.setFetchTax(true);
 		filter.setFetchCreator(true);
 		prepareFilter(gridState, filter);
+		
+		filter.setLoggedUserId(AuthHelper.getLoggedUserId());
 
 		final List<IOrder> entities = orderService.find(filter);
 		List<OrderDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());

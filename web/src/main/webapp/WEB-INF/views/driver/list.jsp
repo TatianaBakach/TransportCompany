@@ -2,17 +2,18 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 <%@ taglib prefix="jspFragments" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<h4 class="header">Drivers</h4>
+<h4 class="header"><spring:message code="page.driver.title" /></h4>
 <table class="bordered highlight">
 	<tbody>
 		<tr>
-			<th><mytaglib:sort-link pageUrl="${pagesDriver}" column="id">id</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesDriver}" column="firstName">first_name</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesDriver}" column="middleName">middle_name</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesDriver}" column="lastName">last_name</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesDriver}" column="passportData">passport_data</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesDriver}" column="phone">phone</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesDriver}" column="id"><spring:message code="table.column.id" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesDriver}" column="firstName"><spring:message code="table.column.first_name" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesDriver}" column="middleName"><spring:message code="table.column.middle_name" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesDriver}" column="lastName"><spring:message code="table.column.last_name" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesDriver}" column="passportData"><spring:message code="driver.column.passport_data" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesDriver}" column="phone"><spring:message code="table.column.phone" /></mytaglib:sort-link></th>
 			
 		</tr>
 		<c:forEach var="driver" items="${gridItems}" varStatus="loopCounter">

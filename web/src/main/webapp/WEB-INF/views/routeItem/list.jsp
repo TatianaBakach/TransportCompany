@@ -2,21 +2,22 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 <%@ taglib prefix="jspFragments" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<h4 class="header">Route items</h4>
+<h4 class="header"><spring:message code="page.route_item.title" /></h4>
 <table class="bordered highlight">
 	<tbody>
 		<tr>
-			<th><mytaglib:sort-link pageUrl="${pagesRouteItem}" column="id">id</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesRouteItem}" column="order">order</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesRouteItem}" column="address">address</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesRouteItem}" column="date">date</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesRouteItem}" column="cargoWeight">cargo weight</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesRouteItem}" column="cargoVolume">cargo volume</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesRouteItem}" column="custom">custom</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesRouteItem}" column="contactPerson">contact person</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesRouteItem}" column="contactPhone">contact phone</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesRouteItem}" column="note">note</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesRouteItem}" column="id"><spring:message code="table.column.id" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesRouteItem}" column="order"><spring:message code="table.column.order" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesRouteItem}" column="address"><spring:message code="table.column.address" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesRouteItem}" column="date"><spring:message code="table.column.date" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesRouteItem}" column="cargoWeight"><spring:message code="route-item.column.cargo_weight" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesRouteItem}" column="cargoVolume"><spring:message code="route-item.column.cargo_volume" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesRouteItem}" column="custom"><spring:message code="route-item.column.custom" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesRouteItem}" column="contactPerson"><spring:message code="route-item.column.contact_person" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesRouteItem}" column="contactPhone"><spring:message code="table.column.phone" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesRouteItem}" column="note"><spring:message code="table.column.note" /></mytaglib:sort-link></th>
             <th></th>
 		</tr>
 		<c:forEach var="routeItem" items="${gridItems}" varStatus="loopCounter">

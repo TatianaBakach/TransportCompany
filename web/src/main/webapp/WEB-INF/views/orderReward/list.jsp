@@ -2,21 +2,22 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 <%@ taglib prefix="jspFragments" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<h4 class="header">Order Rewards</h4>
+<h4 class="header"><spring:message code="page.order_reward.title" /></h4>
 <table class="bordered highlight">
 	<tbody>
 		<tr>
-			<th><mytaglib:sort-link pageUrl="${pagesOrderReward}" column="id">id</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesOrderReward}" column="order">order</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesOrderReward}" column="employee">employee</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesOrderReward}" column="rewardType">reward type</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesOrderReward}" column="orderRewardPercent">order reward percent</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesOrderReward}" column="additionalExpenses">additional expenses</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesOrderReward}" column="amount">amount</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesOrderReward}" column="paymentDate">payment date</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesOrderReward}" column="rewardIssued">reward issued</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesOrderReward}" column="note">note</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesOrderReward}" column="id"><spring:message code="table.column.id" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesOrderReward}" column="order"><spring:message code="table.column.order" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesOrderReward}" column="employee"><spring:message code="table.column.employee" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesOrderReward}" column="rewardType"><spring:message code="order_reward.column.reward_type" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesOrderReward}" column="orderRewardPercent"><spring:message code="page.reward_percent.title" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesOrderReward}" column="additionalExpenses"><spring:message code="order_reward.column.additional_expenses" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesOrderReward}" column="amount"><spring:message code="order_reward.column.amount" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesOrderReward}" column="paymentDate"><spring:message code="order_reward.column.payment_date" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesOrderReward}" column="rewardIssued"><spring:message code="order_reward.column.reward_issued" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesOrderReward}" column="note"><spring:message code="table.column.note" /></mytaglib:sort-link></th>
             <th></th>
 		</tr>
 		<c:forEach var="orderReward" items="${gridItems}" varStatus="loopCounter">

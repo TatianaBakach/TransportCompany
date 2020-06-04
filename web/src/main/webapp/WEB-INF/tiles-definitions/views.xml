@@ -215,5 +215,10 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/errors/404.jsp" />
 	</definition>
+	
+	<definition name="errors.403" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/errors/403.jsp" />
+	</definition>
 
 </tiles-definitions>

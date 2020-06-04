@@ -2,21 +2,22 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 <%@ taglib prefix="jspFragments" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<h4 class="header">Transaction Costs</h4>
+<h4 class="header"><spring:message code="page.transaction_cost.title" /></h4>
 <table class="bordered highlight">
 	<tbody>
 		<tr>
-			<th><mytaglib:sort-link pageUrl="${pagesTransactionCost}" column="id">id</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesTransactionCost}" column="date">date</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesTransactionCost}" column="currency">currency</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesTransactionCost}" column="amount">amount</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesTransactionCost}" column="rate">rate</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesTransactionCost}" column="intermediateCurrency">intermediate_currency</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesTransactionCost}" column="intermediateCurrencyRate">intermediate_currency_rate</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesTransactionCost}" column="paymentPeriod">payment_period</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesTransactionCost}" column="paymentTermsType">payment_terms_type</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesTransactionCost}" column="note">note</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesTransactionCost}" column="id"><spring:message code="table.column.id" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesTransactionCost}" column="date"><spring:message code="table.column.date" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesTransactionCost}" column="currency"><spring:message code="transaction_cost.column.currency" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesTransactionCost}" column="amount"><spring:message code="transaction_cost.column.amount" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesTransactionCost}" column="rate"><spring:message code="transaction_cost.column.rate" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesTransactionCost}" column="intermediateCurrency"><spring:message code="transaction_cost.column.intermediate_currency" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesTransactionCost}" column="intermediateCurrencyRate"><spring:message code="transaction_cost.column.intermediate_currency_rate" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesTransactionCost}" column="paymentPeriod"><spring:message code="transaction_cost.column.payment_period" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesTransactionCost}" column="paymentTermsType"><spring:message code="transaction_cost.column.payment_terms_type" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesTransactionCost}" column="note"><spring:message code="table.column.note" /></mytaglib:sort-link></th>
             <th></th>
 		</tr>
 		<c:forEach var="transactionCost" items="${gridItems}" varStatus="loopCounter">

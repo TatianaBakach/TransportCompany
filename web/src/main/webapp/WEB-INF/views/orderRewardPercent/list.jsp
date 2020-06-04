@@ -2,14 +2,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 <%@ taglib prefix="jspFragments" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<h4 class="header">Order Reward Percents</h4>
+<h4 class="header"><spring:message code="page.reward_percent.title" /></h4>
 <table class="bordered highlight">
 	<tbody>
 		<tr>
-			<th><mytaglib:sort-link pageUrl="${pagesOrderRewardPercent}" column="id">id</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesOrderRewardPercent}" column="name">name</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesOrderRewardPercent}" column="percent">percent</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesOrderRewardPercent}" column="id"><spring:message code="table.column.id" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesOrderRewardPercent}" column="name"><spring:message code="table.column.name" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesOrderRewardPercent}" column="percent"><spring:message code="page.reward_percent.title" /></mytaglib:sort-link></th>
             <th></th>
 		</tr>
 		<c:forEach var="orderRewardPercent" items="${gridItems}" varStatus="loopCounter">

@@ -1,7 +1,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<h4 class="header">Edit region</h4>
+<c:if test="${!readonly}">
+<h4 class="header"><spring:message code="page.editing" /></h4>
+</c:if>
+<c:if test="${readonly}">
+<h4 class="header"><spring:message code="page.view" /></h4>
+</c:if>
 <div class="row">
 
     <form:form class="col s12" method="POST" action="${pagesRegion}"
@@ -12,7 +18,7 @@
             <div class="input-field col s6">
                 <form:input path="name" type="text" disabled="${readonly}" />
                 <form:errors path="name" cssClass="red-text" />
-                <label for="name">Region name</label>
+                <label for="name"><spring:message code="table.column.name" /></label>
             </div>
         </div>
         
@@ -22,7 +28,7 @@
                     <form:options items="${countriesChoices}" />
                 </form:select>
                 <form:errors path="countryId" cssClass="red-text" />
-                <label for="countryId">region country</label>
+                <label for="countryId"><spring:message code="region.column.country" /></label>
             </div>
         </div>
         
@@ -30,11 +36,11 @@
             <div class="col s12"></div>
             <div class="col s3">
                 <c:if test="${!readonly}">
-                    <button class="btn waves-effect waves-light right green darken-3" type="submit">Save</button>
+                    <button class="btn waves-effect waves-light right green darken-3" type="submit"><spring:message code="page.button.save" /></button>
                 </c:if>
             </div>
             <div class="col s3">
-                <a class="btn waves-effect waves-light right red darken-2" href="${pagesRegion}">Cancel</a>
+                <a class="btn waves-effect waves-light right red darken-2" href="${pagesRegion}"><spring:message code="page.button.cancel" /></a>
             </div>
         </div>
     </form:form>

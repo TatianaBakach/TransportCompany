@@ -2,16 +2,17 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 <%@ taglib prefix="jspFragments" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<h4 class="header">Addresses</h4>
+<h4 class="header"><spring:message code="page.address.title" /></h4>
 <table class="bordered highlight">
 	<tbody>
 		<tr>
-			<th><mytaglib:sort-link pageUrl="${pagesAddress}" column="id">id</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesAddress}" column="postcode">postcode</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesAddress}" column="locality">locality</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesAddress}" column="exactAddress">exact_address</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesAddress}" column="note">note</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesAddress}" column="id"><spring:message code="table.column.id" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesAddress}" column="postcode"><spring:message code="address.column.postcode" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesAddress}" column="locality"><spring:message code="address.column.locality" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesAddress}" column="exactAddress"><spring:message code="address.column.exact_address" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesAddress}" column="note"><spring:message code="table.column.note" /></mytaglib:sort-link></th>
             <th></th>
 		</tr>
 		<c:forEach var="address" items="${gridItems}" varStatus="loopCounter">

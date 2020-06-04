@@ -111,6 +111,10 @@ public class OrderDaoImpl extends AbstractDaoImpl<IOrder, Integer> implements IO
 			final Path<?> expression = getSortPath(from, sortColumn);
 			cq.orderBy(new OrderImpl(expression, filter.getSortOrder()));
 		}
+		
+		if(filter.getLoggedUserId() != null) {
+		cq.where(cb.equal(from.get(Order_.creator).get(Employee_.id), filter.getLoggedUserId()));
+		}
 
 		final TypedQuery<IOrder> q = em.createQuery(cq);
 

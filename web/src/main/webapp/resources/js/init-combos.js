@@ -11,7 +11,7 @@ function initSelectElement(htmlElementId, jsonArray) {
 		"disabled" : '',
 		"selected" : '',
 		"value" : ''
-	}).text(' -- select an option -- '));
+	}).text(' -- выберите необходимое значение из списка -- '));
 
 	// вставляет новые опции в элемент
 	$.each(jsonArray, function(key, value) {

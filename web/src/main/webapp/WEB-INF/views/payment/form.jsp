@@ -1,7 +1,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<h4 class="header">Edit payment</h4>
+<c:if test="${!readonly}">
+<h4 class="header"><spring:message code="page.editing" /></h4>
+</c:if>
+<c:if test="${readonly}">
+<h4 class="header"><spring:message code="page.view" /></h4>
+</c:if>
 <div class="row">
 
     <form:form class="col s12" method="POST" action="${pagesPayment}"
@@ -13,7 +19,7 @@
 				<form:input path="date" type="text" disabled="${readonly}"
 					cssClass="datepicker" />
 				<form:errors path="date" cssClass="red-text" />
-				<label for="date">Payment date</label>
+				<label for="date"><spring:message code="table.column.date" /></label>
 			</div>
 			
 			<div class="input-field col s4">
@@ -21,7 +27,7 @@
                     <form:options items="${ordersChoices}" />
                 </form:select>
                 <form:errors path="orderId" cssClass="red-text" />
-                <label for="orderId">Payment order</label>
+                <label for="orderId"><spring:message code="table.column.order" /></label>
             </div>
             
              <div class="input-field col s4">
@@ -29,7 +35,7 @@
                     <form:options items="${companiesChoices}" />
                 </form:select>
                 <form:errors path="companyId" cssClass="red-text" />
-                <label for="companyId">Payment company</label>
+                <label for="companyId"><spring:message code="payment.column.company" /></label>
             </div>
 		</div>
 
@@ -39,19 +45,19 @@
 					<form:options items="${currencyChoices}" />
 				</form:select>
 				<form:errors path="currency" cssClass="red-text" />
-				<label for="currency">Payment currency</label>
+				<label for="currency"><spring:message code="payment.column.currency" /></label>
 			</div>
 			
 			<div class="input-field col s4">
 				<form:input path="rate" type="text" disabled="${readonly}" />
 				<form:errors path="rate" cssClass="red-text" />
-				<label for="rate">Payment rate</label>
+				<label for="rate"><spring:message code="transaction_cost.column.rate" /></label>
 			</div>
 			
 			<div class="input-field col s4">
 				<form:input path="amount" type="text" disabled="${readonly}" />
 				<form:errors path="amount" cssClass="red-text" />
-				<label for="amount">Payment amount</label>
+				<label for="amount"><spring:message code="payment.column.amount" /></label>
 			</div>
 		</div>
 		
@@ -59,7 +65,7 @@
 			<div class="input-field col s12">
 				<form:textarea path="note" disabled="${readonly}" cssClass="materialize-textarea" />
 				<form:errors path="note" cssClass="red-text" />
-				<label for="note">Payment note</label>
+				<label for="note"><spring:message code="table.column.note" /></label>
 			</div>
 		</div>
         
@@ -67,11 +73,11 @@
             <div class="col s6"></div>
             <div class="col s3">
                 <c:if test="${!readonly}">
-                    <button class="btn waves-effect waves-light right green darken-3" type="submit">Save</button>
+                    <button class="btn waves-effect waves-light right green darken-3" type="submit"><spring:message code="page.button.save" /></button>
                 </c:if>
             </div>
             <div class="col s3">
-                <a class="btn waves-effect waves-light right red darken-2" href="${pagesPayment}">Cancel</a>
+                <a class="btn waves-effect waves-light right red darken-2" href="${pagesPayment}"><spring:message code="page.button.cancel" /></a>
             </div>
         </div>
     </form:form>
